@@ -21,6 +21,7 @@
     ac0011: "vespers.html",
     ac0016: "kitchen-inventory.html",
     ac0023: "martial-arts-training.html",
+    ac0025: "mexican-train-wide.html",
   };
 
   /** Relative href to the activity flyer for the current page path. */

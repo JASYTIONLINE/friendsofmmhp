@@ -5076,6 +5076,62 @@
       "activeFrom": "01-01",
       "activeTo": "12-31",
       "active": true
+    },
+    {
+      "id": "ac0026",
+      "description": "Card Bingo is a fast, easy-to-learn table game with simple rules, low buy-in, and cash pots. Each table has 4 players using 1 deck of cards. Players race to empty their hands as the dealer flips cards one at a time.",
+      "location": "Hall A",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Thursday"
+        ],
+        "startTime": "10:00"
+      },
+      "keywords": [
+        "card bingo",
+        "cards",
+        "games",
+        "social",
+        "cash pots"
+      ],
+      "imagePath": "activity-flyer/card-bingo.jpg",
+      "activityName": "Card Bingo Night",
+      "contactResidentId": "re0000",
+      "chairpersonId": "re0000",
+      "activeFrom": "01-01",
+      "activeTo": "12-31",
+      "active": false
+    },
+    {
+      "id": "ac0027",
+      "description": "Bring your favorite crafting project to our weekly crafting circle. Enjoy good company, learn or teach a new skill, and spend time with neighbors. Examples of crafts include Swedish weaving, animal stuffing, loom knitting, crochet, needlepoint, and macrame. No skill or experience is needed.",
+      "location": "TBA",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Wednesday"
+        ],
+        "startTime": "13:00",
+        "endTime": "15:00"
+      },
+      "keywords": [
+        "crafting",
+        "swedish weaving",
+        "animal stuffing",
+        "loom knitting",
+        "crochet",
+        "needlepoint",
+        "macrame",
+        "social"
+      ],
+      "imagePath": "",
+      "activityName": "Stitch & Bitch",
+      "contactResidentId": "re0000",
+      "chairpersonId": "re0000",
+      "activeFrom": "01-01",
+      "activeTo": "12-31",
+      "active": true
     }
   ],
   "features": [

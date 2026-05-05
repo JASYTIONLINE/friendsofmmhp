@@ -1783,6 +1783,11 @@
   }
 
   body.page-home .page-home-featured .featured-card-line--name {
+    display: -webkit-box;
+    min-height: calc(1.2em * 2);
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
     font-size: clamp(1.5rem, 4.2vw, 1.9rem);
   }
 
@@ -1934,4 +1939,35 @@
 
   .page-activity-flyer-story h2 {
     margin-top: 0;
+  }
+
+  /* Alternate activity layout: same visual system, inline feature image + two-column body. */
+  body.page-activity-flyer-alt .page-activity-flyer-layout-alt {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.72fr);
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  body.page-activity-flyer-alt .page-activity-flyer-layout-alt .page-activity-flyer-story,
+  body.page-activity-flyer-alt .page-activity-flyer-layout-alt .page-activity-flyer-details {
+    grid-column: auto;
+  }
+
+  body.page-activity-flyer-alt .page-activity-flyer-inline-image {
+    margin-bottom: var(--space-md);
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    background: var(--color-ocean-mist);
+  }
+
+  body.page-activity-flyer-alt .page-activity-flyer-inline-image img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 720px) {
+    body.page-activity-flyer-alt .page-activity-flyer-layout-alt {
+      grid-template-columns: 1fr;
+    }
   }

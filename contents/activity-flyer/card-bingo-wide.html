@@ -1,27 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--
-  Activity flyer template (recurring / informational — not a single dated event).
-
-  Copy this file and rename to a short slug, e.g. karaoke-nights.html.
-  Place a hero image under assets/images/activity-flyer/<slug>.jpg (or .png).
-
-  Data alignment (optional): activities[] in assets/data/json/mmhp-master-data.json
-  - activityName, description, location, imagePath
-  - recurrenceDetails.weekdays (e.g. ["Friday","Saturday"]), recurrenceDetails.startTime ("HH:MM" 24h)
-
-  Replace placeholder text below; keep the "typical schedule" disclaimer so readers know
-  this is a weekly pattern, not one specific calendar date.
--->
+<!-- Wide activity flyer layout — Card Bingo Night. -->
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Activity name — recurring at McAllen Mobile Park</title>
-  <meta name="description" content="Learn about this recurring activity at McAllen Mobile Park: when we meet, where we gather, and what to expect." />
+  <title>Card Bingo Night — recurring at McAllen Mobile Park</title>
+  <meta name="description" content="Card Bingo Night at McAllen Mobile Park: Mondays at 3:00 PM in Hall A with fast, friendly table play and cash pots." />
   <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg" />
   <link rel="stylesheet" href="../../assets/css/style.css" />
 </head>
-<body id="top" class="page-activity-flyer" data-mmhp-master-json="../../assets/data/json/mmhp-master-data.json">
+<body id="top" class="page-activity-flyer page-activity-flyer-alt" data-mmhp-master-json="../../assets/data/json/mmhp-master-data.json">
   <div class="site-wrapper">
     <div class="site-shell">
 
@@ -29,10 +17,6 @@
         <h1 class="site-header-title">McAllen Mobile Park Activities</h1>
         <p class="site-header-subtitle">Stay Active, Engage Your Mind, Have Fun at MMHP!</p>
       </header>
-
-      <div class="hero-image">
-        <img src="../../assets/images/park-banner.png" alt="McAllen Mobile Park Banner" />
-      </div>
 
       <nav class="site-nav navbar" aria-label="Main navigation">
         <ul class="site-nav-list">
@@ -56,25 +40,40 @@
           </div>
         </aside>
 
-        <main class="site-main main-content" id="main" data-mmhp-activity-id="ac0000">
+        <main class="site-main main-content" id="main">
           <section class="site-main-content content page-activity-flyer-main">
             <span class="page-activity-flyer-badge">Weekly activity</span>
-            <h2 class="page-activity-flyer-title">Activity name (replace)</h2>
+            <h2 class="page-activity-flyer-title">Card Bingo Night</h2>
             <p class="page-activity-flyer-lead">
-              Add one short sentence about what this is and who it’s for — enough to spark interest without tying to a single event date.
+              Looking for something fast, fun, and a little competitive? Card Bingo brings people together around the table for easy-to-learn play and real cash pots.
             </p>
 
-            <div class="page-activity-flyer-grid">
-              <div class="card page-activity-flyer-feature-frame">
-                <img src="../../assets/images/activity-flyer/template.png" alt="Activity photo (replace alt text)" width="800" height="600" loading="lazy" decoding="async" />
+            <div class="page-activity-flyer-layout-alt">
+              <div class="card page-activity-flyer-story" aria-labelledby="about-heading">
+                <div class="page-activity-flyer-inline-image">
+                  <img src="../../assets/images/activity-flyer/card-bingo.jpg" alt="Card Bingo Night at McAllen Mobile Park" />
+                </div>
+                <h2 id="about-heading">About this activity</h2>
+                <p>
+                  Card Bingo is a high-energy, easy-to-learn game that brings people together around the table. With simple rules, low buy-in, and real cash pots, every round is exciting. Whether you are here to win or just enjoy the atmosphere, the more tables playing, the bigger the payouts get.
+                </p>
+                <p>
+                  Here is how it works: each table has 4 players using 1 deck of cards. Every player is dealt 13 cards. The dealer flips one card at a time, and if you have that card, you discard it. The goal is simple: be the first to empty your hand.
+                </p>
+                <p>
+                  There are 13 rounds total: 4 nickel games, 4 dime games, 4 quarter games, and 1 dollar game. Each player buys in with a total of $2.60 ($1 bill, 4 quarters, 4 dimes, 4 nickels). The winner of each round takes the entire pot from all tables.
+                </p>
+                <p>
+                  Bring your change, grab a seat, and get ready to play. The more players and tables in the game, the bigger the pot and the better the energy. Do not miss your chance to shout BINGO, clear your hand, and take it all.
+                </p>
               </div>
 
               <div class="card page-activity-flyer-details">
                 <section class="page-activity-flyer-schedule" aria-labelledby="schedule-heading">
                   <h2 id="schedule-heading">Typical schedule</h2>
                   <p class="page-activity-flyer-recurring-label">Recurring weekly — not one specific date</p>
-                  <p class="page-activity-flyer-days">Fridays &amp; Saturdays</p>
-                  <p class="page-activity-flyer-time-pill"><span aria-hidden="true">🕐</span> Around 1:00 PM</p>
+                  <p class="page-activity-flyer-days">Thursdays</p>
+                  <p class="page-activity-flyer-time-pill"><span aria-hidden="true">🕐</span> 10:00 AM</p>
                   <p class="page-activity-flyer-disclaimer">
                     Days and times follow our usual weekly pattern; the main calendar lists any changes, holidays, or weather updates.
                   </p>
@@ -86,20 +85,10 @@
                 <section class="page-activity-flyer-loc" aria-labelledby="where-heading">
                   <h2 id="where-heading">Where we meet</h2>
                   <strong>On property</strong>
-                  <p>Activity Center — replace with the on-property venue name.</p>
+                  <p>Hall A</p>
                   <strong>Park address</strong>
                   <p>4900 N Mc Coll Rd, McAllen, TX 78504</p>
                 </section>
-              </div>
-
-              <div class="card page-activity-flyer-story" aria-labelledby="about-heading">
-                <h2 id="about-heading">About this activity</h2>
-                <p>
-                  Replace with your full description. Explain the vibe, what guests bring or need, and why someone might want to try it — without tying the copy to one calendar night.
-                </p>
-                <p>
-                  Optional: <a href="#" data-mmhp-coordinator-mailto>email the event coordinator</a> (uses site coordinator config).
-                </p>
               </div>
             </div>
           </section>
