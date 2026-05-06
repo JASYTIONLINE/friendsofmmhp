@@ -8,6 +8,7 @@ The project is **not** an official park management system. Operational questions
 
 ## Contents
 
+- [Week 8 sprint workflow](#week-8-sprint-workflow)
 - [Final project promise](#final-project-promise)
 - [How the finished site is used](#how-the-finished-site-is-used)
 - [Final QA/QC checklist](#final-qaqc-checklist)
@@ -20,6 +21,18 @@ The project is **not** an official park management system. Operational questions
 - [Capstone artifacts](#capstone-artifacts)
 
 ---
+
+## Week 8 sprint workflow
+
+This section restates the Week 8 execution order from course guidance: the **official rubric and Week 8 instructions** define what must be submitted and how it is graded; this README is the working **promise + QA/QC** surface for the repository and the deployed site.
+
+1. **README as promise** — [Final project promise](#final-project-promise) and [Final QA/QC checklist](#final-qaqc-checklist) describe the finished product as if it is already meeting standard; development closes gaps between that description and reality.
+2. **Align the site** — Data ([`mmhp-master-data.json`](assets/data/json/mmhp-master-data.json)), generated feature pages (`npm run build:feature-pages`), links (`npm run audit:links`), forms, exports, and repo hygiene (Phase 5) are brought in line with the checklist.
+3. **Initial QA/QC pass (pre–Phase 6)** — Walk the **Product/application** checklist on a real deployment, fix defects, and record any intentional exceptions. Do not treat this as the final course sign-off until the rubric itself is satisfied.
+4. **Post–initial-QA adjustments** — After that first pass, apply any extra modifications you choose (copy, layout tweaks, optional content) before the final freeze.
+5. **Phase 6 — Final go/no-go** — Confirm the **rubric** is met at 100%, then confirm the **README** still matches the deployed site; that pairing is the submit/no-submit decision per Week 8 guidance.
+
+Throughout: **commit and push in small, single-purpose batches** so the live site can be validated after each change.
 
 ## Final project promise
 
@@ -51,7 +64,9 @@ The final site promises the following:
 
 ## Final QA/QC checklist
 
-This README is also the sprint checklist. Before Project 02 submission, the site should pass each item below.
+Use this list during the **initial QA/QC pass** ([Week 8 workflow, step 3](#week-8-sprint-workflow)). The **official rubric and Week 8 instructions** govern grading and submission requirements. **Phase 6** is the final go/no-go: rubric satisfied in full, then confirm this README still matches the deployed site.
+
+Before you submit Project 02, the site and repository should pass each item below.
 
 ### Product/application
 
@@ -171,7 +186,7 @@ mmpeventcalendar/
 | [assets/data/csv/](assets/data/csv/) | **featured-events.csv** (editorial/build input), Google Calendar–oriented CSVs, **export/** (optional local exports; generated `*.csv` under **export/** may be gitignored—folder kept via [.gitkeep](assets/data/csv/export/.gitkeep)). |
 | [assets/images/](assets/images/) | Park banner, **event-flyer/**, **activity-flyer/**, favicon, misc art. |
 | [assets/docs/](assets/docs/) | Capstone proposal artifacts (PDF + `.txt` extract). |
-| [scripts/](scripts/) | **build-features-from-csv.mjs**, **build-feature-event-pages.mjs**, **csv-to-syllabus-json.mjs**; Python helpers for recurring expansion and Google Calendar CSV export—run locally, not at runtime. |
+| [scripts/](scripts/) | **build-features-from-csv.mjs**, **build-feature-event-pages.mjs**, **audit-local-html-links.mjs**; Python helpers for recurring expansion and Google Calendar CSV export—run locally, not at runtime. |
 
 ### Activity flyer pages
 
@@ -252,7 +267,7 @@ Scripts load **per page** as needed (**defer** where applied). The master JSON p
 
 - **Featured CSV** — [featured-events.csv](assets/data/csv/featured-events.csv) supports editorial workflows; [build-features-from-csv.mjs](scripts/build-features-from-csv.mjs) merges approved rows into master JSON **features[]** (and related fields) for republication.
 
-- **Other scripts** — [scripts/](scripts/) also holds Node modules (for example feature page generation, syllabus JSON) and Python helpers for Google Calendar–oriented CSV generation and recurring expansions. These are **offline** tools; they are not required at runtime for the static pages.
+- **Other scripts** — [scripts/](scripts/) also holds Node tooling (feature page generation, featured CSV merge, local HTML link audit) and Python helpers for Google Calendar–oriented CSV generation and recurring expansions. These are **offline** tools; they are not required at runtime for the static pages.
 
 The **center** calendar on the home page is typically a **Google Calendar embed**. It operates **alongside** the site’s JSON-driven cards and lists rather than as a server dependency of this codebase—a design that keeps **familiar calendar UX** for subscribers while still allowing **curated** sidebar content from JSON.
 
@@ -338,3 +353,5 @@ Display-only — **id**, **name**, **imagePath**, **notes** (no phone or email i
 
 - **Proposal (PDF):** [assets/docs/Barkle-w3a1-project-proposal-and-research.pdf](assets/docs/Barkle-w3a1-project-proposal-and-research.pdf)  
 - **Proposal (text extract):** [assets/docs/Barkle-w3a1-project-proposal-and-research.pdf.txt](assets/docs/Barkle-w3a1-project-proposal-and-research.pdf.txt)
+
+**Project 02 / Week 8 documentation (per rubric):** Submit the **case study**, **presentation**, and **development reflection** through the course channels your instructor specifies. The [Case study](#case-study), [Presentation](#presentation), and [Development reflection](#development-reflection) checklist sections above mirror typical rubric expectations; they do not replace the official Week 8 document.
