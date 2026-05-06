@@ -147,7 +147,7 @@ mmpeventcalendar/
 ├── index.html                    # home (three-column layout, calendar embed)
 ├── contents/
 │   ├── learn-more.html           # operational pages (same shell as home)
-│   ├── submit.html
+│   ├── submit-feature.html
 │   ├── contact.html
 │   ├── request-activity.html
 │   ├── activity-flyer/           # recurring-activity pages + template-recurring-activity.html

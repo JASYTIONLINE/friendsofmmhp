@@ -534,9 +534,9 @@
   function submitHref() {
     var path = (window.location.pathname || "").replace(/\\/g, "/");
     if (/contents[/\\]/i.test(path)) {
-      return isActivityFlyerPagePath(path) ? "../submit.html" : "submit.html";
+      return isActivityFlyerPagePath(path) ? "../submit-feature.html" : "submit-feature.html";
     }
-    return "contents/submit.html";
+    return "contents/submit-feature.html";
   }
 
   function padHourMinForFilename(h) {
