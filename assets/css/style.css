@@ -1,9 +1,19 @@
-/* ================================================
-   McAllen Mobile Park Event Site
-   Consolidated single-file stylesheet
-   Theme: Neutral light blue, white, sand, brown
-   Purpose: Shared structure + shared theme in one file
-   ================================================ */
+/*
+ * McAllen Mobile Park Events — consolidated stylesheet
+ *
+ * Why one file: A static community site with no bundler should not scatter theme tokens
+ * across partials that silently diverge. Instructors and maintainers can read top-to-bottom
+ * to see how layout primitives (site-shell, site-layout, sidebars) compose, then how body.page-*
+ * scopes tune a page type without forking a second stylesheet.
+ *
+ * How theming works: :root holds palette and spacing tokens; components reference those variables
+ * so a palette change propagates predictably. Page-specific sections (e.g. page-home calendar
+ * stack, page-activity-flyer) extend the same vocabulary instead of redefining unrelated class
+ * names, which keeps the mental model small for students comparing HTML across folders.
+ *
+ * Theme note: Neutral beach tones (sky, ocean-mist, sand, driftwood) support high readability
+ * for a mixed-age audience—contrast and touch targets matter as much as decoration.
+ */
 
 /* ================================================
    ROOT THEME VARIABLES
@@ -1538,7 +1548,7 @@
       padding: 1rem;
     }
   }
-  /* HERO IMAGE BANNER */
+  /* HERO IMAGE BANNER — base rules; header and main-content narrow variants follow */
 .hero-image {
   width: 100%;
   margin-bottom: 1rem;
@@ -1546,7 +1556,8 @@
 
 .hero-image img {
   width: 100%;
-  height: auto;
+  height: 240px;
+  object-fit: cover;
   border-radius: 12px;
 }
 
@@ -1561,20 +1572,6 @@
   height: auto;
   margin-inline: auto;
 }
-/* ================================================
-   HERO IMAGE (FULL WIDTH BANNER)
-   ================================================ */
-   .hero-image {
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-  
-  .hero-image img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
-    border-radius: 12px;
-  }
   
   /* ================================================
      GOOGLE CALENDAR EMBED

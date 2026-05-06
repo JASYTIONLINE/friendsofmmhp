@@ -1,5 +1,15 @@
+/**
+ * Submit Event form — client-side validation, CSV row shaping, and coordinator handoff.
+ *
+ * Why stay in the browser: The coordinator workflow is email/file based; there is no application
+ * server. This script therefore assembles a disciplined payload (validated fields, image blobs,
+ * optional ZIP) and uses the same mailto + download patterns as the activity request form so
+ * residents and reviewers see one mental model for “send to coordinator.”
+ *
+ * How it works: readForm() mirrors the JSON schema the maintainer merges into features[]; event
+ * rows include card lines and adCopy so promotional text lives in data, not only in static HTML.
+ */
 (function () {
-  var LOCATION_PRESET_OTHER = "__other__";
   var KNOWN_HALLS = { "Hall A": true, "Hall B": true, "Hall C": true };
   var LOCATION_OTHER_PLACEHOLDER = "Add other location here";
 

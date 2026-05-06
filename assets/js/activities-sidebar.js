@@ -1,5 +1,17 @@
+/**
+ * Master JSON-driven UI: recurring sidebar, featured cards, exports, and path-aware deep links.
+ *
+ * Why one large module: Every page that embeds the calendar shell needs the same fetch/parse/render
+ * pipeline without duplicating URL math for assets (root vs contents/ vs activity-flyer/). Keeping
+ * schedule rendering beside export and featured-card code ensures filters such as isActive stay
+ * aligned—students can grep one file to see how JSON fields become DOM.
+ *
+ * How it works: The loader reads body[data-mmhp-master-json], normalizes activities into weekday
+ * buckets from recurrenceDetails, and skips isActive:false rows for display and exports. Featured
+ * regions sort dated features, hydrate cards with images from assets/images/, and adjust hrefs
+ * based on location.pathname so the same script runs on index.html and nested flyer paths.
+ */
 (function () {
-  var WEEKDAYS = [
     "Monday",
     "Tuesday",
     "Wednesday",

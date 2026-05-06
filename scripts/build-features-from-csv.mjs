@@ -1,6 +1,15 @@
 /**
- * Replaces mmhp-master-data.json "features" from assets/data/csv/featured-events.csv.
- * Run from repo root: node scripts/build-features-from-csv.mjs
+ * Offline merge: replace the `features` array in mmhp-master-data.json from featured-events.csv.
+ *
+ * Why a CSV step exists: Coordinators think in spreadsheets; the site thinks in JSON. This script is
+ * the bridge—run locally after editing the CSV so the static site and build:feature-pages share one
+ * canonical feature list without hand-copying dozens of fields.
+ *
+ * How it works: Parses RFC-style CSV with quoted fields, maps columns to feature objects (dates,
+ * times, adCopy for repeatable Karaoke/DJ rows, computed endTime), writes JSON with the rest of the
+ * master file untouched. Not loaded in the browser.
+ *
+ * Run: node scripts/build-features-from-csv.mjs
  */
 import fs from "fs";
 import path from "path";

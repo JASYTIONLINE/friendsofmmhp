@@ -1,7 +1,18 @@
 /**
- * Single source for the event coordinator email used by mailto flows and the submit form.
- * Change the default: edit MMHP_COORDINATOR_EMAIL_DEFAULT below, or use Data admin → download and replace this file.
- * Optional: set data-mmhp-coordinator-email on <body> to override without editing this file (advanced).
+ * Single source for the event coordinator email address used across mailto handoffs.
+ *
+ * Why isolate this in one IIFE: HTML pages intentionally keep human-readable placeholders and
+ * data-* hooks; this script is the one place that turns those hooks into working mailto URLs.
+ * That separation lets course reviewers see the accessibility story—static fallbacks still work
+ * if JavaScript fails—while production behavior stays consistent site-wide.
+ *
+ * How it works: On DOM ready, mmhpApplyCoordinatorMailto scans for anchors tagged with
+ * data-mmhp-coordinator-mailto and rewrites href using the coordinator address (body attribute
+ * override or the default constant). buildMailtoHref centralizes encoding so subject/body never
+ * leak raw characters into the URL.
+ *
+ * Maintenance: Change MMHP_COORDINATOR_EMAIL_DEFAULT below, or set data-mmhp-coordinator-email
+ * on <body> to override without editing this file (advanced).
  */
 (function (global) {
   var MMHP_COORDINATOR_EMAIL_DEFAULT = "johnbarkle@msn.com";

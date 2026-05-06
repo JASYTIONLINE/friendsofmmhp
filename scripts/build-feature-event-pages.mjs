@@ -1,7 +1,14 @@
 /**
- * Generates one static HTML page per row in mmhp-master-data.json "features".
- * Output: contents/feature-events/YYYY-MM-DD-HHmm-<image-stem>.html
- * Template: contents/feature-events/yyyy-mm-dd-1900-bookme.html (literals in name; not a data row)
+ * Generates one static HTML file per active feature in mmhp-master-data.json.
+ *
+ * Why generate pages: Featured nights have stable, bookmarkable URLs and work without JavaScript,
+ * while hydration in feature-events-ics.js can still refresh copy from JSON for repeat events.
+ * The template keeps flyer layout and embedded styles consistent so instructors see one pattern.
+ *
+ * How it works: Reads yyyy-mm-dd-1900-bookme.html, substitutes title, datetime, image path,
+ * location block, and adCopy/description, writes dated filenames. Skip rows with isActive:false.
+ *
+ * Run: npm run build:feature-pages
  */
 import fs from "fs";
 import path from "path";

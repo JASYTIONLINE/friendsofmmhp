@@ -1,6 +1,13 @@
 /**
- * Request a new recurring activity: builds an activities[]-shaped payload, optional images,
- * Web Share or ZIP + mailto (same pattern as event-submit-form.js).
+ * Request a new recurring activity — builds an activities[]-shaped payload and coordinator handoff.
+ *
+ * Why mirror event-submit-form: Park volunteers should not learn two different export semantics.
+ * Both flows validate images, gate total byte size, and fall back from Web Share to ZIP + mailto
+ * when the browser cannot share files directly—critical for Windows desktop users.
+ *
+ * How it works: Weekday and slot inputs collapse into recurrenceDetails structures that match
+ * mmhp-master-data.json; the payload includes adCopy and isActive so the coordinator can merge
+ * without reverse-engineering prose from the email body alone.
  */
 (function () {
   var WEEKDAYS_ORDER = [

@@ -1,8 +1,16 @@
 /**
- * Featured event landing pages (contents/feature-events/): "Save the date" opens a short help
- * modal, then users download a .ics file (avoids confusion / repeated clicks).
- * Optional body[data-mmhp-feature-id="fe####"] + body[data-mmhp-master-json] loads from JSON features[].
- * Without feature id, uses DOM (.feature-events-title, .feature-events-when time, .feature-events-loc, .feature-events-about).
+ * Featured-event landing pages: calendar (.ics) export, optional JSON hydration, and help UX.
+ *
+ * Why this module exists: Residents should add a featured night to their personal calendar without
+ * trusting a server-side API. Generating RFC 5545-ish text in the browser keeps the site static
+ * while still delivering a professional handoff. The script also reconciles static HTML (built
+ * ahead of time) with mmhp-master-data.json so repeatable Karaoke/DJ nights can share imagery
+ * and copy while dates stay accurate.
+ *
+ * How it works: init() wires button handlers and, when body carries data-mmhp-feature-id, fetches
+ * the master JSON and overlays title, time range, location, and ad copy onto the DOM before the
+ * user downloads ICS. Older pages without IDs still read visible DOM nodes, preserving backward
+ * compatibility for one-off layouts.
  */
 (function () {
   var DEFAULT_DURATION_MIN = 180;

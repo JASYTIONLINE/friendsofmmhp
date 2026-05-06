@@ -1,6 +1,13 @@
 /**
- * One-off/local QA: list relative href/src targets missing on disk.
- * Run: node scripts/audit-local-html-links.mjs
+ * Local QA helper: walks all HTML under the repo and reports relative href/src targets that do not
+ * resolve on disk (excluding mailto, http(s), tel, data, and bare # anchors).
+ *
+ * Why: Static sites break silently when an image is renamed or a path depth is wrong; this is a
+ * fast preflight before deploy. Students can trace each reported pair back to a specific tag.
+ *
+ * How: For each local URL, path.join(directory, pathname) and fs.existsSync. Does not fetch remote.
+ *
+ * Run: npm run audit:links
  */
 import fs from "fs";
 import path from "path";
