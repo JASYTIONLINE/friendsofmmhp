@@ -1932,11 +1932,15 @@
       margin-bottom: 0.5rem;
     }
 
-    /* Request activity: single-column focus on mobile — no schedule / featured side rails */
+    /* Request activity + Submit event: single-column on mobile — no schedule / featured side rails */
     body.page-request-activity .site-layout > aside.site-sidebar-left,
     body.page-request-activity .site-layout > aside.sidebar-left,
     body.page-request-activity .site-layout > aside.site-sidebar-right,
-    body.page-request-activity .site-layout > aside.sidebar-right {
+    body.page-request-activity .site-layout > aside.sidebar-right,
+    body.page-submit .site-layout > aside.site-sidebar-left,
+    body.page-submit .site-layout > aside.sidebar-left,
+    body.page-submit .site-layout > aside.site-sidebar-right,
+    body.page-submit .site-layout > aside.sidebar-right {
       display: none !important;
     }
   
