@@ -24,3 +24,6 @@ assets/data/json/backups/
 
 # Local background notes, drafts, and future assets — not part of the public site delivery
 private/
+
+# Capstone / course docs kept locally; not published with the static site repo
+docs/

@@ -9,7 +9,7 @@ The project is **not** an official park management system. Operational questions
 ## Contents
 
 - [Week 8 sprint workflow](#week-8-sprint-workflow)
-- [Week 8 QA plan (repo copy)](docs/week-08-qa-plan.md)
+- Week 8 QA plan and P02 drafts: kept locally in `docs/` (gitignored; not published with this repo)
 - [Final project promise](#final-project-promise)
 - [How the finished site is used](#how-the-finished-site-is-used)
 - [Final submission access](#final-submission-access)
@@ -126,7 +126,7 @@ Phase 5 closes the repository: nonessential files stay private, the public tree 
 
 **Remote repository hygiene**
 
-- [ ] Public tracked repo contains only mission-required site, data, scripts, docs, and final deliverables.
+- [ ] Public tracked repo contains only mission-required site, data, scripts, and shared proposal artifacts under **assets/docs**; course-specific markdown (case study, reflection, Week 8 plan, etc.) may live in a **local, gitignored** `docs/` folder and is submitted through your LMS, not necessarily via this remote.
 - [ ] [`private/`](private/) is ignored and contains background/future-use material that should not clutter the remote repo.
 - [ ] No active page references ignored/private assets.
 - [ ] Final git status is clean after intentional commits.
@@ -168,9 +168,9 @@ mmpeventcalendar/
 │   │   └── csv/                  # featured-events.csv, calendar import/export CSVs, export/
 │   ├── images/                   # banners; event-flyer/; activity-flyer/
 │   └── docs/                     # capstone proposal PDF + text extract
-├── docs/                         # Week 8 QA plan + P02 deliverable outlines (markdown)
-└── scripts/                      # Node (.mjs) + Python; not loaded by the browser
 ```
+
+*Local-only (gitignored): a `docs/` folder at the repo root may hold Week 8 planning, case study, and reflection drafts; it is not part of the published remote tree.*
 
 ### Path depth and linking
 
@@ -195,7 +195,7 @@ mmpeventcalendar/
 | [assets/data/csv/](assets/data/csv/) | **featured-events.csv** (editorial/build input), Google Calendar–oriented CSVs, **export/** (optional local exports; generated `*.csv` under **export/** may be gitignored—folder kept via [.gitkeep](assets/data/csv/export/.gitkeep)). |
 | [assets/images/](assets/images/) | Park banner, **event-flyer/**, **activity-flyer/**, favicon, misc art. |
 | [assets/docs/](assets/docs/) | Capstone proposal artifacts (PDF + `.txt` extract). |
-| [docs/](docs/) | Week 8 QA plan working copy and **draft** case study / reflection / presentation outlines. |
+| `docs/` *(local, gitignored)* | Week 8 QA plan copy and P02 deliverable drafts — not part of the published repository tree; submit through your course channels. |
 | [scripts/](scripts/) | **build-features-from-csv.mjs**, **build-feature-event-pages.mjs**, **audit-local-html-links.mjs**; Python helpers for recurring expansion and Google Calendar CSV export—run locally, not at runtime. |
 
 ### Activity flyer pages
@@ -251,7 +251,7 @@ HTML under **contents/feature-events/** often includes **embedded** CSS for flye
 
 - **Operational pages** — **learn-more**, **submit**, **contact**, **request-activity** reuse the multi-column shell, the **data-mmhp-master-json** hook, and shared footer and navigation patterns with path-adjusted asset URLs. Users therefore **do not** relearn navigation when they move from reading to submitting.
 
-- **Featured events** — **Date-specific** marketing or landing pages; imagery lives under **assets/images/event-flyer/**. Client scripts may wire **mailto**-style ticketing flows and **feature-events-ics.js** where those pages opt in—supporting both **human** coordinator contact and **calendar** handoff.
+- **Featured events** — **Date-specific** marketing or landing pages; imagery lives under **assets/images/event-flyer/**. Shared scripts add coordinator **mailto** hooks where included, and **feature-events-ics.js** provides calendar download / “Save the date” handoff.
 
 - **Activity flyers** — Explainers for **recurring** activities: typical weekdays and times, venue and park address, and a longer narrative; optional **data-mmhp-activity-id** ties copy to **activities[]** in master JSON when desired. Imagery uses **assets/images/activity-flyer/**. The UX intent is **idea-first** communication (pattern of the week) rather than “save this single date.”
 
@@ -267,7 +267,9 @@ HTML under **contents/feature-events/** often includes **embedded** CSS for flye
 | [feature-events-ics.js](assets/js/feature-events-ics.js) | Calendar download and help UX on feature-event pages that include it. |
 | [mmhp-coordinator-config.js](assets/js/mmhp-coordinator-config.js) | Coordinator contact surface for mailto and related hooks. |
 
-Scripts load **per page** as needed (**defer** where applied). The master JSON path is supplied on **body** or follows layout conventions—keeping configuration **visible** in markup for a static site.
+Scripts load **per page** as needed (**defer** on external scripts). The master JSON path is supplied on **body** or follows layout conventions—keeping configuration **visible** in markup for a static site.
+
+**Static asset trade-offs:** The site intentionally uses **one global** stylesheet and a **shared** [`activities-sidebar.js`](assets/js/activities-sidebar.js) so repeat visitors cache a single copy. Pages without sidebar or export hooks still download that script, but initialization **skips** the master JSON fetch when no hooked regions exist—acceptable for this architecture. Forms that build ZIP attachments load **JSZip** from jsDelivr **pinned to 3.10.1** with **`integrity` + `crossorigin="anonymous"`** for Subresource Integrity (see [`contents/submit-feature.html`](contents/submit-feature.html) and [`contents/request-activity.html`](contents/request-activity.html)).
 
 ---
 
@@ -363,8 +365,6 @@ Display-only — **id**, **name**, **imagePath**, **notes** (no phone or email i
 
 - **Proposal (PDF):** [assets/docs/Barkle-w3a1-project-proposal-and-research.pdf](assets/docs/Barkle-w3a1-project-proposal-and-research.pdf)  
 - **Proposal (text extract):** [assets/docs/Barkle-w3a1-project-proposal-and-research.pdf.txt](assets/docs/Barkle-w3a1-project-proposal-and-research.pdf.txt)
-- **Week 8 execution plan (working copy in repo):** [docs/week-08-qa-plan.md](docs/week-08-qa-plan.md)
-- **Project 02 drafts (iterate, then submit in the format your instructor requires):** [docs/case-study.md](docs/case-study.md), [docs/development-reflection.md](docs/development-reflection.md), [presentation speaker notes](docs/presentation-notes.md); shorter [outlines](docs/case-study-outline.md) remain available.
-- **Phase 6 working checklist:** [docs/final-submission-checklist.md](docs/final-submission-checklist.md)
+- **Week 8 execution plan, case study, reflection, presentation notes, Phase 6 checklist:** maintained under a local **`docs/`** folder (gitignored). They are **not** shipped with this public repository; export or paste from your machine and submit per instructor instructions.
 
 **Project 02 / Week 8 documentation (per rubric):** Submit the **case study**, **presentation**, and **development reflection** through the course channels your instructor specifies. The Case study, Presentation, and Development reflection checklist sections under [Final QA/QC checklist](#final-qaqc-checklist) mirror typical rubric expectations; they do not replace the official Week 8 document.
