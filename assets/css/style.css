@@ -2946,6 +2946,23 @@
 
   /* Wide home: 3-column center-stack — left rail | calendar + Future Featured | spotlight */
   @media (min-width: 1101px) {
+    /* Fill viewport below header/nav so rails can stretch to the footer when content is short */
+    body.page-home .site-shell {
+      min-height: 100dvh;
+    }
+
+    body.page-home .site-shell > .site-layout {
+      flex: 1 1 auto;
+      min-height: 0;
+    }
+
+    body.page-home .site-main {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
     body.page-home .page-home-center-stack {
       display: grid;
       /* Fixed-ish rail caps so the center column keeps room for calendar + 3-up featured */
@@ -2953,10 +2970,13 @@
         minmax(0, 10.25rem)
         minmax(0, 1fr)
         minmax(0, 10rem);
-      grid-template-rows: auto auto;
+      /* Second row grows so spanning sidebars extend with the main column to the footer */
+      grid-template-rows: auto minmax(0, 1fr);
       column-gap: 0.65rem;
       row-gap: 0.65rem;
-      align-items: start;
+      align-items: stretch;
+      flex: 1 1 auto;
+      min-height: 0;
     }
 
     body.page-home .page-home-main-lead {
@@ -2969,24 +2989,32 @@
     body.page-home .page-home-center-stack > .site-sidebar.site-sidebar-left {
       grid-column: 1;
       grid-row: 1 / span 2;
-      align-self: start;
+      align-self: stretch;
       width: 100%;
       min-width: 0;
+      min-height: 0;
     }
 
     body.page-home .page-home-center-stack > .site-sidebar.site-sidebar-right {
       grid-column: 3;
       grid-row: 1 / span 2;
-      align-self: start;
+      align-self: stretch;
       width: 100%;
       max-width: min(100%, 10rem);
       min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
     }
 
     body.page-home .page-home-main-tail {
       grid-column: 2;
       grid-row: 2;
       min-width: 0;
+      min-height: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
 
     body.page-home .page-home-center-stack > .page-home-stack-divider:not(.page-home-mobile-only) {
@@ -3002,7 +3030,7 @@
       grid-template-rows: auto auto auto auto;
       column-gap: 0.65rem;
       row-gap: 0.65rem;
-      align-items: start;
+      align-items: stretch;
     }
 
     body.page-home .page-home-main-lead {
@@ -3150,9 +3178,23 @@
   }
 
   body.page-home .page-home-featured {
-    flex: 0 0 auto;
-    flex-shrink: 0;
     min-height: 0;
+  }
+
+  @media (max-width: 1100px) {
+    body.page-home .page-home-featured {
+      flex: 0 0 auto;
+      flex-shrink: 0;
+    }
+  }
+
+  @media (min-width: 1101px) {
+    body.page-home .page-home-featured {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
   }
 
   body.page-home .page-home-featured-header {
