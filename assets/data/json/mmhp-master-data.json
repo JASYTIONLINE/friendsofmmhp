@@ -4703,13 +4703,14 @@
         "music",
         "social"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Karaoke",
       "contactResidentId": "re0088",
       "chairpersonId": "re0088",
       "activeFrom": "01-01",
       "activeTo": "12-31",
-      "active": true
+      "isActive": true,
+      "adCopy": "Community karaoke night"
     },
     {
       "id": "ac0002",
@@ -4721,13 +4722,14 @@
         "music",
         "dj"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "DJ Karaoke",
       "contactResidentId": "re0088",
       "chairpersonId": "re0088",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "DJ hosted karaoke event"
     },
     {
       "id": "ac0003",
@@ -4751,7 +4753,8 @@
       "chairpersonId": "re0000",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": true
+      "isActive": true,
+      "adCopy": "Bingo Night"
     },
     {
       "id": "ac0004",
@@ -4768,13 +4771,14 @@
         "pool",
         "games"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Pool / 8 Ball",
       "contactResidentId": "re0088",
       "chairpersonId": "re0088",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "Organized pool games"
     },
     {
       "id": "ac0006",
@@ -4793,13 +4797,14 @@
         "arts",
         "crafts"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Arts & Crafts",
       "contactResidentId": "re0097",
       "chairpersonId": "re0097",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "General art and craft activities"
     },
     {
       "id": "ac0008",
@@ -4815,13 +4820,14 @@
       "keywords": [
         "books"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Book Club",
       "contactResidentId": "re0097",
       "chairpersonId": "re0097",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "Reading and discussion group"
     },
     {
       "id": "ac0010",
@@ -4837,13 +4843,14 @@
       "keywords": [
         "religious"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Bible Study",
       "contactResidentId": "re0029",
       "chairpersonId": "re0029",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "Group Bible study"
     },
     {
       "id": "ac0011",
@@ -4859,13 +4866,14 @@
       "keywords": [
         "religious"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Vespers",
       "contactResidentId": "re0029",
       "chairpersonId": "re0029",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "Evening worship service"
     },
     {
       "id": "ac0016",
@@ -4881,126 +4889,133 @@
       "keywords": [
         "operations"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Kitchen Inventory",
       "contactResidentId": "re0036",
       "chairpersonId": "re0036",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "Kitchen supply management"
     },
     {
       "id": "ac0017",
       "description": "One-off and special dance events",
       "location": "Hall A",
-      "recurrenceType": "",
-      "recurrenceDetails": {},
+      "recurrenceType": null,
+      "recurrenceDetails": null,
       "keywords": [
         "dance",
         "music",
         "band"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Dance",
       "contactResidentId": "re0011",
       "chairpersonId": "re0011",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "One-off and special dance events"
     },
     {
       "id": "ac0018",
       "description": "One-off theater performances",
       "location": "Hall A",
-      "recurrenceType": "",
-      "recurrenceDetails": {},
+      "recurrenceType": null,
+      "recurrenceDetails": null,
       "keywords": [
         "theater",
         "performance",
         "drama"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Theater",
       "contactResidentId": "re0011",
       "chairpersonId": "re0011",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "One-off theater performances"
     },
     {
       "id": "ac0019",
       "description": "One-off comedy performances",
       "location": "Hall A",
-      "recurrenceType": "",
-      "recurrenceDetails": {},
+      "recurrenceType": null,
+      "recurrenceDetails": null,
       "keywords": [
         "comedy",
         "show"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Comedy",
       "contactResidentId": "re0011",
       "chairpersonId": "re0011",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "One-off comedy performances"
     },
     {
       "id": "ac0020",
       "description": "One-off live music performances",
       "location": "Hall A",
-      "recurrenceType": "",
-      "recurrenceDetails": {},
+      "recurrenceType": null,
+      "recurrenceDetails": null,
       "keywords": [
         "music",
         "live",
         "performance"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Music Performance",
       "contactResidentId": "re0011",
       "chairpersonId": "re0011",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "One-off live music performances"
     },
     {
       "id": "ac0021",
       "description": "One-off interactive mystery performances",
       "location": "Hall A",
-      "recurrenceType": "",
-      "recurrenceDetails": {},
+      "recurrenceType": null,
+      "recurrenceDetails": null,
       "keywords": [
         "mystery",
         "interactive",
         "performance"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Murder Mystery",
       "contactResidentId": "re0011",
       "chairpersonId": "re0011",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "One-off interactive mystery performances"
     },
     {
       "id": "ac0022",
       "description": "One-off talent and showcase events",
       "location": "Hall A",
-      "recurrenceType": "",
-      "recurrenceDetails": {},
+      "recurrenceType": null,
+      "recurrenceDetails": null,
       "keywords": [
         "talent",
         "show",
         "performance"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Talent Show",
       "contactResidentId": "re0011",
       "chairpersonId": "re0011",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "One-off talent and showcase events"
     },
     {
       "id": "ac0023",
@@ -5026,7 +5041,8 @@
       "chairpersonId": "re0018",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "Come learn the basics of martial arts with 1st Degree Black Belt and park resident Jyo Kyo Nim John Barkle (495 Grapefruit). We will learn body conditioning, very basic self defense, and do a light low impact workout designed to help us stay mobile and continue to enjoy life."
     },
     {
       "id": "ac0024",
@@ -5044,13 +5060,14 @@
         "horsecollar",
         "games"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Horsecollar Shuffle Board",
       "contactResidentId": "re0025",
       "chairpersonId": "re0025",
       "activeFrom": "10-01",
       "activeTo": "04-15",
-      "active": false
+      "isActive": false,
+      "adCopy": "Horsecollar shuffle board games"
     },
     {
       "id": "ac0025",
@@ -5069,13 +5086,14 @@
         "mexican train",
         "games"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Mexican Train Dominoes",
       "contactResidentId": "re0000",
       "chairpersonId": "re0000",
       "activeFrom": "01-01",
       "activeTo": "12-31",
-      "active": true
+      "isActive": true,
+      "adCopy": "Mexican Train Dominoes games"
     },
     {
       "id": "ac0026",
@@ -5101,7 +5119,8 @@
       "chairpersonId": "re0000",
       "activeFrom": "01-01",
       "activeTo": "12-31",
-      "active": false
+      "isActive": false,
+      "adCopy": "Card Bingo is a fast, easy-to-learn table game with simple rules, low buy-in, and cash pots. Each table has 4 players using 1 deck of cards. Players race to empty their hands as the dealer flips cards one at a time."
     },
     {
       "id": "ac0027",
@@ -5125,13 +5144,14 @@
         "macrame",
         "social"
       ],
-      "imagePath": "",
+      "imagePath": null,
       "activityName": "Stitch & Bitch",
       "contactResidentId": "re0000",
       "chairpersonId": "re0000",
       "activeFrom": "01-01",
       "activeTo": "12-31",
-      "active": true
+      "isActive": true,
+      "adCopy": "Bring your favorite crafting project to our weekly crafting circle. Enjoy good company, learn or teach a new skill, and spend time with neighbors. Examples of crafts include Swedish weaving, animal stuffing, loom knitting, crochet, needlepoint, and macrame. No skill or experience is needed."
     }
   ],
   "features": [
@@ -5140,7 +5160,7 @@
       "id": "fe0001",
       "date": "2026-11-07",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5148,14 +5168,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Nov 7 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0002",
       "id": "fe0002",
       "date": "2026-11-14",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5163,14 +5185,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Nov 14 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0003",
       "id": "fe0003",
       "date": "2026-11-21",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5178,14 +5202,16 @@
       "cardLine2": "DJ Karaoke",
       "cardLine3": "Nov 21 2026",
       "eventName": "DJ Dance — DJ Karaoke",
-      "imagePath": "event-flyer/djdance.png"
+      "imagePath": "event-flyer/djdance.png",
+      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
+      "description": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0004",
       "id": "fe0004",
       "date": "2026-11-28",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5193,14 +5219,16 @@
       "cardLine2": "DJ Karaoke",
       "cardLine3": "Nov 28 2026",
       "eventName": "DJ Dance — DJ Karaoke",
-      "imagePath": "event-flyer/djdance.png"
+      "imagePath": "event-flyer/djdance.png",
+      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
+      "description": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0005",
       "id": "fe0005",
       "date": "2026-12-05",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5208,14 +5236,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Dec 5 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0006",
       "id": "fe0006",
       "date": "2026-12-12",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5223,14 +5253,16 @@
       "cardLine2": "DJ Karaoke",
       "cardLine3": "Dec 12 2026",
       "eventName": "DJ Dance — DJ Karaoke",
-      "imagePath": "event-flyer/djdance.png"
+      "imagePath": "event-flyer/djdance.png",
+      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
+      "description": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0007",
       "id": "fe0007",
       "date": "2026-12-19",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5238,14 +5270,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Dec 19 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0008",
       "id": "fe0008",
       "date": "2026-12-26",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5253,14 +5287,16 @@
       "cardLine2": "DJ Karaoke",
       "cardLine3": "Dec 26 2026",
       "eventName": "DJ Dance — DJ Karaoke",
-      "imagePath": "event-flyer/djdance.png"
+      "imagePath": "event-flyer/djdance.png",
+      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
+      "description": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0009",
       "id": "fe0009",
       "date": "2027-01-06",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5269,14 +5305,15 @@
       "cardLine3": "Jan 6 2027",
       "eventName": "The Howlers — Dance",
       "description": "3 piece variety band that play anything from Elvis Presley to Amy Winehouse from Cumbia to Country",
-      "imagePath": "event-flyer/howlers.png"
+      "imagePath": "event-flyer/howlers.png",
+      "adCopy": "3 piece variety band that play anything from Elvis Presley to Amy Winehouse from Cumbia to Country"
     },
     {
       "featureId": "fe0010",
       "id": "fe0010",
       "date": "2027-01-13",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5285,14 +5322,15 @@
       "cardLine3": "Jan 13 2027",
       "eventName": "Jonny Bird — Dance",
       "description": "LV entertainer writer musician producer and all around performer from Minnesota to Las Vegas and now the valley he knows how to entertain",
-      "imagePath": "event-flyer/jonny-bird.jpg"
+      "imagePath": "event-flyer/jonny-bird.jpg",
+      "adCopy": "LV entertainer writer musician producer and all around performer from Minnesota to Las Vegas and now the valley he knows how to entertain"
     },
     {
       "featureId": "fe0011",
       "id": "fe0011",
       "date": "2027-01-20",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5301,14 +5339,15 @@
       "cardLine3": "Jan 20 2027",
       "eventName": "Mayham — Comedy",
       "description": "Comedian for the Redneck Comedy Bus Bransons Famous Baldknobbers Show and nationally touring comedian",
-      "imagePath": "event-flyer/mayham.jpg"
+      "imagePath": "event-flyer/mayham.jpg",
+      "adCopy": "Comedian for the Redneck Comedy Bus Bransons Famous Baldknobbers Show and nationally touring comedian"
     },
     {
       "featureId": "fe0012",
       "id": "fe0012",
       "date": "2027-01-27",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5317,14 +5356,15 @@
       "cardLine3": "Jan 27 2027",
       "eventName": "3 Fools on 3 Stools — Music Performance",
       "description": "Three guitar players from the Island that perform all over the valley",
-      "imagePath": "event-flyer/3fools.jpg"
+      "imagePath": "event-flyer/3fools.jpg",
+      "adCopy": "Three guitar players from the Island that perform all over the valley"
     },
     {
       "featureId": "fe0013",
       "id": "fe0013",
       "date": "2027-02-03",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5333,14 +5373,15 @@
       "cardLine3": "Feb 3 2027",
       "eventName": "Arnold Davidson as Hank Williams Jr — Music Performance",
       "description": "A tribute show to Hank Williams Jr bringing high energy new musician to the valley",
-      "imagePath": "event-flyer/arnold-hank.jpg"
+      "imagePath": "event-flyer/arnold-hank.jpg",
+      "adCopy": "A tribute show to Hank Williams Jr bringing high energy new musician to the valley"
     },
     {
       "featureId": "fe0014",
       "id": "fe0014",
       "date": "2027-02-10",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5349,14 +5390,15 @@
       "cardLine3": "Feb 10 2027",
       "eventName": "Julia Lane Cooper Mardi Gras Murder Mystery Party — Murder Mystery",
       "description": "A show full of live music hilarious dialogue improv intrigue accusations and all attendees at the heart of the show",
-      "imagePath": "event-flyer/murder-mystery.jpg"
+      "imagePath": "event-flyer/murder-mystery.jpg",
+      "adCopy": "A show full of live music hilarious dialogue improv intrigue accusations and all attendees at the heart of the show"
     },
     {
       "featureId": "fe0015",
       "id": "fe0015",
       "date": "2027-02-17",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5365,14 +5407,15 @@
       "cardLine3": "Feb 17 2027",
       "eventName": "Singing Ambassadors — Music Performance",
       "description": "A mens chorus made up of both Winter Texans and locals that love to sing donations go to scholarships for RGV students that want to pursue music",
-      "imagePath": "event-flyer/singing-ambass.jpg"
+      "imagePath": "event-flyer/singing-ambass.jpg",
+      "adCopy": "A mens chorus made up of both Winter Texans and locals that love to sing donations go to scholarships for RGV students that want to pursue music"
     },
     {
       "featureId": "fe0016",
       "id": "fe0016",
       "date": "2027-02-24",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5381,14 +5424,15 @@
       "cardLine3": "Feb 24 2027",
       "eventName": "Lindley Creek Band — Music Performance",
       "description": "Began as a bluegrass family band from MO but expanding to perform a broad range of music",
-      "imagePath": "event-flyer/lindley-creek.jpg"
+      "imagePath": "event-flyer/lindley-creek.jpg",
+      "adCopy": "Began as a bluegrass family band from MO but expanding to perform a broad range of music"
     },
     {
       "featureId": "fe0017",
       "id": "fe0017",
       "date": "2027-03-03",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5397,14 +5441,15 @@
       "cardLine3": "Mar 3 2027",
       "eventName": "Rusty Rierson — Music Performance",
       "description": "A Kansas native that pays tribute to George Strait Don Williams and many others",
-      "imagePath": "event-flyer/rusty-rierson.jpg"
+      "imagePath": "event-flyer/rusty-rierson.jpg",
+      "adCopy": "A Kansas native that pays tribute to George Strait Don Williams and many others"
     },
     {
       "featureId": "fe0018",
       "id": "fe0018",
       "date": "2027-03-10",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5413,14 +5458,15 @@
       "cardLine3": "Mar 10 2027",
       "eventName": "Players Studio — Theater",
       "description": "A non profit drama club that performs in McAllen and brings community theatre to the valley",
-      "imagePath": "event-flyer/players-studio.jpg"
+      "imagePath": "event-flyer/players-studio.jpg",
+      "adCopy": "A non profit drama club that performs in McAllen and brings community theatre to the valley"
     },
     {
       "featureId": "fe0019",
       "id": "fe0019",
       "date": "2027-03-17",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5429,14 +5475,15 @@
       "cardLine3": "Mar 17 2027",
       "eventName": "St Patricks Day Party — Talent Show",
       "description": "Talent show with a focus on the green luck theme",
-      "imagePath": "event-flyer/st-patty-party.jpg"
+      "imagePath": "event-flyer/st-patty-party.jpg",
+      "adCopy": "Talent show with a focus on the green luck theme"
     },
     {
       "featureId": "fe0020",
       "id": "fe0020",
       "date": "2026-05-02",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5444,14 +5491,16 @@
       "cardLine2": "Dance",
       "cardLine3": "May 2 2026",
       "eventName": "Dance Party with DJ Dana — Dance",
-      "imagePath": "event-flyer/djdance.png"
+      "imagePath": "event-flyer/djdance.png",
+      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
+      "description": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0021",
       "id": "fe0021",
       "date": "2026-05-09",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5459,14 +5508,16 @@
       "cardLine2": "Dance",
       "cardLine3": "May 9 2026",
       "eventName": "Dance Party with DJ Dana — Dance",
-      "imagePath": "event-flyer/djdance.png"
+      "imagePath": "event-flyer/djdance.png",
+      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
+      "description": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0022",
       "id": "fe0022",
       "date": "2026-05-16",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5474,14 +5525,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "May 16 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0023",
       "id": "fe0023",
       "date": "2026-05-23",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5489,14 +5542,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "May 23 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0024",
       "id": "fe0024",
       "date": "2026-05-30",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5504,14 +5559,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "May 30 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0025",
       "id": "fe0025",
       "date": "2026-06-06",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5519,14 +5576,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Jun 6 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0026",
       "id": "fe0026",
       "date": "2026-06-13",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5534,14 +5593,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Jun 13 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0027",
       "id": "fe0027",
       "date": "2026-06-20",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5549,14 +5610,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Jun 20 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0028",
       "id": "fe0028",
       "date": "2026-06-27",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5564,14 +5627,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Jun 27 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0029",
       "id": "fe0029",
       "date": "2026-07-04",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5579,14 +5644,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Jul 4 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0030",
       "id": "fe0030",
       "date": "2026-07-11",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5594,14 +5661,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Jul 11 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0031",
       "id": "fe0031",
       "date": "2026-07-18",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5609,14 +5678,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Jul 18 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0032",
       "id": "fe0032",
       "date": "2026-07-25",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5624,14 +5695,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Jul 25 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0033",
       "id": "fe0033",
       "date": "2026-08-01",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5639,14 +5712,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Aug 1 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0034",
       "id": "fe0034",
       "date": "2026-08-08",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5654,14 +5729,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Aug 8 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0035",
       "id": "fe0035",
       "date": "2026-08-15",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5669,14 +5746,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Aug 15 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0036",
       "id": "fe0036",
       "date": "2026-08-22",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5684,14 +5763,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Aug 22 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0037",
       "id": "fe0037",
       "date": "2026-08-29",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5699,14 +5780,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Aug 29 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0038",
       "id": "fe0038",
       "date": "2026-09-05",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5714,14 +5797,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Sep 5 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0039",
       "id": "fe0039",
       "date": "2026-09-12",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5729,14 +5814,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Sep 12 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0040",
       "id": "fe0040",
       "date": "2026-09-19",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5744,14 +5831,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Sep 19 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0041",
       "id": "fe0041",
       "date": "2026-09-26",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5759,14 +5848,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Sep 26 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0042",
       "id": "fe0042",
       "date": "2026-10-03",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5774,14 +5865,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Oct 3 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0043",
       "id": "fe0043",
       "date": "2026-10-10",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5789,14 +5882,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Oct 10 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0044",
       "id": "fe0044",
       "date": "2026-10-17",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5804,14 +5899,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Oct 17 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0045",
       "id": "fe0045",
       "date": "2026-10-24",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5819,14 +5916,16 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Oct 24 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0046",
       "id": "fe0046",
       "date": "2026-10-31",
       "startTime": "19:00",
-      "endTime": "",
+      "endTime": "22:00",
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
@@ -5834,7 +5933,9 @@
       "cardLine2": "Karaoke",
       "cardLine3": "Oct 31 2026",
       "eventName": "Karaoke — Karaoke",
-      "imagePath": "event-flyer/karaoke.png"
+      "imagePath": "event-flyer/karaoke.png",
+      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
+      "description": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night."
     },
     {
       "featureId": "fe0047",
@@ -5850,7 +5951,8 @@
       "cardLine3": "Apr 29 2026",
       "eventName": "Encore Karaoke — Special Musical Review",
       "description": "Encore Karaoke with a special musical review.",
-      "imagePath": "event-flyer/encore-karaoke.png"
+      "imagePath": "event-flyer/encore-karaoke.png",
+      "adCopy": "Encore Karaoke with a special musical review."
     }
   ],
   "committees": [

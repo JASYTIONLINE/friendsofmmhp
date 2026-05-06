@@ -262,6 +262,7 @@
     var rows = sortedActivities(data);
     var lines = ["McAllen Mobile Park Activities", "Activity name | Day of week | Time | Hall/location", ""];
     for (var i = 0; i < rows.length; i++) {
+      if (rows[i].isActive === false) continue;
       var entries = activityExportEntries(rows[i]);
       for (var j = 0; j < entries.length; j++) {
         lines.push(activityExportLine(rows[i], entries[j]));
@@ -274,6 +275,7 @@
     var rows = sortedActivities(data);
     var lines = [["Activity Name", "Day of Week", "Time", "Hall/Location", "Active"].map(csvCell).join(",")];
     for (var i = 0; i < rows.length; i++) {
+      if (rows[i].isActive === false) continue;
       var entries = activityExportEntries(rows[i]);
       for (var j = 0; j < entries.length; j++) {
         var act = rows[i];
@@ -281,7 +283,7 @@
         var day = String(entries[j].weekday || "Day TBA").trim();
         var time = formatSlotTime(entries[j].startTime || "") || "Time TBA";
         var location = String(act.location || "").trim() || "Location TBA";
-        var active = act.active === false ? "false" : "true";
+        var active = act.isActive === false ? "false" : "true";
         lines.push([name, day, time, location, active].map(csvCell).join(","));
       }
     }
@@ -958,7 +960,7 @@
    */
   function mergeRecurrenceFromActivity(buckets, act) {
     if (!isRecurringActivity(act)) return;
-    if (act.active === false) return;
+    if (act.isActive === false) return;
     var name = (act.activityName || "").trim();
     if (!name || /^unknown$/i.test(name)) return;
 

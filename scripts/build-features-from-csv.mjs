@@ -87,6 +87,29 @@ function parseTimeTo24h(s) {
   return String(h).padStart(2, "0") + ":" + min;
 }
 
+function addHours24h(hhmm, hours) {
+  const m = /^(\d{1,2}):(\d{2})$/.exec(String(hhmm || "").trim());
+  if (!m) return "";
+  const h = (parseInt(m[1], 10) + hours) % 24;
+  return String(h).padStart(2, "0") + ":" + m[2];
+}
+
+function repeatableAdCopy(cardLine1, cardLine2, imagePath) {
+  const line1 = String(cardLine1 || "").trim().toLowerCase();
+  const line2 = String(cardLine2 || "").trim().toLowerCase();
+  const image = String(imagePath || "").trim().toLowerCase();
+  if (line1.includes("karaoke") || line2.includes("karaoke") || image.includes("karaoke")) {
+    if (line1.includes("dance") || line2.includes("dj") || image.includes("djdance")) {
+      return "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.";
+    }
+    return "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.";
+  }
+  if (line1.includes("dance party") || image.includes("djdance")) {
+    return "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.";
+  }
+  return "";
+}
+
 function parseBoolCell(val, defaultVal) {
   const s = String(val != null ? val : "").trim().toLowerCase();
   if (s === "true" || s === "1" || s === "yes") return true;
@@ -183,13 +206,15 @@ function main() {
     const startTime = parseTimeTo24h(timeRaw);
     const eventName = deriveListingTitle(cardLine1, cardLine2);
     const cardLine3 = formatCardLine3FromIso(date);
+    const imagePath = resolveImagePath(cardLine1, cardLine2, o.Image);
+    const adCopy = desc || repeatableAdCopy(cardLine1, cardLine2, imagePath);
 
     const row = {
       featureId,
       id: featureId,
       date,
       startTime,
-      endTime: "",
+      endTime: addHours24h(startTime, 3),
       location,
       isActive: true,
       isFeatured,
@@ -197,9 +222,9 @@ function main() {
       cardLine2,
       cardLine3,
       eventName,
+      adCopy,
     };
     if (desc) row.description = desc;
-    const imagePath = resolveImagePath(cardLine1, cardLine2, o.Image);
     if (imagePath) row.imagePath = imagePath;
     features.push(row);
   }

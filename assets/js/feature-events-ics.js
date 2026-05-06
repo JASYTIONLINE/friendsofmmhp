@@ -120,6 +120,110 @@
     return el ? el.innerText.replace(/\s+\n/g, "\n").trim() : "";
   }
 
+  function escapeText(s) {
+    return String(s || "").trim();
+  }
+
+  function formatTime12(hhmm) {
+    var parsed = parseHHMM(hhmm);
+    if (!parsed) return "";
+    var h = parsed.h;
+    var ap = h >= 12 ? "PM" : "AM";
+    var h12 = h % 12;
+    if (h12 === 0) h12 = 12;
+    return h12 + ":" + pad2(parsed.min) + " " + ap;
+  }
+
+  function formatLongDate(ymd) {
+    var dm = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(ymd || "").trim());
+    if (!dm) return "";
+    var dt = new Date(parseInt(dm[1], 10), parseInt(dm[2], 10) - 1, parseInt(dm[3], 10));
+    return dt.toLocaleDateString("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
+  }
+
+  function imageSrcForFeature(f) {
+    var raw = String((f && f.imagePath) || "").replace(/^\/+/, "").trim();
+    return raw ? "../../assets/images/" + raw : "";
+  }
+
+  function hydrateFeaturePageFromJson(f) {
+    if (!f) return;
+    var title = escapeText(f.eventName || f.cardLine1 || "Featured event");
+    var titleEl = document.querySelector(".feature-events-title");
+    if (titleEl && title) titleEl.textContent = title;
+
+    var imgEl = document.querySelector(".feature-events-feature-frame img");
+    var imgSrc = imageSrcForFeature(f);
+    if (imgEl && imgSrc) {
+      imgEl.src = imgSrc;
+      imgEl.alt = title + " flyer";
+    }
+
+    var timeEl = document.querySelector(".feature-events-when time");
+    var date = escapeText(f.date);
+    var start = escapeText(f.startTime || "19:00");
+    if (timeEl && date) {
+      timeEl.setAttribute("datetime", date + "T" + start);
+      timeEl.textContent = formatLongDate(date);
+    }
+
+    var timePill = document.querySelector(".feature-events-time-pill");
+    if (timePill) {
+      var end = escapeText(f.endTime);
+      var visibleTime = end ? formatTime12(start) + "-" + formatTime12(end) : formatTime12(start);
+      var loc = escapeText(f.location || "Hall A");
+      timePill.textContent = [visibleTime, loc].filter(Boolean).join(" · ");
+    }
+
+    var locEl = document.querySelector(".feature-events-loc");
+    if (locEl) {
+      var location = escapeText(f.location || "Hall A");
+      locEl.textContent = "";
+      var strong = document.createElement("strong");
+      strong.textContent = "Location";
+      locEl.appendChild(strong);
+      locEl.appendChild(document.createTextNode(" McAllen Mobile Park · " + location));
+      locEl.appendChild(document.createElement("br"));
+      locEl.appendChild(document.createTextNode("4900 N Mc Coll Rd, McAllen, TX"));
+    }
+
+    var about = document.querySelector(".feature-events-about");
+    var copy = escapeText(f.adCopy || f.description);
+    if (about && copy) {
+      about.textContent = "";
+      var p = document.createElement("p");
+      p.textContent = copy;
+      about.appendChild(p);
+    }
+  }
+
+  function hydrateCurrentFeaturePage() {
+    var body = document.body;
+    var featureId = body ? (body.getAttribute("data-mmhp-feature-id") || "").trim() : "";
+    var jsonUrl = body ? (body.getAttribute("data-mmhp-master-json") || "").trim() : "";
+    if (!featureId || !jsonUrl) return;
+    fetch(jsonUrl)
+      .then(function (r) {
+        if (!r.ok) throw new Error("Could not load event data.");
+        return r.json();
+      })
+      .then(function (data) {
+        var list = data && data.features ? data.features : [];
+        for (var i = 0; i < list.length; i++) {
+          if (list[i].featureId === featureId || list[i].id === featureId) {
+            hydrateFeaturePageFromJson(list[i]);
+            return;
+          }
+        }
+      })
+      .catch(function () {});
+  }
+
   function gatherFromDom() {
     var timeEl = document.querySelector(".feature-events-when time");
     var iso = timeEl ? timeEl.getAttribute("datetime") || "" : "";
@@ -164,7 +268,7 @@
     var location = [String(f.location || "").trim(), "McAllen Mobile Park · 4900 N Mc Coll Rd, McAllen, TX"]
       .filter(Boolean)
       .join(" · ");
-    var desc = String(f.description || "").trim();
+    var desc = String(f.adCopy || f.description || "").trim();
     var url = window.location ? window.location.href : "";
     var description = (desc ? desc + "\n\n" : "") + url;
     var uid = String(f.featureId || f.id || summary) + "@mmhp-feature-events";
@@ -349,6 +453,7 @@
   }
 
   function init() {
+    hydrateCurrentFeaturePage();
     var btn = document.getElementById("feature-events-save-calendar");
     if (!btn) return;
     btn.addEventListener("click", onSaveRibbonClick);

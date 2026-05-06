@@ -37,6 +37,7 @@
     "eventCardLine1",
     "eventCardLine2",
     "eventCardLine3",
+    "eventAdCopy",
     "isFeatured",
   ];
 
@@ -213,11 +214,15 @@
 
     el = document.getElementById("mmhp-submit-cardLine1");
     if (!el || !needStr(el.value))
-      return { message: "Please enter the short description of the event (line 1).", focusEl: el };
+      return { message: "Please enter the featured card title.", focusEl: el };
 
     el = document.getElementById("mmhp-submit-cardLine2");
     if (!el || !needStr(el.value))
-      return { message: "Please enter the short description (line 2).", focusEl: el };
+      return { message: "Please enter the featured card category.", focusEl: el };
+
+    el = document.getElementById("mmhp-submit-adCopy");
+    if (!el || !needStr(el.value))
+      return { message: "Please enter promotional copy for the event detail page.", focusEl: el };
 
     if (!needStr(ev.eventName))
       return {
@@ -325,6 +330,7 @@
       c1,
       c2,
       c3,
+      ev.adCopy || "",
       ev.isFeatured === true ? "true" : ev.isFeatured === false ? "false" : "",
     ];
   }
@@ -349,6 +355,7 @@
       "Card line 1: " + (ev.cardLine1 || ""),
       "Card line 2: " + (ev.cardLine2 || ""),
       "Card line 3: " + (ev.cardLine3 || ""),
+      "Promotional copy: " + (ev.adCopy || ""),
       "Active: " + (ev.isActive === false ? "false" : "true"),
       "Featured: " + (ev.isFeatured === true ? "true" : ev.isFeatured === false ? "false" : ""),
       "Image filename hint: " + (ev.imagePath || "(none)"),
@@ -610,6 +617,7 @@
       location: readLocationFromForm(),
       cardLine1: String(document.getElementById("mmhp-submit-cardLine1").value || "").trim(),
       cardLine2: String(document.getElementById("mmhp-submit-cardLine2").value || "").trim(),
+      adCopy: String(document.getElementById("mmhp-submit-adCopy").value || "").trim(),
       isActive: document.getElementById("mmhp-submit-isActive").checked,
       isFeatured: document.getElementById("mmhp-submit-isFeatured").checked,
     };
@@ -879,6 +887,8 @@
     var c2 = document.getElementById("mmhp-submit-cardLine2");
     c2.value = "";
     c2.dataset.mmhpTouched = "";
+    var adCopy = document.getElementById("mmhp-submit-adCopy");
+    if (adCopy) adCopy.value = "";
     refreshDerivedFields(masterData);
 
     if (locPreset) {

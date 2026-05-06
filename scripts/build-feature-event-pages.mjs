@@ -71,6 +71,26 @@ function formatTime12(hhmm) {
   return `${h}:${min} ${ap}`;
 }
 
+function repeatableFeatureDescription(ev) {
+  const line1 = String(ev.cardLine1 || "").trim().toLowerCase();
+  const line2 = String(ev.cardLine2 || "").trim().toLowerCase();
+  const image = String(ev.imagePath || "").trim().toLowerCase();
+
+  if (line1.includes("karaoke") || line2.includes("karaoke") || image.includes("karaoke")) {
+    if (line1.includes("dance") || line2.includes("dj") || image.includes("djdance")) {
+      return "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. This featured listing uses the same event format each time it appears; check the date and time above for the current scheduled night.";
+    }
+
+    return "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. This listing uses the same event format each time it appears; check the date and time above for the current scheduled night.";
+  }
+
+  if (line1.includes("dance party") || image.includes("djdance")) {
+    return "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music and dancing. This featured listing uses the same event format each time it appears; check the date and time above for the current scheduled night.";
+  }
+
+  return "";
+}
+
 function buildHtmlForFeature(ev, tpl) {
   const eventName =
     String(ev.eventName || "").trim() ||
@@ -83,10 +103,12 @@ function buildHtmlForFeature(ev, tpl) {
   const [y, mo, d] = date.split("-").map((x) => parseInt(x, 10));
   const dateVisible = Number.isFinite(y) ? formatLongDate(y, mo, d) : "";
   const loc = String(ev.location || "Hall A").trim();
-  const timePill = `${formatTime12(startTime)} · ${loc}`;
+  const endTime = String(ev.endTime || "").trim();
+  const visibleTime = endTime ? `${formatTime12(startTime)} - ${formatTime12(endTime)}` : formatTime12(startTime);
+  const timePill = `${visibleTime} · ${loc}`;
   const imgPath = String(ev.imagePath || "").trim().replace(/^\//, "");
   const imgSrc = imgPath ? `../../assets/images/${imgPath}` : "../../assets/images/event-flyer/bookme.png";
-  const descRaw = String(ev.description || "").trim();
+  const descRaw = String(ev.adCopy || ev.description || "").trim() || repeatableFeatureDescription(ev);
   const descHtml = descRaw
     ? `<p>${escapeHtml(descRaw).replace(/\r\n|\n/g, "<br>")}</p>`
     : `<p>Join us at McAllen Mobile Park for this featured evening.</p>`;

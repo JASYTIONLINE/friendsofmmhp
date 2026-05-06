@@ -654,9 +654,11 @@
         var activityPayload = {
           activityName: name,
           description: description,
+          adCopy: description,
           location: location,
           recurrenceType: recurrenceType,
           recurrenceDetails: recurrenceDetails,
+          isActive: true,
           keywords: keywords,
           imagePath: imagePath,
         };
