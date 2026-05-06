@@ -9,6 +9,8 @@
  * location block, and adCopy/description, writes dated filenames. Skip rows with isActive:false.
  *
  * Run: npm run build:feature-pages
+ *
+ * Note: The HTML template may include UI blocks commented out for a given submission (e.g. Purchase tickets); keep template + this script in sync when re-enabling sections.
  */
 import fs from "fs";
 import path from "path";
