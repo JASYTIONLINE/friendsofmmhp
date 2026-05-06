@@ -630,6 +630,86 @@
     } catch (f) {}
   }
 
+  /**
+   * Activity flyer landing pages: same lightbox UX as featured events, but image is sized to 80vw
+   * wide with height auto (typical 1920×1080 assets).
+   */
+  function openActivityLandingImagePreview(src, altText) {
+    if (!src) return;
+    var backdrop = document.createElement("div");
+    backdrop.className = "mmhp-image-preview-backdrop mmhp-image-preview-backdrop--activity";
+    backdrop.setAttribute("role", "dialog");
+    backdrop.setAttribute("aria-modal", "true");
+    backdrop.setAttribute("aria-label", "Flyer preview");
+
+    var inner = document.createElement("div");
+    inner.className = "mmhp-image-preview-inner";
+
+    var btnClose = document.createElement("button");
+    btnClose.type = "button";
+    btnClose.className = "mmhp-image-preview-close";
+    btnClose.textContent = "\u00D7";
+    btnClose.setAttribute("aria-label", "Close preview");
+
+    var imgEl = document.createElement("img");
+    imgEl.src = src;
+    imgEl.alt = altText || "";
+    imgEl.className = "mmhp-image-preview-img";
+
+    function onKey(e) {
+      if (e.key === "Escape") close();
+    }
+    function close() {
+      document.removeEventListener("keydown", onKey);
+      if (backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
+    }
+
+    btnClose.addEventListener("click", close);
+    backdrop.addEventListener("click", function (e) {
+      if (e.target === backdrop) close();
+    });
+    inner.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+    document.addEventListener("keydown", onKey);
+
+    inner.appendChild(btnClose);
+    inner.appendChild(imgEl);
+    backdrop.appendChild(inner);
+    document.body.appendChild(backdrop);
+    try {
+      btnClose.focus();
+    } catch (f) {}
+  }
+
+  function wireActivityFlyerImagePreview() {
+    if (!document.body || !document.body.classList.contains("page-activity-flyer")) return;
+    var img = document.querySelector(".page-activity-flyer-feature-frame img");
+    if (!img || img.getAttribute("data-mmhp-activity-flyer-preview-wired") === "1") return;
+    img.setAttribute("data-mmhp-activity-flyer-preview-wired", "1");
+    img.setAttribute("role", "button");
+    img.setAttribute("tabindex", "0");
+    img.setAttribute("aria-label", "Enlarge flyer image");
+    img.style.cursor = "zoom-in";
+
+    function openFromImg() {
+      var src = img.currentSrc || img.src;
+      if (!src) return;
+      openActivityLandingImagePreview(src, img.alt || "");
+    }
+
+    img.addEventListener("click", function (e) {
+      e.preventDefault();
+      openFromImg();
+    });
+    img.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openFromImg();
+      }
+    });
+  }
+
   var MAX_FEATURED_CARDS = 2;
 
   function debounce(fn, ms) {
@@ -1288,6 +1368,7 @@
   }
 
   function init() {
+    wireActivityFlyerImagePreview();
     var url = getMasterJsonUrl();
     var list = document.querySelector("aside.site-sidebar-left .recurring-events-list");
     var homeFeaturedGrid = document.querySelector(".page-home-featured-grid");

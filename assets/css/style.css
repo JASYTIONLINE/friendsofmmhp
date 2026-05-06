@@ -1071,6 +1071,29 @@
       right: -0.25rem;
     }
   }
+
+  /* Activity landing pages: wide flyers (e.g. 1920×1080) — 80% viewport width, natural height */
+  .mmhp-image-preview-backdrop--activity {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    align-items: flex-start;
+    padding-top: max(1rem, env(safe-area-inset-top, 0px) + 0.5rem);
+    padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px) + 0.5rem);
+  }
+
+  .mmhp-image-preview-backdrop--activity .mmhp-image-preview-inner {
+    margin: auto;
+    width: 80vw;
+    max-width: 80vw;
+    max-height: none;
+  }
+
+  .mmhp-image-preview-backdrop--activity .mmhp-image-preview-img {
+    width: 100%;
+    max-width: 100%;
+    max-height: none;
+    height: auto;
+  }
   
   /* ================================================
      FOOTER
