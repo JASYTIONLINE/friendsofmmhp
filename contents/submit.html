@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Submit an Event | McAllen Mobile Park Events</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body id="top" data-mmhp-master-json="../assets/data/json/mmhp-master-data.json">
@@ -50,8 +51,8 @@
                 that opens for the event coordinator.
               </p>
               <ul class="submission-page__hints">
-                <li><strong>Short description of event</strong> — main text on the featured card (line 1). <strong>Max 48 characters.</strong></li>
-                <li><strong>Short description</strong> — category or subtitle (for example Dance, Karaoke). <strong>Max 48 characters.</strong></li>
+                <li><strong>Featured card title</strong> — main text on the featured card. <strong>Max 48 characters.</strong></li>
+                <li><strong>Featured card category</strong> — category or subtitle (for example Dance, Karaoke). <strong>Max 48 characters.</strong></li>
                 <li>The <strong>date line on the card</strong> is set automatically from the event date you choose (no separate field).</li>
               </ul>
             </div>
@@ -98,13 +99,18 @@
                 </label>
 
                 <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Short description of event (max 48 characters)</span>
+                  <span class="event-submit-form__label">Featured card title (max 48 characters)</span>
                   <input type="text" id="mmhp-submit-cardLine1" name="cardLine1" class="event-submit-form__input" required maxlength="48" autocomplete="off" />
                 </label>
 
                 <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Short description (max 48 characters)</span>
+                  <span class="event-submit-form__label">Featured card category (max 48 characters)</span>
                   <input type="text" id="mmhp-submit-cardLine2" name="cardLine2" class="event-submit-form__input" required maxlength="48" autocomplete="off" />
+                </label>
+
+                <label class="event-submit-form__field">
+                  <span class="event-submit-form__label">Promotional copy for event detail page</span>
+                  <textarea id="mmhp-submit-adCopy" name="adCopy" class="event-submit-form__input" rows="4" required maxlength="2000"></textarea>
                 </label>
 
                 <label class="event-submit-form__field">
