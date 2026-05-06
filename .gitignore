@@ -1,3 +1,11 @@
+# Node (npm install for scripts only — not required for static browsing)
+node_modules/
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.log
+
 # Python
 __pycache__/
 *.py[cod]

@@ -12,6 +12,7 @@ The project is **not** an official park management system. Operational questions
 - [Week 8 QA plan (repo copy)](docs/week-08-qa-plan.md)
 - [Final project promise](#final-project-promise)
 - [How the finished site is used](#how-the-finished-site-is-used)
+- [Final submission access](#final-submission-access)
 - [Final QA/QC checklist](#final-qaqc-checklist)
 - [Repository layout](#repository-layout) (includes [activity flyer pages](#activity-flyer-pages))
 - [Structure, UI, and presentation](#structure-ui-and-presentation)
@@ -62,6 +63,12 @@ The final site promises the following:
 5. Use **Request activity** for recurring activities that should be added to the sidebar schedule.
 6. Use **Submit Event** for one-time featured events.
 7. Use **Contact Event Coordinator** for calendar, submission, or social-event questions.
+
+## Final submission access
+
+- **Source repository:** [github.com/JASYTIONLINE/mmpeventcalendar](https://github.com/JASYTIONLINE/mmpeventcalendar) (replace with your fork or course org if different).
+- **Local preview:** Clone the repo and open [`index.html`](index.html) from a **static HTTP server** rooted at the repository (many browsers restrict `file://` fetches for [`mmhp-master-data.json`](assets/data/json/mmhp-master-data.json)). For example: `npx serve .` from the repo root, then browse the URL the tool prints.
+- **Public deployment:** Publish with **GitHub Pages**, Netlify, or any host that serves this directory layout at the **site root** so `assets/...` paths resolve. Set your real **graded URL** here when known: _________________________________
 
 ## Final QA/QC checklist
 
@@ -357,6 +364,7 @@ Display-only — **id**, **name**, **imagePath**, **notes** (no phone or email i
 - **Proposal (PDF):** [assets/docs/Barkle-w3a1-project-proposal-and-research.pdf](assets/docs/Barkle-w3a1-project-proposal-and-research.pdf)  
 - **Proposal (text extract):** [assets/docs/Barkle-w3a1-project-proposal-and-research.pdf.txt](assets/docs/Barkle-w3a1-project-proposal-and-research.pdf.txt)
 - **Week 8 execution plan (working copy in repo):** [docs/week-08-qa-plan.md](docs/week-08-qa-plan.md)
-- **Project 02 deliverable outlines (draft — fill for submission):** [docs/case-study-outline.md](docs/case-study-outline.md), [docs/development-reflection-outline.md](docs/development-reflection-outline.md), [docs/presentation-outline.md](docs/presentation-outline.md)
+- **Project 02 drafts (iterate, then submit in the format your instructor requires):** [docs/case-study.md](docs/case-study.md), [docs/development-reflection.md](docs/development-reflection.md), [presentation speaker notes](docs/presentation-notes.md); shorter [outlines](docs/case-study-outline.md) remain available.
+- **Phase 6 working checklist:** [docs/final-submission-checklist.md](docs/final-submission-checklist.md)
 
 **Project 02 / Week 8 documentation (per rubric):** Submit the **case study**, **presentation**, and **development reflection** through the course channels your instructor specifies. The Case study, Presentation, and Development reflection checklist sections under [Final QA/QC checklist](#final-qaqc-checklist) mirror typical rubric expectations; they do not replace the official Week 8 document.

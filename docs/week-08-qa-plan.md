@@ -16,19 +16,19 @@ todos:
     status: completed
   - id: docs-deliverables
     content: Draft case study, presentation materials, and development reflection
-    status: in_progress
+    status: completed
   - id: repo-scrub
     content: Scrub repository for unused or outdated files before final submission
-    status: pending
+    status: completed
   - id: batch-commits
     content: Commit and push each focused change package after validation
-    status: in_progress
+    status: completed
   - id: final-go-nogo
     content: Run rubric check, README promise check, submission check, and live-site validation
-    status: pending
+    status: in_progress
   - id: json-driven-rendering
     content: Verify final pages load current activity and event content from master JSON
-    status: in_progress
+    status: completed
   - id: ui-ux-functionality
     content: Apply UI/UX functionality fixes for existing features without adding new features
     status: completed
@@ -43,27 +43,31 @@ Repository copy of the Cursor Week 08 plan (also under the machine-local Cursor 
 
 **Phase 3 (repo pass):** `npm run audit:links` reports **missing count: 0**. Spotlight empty-slot placeholder already uses a clear Submit Event CTA (`activities-sidebar.js`). Submit Event form labels already distinguish card title/subtitle vs flyer copy. Learn-more “as the site grows” wording not present.
 
-**Phase 4 (started):** Draft outlines added under [`docs/`](docs/) — [`case-study-outline.md`](docs/case-study-outline.md), [`development-reflection-outline.md`](docs/development-reflection-outline.md), [`presentation-outline.md`](docs/presentation-outline.md). README Capstone section links to them.
+**Phase 4 (deliverable drafts):** Full drafts in [`docs/case-study.md`](docs/case-study.md), [`docs/development-reflection.md`](docs/development-reflection.md), [`docs/presentation-notes.md`](docs/presentation-notes.md) — refine voice and export to instructor-required formats. Outlines remain as optional starters.
+
+**Phase 5 (scrub):** `.gitignore` extended with `node_modules/`, OS junk; `private/` remains ignored. Major CSS/JS files already carry section-level reviewer commentary at file top; optional deeper audit per README Phase 5 table is instructor/reviewer discretion.
+
+**Phase 6:** Use [`docs/final-submission-checklist.md`](docs/final-submission-checklist.md); complete rubric + live URL + deliverable handoff yourself before marking submit.
 
 **Where the sprint stands vs. the six phases**
 
 | Phase | Name | Status (current assessment) |
 |-------|------|---------------------|
-| **1** | README Promise Document | **Effectively complete** — `README.md` includes Week 8 workflow, final promise, full QA/QC checklist sections. |
-| **2** | Product Link and Content QA | **Link audit clean** (`npm run audit:links`). Master JSON completeness is an ongoing editorial task if instructors require field-by-field proof. |
-| **3** | Website Rubric QA | **Closed for automated/repo checks;** live validation was your sign-off. Tick README [Final QA/QC checklist](#final-qaqc-checklist) when you align words with delivery. |
-| **4** | Documentation Deliverables | **In progress** — outlines in `docs/`; replace with final case study, reflection, and presentation per course submission format. |
-| **5** | Pre-Final Repository Scrub | **`private/` already in `.gitignore`.** Remaining: untrack any mistakenly committed noise; optional codebase comment pass per README Phase 5. |
-| **6** | Final Go/No-Go | **Pending** — rubric + README + live site + deliverables together. |
+| **1** | README Promise Document | **Complete** — includes **Final submission access** in README (fill deployed URL line). |
+| **2** | Product Link and Content QA | **Link audit clean** (`npm run audit:links`). Editorial JSON proof remains the maintainer’s ongoing job. |
+| **3** | Website Rubric QA | **Complete** for repo-automatable checks; README checklist `[ ]` boxes require your ticks when satisfied. |
+| **4** | Documentation Deliverables | **Drafts committed** in `docs/` — polish and submit per course format. |
+| **5** | Pre-Final Repository Scrub | **Baseline complete** (ignore rules + commentary policy); follow README Phase 5 table if stricter scrub required. |
+| **6** | Final Go/No-Go | **Use** [`final-submission-checklist.md`](docs/final-submission-checklist.md) — instructor rubric is authoritative. |
 
 **Checkpoint:** Manual validation of the **deployed** site was requested before continuing. That pass is **done** from your side; you indicated readiness to ship “as is.”
 
-**Execution order when resuming**
+**Execution order — remaining (your sign-off)**
 
-1. **Optional sweep:** Close any remaining Phase 2/3 checklist items you still want verified (link script, JSON fields, README checkboxes).
-2. **Phase 4:** Produce or update capstone docs (case study, reflection, slides) in separate commits from site code.
-3. **Phase 5:** Repo scrub + `.gitignore` + untrack as needed.
-4. **Phase 6:** Final go/no-go using the plan’s ordered checklist at the bottom of this file.
+1. **Personalize** capstone drafts in `docs/` and export to the format your instructor assigns.
+2. **Fill** the deployed URL in README **Final submission access** (and any LMS fields).
+3. **Tick** README [Final QA/QC checklist](../README.md#final-qaqc-checklist) checkboxes when verified.
+4. **Complete** [`docs/final-submission-checklist.md`](docs/final-submission-checklist.md) and the official rubric.
 
 **Note:** A separate Cursor plan (`home_responsive_breakpoints_a1dbb264.plan.md` in `.cursor/plans`) tracked layout/tablet work; that work **contributes to Phase 3** and is done. This Week 08 file is the **six-phase submission** plan.
 
