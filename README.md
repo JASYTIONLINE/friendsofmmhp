@@ -9,6 +9,7 @@ The project is **not** an official park management system. Operational questions
 ## Contents
 
 - [Week 8 sprint workflow](#week-8-sprint-workflow)
+- [Week 8 QA plan (repo copy)](docs/week-08-qa-plan.md)
 - [Final project promise](#final-project-promise)
 - [How the finished site is used](#how-the-finished-site-is-used)
 - [Final QA/QC checklist](#final-qaqc-checklist)
@@ -160,6 +161,7 @@ mmpeventcalendar/
 │   │   └── csv/                  # featured-events.csv, calendar import/export CSVs, export/
 │   ├── images/                   # banners; event-flyer/; activity-flyer/
 │   └── docs/                     # capstone proposal PDF + text extract
+├── docs/                         # Week 8 QA plan + P02 deliverable outlines (markdown)
 └── scripts/                      # Node (.mjs) + Python; not loaded by the browser
 ```
 
@@ -186,6 +188,7 @@ mmpeventcalendar/
 | [assets/data/csv/](assets/data/csv/) | **featured-events.csv** (editorial/build input), Google Calendar–oriented CSVs, **export/** (optional local exports; generated `*.csv` under **export/** may be gitignored—folder kept via [.gitkeep](assets/data/csv/export/.gitkeep)). |
 | [assets/images/](assets/images/) | Park banner, **event-flyer/**, **activity-flyer/**, favicon, misc art. |
 | [assets/docs/](assets/docs/) | Capstone proposal artifacts (PDF + `.txt` extract). |
+| [docs/](docs/) | Week 8 QA plan working copy and **draft** case study / reflection / presentation outlines. |
 | [scripts/](scripts/) | **build-features-from-csv.mjs**, **build-feature-event-pages.mjs**, **audit-local-html-links.mjs**; Python helpers for recurring expansion and Google Calendar CSV export—run locally, not at runtime. |
 
 ### Activity flyer pages
@@ -353,5 +356,7 @@ Display-only — **id**, **name**, **imagePath**, **notes** (no phone or email i
 
 - **Proposal (PDF):** [assets/docs/Barkle-w3a1-project-proposal-and-research.pdf](assets/docs/Barkle-w3a1-project-proposal-and-research.pdf)  
 - **Proposal (text extract):** [assets/docs/Barkle-w3a1-project-proposal-and-research.pdf.txt](assets/docs/Barkle-w3a1-project-proposal-and-research.pdf.txt)
+- **Week 8 execution plan (working copy in repo):** [docs/week-08-qa-plan.md](docs/week-08-qa-plan.md)
+- **Project 02 deliverable outlines (draft — fill for submission):** [docs/case-study-outline.md](docs/case-study-outline.md), [docs/development-reflection-outline.md](docs/development-reflection-outline.md), [docs/presentation-outline.md](docs/presentation-outline.md)
 
-**Project 02 / Week 8 documentation (per rubric):** Submit the **case study**, **presentation**, and **development reflection** through the course channels your instructor specifies. The [Case study](#case-study), [Presentation](#presentation), and [Development reflection](#development-reflection) checklist sections above mirror typical rubric expectations; they do not replace the official Week 8 document.
+**Project 02 / Week 8 documentation (per rubric):** Submit the **case study**, **presentation**, and **development reflection** through the course channels your instructor specifies. The Case study, Presentation, and Development reflection checklist sections under [Final QA/QC checklist](#final-qaqc-checklist) mirror typical rubric expectations; they do not replace the official Week 8 document.
