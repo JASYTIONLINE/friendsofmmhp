@@ -835,6 +835,12 @@
     return dt.toLocaleDateString("en-US", { month: "long" });
   }
 
+  /** Local calendar month as a single comparable number (year×12 + month). */
+  function localMonthOrdinal(dt) {
+    if (!dt) return 0;
+    return dt.getFullYear() * 12 + dt.getMonth();
+  }
+
   function groupFeaturedByMonth(enriched) {
     var groups = [];
     var byKey = {};
@@ -961,10 +967,16 @@
 
     var featuredMobileLayout = isPageHomeFeaturedMobileLayout();
 
-    var currentYear = startOfTodayLocal().getFullYear();
-    var enriched = buildEnrichedFeatured(data, featuredMobileLayout ? false : true);
+    var today = startOfTodayLocal();
+    var currentYear = today.getFullYear();
+    var currentMonthOrdinal = localMonthOrdinal(today);
+    /* Do not include features on dates before today (desktop previously passed true and kept e.g. May 2). */
+    var enriched = buildEnrichedFeatured(data, false);
+    /* Only the current calendar month and future months (drops e.g. April when it is already May). */
     var groups = groupFeaturedByMonth(enriched).filter(function (group) {
-      return group.items[0] && group.items[0].dt.getFullYear() >= currentYear;
+      var dt = group.items[0] && group.items[0].dt;
+      if (!dt) return false;
+      return localMonthOrdinal(dt) >= currentMonthOrdinal;
     });
     var controls = ensureHomeFeaturedStepper(grid);
 
@@ -978,11 +990,17 @@
 
     var state = grid._mmhpHomeFeaturedState || { index: 0, key: "" };
     if (state.key) {
+      var keyMatched = false;
       for (var g = 0; g < groups.length; g++) {
         if (groups[g].key === state.key) {
           state.index = g;
+          keyMatched = true;
           break;
         }
+      }
+      if (!keyMatched) {
+        state.key = "";
+        state.index = 0;
       }
     }
     state.index = Math.max(0, Math.min(state.index || 0, groups.length - 1));
@@ -1025,14 +1043,12 @@
         grid.setAttribute("aria-label", "Featured events for " + group.label);
       }
 
-      var displayItems = featuredMobileLayout
-        ? filterFeaturedItemsUpcoming(group.items.slice())
-        : group.items.slice();
+      var displayItems = filterFeaturedItemsUpcoming(group.items.slice());
 
       if (!featuredMobileLayout) {
         var minCards = homeFeaturedColumnCount(grid);
         for (var fill = state.index + 1; displayItems.length < minCards && fill < groups.length; fill++) {
-          displayItems = displayItems.concat(groups[fill].items);
+          displayItems = displayItems.concat(filterFeaturedItemsUpcoming(groups[fill].items.slice()));
         }
       }
 
