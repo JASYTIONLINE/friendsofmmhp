@@ -493,7 +493,7 @@
       "<li><strong>Computer:</strong> Open the file from your <strong>Downloads</strong> folder. Your calendar app (Outlook, Apple Calendar, etc.) should offer to add the event.</li>" +
       "<li><strong>Google Calendar on the web:</strong> Use <strong>Settings → Import</strong> and upload the <strong>.ics</strong> file, or open the file on a device that syncs to your Google account.</li>" +
       "</ul>" +
-      '<p class="feature-events-ics-help-hint">Nothing pops up? Check your Downloads folder — the file may have saved quietly. You do not need to tap &ldquo;Save the date&rdquo; again unless you lost the file.</p>' +
+      '<p class="feature-events-ics-help-hint">Nothing pops up? Check your Downloads folder — the file may have saved quietly. You do not need to tap &ldquo;Save The Date&rdquo; again unless you lost the file.</p>' +
       '<div class="feature-events-dialog-actions">' +
       '<button type="button" class="feature-events-dialog-cancel" id="feature-events-ics-cancel-btn">Cancel</button>' +
       '<button type="button" class="feature-events-dialog-submit" id="feature-events-ics-download-btn">Download calendar file</button>' +

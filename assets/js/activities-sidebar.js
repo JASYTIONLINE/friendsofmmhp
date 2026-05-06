@@ -1508,11 +1508,11 @@
         }
         if (featuredExportButton) {
           featuredExportButton.disabled = true;
-          featuredExportButton.textContent = "Export unavailable";
+          featuredExportButton.textContent = "Export Unavailable";
         }
         if (activitiesExportButton) {
           activitiesExportButton.disabled = true;
-          activitiesExportButton.textContent = "Export unavailable";
+          activitiesExportButton.textContent = "Export Unavailable";
         }
       });
   }
