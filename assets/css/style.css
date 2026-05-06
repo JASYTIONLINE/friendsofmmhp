@@ -68,6 +68,7 @@
      ================================================ */
   body {
     overflow-x:    hidden;
+    font-family: var(--font-main);
   }
   
   img {
@@ -108,16 +109,21 @@
   }
   
   h1 {
-    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-size: clamp(2.35rem, 4vw, 3.05rem);
+    font-weight: 700;
     text-align: center;
   }
   
   h2 {
-    font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+    font-size: clamp(2.45rem, 2.5vw + 1.95rem, 3.15rem);
+    font-weight: 700;
+    color: var(--color-text);
   }
   
   h3 {
-    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    font-size: clamp(2.2rem, 2.2vw + 1.75rem, 2.85rem);
+    font-weight: 700;
+    color: var(--color-text);
   }
   
   p {
@@ -715,6 +721,27 @@
     min-width: 0;
   }
 
+  /**
+   * Large tap targets for checkboxes (low vision / older adults): ~4× native size,
+   * at least one line tall next to labels; scales up when form text scales.
+   */
+  #mmhp-event-submit-form .event-submit-form__event-section .event-submit-form__detail-check {
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  #mmhp-event-submit-form .event-submit-form__event-section .event-submit-form__detail-check input[type="checkbox"] {
+    box-sizing: border-box;
+    width: max(3.25rem, calc(0.95em * 1.35));
+    height: max(3.25rem, calc(0.95em * 1.35));
+    min-width: 3.25rem;
+    min-height: 3.25rem;
+    margin: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--color-driftwood-dark, #7A5E44);
+  }
+
   #mmhp-event-submit-form .event-submit-form__event-section .event-submit-form__id-readout {
     font-size: 1em;
     max-width: min(28em, 100%);
@@ -728,6 +755,113 @@
   #mmhp-event-submit-form .event-submit-form__event-section textarea.event-submit-form__input {
     min-height: 5em;
     max-width: min(28em, 100%);
+  }
+
+  /**
+   * Request activity form: same readable scale as Submit Event, scoped to this page’s form.
+   */
+  #mmhp-request-activity-form {
+    font-size: clamp(1rem, 0.76rem + 1.2vw, 2rem);
+    line-height: 1.45;
+    overflow-wrap: break-word;
+  }
+
+  #mmhp-request-activity-form .event-submit-form__legend {
+    font-size: 1.05em;
+    line-height: 1.25;
+  }
+
+  #mmhp-request-activity-form .event-submit-form__field-label,
+  #mmhp-request-activity-form .event-submit-form__label {
+    font-size: 0.92em;
+  }
+
+  #mmhp-request-activity-form .event-submit-form__field-subtitle {
+    font-size: 0.86em;
+    max-width: min(42em, 100%);
+  }
+
+  #mmhp-request-activity-form .event-submit-form__input,
+  #mmhp-request-activity-form textarea.event-submit-form__input,
+  #mmhp-request-activity-form select.event-submit-form__input {
+    font-size: 1em;
+    max-width: min(28em, 100%);
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  #mmhp-request-activity-form .event-submit-form__detail-check {
+    max-width: min(28em, 100%);
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  #mmhp-request-activity-form .request-activity-weekdays .event-submit-form__field--check {
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  #mmhp-request-activity-form .request-activity-weekdays {
+    gap: 0.65rem 1rem;
+    max-width: min(42em, 100%);
+  }
+
+  #mmhp-request-activity-form input[type="checkbox"] {
+    box-sizing: border-box;
+    width: max(3.25rem, calc(0.95em * 1.35));
+    height: max(3.25rem, calc(0.95em * 1.35));
+    min-width: 3.25rem;
+    min-height: 3.25rem;
+    margin: 0;
+    flex-shrink: 0;
+    cursor: pointer;
+    accent-color: var(--color-driftwood-dark, #7A5E44);
+  }
+
+  #mmhp-request-activity-form .event-submit-form__detail-check-text {
+    font-size: 0.95em;
+    line-height: 1.35;
+    min-width: 0;
+  }
+
+  #mmhp-request-activity-form .request-activity-weekdays .event-submit-form__field--check span {
+    font-size: 0.95em;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  #mmhp-request-activity-form .event-submit-form__help {
+    font-size: 0.86em;
+    max-width: min(42em, 100%);
+  }
+
+  #mmhp-request-activity-form .event-submit-form__size-hint {
+    font-size: 0.82em;
+    max-width: min(42em, 100%);
+  }
+
+  #mmhp-request-activity-form .event-submit-form__file {
+    font-size: 0.95em;
+    max-width: min(28em, 100%);
+  }
+
+  #mmhp-request-activity-form textarea.event-submit-form__input {
+    min-height: 5em;
+    max-width: min(28em, 100%);
+  }
+
+  #mmhp-request-activity-form .event-submit-form__actions {
+    max-width: min(28em, 100%);
+  }
+
+  #mmhp-request-activity-form .event-submit-form__status {
+    font-size: 0.86em;
+    max-width: min(42em, 100%);
+  }
+
+  #request-activity-main .submission-page__hints {
+    font-size: 0.86em;
+    max-width: min(42em, 100%);
   }
 
   .event-submit-form__actions {
@@ -804,21 +938,25 @@
     padding: 0.5rem 0.65rem;
   }
 
+  /**
+   * Weekday picks: never shrink columns to zero (that caused “Wedn / esday” breaks with large checkboxes).
+   * Each row needs room for ~3.25rem checkbox + gap + full day name on one line.
+   */
   .request-activity-weekdays {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.35rem 0.75rem;
-    max-width: 28rem;
-  }
-
-  @media (min-width: 520px) {
-    .request-activity-weekdays {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+    gap: 0.55rem 1rem;
+    max-width: min(42rem, 100%);
+    box-sizing: border-box;
   }
 
   .request-activity-weekdays .event-submit-form__field--check {
     margin-bottom: 0;
+    flex-wrap: nowrap;
+  }
+
+  .request-activity-weekdays .event-submit-form__field--check span {
+    white-space: nowrap;
   }
 
   textarea.event-submit-form__input {
@@ -1259,13 +1397,15 @@
      ================================================ */
   .site-footer {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.85rem;
     background-color: var(--color-sand);
     border: 1px solid var(--color-sand-dark);
     border-radius: var(--radius-lg);
     box-shadow: 0 4px 14px var(--color-shadow);
     padding: 1.25rem 1rem;
-    padding-right: clamp(7rem, 22vw, 11rem);
-    padding-bottom: 3.25rem;
     text-align: center;
   }
   
@@ -1287,6 +1427,14 @@
     box-shadow: 0 2px 10px var(--color-shadow);
     white-space: nowrap;
   }
+
+  /* Shell footer only: stacked, centered column; Back to top follows Navigate */
+  .site-footer .site-footer-back-top {
+    position: static;
+    align-self: center;
+    margin-top: 0;
+    box-shadow: 0 2px 10px var(--color-shadow);
+  }
   
   .site-footer-back-top:hover,
   .site-footer-back-top:focus {
@@ -1297,15 +1445,19 @@
   }
 
   .site-footer h2 {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0;
+    width: 100%;
   }
   
   .site-footer-address-row {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    gap: 1rem 1.25rem;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 28rem;
   }
   
   /* 2× global paragraph size (global p is 2rem) */
@@ -1319,11 +1471,13 @@
     margin: 0;
     color: var(--color-text);
     line-height: 1.6;
-    text-align: left;
+    text-align: center;
   }
   
   .site-footer-nav-btn {
     flex-shrink: 0;
+    width: auto;
+    max-width: 100%;
   }
 
   .secret-calendar-link {
@@ -1571,18 +1725,6 @@
       padding-right: 0.85rem;
     }
   
-    .site-footer {
-      padding-right: max(6.75rem, 0.85rem);
-    }
-  
-    .site-footer-back-top {
-      right: 0.85rem;
-      bottom: 0.85rem;
-      top: auto;
-      font-size: 0.75rem;
-      padding: 0.4rem 0.55rem;
-    }
-  
     .site-layout,
     .layout,
     .page-layout {
@@ -1678,8 +1820,8 @@
       gap: 1rem;
     }
 
-    /* Home main featured: stay grid, single column on phone */
-    body.page-home .page-home-featured .featured-events-grid {
+    /* Home main featured month grid — not the inline mobile week-spotlight grid */
+    body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 0.65rem;
@@ -1695,15 +1837,87 @@
     }
   
     h1 {
-      font-size: 2rem;
+      font-size: 2.45rem;
+      font-weight: 700;
     }
   
     h2 {
-      font-size: 1.35rem;
+      font-size: 2.55rem;
+      font-weight: 700;
     }
   
     h3 {
-      font-size: 1.15rem;
+      font-size: 2.3rem;
+      font-weight: 700;
+    }
+
+    /* Home (index): inline week spotlight, Future Events band, hide duplicate right rail + export CTAs */
+    body.page-home .page-home-mobile-only {
+      display: block !important;
+    }
+
+    body.page-home .site-sidebar-right {
+      display: none !important;
+    }
+
+    body.page-home .page-home-featured-submit-btn,
+    body.page-home .sidebar-add-activity-wrap,
+    body.page-home #mmhp-activities-export,
+    body.page-home #mmhp-featured-export {
+      display: none !important;
+    }
+
+    body.page-home .page-home-mobile-spotlight-grid {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: var(--space-md);
+    }
+
+    body.page-home .page-home-mobile-spotlight .featured-card-image {
+      aspect-ratio: auto !important;
+      max-height: min(52vh, 22rem);
+      object-fit: contain !important;
+    }
+
+    body.page-home .page-home-mobile-spotlight .featured-card-line--name {
+      display: block !important;
+      -webkit-line-clamp: unset !important;
+      min-height: 0 !important;
+      overflow: visible !important;
+      font-size: clamp(0.75rem, 2.1vw, 0.95rem);
+    }
+
+    body.page-home .page-home-mobile-spotlight .featured-card-line--detail {
+      font-size: clamp(0.68rem, 1.85vw, 0.85rem);
+    }
+
+    body.page-home .page-home-mobile-spotlight .featured-card-line--date {
+      font-size: clamp(0.65rem, 1.7vw, 0.8rem);
+    }
+
+    body.page-home .page-home-mobile-spotlight .featured-card-caption {
+      min-height: auto;
+    }
+
+    body.page-home .page-home-mobile-divider {
+      margin: var(--space-md) 0;
+      border: 0;
+      border-top: 3px solid var(--color-border);
+    }
+
+    body.page-home .page-home-future-heading {
+      margin: 0 0 0.35rem;
+      padding: 0 0 var(--space-sm);
+      border-bottom: 1px solid var(--color-border);
+      font-size: clamp(1rem, 2.2vw, 1.4rem);
+      font-weight: 700;
+      color: var(--color-driftwood-dark);
+      text-align: left;
+    }
+
+    body.page-home .page-home-featured-stepper {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
     }
   
     .page-contact h1 {
@@ -1926,8 +2140,8 @@
     cursor: not-allowed;
   }
 
-  /* Featured under calendar: fill each row with as many square cards as fit */
-  body.page-home .page-home-featured .featured-events-grid {
+  /* Featured under calendar: fill each row with as many square cards as fit (month grid only) */
+  body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid {
     --home-featured-card-min: 19.2rem;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--home-featured-card-min)), 1fr));
@@ -1937,17 +2151,17 @@
     align-items: start;
   }
 
-  body.page-home .page-home-featured .featured-card {
+  body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid .featured-card {
     padding: 0.5rem 0.35rem;
     min-width: 0;
   }
 
-  body.page-home .page-home-featured .featured-card-link {
+  body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid .featured-card-link {
     display: flex;
     flex-direction: column;
   }
 
-  body.page-home .page-home-featured .featured-card-image {
+  body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid .featured-card-image {
     width: 100%;
     max-width: 100%;
     aspect-ratio: 1 / 1;
@@ -1956,12 +2170,12 @@
     object-position: center;
   }
 
-  body.page-home .page-home-featured .featured-card-caption {
+  body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid .featured-card-caption {
     flex: 1 1 auto;
     min-height: 0;
   }
 
-  body.page-home .page-home-featured .featured-card-line--name {
+  body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid .featured-card-line--name {
     display: -webkit-box;
     min-height: calc(1.2em * 2);
     overflow: hidden;
@@ -1970,12 +2184,17 @@
     font-size: clamp(1.5rem, 4.2vw, 1.9rem);
   }
 
-  body.page-home .page-home-featured .featured-card-line--detail {
+  body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid .featured-card-line--detail {
     font-size: clamp(1.36rem, 3.7vw, 1.7rem);
   }
 
-  body.page-home .page-home-featured .featured-card-line--date {
+  body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid .featured-card-line--date {
     font-size: clamp(1.3rem, 3.4vw, 1.6rem);
+  }
+
+  /* index.html: spotlight + Future marker wrappers — hidden ≥769px */
+  body.page-home .page-home-mobile-only {
+    display: none !important;
   }
 
   /* ================================================

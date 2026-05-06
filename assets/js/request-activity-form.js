@@ -1,13 +1,5 @@
 /**
- * Request a new recurring activity — builds an activities[]-shaped payload and coordinator handoff.
- *
- * Why mirror event-submit-form: Park volunteers should not learn two different export semantics.
- * Both flows validate images, gate total byte size, and fall back from Web Share to ZIP + mailto
- * when the browser cannot share files directly—critical for Windows desktop users.
- *
- * How it works: Weekday and slot inputs collapse into recurrenceDetails structures that match
- * mmhp-master-data.json; the payload includes adCopy and isActive so the coordinator can merge
- * without reverse-engineering prose from the email body alone.
+ * Request a new recurring activity — builds a coordinator handoff (same flow as event submit: validate images, Share or ZIP + email).
  */
 (function () {
   var WEEKDAYS_ORDER = [
@@ -30,6 +22,8 @@
 
   var MMHP_IMAGE_MAX_SINGLE_BYTES = 4 * 1024 * 1024;
   var MMHP_IMAGE_MAX_TOTAL_BYTES = 16 * 1024 * 1024;
+
+  var LOCATION_OTHER_PLACEHOLDER = "Example: Rec hall, library, pool room…";
 
   var __mmhpRequestSizeModalKeyHandler = null;
   var __mmhpRequestSubmitNoticeKeyHandler = null;
@@ -156,22 +150,21 @@
 
     var p0 = document.createElement("p");
     p0.textContent =
-      "Gmail and Microsoft Outlook usually limit outgoing messages to about 20–25 MB total (including attachments). " +
-      "Very large photos or many megabytes in one ZIP can cause the message to be rejected, bounced, or blocked.";
+      "Many email programs start to grumble when attachments get big. Huge photos sometimes bounce back or never leave your outbox.";
     body.appendChild(p0);
 
     var p1 = document.createElement("p");
     p1.textContent =
-      "This site suggests each photo stay under about " +
+      "We suggest keeping each photo under about " +
       formatBytesShort(MMHP_IMAGE_MAX_SINGLE_BYTES) +
-      " and all photos together under about " +
+      " and all of them together under about " +
       formatBytesShort(MMHP_IMAGE_MAX_TOTAL_BYTES) +
-      ".";
+      "—that’s usually a safe, friendly size.";
     body.appendChild(p1);
 
     if (stats.items.length) {
       var p2 = document.createElement("p");
-      p2.textContent = "Your current selection:";
+      p2.textContent = "Here’s what you picked:";
       body.appendChild(p2);
       var ul = document.createElement("ul");
       for (var i = 0; i < stats.items.length; i++) {
@@ -182,9 +175,9 @@
       body.appendChild(ul);
       var p3 = document.createElement("p");
       p3.textContent =
-        "Combined size: " +
+        "All together: " +
         formatBytesShort(stats.total) +
-        " (largest single file: " +
+        " (biggest single file: " +
         formatBytesShort(stats.maxSingle) +
         ").";
       body.appendChild(p3);
@@ -192,8 +185,8 @@
 
     var pEnd = document.createElement("p");
     pEnd.textContent = forSubmitStep
-      ? "You can go back and choose smaller images, or continue anyway—delivery may still fail."
-      : "Consider choosing smaller or compressed photos before sending.";
+      ? "You can swap in smaller photos, or continue anyway—just know a very large message might not deliver."
+      : "If you’d like an easier send, try smaller or more compressed photos.";
     body.appendChild(pEnd);
   }
 
@@ -390,7 +383,7 @@
     var fullBody;
     if (notice) {
       fullBody =
-        "READ FIRST — ATTACHMENT\r\n" +
+        "Please read — attachment note\r\n" +
         notice +
         "\r\n\r\n————————————————————————————\r\n\r\n" +
         body;
@@ -406,9 +399,7 @@
       encodeURIComponent(fullBody);
     if (statusEl) {
       statusEl.textContent =
-        "Opened email to " +
-        coordinatorEmail +
-        ". Attach the downloaded file(s) if prompted, then send.";
+        "Your email should be open—if a file downloaded, attach it, then send.";
       statusEl.hidden = false;
     }
   }
@@ -423,7 +414,7 @@
             : "";
 
       var shareHint =
-        "Recipient: " + coordinatorEmail + " — set as To: if your app did not.";
+        "Send to: " + coordinatorEmail + " (add them in To: if your app left it blank).";
       var txtBlob = new Blob([fullTextForZip], { type: "text/plain;charset=utf-8" });
       var txtFile = new File([txtBlob], "mmhp-activity-request-" + stamp + ".txt", { type: "text/plain;charset=utf-8" });
       var imageFiles = collectRequestImageFiles();
@@ -455,9 +446,7 @@
           .then(function () {
             if (statusEl) {
               statusEl.textContent =
-                "Shared request text and images. Address to " +
-                coordinatorEmail +
-                " if your app did not set the recipient.";
+                "Shared your request. Double-check the message is addressed to " + coordinatorEmail + ".";
               statusEl.hidden = false;
             }
             resolve();
@@ -493,7 +482,7 @@
                 .then(function () {
                   if (statusEl) {
                     statusEl.textContent =
-                      "Shared request ZIP. Address to " + coordinatorEmail + " if needed.";
+                      "Shared your package. If the address looks empty, add " + coordinatorEmail + ".";
                     statusEl.hidden = false;
                   }
                   resolve();
@@ -501,17 +490,17 @@
                 .catch(function () {
                   downloadBlob(zipBlob, zipName);
                   afterDownloadMailto(
-                    "A ZIP was downloaded (" +
+                    "A file downloaded (" +
                       zipName +
-                      "). Attach it to this email (it contains the full request text and images).\r\n"
+                      "). Please attach it to your email—it holds your full request and photos.\r\n"
                   );
                 });
             } else {
               downloadBlob(zipBlob, zipName);
               afterDownloadMailto(
-                "A ZIP was downloaded (" +
+                "A file downloaded (" +
                   zipName +
-                  "). Attach it to this email (it contains the full request text and images).\r\n"
+                  "). Please attach it to your email—it holds your full request and photos.\r\n"
               );
             }
           })
@@ -521,7 +510,7 @@
               "mmhp-activity-request-" + stamp + ".txt"
             );
             afterDownloadMailto(
-              "A text file was downloaded. Attach it and your activity photos manually.\r\n"
+              "A small text file downloaded—attach it plus your activity photos to the email.\r\n"
             );
           });
       }
@@ -545,12 +534,14 @@
           locOther.removeAttribute("readonly");
           locOther.removeAttribute("tabindex");
           locOther.required = true;
+          locOther.setAttribute("placeholder", LOCATION_OTHER_PLACEHOLDER);
         } else {
           locOtherWrap.hidden = true;
           locOther.setAttribute("readonly", "readonly");
           locOther.setAttribute("tabindex", "-1");
           locOther.required = false;
           locOther.value = "";
+          locOther.removeAttribute("placeholder");
         }
       }
       locPreset.addEventListener("change", syncLoc);
@@ -599,42 +590,45 @@
       if (!name) {
         if (statusEl) {
           statusEl.hidden = false;
-          statusEl.textContent = "Please enter an activity name.";
+          statusEl.textContent = "Add a name for the activity.";
         }
         return;
       }
       if (!description) {
         if (statusEl) {
           statusEl.hidden = false;
-          statusEl.textContent = "Please enter a description.";
+          statusEl.textContent = "Add a short description of what happens at the activity.";
         }
         return;
       }
       if (!location) {
         if (statusEl) {
           statusEl.hidden = false;
-          statusEl.textContent = "Please choose or enter a location.";
+          statusEl.textContent =
+            locPreset && locPreset.value === "__other__"
+              ? "Say where you’ll meet—in the box under Other."
+              : "Pick where you meet—or choose Other and describe it.";
         }
         return;
       }
       if (weekdays.length === 0) {
         if (statusEl) {
           statusEl.hidden = false;
-          statusEl.textContent = "Please select at least one day of the week for this recurring activity.";
+          statusEl.textContent = "Check at least one day this activity usually runs.";
         }
         return;
       }
       if (!/^([01]?\d|2[0-3]):[0-5]\d$/.test(startTime)) {
         if (statusEl) {
           statusEl.hidden = false;
-          statusEl.textContent = "Please enter a valid start time (24-hour, e.g. 13:00).";
+          statusEl.textContent = "Pick a start time using the time box above.";
         }
         return;
       }
       if (!featImg || !featImg.files || !featImg.files[0]) {
         if (statusEl) {
           statusEl.hidden = false;
-          statusEl.textContent = "Please choose a featured image.";
+          statusEl.textContent = "Add a main photo for the activity.";
         }
         try {
           featImg.focus({ preventScroll: true });
@@ -673,6 +667,9 @@
         var proposerName = String(document.getElementById("mmhp-request-proposer-name").value || "").trim();
         var proposerPhone = String(document.getElementById("mmhp-request-proposer-phone").value || "").trim();
         var proposerEmail = String(document.getElementById("mmhp-request-proposer-email").value || "").trim();
+        var willingPocEl = document.getElementById("mmhp-request-willing-poc");
+        var willingPointOfContact = !!(willingPocEl && willingPocEl.checked);
+        activityPayload.willingPointOfContact = willingPointOfContact;
 
         var jsonBlock = JSON.stringify(activityPayload, null, 2);
         var fullTextBody =
@@ -690,6 +687,9 @@
           "\r\n" +
           "Email: " +
           (proposerEmail || "—") +
+          "\r\n" +
+          "Willing to be point of contact for neighbors: " +
+          (willingPointOfContact ? "Yes" : "No") +
           "\r\n";
 
         var mailtoBodyShort =
@@ -699,13 +699,16 @@
           "\r\n" +
           "Featured image filename (hint for imagePath): " +
           imagePath +
+          "\r\n" +
+          "Submitter willing to be point of contact: " +
+          (willingPointOfContact ? "Yes" : "No") +
           "\r\n\r\n" +
           "Open mmhp-activity-request-*.txt inside the ZIP, or use the shared text file, then merge the JSON into activities[] in mmhp-master-data.json.\r\n";
 
         var email =
           typeof mmhpGetCoordinatorEmail === "function" ? mmhpGetCoordinatorEmail() : "";
         if (!email) {
-          window.alert("Coordinator email is not configured.");
+          window.alert("We can’t find the coordinator’s email for this site. The person who maintains the calendar needs to add it.");
           return;
         }
 
@@ -716,7 +719,7 @@
           deliverActivityRequest(email, subject, mailtoBodyShort, fullTextBody, statusEl, stamp).catch(function () {
             if (statusEl) {
               statusEl.textContent =
-                "Could not finish Share or download. Check your connection, allow downloads, or try another browser.";
+                "We couldn’t finish sharing or downloading. Check your connection, allow downloads if asked, or try another browser.";
               statusEl.hidden = false;
             }
           });

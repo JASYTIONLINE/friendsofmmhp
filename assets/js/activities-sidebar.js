@@ -1357,14 +1357,28 @@
 
   function renderWeekSpotlightWednesdaySaturday(data, grid, jsonUrl) {
     if (!grid) return;
-    var wedHost = document.getElementById("mmhp-week-spotlight-wednesday");
-    var satHost = document.getElementById("mmhp-week-spotlight-saturday");
-    if (!wedHost || !satHost) return;
 
     var pair = weekSpotlightWednesdaySaturdayItems(data);
 
-    renderWeekSpotlightCardInto(wedHost, pair.wed, 0, jsonUrl, "Wednesday", pair.dWed);
-    renderWeekSpotlightCardInto(satHost, pair.sat, 1, jsonUrl, "Saturday", pair.dSat);
+    /** Desktop mounts (aside); mobile mounts duplicate content when present (narrow-only CSS hides one set). */
+    var pairs = [
+      ["mmhp-week-spotlight-wednesday", "mmhp-week-spotlight-saturday"],
+      ["mmhp-week-spotlight-wednesday-mobile", "mmhp-week-spotlight-saturday-mobile"],
+    ];
+
+    var ran = false;
+    for (var p = 0; p < pairs.length; p++) {
+      var wedId = pairs[p][0];
+      var satId = pairs[p][1];
+      var wedHost = document.getElementById(wedId);
+      var satHost = document.getElementById(satId);
+      if (!wedHost || !satHost) continue;
+      ran = true;
+      renderWeekSpotlightCardInto(wedHost, pair.wed, 0, jsonUrl, "Wednesday", pair.dWed);
+      renderWeekSpotlightCardInto(satHost, pair.sat, 1, jsonUrl, "Saturday", pair.dSat);
+    }
+
+    if (!ran) return;
   }
 
   function init() {
@@ -1438,15 +1452,7 @@
           homeFeaturedGrid.appendChild(art1);
         }
         if (rightGrid) {
-          var wedHost = document.getElementById("mmhp-week-spotlight-wednesday");
-          var satHost = document.getElementById("mmhp-week-spotlight-saturday");
-          if (
-            wedHost &&
-            satHost &&
-            document.body.classList.contains("page-home")
-          ) {
-            wedHost.textContent = "";
-            satHost.textContent = "";
+          if (document.body.classList.contains("page-home")) {
             renderWeekSpotlightWednesdaySaturday({ features: [] }, rightGrid, url);
           } else {
             rightGrid.textContent = "";
