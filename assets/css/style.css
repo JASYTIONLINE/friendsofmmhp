@@ -454,6 +454,48 @@
     color: var(--color-text-soft);
     font-size: 2.1rem;
   }
+
+  /* Park banner + page caption inside the gradient header card (shared shell) */
+  .site-header.header-site > .site-hero.hero {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .site-header.header-site .hero-image {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding-inline: var(--space-sm);
+    box-sizing: border-box;
+  }
+
+  .site-header.header-site .hero-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: unset;
+    border-radius: var(--radius-md);
+  }
+
+  .site-header.header-site > .site-hero.hero .site-header-subtitle {
+    font-size: 2rem;
+    color: var(--color-text-soft);
+    margin-bottom: 0;
+  }
+
+  .site-header.header-site > .site-hero.hero h2.site-header-subtitle {
+    margin-top: 0;
+    font-weight: 600;
+  }
   
   /* ================================================
      MAIN CONTENT
@@ -1088,6 +1130,10 @@
     font-size: clamp(1.05rem, 0.95rem + 0.55vw, 1.22rem);
     line-height: 1.5;
     margin-top: 0.35rem;
+  }
+
+  body.page-learn-more .site-header.header-site .site-header-subtitle {
+    margin-top: 0;
   }
 
   body.page-learn-more .site-main-content {
@@ -1869,6 +1915,68 @@
       padding: 0.32rem 0.4rem;
       min-height: 2.45rem;
     }
+
+    /* Shell headers: light-blue card, title, centered park banner, subtitle under image (Learn More rhythm) */
+    .site-shell > .site-header.header-site {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.5rem 0.65rem 0.75rem;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .site-shell > .site-header.header-site .site-header-title {
+      margin-bottom: 0;
+      width: 100%;
+      max-width: 22rem;
+      margin-inline: auto;
+    }
+
+    .site-shell > .site-header.header-site > .site-hero.hero {
+      width: 100%;
+      max-width: min(28rem, 100%);
+      margin: 0;
+      padding: 0 !important;
+      padding-inline: var(--space-sm) !important;
+      box-sizing: border-box;
+      gap: 0.5rem;
+    }
+
+    .site-shell > .site-header.header-site .hero-image {
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0;
+      padding-inline: 0;
+      box-sizing: border-box;
+    }
+
+    .site-shell > .site-header.header-site .hero-image img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      object-fit: unset;
+      box-sizing: border-box;
+      display: block;
+      margin-inline: auto;
+    }
+
+    .site-shell > .site-header.header-site .site-header-subtitle {
+      margin: 0 auto;
+      padding: 0 0.35rem;
+      max-width: 22rem;
+      box-sizing: border-box;
+      font-size: clamp(0.96rem, 0.88rem + 2vw, 1.06rem) !important;
+      line-height: 1.38;
+      color: var(--color-text-soft);
+      font-weight: 400;
+    }
+
+    .site-shell > .site-header.header-site h2.site-header-subtitle {
+      font-weight: 600;
+    }
   
     .btn,
     button,
@@ -2064,14 +2172,6 @@
       box-sizing: border-box;
       margin-inline: auto;
       padding-inline: 0;
-    }
-
-    body.page-home .hero-image img {
-      width: 100%;
-      max-width: 100%;
-      height: min(128px, 36vw);
-      object-fit: cover;
-      box-sizing: border-box;
     }
 
     body.page-home .site-main-content,
@@ -2727,6 +2827,11 @@
     .site-hero {
       padding: 1.5rem 1rem;
     }
+
+    .site-header.header-site > .site-hero.hero {
+      padding-block: 0 !important;
+      padding-inline: var(--space-sm) !important;
+    }
   
     .content,
     .site-main-content {
@@ -2746,7 +2851,7 @@
   border-radius: 12px;
 }
 
-.site-header .hero-image img {
+.site-header:not(.header-site) .hero-image img {
   height: 220px;
   object-fit: cover;
 }
@@ -2771,12 +2876,6 @@
     width: 100%;
     height: 650px;
     border: none;
-  }
-
-  /* Home index: shorter hero; main column height matched to left sidebar in JS */
-  body.page-home .hero-image img {
-    height: min(160px, 20vw);
-    object-fit: cover;
   }
 
   /* Wide: recurring + center live in .page-home-center-stack grid; layout is main | spotlight */
@@ -3078,15 +3177,6 @@
     body.page-home .page-home-mobile-only {
       display: none !important;
     }
-  }
-
-  /* ================================================
-     Activity flyer (contents/activity-flyer/*.html)
-     Same shell as index / learn-more; hero height matches home
-     ================================================ */
-  body.page-activity-flyer .hero-image img {
-    height: min(160px, 20vw);
-    object-fit: cover;
   }
 
   .page-activity-flyer-badge {
