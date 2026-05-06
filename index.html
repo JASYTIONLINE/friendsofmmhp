@@ -79,7 +79,7 @@
             </div>
 
             <aside class="site-sidebar site-sidebar-left" aria-labelledby="schedule-sidebar-heading">
-              <h2 id="schedule-sidebar-heading" class="site-sidebar-title">Recurring Schedule</h2>
+              <h2 id="schedule-sidebar-heading" class="site-sidebar-title">Recurring<br />Schedule</h2>
               <div class="sidebar-left-body">
                 <p class="sidebar-add-activity-wrap">
                   <a class="btn site-button sidebar-add-activity-btn" href="contents/request-activity.html">Add Activity</a>
@@ -89,6 +89,25 @@
                   Export activities
                 </button>
               </div>
+            </aside>
+
+            <!-- Desktop: third column in center-stack grid; tablet: 2-col row with left rail under calendar -->
+            <aside class="site-sidebar site-sidebar-right" aria-labelledby="week-spotlight-heading">
+              <h2 id="week-spotlight-heading" class="site-sidebar-title">This Week's Featured Events</h2>
+
+              <div class="featured-events-grid week-spotlight-grid" aria-live="polite">
+                <div class="week-spotlight-slot">
+                  <div class="week-spotlight-daylabel">Coming This Wednesday</div>
+                  <div class="week-spotlight-card-mount" id="mmhp-week-spotlight-wednesday"></div>
+                </div>
+                <div class="week-spotlight-slot">
+                  <div class="week-spotlight-daylabel">Coming This Saturday</div>
+                  <div class="week-spotlight-card-mount" id="mmhp-week-spotlight-saturday"></div>
+                </div>
+              </div>
+              <button type="button" class="btn site-button featured-events-export-btn" id="mmhp-featured-export">
+                Export featured events
+              </button>
             </aside>
 
             <div class="page-home-stack-divider" role="presentation" aria-hidden="true"></div>
@@ -105,25 +124,6 @@
           </div>
 
         </main>
-
-        <!-- RIGHT: Wednesday & Saturday in rolling window today…today+6 (local); updates after midnight -->
-        <aside class="site-sidebar site-sidebar-right" aria-labelledby="week-spotlight-heading">
-          <h2 id="week-spotlight-heading" class="site-sidebar-title">This Week's Featured Events</h2>
-
-          <div class="featured-events-grid week-spotlight-grid" aria-live="polite">
-            <div class="week-spotlight-slot">
-              <div class="week-spotlight-daylabel">Coming This Wednesday</div>
-              <div class="week-spotlight-card-mount" id="mmhp-week-spotlight-wednesday"></div>
-            </div>
-            <div class="week-spotlight-slot">
-              <div class="week-spotlight-daylabel">Coming This Saturday</div>
-              <div class="week-spotlight-card-mount" id="mmhp-week-spotlight-saturday"></div>
-            </div>
-          </div>
-          <button type="button" class="btn site-button featured-events-export-btn" id="mmhp-featured-export">
-            Export featured events
-          </button>
-        </aside>
 
       </div>
 

@@ -2883,33 +2883,20 @@
     border: none;
   }
 
-  /* Wide: recurring + center live in .page-home-center-stack grid; layout is main | spotlight */
-  @media (min-width: 1101px) {
-    body.page-home .site-layout {
-      align-items: stretch;
-    }
-
-    body.page-home .site-layout > main.site-main {
-      order: 2;
-    }
-
-    body.page-home .site-layout > aside.site-sidebar-right {
-      order: 3;
-    }
-  }
-
-  /* Lead + recurring + Future Featured: column stack narrow; 2-column grid wide */
+  /* Home center stack: default single column; containment for nested grid/flex */
   body.page-home .page-home-center-stack {
     display: flex;
     flex-direction: column;
     width: 100%;
     min-width: 0;
+    max-width: 100%;
     gap: 1rem;
   }
 
-  /* Undo global `.site-sidebar-left { order: 2 }`, which forces recurring below tail if this aside is nested in a flex stack */
-  body.page-home .page-home-center-stack > aside.site-sidebar.site-sidebar-left {
+  body.page-home .page-home-center-stack > aside.site-sidebar.site-sidebar-left,
+  body.page-home .page-home-center-stack > aside.site-sidebar.site-sidebar-right {
     order: unset;
+    min-width: 0;
   }
 
   body.page-home .page-home-main-lead {
@@ -2923,12 +2910,49 @@
   body.page-home .page-home-main-tail {
     min-width: 0;
     width: 100%;
+    max-width: 100%;
   }
 
+  body.page-home .page-home-calendar-stack {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  body.page-home .site-sidebar-right .site-sidebar-title {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Narrow left rail: explicit two-line title (see <br> in index); “Add Activity” matches Future Featured CTA */
+  @media (min-width: 769px) {
+    body.page-home .site-sidebar-left .site-sidebar-title {
+      font-size: clamp(1.05rem, 0.9rem + 1vw, 1.35rem);
+      line-height: 1.15;
+      font-weight: 700;
+      max-width: 100%;
+      box-sizing: border-box;
+      padding-inline: 0.1rem;
+      overflow-wrap: normal;
+      word-break: normal;
+      hyphens: none;
+    }
+
+    body.page-home .site-sidebar-left .sidebar-add-activity-btn {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.85rem;
+      white-space: nowrap;
+    }
+  }
+
+  /* Wide home: 3-column center-stack — left rail | calendar + Future Featured | spotlight */
   @media (min-width: 1101px) {
     body.page-home .page-home-center-stack {
       display: grid;
-      grid-template-columns: minmax(0, calc(var(--sidebar-left-width) + var(--sidebar-left-extra))) minmax(0, 1fr);
+      grid-template-columns:
+        minmax(0, calc(var(--sidebar-left-width) + var(--sidebar-left-extra)))
+        minmax(0, 1fr)
+        minmax(0, var(--sidebar-right-width));
+      grid-template-rows: auto auto;
       column-gap: 1rem;
       row-gap: 1rem;
       align-items: start;
@@ -2936,22 +2960,82 @@
 
     body.page-home .page-home-main-lead {
       grid-column: 2;
-      gap: 1rem;
+      grid-row: 1;
+      min-width: 0;
+      width: 100%;
     }
 
     body.page-home .page-home-center-stack > .site-sidebar.site-sidebar-left {
       grid-column: 1;
-      grid-row: 1 / -1;
+      grid-row: 1 / span 2;
       align-self: start;
       width: 100%;
+      min-width: 0;
     }
 
-    body.page-home .page-home-center-stack > .page-home-stack-divider:not(.page-home-mobile-only) {
-      grid-column: 2;
+    body.page-home .page-home-center-stack > .site-sidebar.site-sidebar-right {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+      align-self: start;
+      width: 100%;
+      max-width: var(--sidebar-right-width);
+      min-width: 0;
     }
 
     body.page-home .page-home-main-tail {
       grid-column: 2;
+      grid-row: 2;
+      min-width: 0;
+    }
+
+    body.page-home .page-home-center-stack > .page-home-stack-divider:not(.page-home-mobile-only) {
+      display: none;
+    }
+  }
+
+  /* Tablet: calendar full width; Recurring | Spotlight side by side; Future Featured below */
+  @media (max-width: 1100px) and (min-width: 769px) {
+    body.page-home .page-home-center-stack {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: auto auto auto auto;
+      column-gap: 1rem;
+      row-gap: 1rem;
+      align-items: start;
+    }
+
+    body.page-home .page-home-main-lead {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      width: 100%;
+      min-width: 0;
+    }
+
+    body.page-home .page-home-center-stack > .site-sidebar.site-sidebar-left {
+      grid-column: 1;
+      grid-row: 2;
+      width: 100%;
+      min-width: 0;
+    }
+
+    body.page-home .page-home-center-stack > .site-sidebar.site-sidebar-right {
+      grid-column: 2;
+      grid-row: 2;
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+    }
+
+    body.page-home .page-home-center-stack > .page-home-stack-divider:not(.page-home-mobile-only) {
+      grid-column: 1 / -1;
+      grid-row: 3;
+      display: block;
+    }
+
+    body.page-home .page-home-main-tail {
+      grid-column: 1 / -1;
+      grid-row: 4;
+      min-width: 0;
     }
   }
 
@@ -2988,9 +3072,12 @@
   }
 
   body.page-home .site-main {
-    overflow: visible;
+    overflow-x: clip;
+    overflow-y: visible;
     box-sizing: border-box;
     min-height: 0;
+    min-width: 0;
+    max-width: 100%;
   }
 
   /* Calendar first, tall viewport-based embed; featured block flows below (page scrolls) */
