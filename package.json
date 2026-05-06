@@ -4,6 +4,7 @@
   "description": "McAllen Mobile Park community event calendar (static site + data tools)",
   "scripts": {
     "build:features": "node scripts/build-features-from-csv.mjs",
-    "build:feature-pages": "node scripts/build-feature-event-pages.mjs"
+    "build:feature-pages": "node scripts/build-feature-event-pages.mjs",
+    "audit:links": "node scripts/audit-local-html-links.mjs"
   }
 }
