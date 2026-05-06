@@ -8,6 +8,9 @@ The project is **not** an official park management system. Operational questions
 
 ## Contents
 
+- [Final project promise](#final-project-promise)
+- [How the finished site is used](#how-the-finished-site-is-used)
+- [Final QA/QC checklist](#final-qaqc-checklist)
 - [Repository layout](#repository-layout) (includes [activity flyer pages](#activity-flyer-pages))
 - [Structure, UI, and presentation](#structure-ui-and-presentation)
 - [Pages and content types](#pages-and-content-types)
@@ -15,6 +18,92 @@ The project is **not** an official park management system. Operational questions
 - [Data and automation](#data-and-automation)
 - [Data model (reference)](#data-model-reference)
 - [Capstone artifacts](#capstone-artifacts)
+
+---
+
+## Final project promise
+
+McAllen Mobile Park Events is a finished static community calendar site for residents, activity organizers, and the event coordinator. It gives residents one readable place to find regular park activities, upcoming featured events, event details, location information, and contact/submission paths.
+
+The finished product is intentionally simple: no login, no server, no database service, and no park-management workflow. The site uses static pages plus browser JavaScript to read the current calendar data from [`assets/data/json/mmhp-master-data.json`](assets/data/json/mmhp-master-data.json). The Google Calendar embed remains the familiar calendar view, while the JSON-powered sidebars, cards, exports, forms, and generated pages provide curated park-event information around it.
+
+The final site promises the following:
+
+- Residents can open the home page and immediately understand the current recurring schedule, the embedded community calendar, and the highlighted upcoming featured events.
+- Recurring activities are listed from the master JSON data, sorted into a readable Monday-through-Sunday sidebar, and linked to activity flyer pages where a flyer exists.
+- Featured events are listed from the master JSON data, show event imagery and date information, and link to meaningful detail pages.
+- Karaoke and DJ dance filler events use repeatable event-page copy and imagery with the correct date/time for each occurrence.
+- One-off featured events use event-specific JSON data, image paths, and promotional copy.
+- Event and activity request forms collect the information needed by the coordinator and provide email/share/download handoff behavior.
+- Export buttons provide useful text or CSV downloads for recurring activities and featured events.
+- Coordinator email links have real `mailto:` fallbacks and are also wired through the shared coordinator config script.
+- The repository contains only mission-required public files after the final scrub; background materials and future-use assets belong under ignored [`private/`](private/) folders.
+
+## How the finished site is used
+
+1. Open [`index.html`](index.html) or the deployed site.
+2. Use the left sidebar to scan recurring activities by weekday.
+3. Use the center calendar for the full calendar view.
+4. Use the featured-event cards to open event detail pages.
+5. Use **Request activity** for recurring activities that should be added to the sidebar schedule.
+6. Use **Submit Event** for one-time featured events.
+7. Use **Contact Event Coordinator** for calendar, submission, or social-event questions.
+
+## Final QA/QC checklist
+
+This README is also the sprint checklist. Before Project 02 submission, the site should pass each item below.
+
+### Product/application
+
+- [ ] Home page loads without broken local assets or dead links.
+- [ ] Main navigation works from root pages, `contents/` pages, activity flyer pages, and feature-event pages.
+- [ ] The embedded Google Calendar appears in the center calendar region.
+- [ ] The left recurring schedule renders from [`mmhp-master-data.json`](assets/data/json/mmhp-master-data.json), not hardcoded HTML.
+- [ ] Every recurring activity has an explicit `isActive: true` or `isActive: false` decision in JSON.
+- [ ] Inactive recurring activities do not appear as active sidebar items or active exports.
+- [ ] Recurring activity ad copy is stored in the activity record as JSON data, using a consistent key such as `adCopy`.
+- [ ] Activity flyer pages match the corresponding JSON activity data for active state, recurrence, location, image, and ad copy.
+- [ ] Featured-event cards render from JSON and route to meaningful detail pages.
+- [ ] Every active featured event has a complete date, time, image, location, title/category, and promotional copy in JSON.
+- [ ] Featured-event promotional copy is JSON-backed, not trapped only in static HTML.
+- [ ] Generated feature-event pages can be rebuilt from JSON without losing title, date/time, image, location, or ad copy.
+- [ ] Karaoke and DJ dance featured events behave as repeatable filler events with shared copy/image and date-specific detail pages.
+- [ ] One-off featured events remain one-off detail pages with their own event-specific content.
+- [ ] Submit Event form validates required fields and prepares the coordinator payload as described on the page.
+- [ ] Request activity form validates required fields and prepares the coordinator payload as described on the page.
+- [ ] Export buttons download useful text or CSV files.
+- [ ] Coordinator email links work before and after JavaScript upgrades them.
+- [ ] The current UI copy accurately describes the current site behavior.
+- [ ] The right-rail open-slot/card behavior is clear and does not look like a dead or broken event.
+
+### Case study
+
+- [ ] Case study explains the problem, audience, and context.
+- [ ] Case study documents the approach, tools, and methods.
+- [ ] Case study names at least two key decisions or trade-offs.
+- [ ] Case study explains iteration from Project 01 using specific feedback or findings.
+- [ ] Case study evaluates what works well and what still falls short.
+- [ ] Case study ends with specific lessons learned and CMPA program connections.
+
+### Presentation
+
+- [ ] Presentation tells the project story from problem to product.
+- [ ] Presentation is appropriate for a professional audience.
+- [ ] Presentation shows or explains the working product.
+- [ ] Presentation covers key decisions, results, and lessons learned.
+
+### Development reflection
+
+- [ ] Reflection is specific, personal, and about the development process.
+- [ ] Reflection covers what went well, what was difficult, what would change next time, and how the capstone connects to CMPA learning.
+
+### Repository and submission
+
+- [ ] Public tracked repo contains only mission-required site, data, scripts, docs, and final deliverables.
+- [ ] [`private/`](private/) is ignored and contains background/future-use material that should not clutter the remote repo.
+- [ ] No active page references ignored/private assets.
+- [ ] Final git status is clean after intentional commits.
+- [ ] Final pushed branch matches the site and README promises.
 
 ---
 
