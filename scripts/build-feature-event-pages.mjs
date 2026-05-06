@@ -10,7 +10,8 @@
  *
  * Run: npm run build:feature-pages
  *
- * Note: The HTML template may include UI blocks commented out for a given submission (e.g. Purchase tickets); keep template + this script in sync when re-enabling sections.
+ * Feature-event template uses deferred coordinator + feature-events-ics.js. Optional “Purchase tickets” UI was
+ * removed from the template for a cleaner submission; restore from git history (search feature-events-ticket-dialog) if needed.
  */
 import fs from "fs";
 import path from "path";
