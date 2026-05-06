@@ -35,6 +35,7 @@
     ac0016: "kitchen-inventory.html",
     ac0023: "martial-arts-training.html",
     ac0025: "mexican-train-wide.html",
+    ac0027: "stitch-and-bitch.html",
   };
 
   /** Relative href to the activity flyer for the current page path. */

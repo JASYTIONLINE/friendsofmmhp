@@ -5125,7 +5125,7 @@
     {
       "id": "ac0027",
       "description": "Bring your favorite crafting project to our weekly crafting circle. Enjoy good company, learn or teach a new skill, and spend time with neighbors. Examples of crafts include Swedish weaving, animal stuffing, loom knitting, crochet, needlepoint, and macrame. No skill or experience is needed.",
-      "location": "TBA",
+      "location": "Hall C",
       "recurrenceType": "Recurring",
       "recurrenceDetails": {
         "weekdays": [
@@ -5144,7 +5144,7 @@
         "macrame",
         "social"
       ],
-      "imagePath": null,
+      "imagePath": "activity-flyer/stichnbitch-w.png",
       "activityName": "Stitch & Bitch",
       "contactResidentId": "re0000",
       "chairpersonId": "re0000",
