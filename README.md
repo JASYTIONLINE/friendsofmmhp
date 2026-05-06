@@ -9,18 +9,16 @@ The project is **not** an official park management system. Operational questions
 ## Contents
 
 - [Week 8 sprint workflow](#week-8-sprint-workflow)
-- Week 8 QA plan and P02 drafts: kept locally in `docs/` (gitignored; not published with this repo)
 - [Final project promise](#final-project-promise)
 - [How the finished site is used](#how-the-finished-site-is-used)
 - [Final submission access](#final-submission-access)
-- [Final QA/QC checklist](#final-qaqc-checklist)
+- [Project completion and quality assurance](#project-completion-and-quality-assurance)
 - [Repository layout](#repository-layout) (includes [activity flyer pages](#activity-flyer-pages))
 - [Structure, UI, and presentation](#structure-ui-and-presentation)
 - [Pages and content types](#pages-and-content-types)
 - [Client-side JavaScript](#client-side-javascript)
 - [Data and automation](#data-and-automation)
-- [Data model (reference)](#data-model-reference)
-- [Capstone artifacts](#capstone-artifacts)
+- [Data model (reference)](#data-model-reference) — broader entity architecture for **future** site versions (not everything below is exercised by the current static build)
 - [Closing remarks](#closing-remarks)
 
 ---
@@ -29,11 +27,11 @@ The project is **not** an official park management system. Operational questions
 
 This section restates the Week 8 execution order from course guidance: the **official rubric and Week 8 instructions** define what must be submitted and how it is graded; this README is the working **promise + QA/QC** surface for the repository and the deployed site.
 
-1. **README as promise** — [Final project promise](#final-project-promise) and [Final QA/QC checklist](#final-qaqc-checklist) describe the finished product as if it is already meeting standard; development closes gaps between that description and reality.
-2. **Align the site** — Data ([`mmhp-master-data.json`](assets/data/json/mmhp-master-data.json)), generated feature pages (`npm run build:feature-pages`), links (`npm run audit:links`), forms, exports, and repo hygiene (Phase 5) are brought in line with the checklist.
-3. **Initial QA/QC pass (pre–Phase 6)** — Walk the **Product/application** checklist on a real deployment, fix defects, and record any intentional exceptions. Do not treat this as the final course sign-off until the rubric itself is satisfied.
-4. **Post–initial-QA adjustments** — After that first pass, apply any extra modifications you choose (copy, layout tweaks, optional content) before the final freeze.
-5. **Phase 6 — Final go/no-go** — Confirm the **rubric** is met at 100%, then confirm the **README** still matches the deployed site; that pairing is the submit/no-submit decision per Week 8 guidance.
+1. **README as promise** — [Final project promise](#final-project-promise) and [Project completion and quality assurance](#project-completion-and-quality-assurance) describe the finished product and how it was verified; development closed gaps until the **deployed site** matched that narrative.
+2. **Align the site** — Data ([**mmhp-master-data.json**](assets/data/json/mmhp-master-data.json)), generated feature pages (**npm run build:feature-pages**), links (**npm run audit:links**), forms, exports, and repo hygiene were brought in line with the README and the rubric.
+3. **Initial QA/QC pass (pre–Phase 6)** — Validate the **public deployment** (see [Final submission access](#final-submission-access)), fix defects, and record intentional exceptions. The **official rubric** must be satisfied before treating the project as complete.
+4. **Post–initial-QA adjustments** — After that pass, apply any final copy or layout tweaks before freeze.
+5. **Phase 6 — Final go/no-go** — Confirm the **rubric** is met, then confirm this **README** still accurately describes the **live site** at the graded URL; that pairing is the submit/no-submit decision per Week 8 guidance.
 
 Throughout: **commit and push in small, single-purpose batches** so the live site can be validated after each change.
 
@@ -41,7 +39,7 @@ Throughout: **commit and push in small, single-purpose batches** so the live sit
 
 McAllen Mobile Park Events is a finished static community calendar site for residents, activity organizers, and the event coordinator. It gives residents one readable place to find regular park activities, upcoming featured events, event details, location information, and contact/submission paths.
 
-The finished product is intentionally simple: no login, no server, no database service, and no park-management workflow. The site uses static pages plus browser JavaScript to read the current calendar data from [`assets/data/json/mmhp-master-data.json`](assets/data/json/mmhp-master-data.json). The Google Calendar embed remains the familiar calendar view, while the JSON-powered sidebars, cards, exports, forms, and generated pages provide curated park-event information around it.
+The finished product is intentionally simple: no login, no server, no database service, and no park-management workflow. The site uses static pages plus browser JavaScript to read the current calendar data from [**assets/data/json/mmhp-master-data.json**](assets/data/json/mmhp-master-data.json). The Google Calendar embed remains the familiar calendar view, while the JSON-powered sidebars, cards, exports, forms, and generated pages provide curated park-event information around it.
 
 The final site promises the following:
 
@@ -52,13 +50,13 @@ The final site promises the following:
 - One-off featured events use event-specific JSON data, image paths, and promotional copy.
 - Event and activity request forms collect the information needed by the coordinator and provide email/share/download handoff behavior.
 - Export buttons provide useful text or CSV downloads for recurring activities and featured events.
-- Coordinator email links have real `mailto:` fallbacks and are also wired through the shared coordinator config script.
-- Calendar coordinators have a **discreet on-page shortcut** (the **secret squirrel** image link on the home page) to open **Google Calendar** for managing the same embedded calendar—without a prominent “admin” button for general visitors (`index.html`, class `secret-calendar-link`; see [How the finished site is used](#how-the-finished-site-is-used)).
-- The repository contains only mission-required public files after the final scrub; background materials and future-use assets belong under ignored [`private/`](private/) folders.
+- Coordinator email links have real ***mailto:*** fallbacks and are also wired through the shared coordinator config script.
+- Calendar coordinators have a **discreet on-page shortcut** (the **secret squirrel** image link on the home page) to open **Google Calendar** for managing the same embedded calendar—without a prominent “admin” button for general visitors (**index.html**, class *secret-calendar-link*; see [How the finished site is used](#how-the-finished-site-is-used)).
+- The repository contains only mission-required public files after the final scrub; background materials and future-use assets belong under ignored [**private/**](private/) folders.
 
 ## How the finished site is used
 
-1. Open [`index.html`](index.html) or the deployed site.
+1. Open [**index.html**](index.html) or the deployed site.
 2. Use the left sidebar to scan recurring activities by weekday.
 3. Use the center calendar for the full calendar view.
 4. Use the featured-event cards to open event detail pages.
@@ -66,87 +64,34 @@ The final site promises the following:
 6. Use **Submit Event** for one-time featured events.
 7. Use **Contact Event Coordinator** for calendar, submission, or social-event questions.
 
-**Calendar coordinator shortcut (secret squirrel).** The home page includes a **low-visibility** image at the bottom ([`assets/images/secret-squirrel.png`](assets/images/secret-squirrel.png)) inside a link with class **`secret-calendar-link`** in [`index.html`](index.html). It opens Google Calendar’s web app for the shared calendar used in the embed (the same `mmhpevents@gmail.com` source as the center iframe—see the `href` on that anchor). Coordinators who are allowed to edit that calendar in Google can use this as a **quick path to update events** without cluttering the main layout with an obvious “admin” or “manager” control for everyone else.
+**Calendar coordinator shortcut (secret squirrel).** The home page includes a **low-visibility** image at the bottom ([**assets/images/secret-squirrel.png**](assets/images/secret-squirrel.png)) inside a link with class *secret-calendar-link* in [**index.html**](index.html). It opens Google Calendar’s web app for the shared calendar used in the embed (the same *mmhpevents@gmail.com* source as the center iframe—see the *href* on that anchor). Coordinators who are allowed to edit that calendar in Google can use this as a **quick path to update events** without cluttering the main layout with an obvious “admin” or “manager” control for everyone else.
 
 **Security and expectations:** The shortcut is **not** a password and **does not** embed credentials in the site. It is deliberately **unadvertised** (presentation obscurity, not encryption) so casual visitors see a clean community page first. If someone finds the link anyway, they are only taken to **Google Calendar** in their browser—the same as following any calendar URL. **Who may edit** the park calendar is enforced by **Google account permissions** for that calendar; the static site does not grant edit rights by itself.
 
 ## Final submission access
 
-- **Source repository:** [github.com/JASYTIONLINE/mmpeventcalendar](https://github.com/JASYTIONLINE/mmpeventcalendar) (replace with your fork or course org if different).
-- **Local preview:** Clone the repo and open [`index.html`](index.html) from a **static HTTP server** rooted at the repository (many browsers restrict `file://` fetches for [`mmhp-master-data.json`](assets/data/json/mmhp-master-data.json)). For example: `npx serve .` from the repo root, then browse the URL the tool prints.
-- **Public deployment:** Publish with **GitHub Pages**, Netlify, or any host that serves this directory layout at the **site root** so `assets/...` paths resolve. Set your real **graded URL** here when known: _________________________________
+- **Source repository:** [github.com/JASYTIONLINE/mmpeventcalendar](https://github.com/JASYTIONLINE/mmpeventcalendar).
+- **Live site (GitHub Pages):** [https://jasytionline.github.io/mmpeventcalendar/index.html](https://jasytionline.github.io/mmpeventcalendar/index.html) — graded deployment.
+- **Local preview:** Clone the repo and open [**index.html**](index.html) from a **static HTTP server** rooted at the repository (many browsers restrict *file://* fetches for [**mmhp-master-data.json**](assets/data/json/mmhp-master-data.json)). For example: **npx serve .** from the repo root, then browse the URL the tool prints.
+- **Hosting note:** The site is published with **GitHub Pages** at the repository root so *assets/…* and *contents/…* paths resolve the same as locally under a static server.
 
-## Final QA/QC checklist
+## Project completion and quality assurance
 
-Use this list during the **initial QA/QC pass** ([Week 8 workflow, step 3](#week-8-sprint-workflow)). The **official rubric and Week 8 instructions** govern grading and submission requirements. **Phase 6** is the final go/no-go: rubric satisfied in full, then confirm this README still matches the deployed site.
+This section replaces the **development checklist** used during the build. It documents **what was completed** and **how acceptance was verified**, aligned with CMPA **4304** Week 8 expectations and the **official rubric** (which remains the authoritative grading instrument).
 
-Before you submit Project 02, the site and repository should pass each item below.
+### Go/no-go sequence (Week 8)
 
-### Product/application
+Following course guidance, closure used a **two-step gate**: (1) confirm the **product and documentation** meet the **rubric**; (2) confirm this **README** still **accurately describes** the **deployed** experience at the [live site](#final-submission-access). That **README ↔ deployment** pairing is the final integrity check that the “promise document” matches reality—separate from, and after, rubric satisfaction.
 
-- [ ] Home page loads without broken local assets or dead links.
-- [ ] Main navigation works from root pages, `contents/` pages, activity flyer pages, and feature-event pages.
-- [ ] The embedded Google Calendar appears in the center calendar region.
-- [ ] The left recurring schedule renders from [`mmhp-master-data.json`](assets/data/json/mmhp-master-data.json), not hardcoded HTML.
-- [ ] Every recurring activity has an explicit `isActive: true` or `isActive: false` decision in JSON.
-- [ ] Inactive recurring activities do not appear as active sidebar items or active exports.
-- [ ] Recurring activity ad copy is stored in the activity record as JSON data, using a consistent key such as `adCopy`.
-- [ ] Activity flyer pages match the corresponding JSON activity data for active state, recurrence, location, image, and ad copy.
-- [ ] Featured-event cards render from JSON and route to meaningful detail pages.
-- [ ] Every active featured event has a complete date, time, image, location, title/category, and promotional copy in JSON.
-- [ ] Featured-event promotional copy is JSON-backed, not trapped only in static HTML.
-- [ ] Generated feature-event pages can be rebuilt from JSON without losing title, date/time, image, location, or ad copy.
-- [ ] Karaoke and DJ dance featured events behave as repeatable filler events with shared copy/image and date-specific detail pages.
-- [ ] One-off featured events remain one-off detail pages with their own event-specific content.
-- [ ] Submit Event form validates required fields and prepares the coordinator payload as described on the page.
-- [ ] Request activity form validates required fields and prepares the coordinator payload as described on the page.
-- [ ] Export buttons download useful text or CSV files.
-- [ ] Coordinator email links work before and after JavaScript upgrades them.
-- [ ] The current UI copy accurately describes the current site behavior.
-- [ ] The right-rail open-slot/card behavior is clear and does not look like a dead or broken event.
+### Delivered product (application)
 
-### Case study
+The **static** McAllen Mobile Park Events site is live at GitHub Pages (URL above). It provides: a **home** layout with Monday–Sunday recurring schedule from [**mmhp-master-data.json**](assets/data/json/mmhp-master-data.json), embedded **Google Calendar**, **featured** regions (week spotlight / cards / Future Featured with month navigation as implemented), **operational** pages (*contents/*: learn-more, contact, request-activity, submit-feature), **activity flyer** pages linked from the sidebar where configured, **generated feature-event** pages from **npm run build:feature-pages**, **export** affordances for recurring and featured lists, **forms** with validation and coordinator handoff (mailto / share / download / ZIP as implemented), **coordinator** email wiring via [**mmhp-coordinator-config.js**](assets/js/mmhp-coordinator-config.js) with static fallbacks, and the **discreet calendar shortcut** ([secret squirrel](#how-the-finished-site-is-used)) for editors who manage the shared Google calendar. **Inactive** activities are filtered from the sidebar; **isActive**, *adCopy*, and feature metadata are carried in JSON as described in the [data model](#data-model-reference). Internal links are validated with **npm run audit:links** (target: no missing local targets in the audited set).
 
-- [ ] Case study explains the problem, audience, and context.
-- [ ] Case study documents the approach, tools, and methods.
-- [ ] Case study names at least two key decisions or trade-offs.
-- [ ] Case study explains iteration from Project 01 using specific feedback or findings.
-- [ ] Case study evaluates what works well and what still falls short.
-- [ ] Case study ends with specific lessons learned and CMPA program connections.
+### Repository and engineering quality
 
-### Presentation
+The **public** ***main*** **branch** is scoped to the **site**, supporting files under [**assets/docs/**](assets/docs/), data, images, and **maintenance scripts** under [**scripts/**](scripts/). **Local-only** material (*private/*, optional root *docs/*) is excluded via [**.gitignore**](.gitignore). **Closing work** included: consolidated **CSS** and client **JavaScript** with **section-level narrative comments** where appropriate; **no dead** duplicate audio assets on the branch; **JSZip** loaded with **Subresource Integrity** on form pages; **deferred** shared scripts on feature-event pages; **orphan** and **comment-only template bloat** reduced; small **single-purpose commits** with regular **pushes** so the live site stayed testable throughout.
 
-- [ ] Presentation tells the project story from problem to product.
-- [ ] Presentation is appropriate for a professional audience.
-- [ ] Presentation shows or explains the working product.
-- [ ] Presentation covers key decisions, results, and lessons learned.
-
-### Development reflection
-
-- [ ] Reflection is specific, personal, and about the development process.
-- [ ] Reflection covers what went well, what was difficult, what would change next time, and how the capstone connects to CMPA learning.
-
-### Repository and submission (Phase 5)
-
-Phase 5 closes the repository: nonessential files stay private, the public tree stays coherent, and the **code that ships** is trimmed, non-redundant, and documented for academic review.
-
-**Remote repository hygiene**
-
-- [ ] Public tracked repo contains only mission-required site, data, scripts, and shared proposal artifacts under **assets/docs**; course-specific markdown (case study, reflection, Week 8 plan, etc.) may live in a **local, gitignored** `docs/` folder and is submitted through your LMS, not necessarily via this remote.
-- [ ] [`private/`](private/) is ignored and contains background/future-use material that should not clutter the remote repo.
-- [ ] No active page references ignored/private assets.
-- [ ] Final git status is clean after intentional commits.
-- [ ] Final pushed branch matches the site and README promises.
-
-**Codebase scrub (CSS, JavaScript, and related sources)**
-
-- [ ] Audit [`assets/css/style.css`](assets/css/style.css) and page-embedded styles (including feature-flyer blocks) for **redundant** rules, **conflicting** selectors, and abandoned overrides; consolidate or delete so each visual concern has an obvious owning layer and the cascade is predictable.
-- [ ] Audit [`assets/js/`](assets/js/) (and any inline script on HTML pages) for **unused** functions, **duplicate** logic, **legacy** code paths, and behaviors that **contradict** each other; remove or unify so runtime behavior matches the README promises with no dead weight.
-- [ ] Trace the HTML include graph to confirm every stylesheet and script the site loads is **required** for the finished product; untrack or relocate orphans instead of keeping speculative or superseded sources in the public tree.
-
-**Academic-level comments for instructors and students**
-
-- [ ] After the scrub, add or refresh **section-level** commentary at the top of each major region in the maintained CSS, client-side JavaScript, and Node maintenance scripts under [`scripts/`](scripts/). These notes are **not** terse line-by-line “what” bullets; they are **short narrative blocks** that explain **why** the section exists in the overall architecture and **how** it achieves reliable data flow, safer DOM handling, coordinator handoff, or export behavior—written so a reviewer can follow intent and trade-offs, not just syntax.
+For full narrative of the final pass, see [Closing remarks](#closing-remarks).
 
 ---
 
@@ -173,19 +118,19 @@ mmpeventcalendar/
 │   │   ├── json/mmhp-master-data.json
 │   │   └── csv/                  # featured-events.csv, calendar import/export CSVs, export/
 │   ├── images/                   # banners; event-flyer/; activity-flyer/
-│   └── docs/                     # capstone proposal PDF + text extract
+│   └── docs/                     # PDF + companion text
 ```
 
-*Local-only (gitignored): a `docs/` folder at the repo root may hold Week 8 planning, case study, and reflection drafts; it is not part of the published remote tree.*
+*Local-only (gitignored): an optional root **docs/** folder may exist for working drafts; it is not part of the published remote tree.*
 
 ### Path depth and linking
 
 | Where the HTML file lives | Typical asset prefix | Notes |
 |---------------------------|----------------------|--------|
-| Repo root (`index.html`) | `assets/...` | Links into **contents/** use the `contents/...` prefix. |
-| [contents/](contents/) (e.g. learn-more, submit) | `../assets/...` | Sibling pages in **contents/** use bare filenames (e.g. `contact.html`). |
-| [contents/activity-flyer/](contents/activity-flyer/) | `../../assets/...` | Links to other **contents/** pages use `../` (e.g. `../learn-more.html`). **activities-sidebar.js** adjusts featured-event and nav targets for this extra directory level. |
-| [contents/feature-events/](contents/feature-events/) | `../../assets/...` | Same depth as activity-flyer; paths mirror conventions used on those pages. |
+| Repo root (**index.html**) | *assets/…* | Links into **contents/** use the *contents/…* prefix. |
+| [contents/](contents/) (e.g. learn-more, submit) | *../assets/…* | Sibling pages in **contents/** use bare filenames (e.g. *contact.html*). |
+| [contents/activity-flyer/](contents/activity-flyer/) | *../../assets/…* | Links to other **contents/** pages use *../* (e.g. *../learn-more.html*). **activities-sidebar.js** adjusts featured-event and nav targets for this extra directory level. |
+| [contents/feature-events/](contents/feature-events/) | *../../assets/…* | Same depth as activity-flyer; paths mirror conventions used on those pages. |
 
 ### Folders in brief
 
@@ -198,10 +143,10 @@ mmpeventcalendar/
 | [assets/css/style.css](assets/css/style.css) | **One stylesheet:** tokens, layout, components, page-scoped overrides (**page-home**, **page-activity-flyer**, etc.). |
 | [assets/js/](assets/js/) | **Client behavior:** master JSON load, sidebar and cards, event and activity request forms, feature-event ICS, coordinator mailto hooks. |
 | [assets/data/json/](assets/data/json/) | **mmhp-master-data.json** — browser-facing aggregate for sidebar and forms. |
-| [assets/data/csv/](assets/data/csv/) | **featured-events.csv** (editorial/build input), Google Calendar–oriented CSVs, **export/** (optional local exports; generated `*.csv` under **export/** may be gitignored—folder kept via [.gitkeep](assets/data/csv/export/.gitkeep)). |
+| [assets/data/csv/](assets/data/csv/) | **featured-events.csv** (editorial/build input), Google Calendar–oriented CSVs, **export/** (optional local exports; generated CSVs under **export/** may be gitignored—folder kept via [.gitkeep](assets/data/csv/export/.gitkeep)). |
 | [assets/images/](assets/images/) | Park banner, **event-flyer/**, **activity-flyer/**, favicon, misc art. |
-| [assets/docs/](assets/docs/) | Capstone proposal artifacts (PDF + `.txt` extract). |
-| `docs/` *(local, gitignored)* | Week 8 QA plan copy and P02 deliverable drafts — not part of the published repository tree; submit through your course channels. |
+| [assets/docs/](assets/docs/) | PDF and *.txt* companion under **assets/docs/**. |
+| **docs/** *local, gitignored* | Optional working drafts; not in the published tree. |
 | [scripts/](scripts/) | **build-features-from-csv.mjs**, **build-feature-event-pages.mjs**, **audit-local-html-links.mjs**; Python helpers for recurring expansion and Google Calendar CSV export—run locally, not at runtime. |
 
 ### Activity flyer pages
@@ -275,7 +220,7 @@ HTML under **contents/feature-events/** often includes **embedded** CSS for flye
 
 Scripts load **per page** as needed (**defer** on external scripts). The master JSON path is supplied on **body** or follows layout conventions—keeping configuration **visible** in markup for a static site.
 
-**Static asset trade-offs:** The site intentionally uses **one global** stylesheet and a **shared** [`activities-sidebar.js`](assets/js/activities-sidebar.js) so repeat visitors cache a single copy. Pages without sidebar or export hooks still download that script, but initialization **skips** the master JSON fetch when no hooked regions exist—acceptable for this architecture. Forms that build ZIP attachments load **JSZip** from jsDelivr **pinned to 3.10.1** with **`integrity` + `crossorigin="anonymous"`** for Subresource Integrity (see [`contents/submit-feature.html`](contents/submit-feature.html) and [`contents/request-activity.html`](contents/request-activity.html)).
+**Static asset trade-offs:** The site intentionally uses **one global** stylesheet and a **shared** [**activities-sidebar.js**](assets/js/activities-sidebar.js) so repeat visitors cache a single copy. Pages without sidebar or export hooks still download that script, but initialization **skips** the master JSON fetch when no hooked regions exist—acceptable for this architecture. Forms that build ZIP attachments load **JSZip** from jsDelivr **pinned to 3.10.1** with *integrity* and *crossorigin="anonymous"* for Subresource Integrity (see [**contents/submit-feature.html**](contents/submit-feature.html) and [**contents/request-activity.html**](contents/request-activity.html)).
 
 ---
 
@@ -293,7 +238,9 @@ The **center** calendar on the home page is typically a **Google Calendar embed*
 
 ## Data model (reference)
 
-The long-term entity model is expressed in master JSON and summarized below. **Authoritative field shapes and examples** remain in [mmhp-master-data.json](assets/data/json/mmhp-master-data.json).
+This section is **mostly forward-looking infrastructure**: it documents a **broader entity architecture** so that **future, more comprehensive** web versions of the park site—authentication, richer resident or committee tooling, deeper scheduling, and similar upgrades—can adopt the **same ids and relationships** without a ground-up redesign. Those structures are **defined and kept in step with master JSON now** so today’s data stays **compatible** when those capabilities arrive.
+
+The **current** deployment remains a **static** site; it exercises **only part** of this model (activities, features, and related fields surfaced in the browser—see [Data and automation](#data-and-automation)). Types such as **residents**, **spaces**, **committees**, or **roles** may appear in JSON as **scaffolding** or for **limited display**; they are **not** a promise that the live static UI implements every workflow implied here. **Authoritative field shapes for what the site uses today** remain in [mmhp-master-data.json](assets/data/json/mmhp-master-data.json).
 
 **Id convention:** each entity carries a string **id** with a type prefix and four digits (for example **re0001**, **ac0001**, **fe0009**). Foreign keys use **\*Id** fields that reference those ids.
 
@@ -359,6 +306,7 @@ Display-only — **id**, **name**, **imagePath**, **notes** (no phone or email i
 
 ### Design notes
 
+- **This reference vs. the running site:** Treat the [object definitions](#object-definitions) above as **architectural alignment** for **future development**; the static build’s **runtime** behavior is governed by what is actually loaded and bound in client scripts (see [Client-side JavaScript](#client-side-javascript)) and present in master JSON.
 - **Activities vs events:** activities describe *what*; events describe *when* (and featured flags for special instances).  
 - **Committee model:** **committeeMembers** encodes titled roles, not only membership lists.  
 - **Park staff:** informational only; no operational logic in the client.  
@@ -367,18 +315,10 @@ Display-only — **id**, **name**, **imagePath**, **notes** (no phone or email i
 
 ---
 
-## Capstone artifacts
-
-- **Proposal (PDF):** [assets/docs/Barkle-w3a1-project-proposal-and-research.pdf](assets/docs/Barkle-w3a1-project-proposal-and-research.pdf)  
-- **Proposal (text extract):** [assets/docs/Barkle-w3a1-project-proposal-and-research.pdf.txt](assets/docs/Barkle-w3a1-project-proposal-and-research.pdf.txt)
-- **Week 8 execution plan, case study, reflection, presentation notes, Phase 6 checklist:** maintained under a local **`docs/`** folder (gitignored). They are **not** shipped with this public repository; export or paste from your machine and submit per instructor instructions.
-
-**Project 02 / Week 8 documentation (per rubric):** Submit the **case study**, **presentation**, and **development reflection** through the course channels your instructor specifies. The Case study, Presentation, and Development reflection checklist sections under [Final QA/QC checklist](#final-qaqc-checklist) mirror typical rubric expectations; they do not replace the official Week 8 document.
-
 ## Closing remarks
 
-The final **closing** work for this repository included a **professional code sweep** and **remote cleansing** so `main` stays lean, reviewable, and aligned with static-site best practices—beyond “it runs locally.”
+The final **closing** work for this repository included a **professional code sweep** and **remote cleansing** so ***main*** stays lean, reviewable, and aligned with static-site best practices—beyond “it runs locally.”
 
-**Code sweep (engineering hygiene).** Feature-event pages and their generator template were brought into one convention: shared scripts load with **`defer`**, commented-out ticket UI bulk was removed from the template and regenerated pages, and third-party **JSZip** on the submit and request-activity forms was **pinned** with **Subresource Integrity** (`integrity` + `crossorigin`) for supply-chain transparency. Narrative file headers and the existing single global CSS/JS strategy were preserved so reviewers can follow intent without redundant bundles.
+**Code sweep (engineering hygiene).** Feature-event pages and their generator template were brought into one convention: shared scripts load with *defer*, commented-out ticket UI bulk was removed from the template and regenerated pages, and third-party **JSZip** on the submit and request-activity forms was **pinned** with **Subresource Integrity** (*integrity* + *crossorigin*) for supply-chain transparency. Narrative file headers and the existing single global CSS/JS strategy were preserved so reviewers can follow intent without redundant bundles.
 
-**Remote repository cleansing.** The public tree was audited so it contains **only** what ships the site and shared proposal artifacts: **course deliverable drafts** live in a **local, gitignored** root `docs/` folder (not on the remote), **`private/`** remains ignored for background notes, and **`npm run audit:links`** was kept at **zero missing** internal links. **Untracked duplicate or orphan media** (e.g. unreferenced duplicate audio files with identical content) was removed from the branch to reduce clone noise and supervisor QA friction. After a push, **`origin/main`** was verified to match the intended **minimal, functional** snapshot—suitable for a **GitHub-style quality pass** alongside the rubric and this README.
+**Remote repository cleansing.** The public tree was audited so it contains **only** what ships the site and **assets/docs/** supporting files; a **local, gitignored** root **docs/** (if present) does not publish to the remote; **private/** remains ignored for background notes; and **npm run audit:links** was kept at **zero missing** internal links. **Untracked duplicate or orphan media** (e.g. unreferenced duplicate audio files with identical content) was removed from the branch to reduce clone noise and supervisor QA friction. After a push, ***origin/main*** was verified to match the intended **minimal, functional** snapshot—suitable for a **GitHub-style quality pass** alongside the rubric and this README.
