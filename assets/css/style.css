@@ -1648,7 +1648,7 @@
   /* ================================================
      RESPONSIVE LAYOUT
      ================================================ */
-  /* Tablet / narrow screens: single column — calendar, then recurring, then featured */
+  /* Tablet / narrow screens: single column (home center stack is lead → recurring → featured on mobile inside main) */
   @media (max-width: 1100px) {
     .site-layout,
     .layout,
@@ -1851,9 +1851,33 @@
       font-weight: 700;
     }
 
-    /* Home (index): inline week spotlight, Future Events band, hide duplicate right rail + export CTAs */
+    /* Home (index): calendar + stacked content panels & dividers under .site-main on mobile */
     body.page-home .page-home-mobile-only {
       display: block !important;
+    }
+
+    body.page-home .page-home-mobile-week-banner {
+      width: 100%;
+      margin-top: 0;
+      padding-top: 0;
+      text-align: center;
+    }
+
+    body.page-home .page-home-mobile-week-heading {
+      margin: 0 auto var(--space-md);
+      max-width: 28rem;
+      padding-bottom: 0;
+      font-size: clamp(1.15rem, 2.8vw, 1.6rem);
+      font-weight: 700;
+      color: var(--color-driftwood-dark);
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    body.page-home .page-home-mobile-spotlight {
+      margin-top: 0;
+      margin-inline: auto;
+      max-width: 28rem;
     }
 
     body.page-home .site-sidebar-right {
@@ -1884,35 +1908,22 @@
       -webkit-line-clamp: unset !important;
       min-height: 0 !important;
       overflow: visible !important;
-      font-size: clamp(0.75rem, 2.1vw, 0.95rem);
+      font-weight: 800;
+      font-size: clamp(0.8rem, 2.35vw, 1rem);
     }
 
     body.page-home .page-home-mobile-spotlight .featured-card-line--detail {
-      font-size: clamp(0.68rem, 1.85vw, 0.85rem);
+      font-size: clamp(0.78rem, 2.2vw, 0.95rem);
+      font-weight: 600;
+      line-height: 1.25;
     }
 
     body.page-home .page-home-mobile-spotlight .featured-card-line--date {
-      font-size: clamp(0.65rem, 1.7vw, 0.8rem);
+      font-size: clamp(0.72rem, 2vw, 0.88rem);
     }
 
     body.page-home .page-home-mobile-spotlight .featured-card-caption {
       min-height: auto;
-    }
-
-    body.page-home .page-home-mobile-divider {
-      margin: var(--space-md) 0;
-      border: 0;
-      border-top: 3px solid var(--color-border);
-    }
-
-    body.page-home .page-home-future-heading {
-      margin: 0 0 0.35rem;
-      padding: 0 0 var(--space-sm);
-      border-bottom: 1px solid var(--color-border);
-      font-size: clamp(1rem, 2.2vw, 1.4rem);
-      font-weight: 700;
-      color: var(--color-driftwood-dark);
-      text-align: left;
     }
 
     body.page-home .page-home-featured-stepper {
@@ -1990,16 +2001,107 @@
     object-fit: cover;
   }
 
-  /* Wide: row height follows the tallest column (center grows with calendar + featured) */
+  /* Wide: recurring + center live in .page-home-center-stack grid; layout is main | spotlight */
   @media (min-width: 1101px) {
     body.page-home .site-layout {
       align-items: stretch;
     }
+
+    body.page-home .site-layout > main.site-main {
+      order: 2;
+    }
+
+    body.page-home .site-layout > aside.site-sidebar-right {
+      order: 3;
+    }
+  }
+
+  /* Lead + recurring + Future Featured: column stack narrow; 2-column grid wide */
+  body.page-home .page-home-center-stack {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    gap: 1rem;
+  }
+
+  /* Undo global `.site-sidebar-left { order: 2 }`, which forces recurring below tail if this aside is nested in a flex stack */
+  body.page-home .page-home-center-stack > aside.site-sidebar.site-sidebar-left {
+    order: unset;
+  }
+
+  body.page-home .page-home-main-lead {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  body.page-home .page-home-main-tail {
+    min-width: 0;
+    width: 100%;
+  }
+
+  @media (min-width: 1101px) {
+    body.page-home .page-home-center-stack {
+      display: grid;
+      grid-template-columns: minmax(0, calc(var(--sidebar-left-width) + var(--sidebar-left-extra))) minmax(0, 1fr);
+      column-gap: 1rem;
+      row-gap: 1rem;
+      align-items: start;
+    }
+
+    body.page-home .page-home-main-lead {
+      grid-column: 2;
+      gap: 1rem;
+    }
+
+    body.page-home .page-home-center-stack > .site-sidebar.site-sidebar-left {
+      grid-column: 1;
+      grid-row: 1 / -1;
+      align-self: start;
+      width: 100%;
+    }
+
+    body.page-home .page-home-center-stack > .page-home-stack-divider:not(.page-home-mobile-only) {
+      grid-column: 2;
+    }
+
+    body.page-home .page-home-main-tail {
+      grid-column: 2;
+    }
+  }
+
+  /* Horizontal rails (outside padded .content panels) */
+  body.page-home .page-home-center-stack > .page-home-stack-divider,
+  body.page-home .page-home-main-lead > .page-home-stack-divider {
+    display: none;
+    box-sizing: border-box;
+    width: 100%;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-top: 3px solid var(--color-border);
   }
 
   @media (max-width: 1100px) {
     body.page-home .site-layout {
       align-items: flex-start;
+    }
+
+    body.page-home .page-home-center-stack > .page-home-stack-divider:not(.page-home-mobile-only) {
+      display: block;
+      margin: var(--space-lg) 0 var(--space-md);
+    }
+  }
+
+  @media (max-width: 768px) {
+    body.page-home .page-home-center-stack > .page-home-stack-divider.page-home-mobile-only,
+    body.page-home .page-home-main-lead > .page-home-stack-divider.page-home-mobile-only {
+      display: block;
+      margin: var(--space-lg) 0 var(--space-md);
     }
   }
 
@@ -2061,7 +2163,6 @@
     flex: 0 0 auto;
     flex-shrink: 0;
     min-height: 0;
-    margin-top: 1rem;
   }
 
   body.page-home .page-home-featured-header {
@@ -2192,9 +2293,11 @@
     font-size: clamp(1.3rem, 3.4vw, 1.6rem);
   }
 
-  /* index.html: spotlight + Future marker wrappers — hidden ≥769px */
-  body.page-home .page-home-mobile-only {
-    display: none !important;
+  /* index.html: spotlight + Future marker wrappers — desktop only */
+  @media (min-width: 769px) {
+    body.page-home .page-home-mobile-only {
+      display: none !important;
+    }
   }
 
   /* ================================================
