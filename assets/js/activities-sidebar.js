@@ -1188,9 +1188,9 @@
     if (!item && slotDate) {
       article.classList.add("week-spotlight-card--placeholder");
       var phEv = {
-        cardLine1: "bookme",
+        cardLine1: "Open evening slot",
         cardLine2: "7–10 pm · Hall A",
-        eventName: "bookme",
+        eventName: "Open evening slot",
         imagePath: "event-flyer/bookme.png",
       };
       var imgPh = document.createElement("img");
@@ -1211,16 +1211,17 @@
       aPh.className = "featured-card-link featured-card-link--bookme-text";
       aPh.href = submitHref();
       aPh.title =
-        "bookme — open Submit an Event to request this evening (Hall A, 7–10 pm).";
+        "Open evening slot — open Submit an Event to request this evening (Hall A, 7–10 pm).";
       aPh.setAttribute(
         "aria-label",
-        "bookme: submit an event to book Hall A, 7 to 10 p.m. Opens the Submit Event page."
+        "Open evening slot: submit an event to book Hall A, 7 to 10 p.m. Opens the Submit Event page."
       );
 
       var capPh = createFeaturedCaptionElement(phEv, null, slotDate);
       var hintPh = document.createElement("p");
       hintPh.className = "featured-card-booking-hint";
-      hintPh.textContent = "Tap bookme below to open Submit an Event and reserve this date.";
+      hintPh.textContent =
+        "No featured event is scheduled yet. Use Submit Event below to reserve this typical Hall A evening.";
 
       aPh.appendChild(capPh);
       aPh.appendChild(hintPh);
