@@ -53,6 +53,7 @@ The final site promises the following:
 - Event and activity request forms collect the information needed by the coordinator and provide email/share/download handoff behavior.
 - Export buttons provide useful text or CSV downloads for recurring activities and featured events.
 - Coordinator email links have real `mailto:` fallbacks and are also wired through the shared coordinator config script.
+- Calendar coordinators have a **discreet on-page shortcut** (the **secret squirrel** image link on the home page) to open **Google Calendar** for managing the same embedded calendar—without a prominent “admin” button for general visitors (`index.html`, class `secret-calendar-link`; see [How the finished site is used](#how-the-finished-site-is-used)).
 - The repository contains only mission-required public files after the final scrub; background materials and future-use assets belong under ignored [`private/`](private/) folders.
 
 ## How the finished site is used
@@ -64,6 +65,10 @@ The final site promises the following:
 5. Use **Request activity** for recurring activities that should be added to the sidebar schedule.
 6. Use **Submit Event** for one-time featured events.
 7. Use **Contact Event Coordinator** for calendar, submission, or social-event questions.
+
+**Calendar coordinator shortcut (secret squirrel).** The home page includes a **low-visibility** image at the bottom ([`assets/images/secret-squirrel.png`](assets/images/secret-squirrel.png)) inside a link with class **`secret-calendar-link`** in [`index.html`](index.html). It opens Google Calendar’s web app for the shared calendar used in the embed (the same `mmhpevents@gmail.com` source as the center iframe—see the `href` on that anchor). Coordinators who are allowed to edit that calendar in Google can use this as a **quick path to update events** without cluttering the main layout with an obvious “admin” or “manager” control for everyone else.
+
+**Security and expectations:** The shortcut is **not** a password and **does not** embed credentials in the site. It is deliberately **unadvertised** (presentation obscurity, not encryption) so casual visitors see a clean community page first. If someone finds the link anyway, they are only taken to **Google Calendar** in their browser—the same as following any calendar URL. **Who may edit** the park calendar is enforced by **Google account permissions** for that calendar; the static site does not grant edit rights by itself.
 
 ## Final submission access
 
