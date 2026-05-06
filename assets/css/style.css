@@ -478,6 +478,11 @@
     box-sizing: border-box;
   }
 
+  .site-header.header-site .hero-image picture {
+    display: block;
+    width: 100%;
+  }
+
   .site-header.header-site .hero-image img {
     width: 100%;
     max-width: 100%;
