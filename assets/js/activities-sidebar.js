@@ -12,6 +12,7 @@
  * based on location.pathname so the same script runs on index.html and nested flyer paths.
  */
 (function () {
+  var WEEKDAYS = [
     "Monday",
     "Tuesday",
     "Wednesday",
