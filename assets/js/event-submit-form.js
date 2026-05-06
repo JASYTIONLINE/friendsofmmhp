@@ -11,9 +11,14 @@
  */
 (function () {
   var KNOWN_HALLS = { "Hall A": true, "Hall B": true, "Hall C": true };
+  /** Must match `<option value="…">` for Other on contents/submit.html. */
+  var LOCATION_PRESET_OTHER = "__other__";
   var LOCATION_OTHER_PLACEHOLDER = "Add other location here";
 
   var TIME_24H_RE = /^\d{1,2}:\d{2}$/;
+  /** `<select>` value for open-ended end time → exported as plain language for the coordinator. */
+  var END_TIME_UNTIL_TIRED_VALUE = "__until_tired__";
+  var END_TIME_UNTIL_TIRED_LABEL = "Until we get tired";
 
   var IMAGE_INPUT_IDS = [
     "mmhp-submit-image-feature",
@@ -67,6 +72,39 @@
   function getMasterJsonUrl() {
     var u = document.body && document.body.getAttribute("data-mmhp-master-json");
     return u ? String(u).trim() : "";
+  }
+
+  function normalizeEndTimeFromSelect(raw) {
+    var s = String(raw || "").trim();
+    if (s === END_TIME_UNTIL_TIRED_VALUE) return END_TIME_UNTIL_TIRED_LABEL;
+    return s;
+  }
+
+  function isValidEndTimeString(s) {
+    var t = String(s || "").trim();
+    if (t === END_TIME_UNTIL_TIRED_LABEL) return true;
+    return TIME_24H_RE.test(t);
+  }
+
+  /** Append half-hour options after the first “until tired” option (runs once). */
+  function buildEndTimeSelectOptions() {
+    var sel = document.getElementById("mmhp-submit-endTime");
+    if (!sel || sel.getAttribute("data-mmhp-endtime-built") === "1") return;
+    sel.setAttribute("data-mmhp-endtime-built", "1");
+    while (sel.options.length > 1) {
+      sel.remove(1);
+    }
+    for (var h = 11; h <= 23; h++) {
+      for (var half = 0; half < 2; half++) {
+        if (h === 23 && half === 1) break;
+        var mins = half === 0 ? "00" : "30";
+        var tv = h + ":" + mins;
+        var opt = document.createElement("option");
+        opt.value = tv;
+        opt.textContent = tv;
+        sel.appendChild(opt);
+      }
+    }
   }
 
   function pad2(n) {
@@ -192,7 +230,7 @@
     var el;
 
     if (!needStr(ev.id))
-      return { message: "Feature id is missing.", focusEl: document.getElementById("mmhp-submit-id") };
+      return { message: "Feature id is missing.", focusEl: document.getElementById("mmhp-submit-date") };
 
     el = document.getElementById("mmhp-submit-date");
     if (!needStr(ev.date))
@@ -206,9 +244,12 @@
 
     el = document.getElementById("mmhp-submit-endTime");
     if (!needStr(ev.endTime))
-      return { message: "Please enter an end time.", focusEl: el };
-    if (!TIME_24H_RE.test(String(ev.endTime).trim()))
-      return { message: "End time must look like 21:00 (hours:minutes).", focusEl: el };
+      return { message: "Please choose an end time.", focusEl: el };
+    if (!isValidEndTimeString(ev.endTime))
+      return {
+        message: 'Choose a specific end time, or “Until we get tired” if there is no fixed end.',
+        focusEl: el,
+      };
 
     var presetEl = document.getElementById("mmhp-submit-location-preset");
     if (!presetEl || !String(presetEl.value || "").trim())
@@ -594,7 +635,13 @@
     var otherEl = document.getElementById("mmhp-submit-location-other");
     var isOther = presetEl && presetEl.value === LOCATION_PRESET_OTHER;
     var presetVal = presetEl ? String(presetEl.value || "").trim() : "";
-    if (wrap) wrap.hidden = !isOther;
+    if (wrap) {
+      if (isOther) {
+        wrap.removeAttribute("hidden");
+      } else {
+        wrap.setAttribute("hidden", "");
+      }
+    }
     if (otherEl) {
       otherEl.required = !!isOther;
            if (isOther) {
@@ -623,7 +670,11 @@
       featureId: fid,
       date: String(document.getElementById("mmhp-submit-date").value || "").trim(),
       startTime: String(document.getElementById("mmhp-submit-startTime").value || "").trim(),
-      endTime: String(document.getElementById("mmhp-submit-endTime").value || "").trim(),
+      endTime: normalizeEndTimeFromSelect(
+        document.getElementById("mmhp-submit-endTime")
+          ? document.getElementById("mmhp-submit-endTime").value
+          : ""
+      ),
       location: readLocationFromForm(),
       cardLine1: String(document.getElementById("mmhp-submit-cardLine1").value || "").trim(),
       cardLine2: String(document.getElementById("mmhp-submit-cardLine2").value || "").trim(),
@@ -869,11 +920,19 @@
 
     var features = masterData.features || [];
     var nextId = computeNextFeatureId(features);
-    document.getElementById("mmhp-submit-id").value = nextId;
+    var idInput = document.getElementById("mmhp-submit-id");
+    var idDisplay = document.getElementById("mmhp-submit-id-display");
+    if (idInput) idInput.value = nextId;
+    if (idDisplay) {
+      idDisplay.textContent = nextId;
+      idDisplay.setAttribute("aria-label", "Feature id " + nextId);
+    }
 
+    buildEndTimeSelectOptions();
     document.getElementById("mmhp-submit-date").value = todayIsoLocal();
     document.getElementById("mmhp-submit-startTime").value = "19:00";
-    document.getElementById("mmhp-submit-endTime").value = "21:00";
+    var endSel = document.getElementById("mmhp-submit-endTime");
+    if (endSel) endSel.value = "21:00";
     document.getElementById("mmhp-submit-isActive").checked = true;
     document.getElementById("mmhp-submit-isFeatured").checked = false;
     for (var ii = 0; ii < IMAGE_INPUT_IDS.length; ii++) {
@@ -979,20 +1038,45 @@
     if (form) form.hidden = true;
   }
 
+  function buildMasterDataLoadErrorMessage(err) {
+    var parts = ["Could not load master data."];
+    if (typeof location !== "undefined" && location.protocol === "file:") {
+      parts.push(
+        "This page was opened as a local file (file://). Most browsers block loading the calendar data that way."
+      );
+      parts.push(
+        "Run a local web server from the project folder (for example: npx serve) and open contents/submit.html from http://localhost (not from your file explorer), or use the live GitHub Pages link."
+      );
+    }
+    if (err && err.message) {
+      parts.push("Details: " + String(err.message) + ".");
+    }
+    parts.push("If you already use a server, confirm data-mmhp-master-json and that assets/data/json/mmhp-master-data.json is reachable.");
+    return parts.join(" ");
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     var url = getMasterJsonUrl();
+    var fetchUrl = url;
+    if (url) {
+      try {
+        fetchUrl = new URL(url, window.location.href).href;
+      } catch (e) {
+        fetchUrl = url;
+      }
+    }
     if (!url) {
       showLoadError("Missing master data URL (data-mmhp-master-json on body).");
       return;
     }
-    fetch(url, { cache: "no-store" })
+    fetch(fetchUrl, { cache: "no-store" })
       .then(function (r) {
         if (!r.ok) throw new Error("HTTP " + r.status);
         return r.json();
       })
       .then(init)
-      .catch(function () {
-        showLoadError("Could not load master data. Check the path in data-mmhp-master-json and try again.");
+      .catch(function (err) {
+        showLoadError(buildMasterDataLoadErrorMessage(err));
       });
   });
 })();

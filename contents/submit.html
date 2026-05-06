@@ -63,70 +63,101 @@
               <fieldset class="event-submit-form__fieldset">
                 <legend class="event-submit-form__legend">Event details</legend>
 
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Feature id</span>
-                  <input type="text" id="mmhp-submit-id" name="id" class="event-submit-form__input" readonly autocomplete="off" />
-                </label>
+                <div class="event-submit-form__detail-grid">
+                  <div class="event-submit-form__detail-field">
+                    <label class="event-submit-form__field-label" for="mmhp-submit-date">Date</label>
+                    <p class="event-submit-form__field-subtitle">
+                      Pick the day of <strong>your event</strong>—not today’s date unless the event really is today.
+                    </p>
+                    <input type="date" id="mmhp-submit-date" name="date" class="event-submit-form__input" required />
+                  </div>
 
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Date</span>
-                  <input type="date" id="mmhp-submit-date" name="date" class="event-submit-form__input" required />
-                </label>
+                  <div class="event-submit-form__detail-field">
+                    <label class="event-submit-form__field-label" for="mmhp-submit-startTime">Start time (24h)</label>
+                    <p class="event-submit-form__field-subtitle">
+                      This is when the event <strong>starts</strong>. Use 24-hour time (for example <strong>19:00</strong> for 7:00&nbsp;p.m.).
+                    </p>
+                    <input type="text" id="mmhp-submit-startTime" name="startTime" class="event-submit-form__input" placeholder="19:00" required pattern="^\d{1,2}:\d{2}$" />
+                  </div>
 
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Start time (24h)</span>
-                  <input type="text" id="mmhp-submit-startTime" name="startTime" class="event-submit-form__input" placeholder="19:00" required pattern="^\d{1,2}:\d{2}$" />
-                </label>
+                  <div class="event-submit-form__detail-field">
+                    <label class="event-submit-form__field-label" for="mmhp-submit-endTime">End time</label>
+                    <p class="event-submit-form__field-subtitle">
+                      When the event <strong>ends</strong>. If there is no specific ending time, choose <strong>Until we get tired</strong> (first in the list). Otherwise pick a time.
+                    </p>
+                    <select id="mmhp-submit-endTime" name="endTime" class="event-submit-form__input" required>
+                      <option value="__until_tired__">Until we get tired</option>
+                    </select>
+                  </div>
 
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">End time (24h)</span>
-                  <input type="text" id="mmhp-submit-endTime" name="endTime" class="event-submit-form__input" placeholder="21:00" required pattern="^\d{1,2}:\d{2}$" />
-                </label>
+                  <div class="event-submit-form__detail-field">
+                    <label class="event-submit-form__field-label" for="mmhp-submit-location-preset">Location</label>
+                    <p class="event-submit-form__field-subtitle">
+                      Choose from the hall list. If you pick <strong>Other</strong>, the <strong>Other location</strong> field opens up directly below—fill it in so the coordinator knows where to send people.
+                    </p>
+                    <select id="mmhp-submit-location-preset" name="locationPreset" class="event-submit-form__input" required>
+                      <option value="">— Choose location —</option>
+                      <option value="Hall A">Hall A</option>
+                      <option value="Hall B">Hall B</option>
+                      <option value="Hall C">Hall C</option>
+                      <option value="__other__">Other</option>
+                    </select>
+                  </div>
 
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Location</span>
-                  <select id="mmhp-submit-location-preset" name="locationPreset" class="event-submit-form__input" required>
-                    <option value="">— Choose location —</option>
-                    <option value="Hall A">Hall A</option>
-                    <option value="Hall B">Hall B</option>
-                    <option value="Hall C">Hall C</option>
-                    <option value="__other__">Other</option>
-                  </select>
-                </label>
-                <label class="event-submit-form__field" id="mmhp-submit-location-other-wrap" hidden>
-                  <span class="event-submit-form__label">Other location</span>
-                  <input type="text" id="mmhp-submit-location-other" name="locationOther" class="event-submit-form__input" maxlength="120" autocomplete="off" readonly tabindex="-1" placeholder="Add other location here" />
-                </label>
+                  <div class="event-submit-form__detail-field" id="mmhp-submit-location-other-wrap" hidden>
+                    <label class="event-submit-form__field-label" for="mmhp-submit-location-other">Other location</label>
+                    <p class="event-submit-form__field-subtitle">
+                      This box stays read-only until you choose <strong>Other</strong> under Location above. Then type where the event will actually be held.
+                    </p>
+                    <input type="text" id="mmhp-submit-location-other" name="locationOther" class="event-submit-form__input" maxlength="120" autocomplete="off" readonly tabindex="-1" placeholder="Add other location here" />
+                  </div>
 
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Featured card title (max 48 characters)</span>
-                  <input type="text" id="mmhp-submit-cardLine1" name="cardLine1" class="event-submit-form__input" required maxlength="48" autocomplete="off" />
-                </label>
+                  <div class="event-submit-form__detail-field">
+                    <label class="event-submit-form__field-label" for="mmhp-submit-cardLine1">Featured card title (max 48 characters)</label>
+                    <p class="event-submit-form__field-subtitle">
+                      The everyday <strong>title</strong> of the event—the words you would say out loud (for example “Tuesday Game Night”).
+                    </p>
+                    <input type="text" id="mmhp-submit-cardLine1" name="cardLine1" class="event-submit-form__input" required maxlength="48" autocomplete="off" />
+                  </div>
 
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Featured card category (max 48 characters)</span>
-                  <input type="text" id="mmhp-submit-cardLine2" name="cardLine2" class="event-submit-form__input" required maxlength="48" autocomplete="off" />
-                </label>
+                  <div class="event-submit-form__detail-field">
+                    <label class="event-submit-form__field-label" for="mmhp-submit-cardLine2">Featured card category (max 48 characters)</label>
+                    <p class="event-submit-form__field-subtitle">
+                      A short <strong>kind</strong> of event in your own words—card games, a dance, a dinner, karaoke, and so on.
+                    </p>
+                    <input type="text" id="mmhp-submit-cardLine2" name="cardLine2" class="event-submit-form__input" required maxlength="48" autocomplete="off" />
+                  </div>
 
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Promotional copy for event detail page</span>
-                  <textarea id="mmhp-submit-adCopy" name="adCopy" class="event-submit-form__input" rows="4" required maxlength="2000"></textarea>
-                </label>
+                  <div class="event-submit-form__detail-field">
+                    <label class="event-submit-form__field-label" for="mmhp-submit-adCopy">Promotional copy for event detail page</label>
+                    <p class="event-submit-form__field-subtitle">
+                      A short description for the coordinator: what will happen, any <strong>fee</strong>, whether people should <strong>bring food</strong>, if <strong>food will be provided</strong>, and anything else that should appear on the flyer or detail page.
+                    </p>
+                    <textarea id="mmhp-submit-adCopy" name="adCopy" class="event-submit-form__input" rows="4" required maxlength="2000"></textarea>
+                  </div>
 
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Listing title (read-only; from both short descriptions)</span>
-                  <input type="text" id="mmhp-submit-eventName" class="event-submit-form__input" readonly tabindex="-1" />
-                </label>
+                  <div class="event-submit-form__detail-field">
+                    <span class="event-submit-form__field-label">Active listing</span>
+                    <p class="event-submit-form__field-subtitle">
+                      Leave checked so the event shows once the coordinator adds it to the calendar data. Uncheck only if this submission should stay hidden.
+                    </p>
+                    <label class="event-submit-form__detail-check">
+                      <input type="checkbox" id="mmhp-submit-isActive" name="isActive" checked />
+                      <span class="event-submit-form__detail-check-text">Active (show on calendar)</span>
+                    </label>
+                  </div>
 
-                <label class="event-submit-form__field event-submit-form__field--check">
-                  <input type="checkbox" id="mmhp-submit-isActive" name="isActive" checked />
-                  <span class="event-submit-form__label">Active (show on calendar)</span>
-                </label>
-
-                <label class="event-submit-form__field event-submit-form__field--check">
-                  <input type="checkbox" id="mmhp-submit-isFeatured" name="isFeatured" />
-                  <span class="event-submit-form__label">Featured (center strip and spotlights when rules apply)</span>
-                </label>
+                  <div class="event-submit-form__detail-field">
+                    <span class="event-submit-form__field-label">Featured placement</span>
+                    <p class="event-submit-form__field-subtitle">
+                      Check if you want this night considered for featured spots when the site’s rules allow it.
+                    </p>
+                    <label class="event-submit-form__detail-check">
+                      <input type="checkbox" id="mmhp-submit-isFeatured" name="isFeatured" />
+                      <span class="event-submit-form__detail-check-text">Featured (center strip and spotlights when rules apply)</span>
+                    </label>
+                  </div>
+                </div>
               </fieldset>
 
               <fieldset class="event-submit-form__fieldset">
@@ -161,6 +192,19 @@
                   <input type="file" id="mmhp-submit-image-extra-4" name="imageExtra4" class="event-submit-form__file" accept="image/*" />
                 </label>
               </fieldset>
+
+              <div class="event-submit-form__readonly-summary">
+                <label class="event-submit-form__field">
+                  <span class="event-submit-form__label">Listing title (read-only; from both short descriptions)</span>
+                  <input type="text" id="mmhp-submit-eventName" class="event-submit-form__input" readonly tabindex="-1" />
+                </label>
+                <label class="event-submit-form__field">
+                  <span class="event-submit-form__label">Feature id</span>
+                  <input type="hidden" id="mmhp-submit-id" name="id" autocomplete="off" />
+                  <div class="event-submit-form__id-readout" id="mmhp-submit-id-display" aria-live="polite" role="status"></div>
+                  <span class="event-submit-form__hint">Assigned automatically as the next feature id from your calendar data (not editable).</span>
+                </label>
+              </div>
 
               <div class="event-submit-form__actions">
                 <button type="submit" class="btn site-button">Send to event coordinator</button>
