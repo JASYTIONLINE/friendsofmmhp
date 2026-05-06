@@ -10,7 +10,8 @@
  * How it works: init() wires button handlers and, when body carries data-mmhp-feature-id, fetches
  * the master JSON and overlays title, time range, location, and ad copy onto the DOM before the
  * user downloads ICS. Older pages without IDs still read visible DOM nodes, preserving backward
- * compatibility for one-off layouts.
+ * compatibility for one-off layouts. The main flyer image opens in a full-screen preview (reuse of
+ * global .mmhp-image-preview-* styles) so readers can zoom in without leaving the page.
  */
 (function () {
   var DEFAULT_DURATION_MIN = 180;
@@ -230,6 +231,82 @@
         }
       })
       .catch(function () {});
+  }
+
+  /** Same behavior as activities-sidebar openImagePreview — reuses .mmhp-image-preview-* in style.css. */
+  function openFlyerImagePreview(src, altText) {
+    if (!src) return;
+    var backdrop = document.createElement("div");
+    backdrop.className = "mmhp-image-preview-backdrop";
+    backdrop.setAttribute("role", "dialog");
+    backdrop.setAttribute("aria-modal", "true");
+    backdrop.setAttribute("aria-label", "Flyer preview");
+
+    var inner = document.createElement("div");
+    inner.className = "mmhp-image-preview-inner";
+
+    var btnClose = document.createElement("button");
+    btnClose.type = "button";
+    btnClose.className = "mmhp-image-preview-close";
+    btnClose.textContent = "\u00D7";
+    btnClose.setAttribute("aria-label", "Close preview");
+
+    var imgEl = document.createElement("img");
+    imgEl.src = src;
+    imgEl.alt = altText || "";
+    imgEl.className = "mmhp-image-preview-img";
+
+    function onKey(e) {
+      if (e.key === "Escape") close();
+    }
+    function close() {
+      document.removeEventListener("keydown", onKey);
+      if (backdrop.parentNode) backdrop.parentNode.removeChild(backdrop);
+    }
+
+    btnClose.addEventListener("click", close);
+    backdrop.addEventListener("click", function (e) {
+      if (e.target === backdrop) close();
+    });
+    inner.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+    document.addEventListener("keydown", onKey);
+
+    inner.appendChild(btnClose);
+    inner.appendChild(imgEl);
+    backdrop.appendChild(inner);
+    document.body.appendChild(backdrop);
+    try {
+      btnClose.focus();
+    } catch (f) {}
+  }
+
+  function wireFeatureFlyerPreview() {
+    var img = document.querySelector(".feature-events-feature-frame img");
+    if (!img || img.getAttribute("data-mmhp-flyer-preview-wired") === "1") return;
+    img.setAttribute("data-mmhp-flyer-preview-wired", "1");
+    img.setAttribute("role", "button");
+    img.setAttribute("tabindex", "0");
+    img.setAttribute("aria-label", "Enlarge flyer image");
+    img.style.cursor = "zoom-in";
+
+    function openFromImg() {
+      var src = img.currentSrc || img.src;
+      if (!src) return;
+      openFlyerImagePreview(src, img.alt || "");
+    }
+
+    img.addEventListener("click", function (e) {
+      e.preventDefault();
+      openFromImg();
+    });
+    img.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openFromImg();
+      }
+    });
   }
 
   function gatherFromDom() {
@@ -462,9 +539,9 @@
 
   function init() {
     hydrateCurrentFeaturePage();
+    wireFeatureFlyerPreview();
     var btn = document.getElementById("feature-events-save-calendar");
-    if (!btn) return;
-    btn.addEventListener("click", onSaveRibbonClick);
+    if (btn) btn.addEventListener("click", onSaveRibbonClick);
   }
 
   if (document.readyState === "loading") {
