@@ -21,6 +21,7 @@ The project is **not** an official park management system. Operational questions
 - [Data and automation](#data-and-automation)
 - [Data model (reference)](#data-model-reference)
 - [Capstone artifacts](#capstone-artifacts)
+- [Closing remarks](#closing-remarks)
 
 ---
 
@@ -368,3 +369,11 @@ Display-only — **id**, **name**, **imagePath**, **notes** (no phone or email i
 - **Week 8 execution plan, case study, reflection, presentation notes, Phase 6 checklist:** maintained under a local **`docs/`** folder (gitignored). They are **not** shipped with this public repository; export or paste from your machine and submit per instructor instructions.
 
 **Project 02 / Week 8 documentation (per rubric):** Submit the **case study**, **presentation**, and **development reflection** through the course channels your instructor specifies. The Case study, Presentation, and Development reflection checklist sections under [Final QA/QC checklist](#final-qaqc-checklist) mirror typical rubric expectations; they do not replace the official Week 8 document.
+
+## Closing remarks
+
+The final **closing** work for this repository included a **professional code sweep** and **remote cleansing** so `main` stays lean, reviewable, and aligned with static-site best practices—beyond “it runs locally.”
+
+**Code sweep (engineering hygiene).** Feature-event pages and their generator template were brought into one convention: shared scripts load with **`defer`**, commented-out ticket UI bulk was removed from the template and regenerated pages, and third-party **JSZip** on the submit and request-activity forms was **pinned** with **Subresource Integrity** (`integrity` + `crossorigin`) for supply-chain transparency. Narrative file headers and the existing single global CSS/JS strategy were preserved so reviewers can follow intent without redundant bundles.
+
+**Remote repository cleansing.** The public tree was audited so it contains **only** what ships the site and shared proposal artifacts: **course deliverable drafts** live in a **local, gitignored** root `docs/` folder (not on the remote), **`private/`** remains ignored for background notes, and **`npm run audit:links`** was kept at **zero missing** internal links. **Untracked duplicate or orphan media** (e.g. unreferenced duplicate audio files with identical content) was removed from the branch to reduce clone noise and supervisor QA friction. After a push, **`origin/main`** was verified to match the intended **minimal, functional** snapshot—suitable for a **GitHub-style quality pass** alongside the rubric and this README.
