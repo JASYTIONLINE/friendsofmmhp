@@ -13,7 +13,7 @@
   var KNOWN_HALLS = { "Hall A": true, "Hall B": true, "Hall C": true };
   /** Must match `<option value="…">` for Other on contents/submit.html. */
   var LOCATION_PRESET_OTHER = "__other__";
-  var LOCATION_OTHER_PLACEHOLDER = "Add other location here";
+  var LOCATION_OTHER_PLACEHOLDER = "Example: Rec hall, library, pool room…";
 
   var TIME_24H_RE = /^\d{1,2}:\d{2}$/;
   /** `<select>` value for open-ended end time → exported as plain language for the coordinator. */
@@ -230,66 +230,66 @@
     var el;
 
     if (!needStr(ev.id))
-      return { message: "Feature id is missing.", focusEl: document.getElementById("mmhp-submit-date") };
+      return { message: "Something’s wrong with your event number. Try refreshing the page.", focusEl: document.getElementById("mmhp-submit-date") };
 
     el = document.getElementById("mmhp-submit-date");
     if (!needStr(ev.date))
-      return { message: "Please choose a date.", focusEl: el };
+      return { message: "Pick the date of the event.", focusEl: el };
 
     el = document.getElementById("mmhp-submit-startTime");
     if (!needStr(ev.startTime))
-      return { message: "Please enter a start time.", focusEl: el };
+      return { message: "Add a start time.", focusEl: el };
     if (!TIME_24H_RE.test(String(ev.startTime).trim()))
-      return { message: "Start time must look like 19:00 (hours:minutes).", focusEl: el };
+      return { message: "Use a time like 19:00 for 7:00 p.m.", focusEl: el };
 
     el = document.getElementById("mmhp-submit-endTime");
     if (!needStr(ev.endTime))
-      return { message: "Please choose an end time.", focusEl: el };
+      return { message: "Pick an end time.", focusEl: el };
     if (!isValidEndTimeString(ev.endTime))
       return {
-        message: 'Choose a specific end time, or “Until we get tired” if there is no fixed end.',
+        message: "Pick an end time from the list, or “Until we get tired.”",
         focusEl: el,
       };
 
     var presetEl = document.getElementById("mmhp-submit-location-preset");
     if (!presetEl || !String(presetEl.value || "").trim())
-      return { message: "Please choose a location.", focusEl: presetEl };
+      return { message: "Pick where you’ll meet.", focusEl: presetEl };
 
     if (presetEl.value === LOCATION_PRESET_OTHER) {
       el = document.getElementById("mmhp-submit-location-other");
       if (!needStr(ev.location))
-        return { message: "Please enter the other location.", focusEl: el };
+        return { message: "Please say where you’ll meet—in the box below.", focusEl: el };
     } else if (!needStr(ev.location)) {
-      return { message: "Please choose a location.", focusEl: presetEl };
+      return { message: "Pick where you’ll meet.", focusEl: presetEl };
     }
 
     el = document.getElementById("mmhp-submit-cardLine1");
     if (!el || !needStr(el.value))
-      return { message: "Please enter the featured card title.", focusEl: el };
+      return { message: "Please add a title for the card.", focusEl: el };
 
     el = document.getElementById("mmhp-submit-cardLine2");
     if (!el || !needStr(el.value))
-      return { message: "Please enter the featured card category.", focusEl: el };
+      return { message: "Please add a subtitle for the card.", focusEl: el };
 
     el = document.getElementById("mmhp-submit-adCopy");
     if (!el || !needStr(el.value))
-      return { message: "Please enter promotional copy for the event detail page.", focusEl: el };
+      return { message: "Please add a short description for the flyer.", focusEl: el };
 
     if (!needStr(ev.eventName))
       return {
-        message: "Listing title is missing. Check both short descriptions.",
+        message: "The full name didn’t build—check your title and subtitle above.",
         focusEl: document.getElementById("mmhp-submit-cardLine1"),
       };
 
     if (ev.isActive === undefined || ev.isActive === null)
       return {
-        message: "Please choose whether the event is active.",
+        message: "Please say whether this should show on the calendar.",
         focusEl: document.getElementById("mmhp-submit-isActive"),
       };
 
     el = document.getElementById("mmhp-submit-image-feature");
     if (!el || !el.files || !el.files[0])
-      return { message: "Please choose a featured image.", focusEl: el };
+      return { message: "Please add a main photo.", focusEl: el };
 
     return { message: "", focusEl: null };
   }
@@ -397,7 +397,7 @@
       "Event submission",
       "",
       "Id: " + (ev.id || ""),
-      "Feature id: " + (ev.featureId || ev.id || ""),
+      "Reference: " + (ev.featureId || ev.id || ""),
       "Listing title: " + (ev.eventName || ""),
       "Date: " + (ev.date || ""),
       "Start: " + (ev.startTime || ""),
@@ -925,7 +925,7 @@
     if (idInput) idInput.value = nextId;
     if (idDisplay) {
       idDisplay.textContent = nextId;
-      idDisplay.setAttribute("aria-label", "Feature id " + nextId);
+      idDisplay.setAttribute("aria-label", "Event reference " + nextId);
     }
 
     buildEndTimeSelectOptions();
@@ -1039,19 +1039,21 @@
   }
 
   function buildMasterDataLoadErrorMessage(err) {
-    var parts = ["Could not load master data."];
+    var parts = ["We couldn’t load the calendar information this form needs."];
     if (typeof location !== "undefined" && location.protocol === "file:") {
       parts.push(
-        "This page was opened as a local file (file://). Most browsers block loading the calendar data that way."
+        "This page was opened straight from a folder on your computer. Most browsers won’t load the calendar file that way."
       );
       parts.push(
-        "Run a local web server from the project folder (for example: npx serve) and open contents/submit.html from http://localhost (not from your file explorer), or use the live GitHub Pages link."
+        "Open this page through the live site link, or run a small local web server from the project folder and use an address like http://localhost instead of double-clicking the file."
       );
     }
     if (err && err.message) {
       parts.push("Details: " + String(err.message) + ".");
     }
-    parts.push("If you already use a server, confirm data-mmhp-master-json and that assets/data/json/mmhp-master-data.json is reachable.");
+    parts.push(
+      "If you’re already on the published website, whoever maintains the site may need to check that the calendar data file is online and reachable."
+    );
     return parts.join(" ");
   }
 
@@ -1066,7 +1068,7 @@
       }
     }
     if (!url) {
-      showLoadError("Missing master data URL (data-mmhp-master-json on body).");
+      showLoadError("This form can’t find its calendar data link. Whoever set up the page needs to fix that.");
       return;
     }
     fetch(fetchUrl, { cache: "no-store" })
