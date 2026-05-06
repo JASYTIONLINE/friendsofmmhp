@@ -97,13 +97,27 @@ This README is also the sprint checklist. Before Project 02 submission, the site
 - [ ] Reflection is specific, personal, and about the development process.
 - [ ] Reflection covers what went well, what was difficult, what would change next time, and how the capstone connects to CMPA learning.
 
-### Repository and submission
+### Repository and submission (Phase 5)
+
+Phase 5 closes the repository: nonessential files stay private, the public tree stays coherent, and the **code that ships** is trimmed, non-redundant, and documented for academic review.
+
+**Remote repository hygiene**
 
 - [ ] Public tracked repo contains only mission-required site, data, scripts, docs, and final deliverables.
 - [ ] [`private/`](private/) is ignored and contains background/future-use material that should not clutter the remote repo.
 - [ ] No active page references ignored/private assets.
 - [ ] Final git status is clean after intentional commits.
 - [ ] Final pushed branch matches the site and README promises.
+
+**Codebase scrub (CSS, JavaScript, and related sources)**
+
+- [ ] Audit [`assets/css/style.css`](assets/css/style.css) and page-embedded styles (including feature-flyer blocks) for **redundant** rules, **conflicting** selectors, and abandoned overrides; consolidate or delete so each visual concern has an obvious owning layer and the cascade is predictable.
+- [ ] Audit [`assets/js/`](assets/js/) (and any inline script on HTML pages) for **unused** functions, **duplicate** logic, **legacy** code paths, and behaviors that **contradict** each other; remove or unify so runtime behavior matches the README promises with no dead weight.
+- [ ] Trace the HTML include graph to confirm every stylesheet and script the site loads is **required** for the finished product; untrack or relocate orphans instead of keeping speculative or superseded sources in the public tree.
+
+**Academic-level comments for instructors and students**
+
+- [ ] After the scrub, add or refresh **section-level** commentary at the top of each major region in the maintained CSS, client-side JavaScript, and Node maintenance scripts under [`scripts/`](scripts/). These notes are **not** terse line-by-line “what” bullets; they are **short narrative blocks** that explain **why** the section exists in the overall architecture and **how** it achieves reliable data flow, safer DOM handling, coordinator handoff, or export behavior—written so a reviewer can follow intent and trade-offs, not just syntax.
 
 ---
 
