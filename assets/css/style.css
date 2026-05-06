@@ -1820,11 +1820,12 @@
       gap: 1rem;
     }
 
-    /* Home main featured month grid — not the inline mobile week-spotlight grid */
+    /* Home Future Featured mobile: upcoming-only list semantics are applied in JS; layout is one column */
     body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 0.65rem;
+      align-items: stretch;
     }
   
     .featured-card-image {
@@ -2241,15 +2242,17 @@
     cursor: not-allowed;
   }
 
-  /* Featured under calendar: fill each row with as many square cards as fit (month grid only) */
-  body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid {
-    --home-featured-card-min: 19.2rem;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--home-featured-card-min)), 1fr));
-    gap: 0.65rem;
-    max-width: 100%;
-    overflow: visible;
-    align-items: start;
+  /* Home Future Featured: ≥769px = multi-column month grid */
+  @media (min-width: 769px) {
+    body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid {
+      --home-featured-card-min: 19.2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--home-featured-card-min)), 1fr));
+      gap: 0.65rem;
+      max-width: 100%;
+      overflow: visible;
+      align-items: start;
+    }
   }
 
   body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid .featured-card {

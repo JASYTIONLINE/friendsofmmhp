@@ -723,6 +723,26 @@
     };
   }
 
+  function nowMinutesLocal() {
+    var n = new Date();
+    return n.getHours() * 60 + n.getMinutes();
+  }
+
+  /** True if the event is still upcoming in local time (date and start time). */
+  function isFeaturedItemUpcoming(item) {
+    if (!item || !item.dt) return false;
+    var today = startOfTodayLocal();
+    if (item.dt < today) return false;
+    if (item.dt > today) return true;
+    var mins = typeof item.minutes === "number" ? item.minutes : parseTimeToMinutes(eventStartTime(item.ev));
+    return mins >= nowMinutesLocal();
+  }
+
+  function filterFeaturedItemsUpcoming(items) {
+    if (!items || !items.length) return [];
+    return items.filter(isFeaturedItemUpcoming);
+  }
+
   function buildEnrichedFeatured(data, includePast) {
     var features = (data.features || []).filter(function (ev) {
       if (ev.isActive === false) return false;
@@ -904,6 +924,11 @@
     };
   }
 
+  /** Matches CSS breakpoint for Future Featured mobile treatment (past hidden, vertical month list). */
+  function isPageHomeFeaturedMobileLayout() {
+    return typeof window.matchMedia === "function" && window.matchMedia("(max-width: 768px)").matches;
+  }
+
   function cssLengthToPx(value, contextEl) {
     var raw = String(value || "").trim();
     if (!raw) return 0;
@@ -934,8 +959,10 @@
     var main = document.querySelector("body.page-home .site-main");
     if (main) main.style.height = "";
 
+    var featuredMobileLayout = isPageHomeFeaturedMobileLayout();
+
     var currentYear = startOfTodayLocal().getFullYear();
-    var enriched = buildEnrichedFeatured(data, true);
+    var enriched = buildEnrichedFeatured(data, featuredMobileLayout ? false : true);
     var groups = groupFeaturedByMonth(enriched).filter(function (group) {
       return group.items[0] && group.items[0].dt.getFullYear() >= currentYear;
     });
@@ -989,12 +1016,26 @@
         controls.yearPrev.disabled = year <= currentYear || findGroupInYear(year - 1, group.items[0].dt.getMonth()) < 0;
         controls.yearNext.disabled = findGroupInYear(year + 1, group.items[0].dt.getMonth()) < 0;
       }
-      grid.setAttribute("aria-label", "Featured events for " + group.label);
-      var displayItems = group.items.slice();
-      var minCards = homeFeaturedColumnCount(grid);
-      for (var fill = state.index + 1; displayItems.length < minCards && fill < groups.length; fill++) {
-        displayItems = displayItems.concat(groups[fill].items);
+      if (featuredMobileLayout) {
+        grid.setAttribute(
+          "aria-label",
+          "Upcoming featured events for " + group.label + " " + String(year)
+        );
+      } else {
+        grid.setAttribute("aria-label", "Featured events for " + group.label);
       }
+
+      var displayItems = featuredMobileLayout
+        ? filterFeaturedItemsUpcoming(group.items.slice())
+        : group.items.slice();
+
+      if (!featuredMobileLayout) {
+        var minCards = homeFeaturedColumnCount(grid);
+        for (var fill = state.index + 1; displayItems.length < minCards && fill < groups.length; fill++) {
+          displayItems = displayItems.concat(groups[fill].items);
+        }
+      }
+
       renderFeaturedFromEnriched(displayItems, grid, jsonUrl, group.imageOffset);
     }
 
