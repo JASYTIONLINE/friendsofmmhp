@@ -13,3 +13,6 @@ assets/data/json/backups/
 .cursor/*
 !.cursor/rules/
 !.cursor/rules/**
+
+# Local background notes, drafts, and future assets — not part of the public site delivery
+private/
