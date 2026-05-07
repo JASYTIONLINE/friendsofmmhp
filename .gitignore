@@ -25,5 +25,5 @@ assets/data/json/backups/
 # Local background notes, drafts, and future assets — not part of the public site delivery
 private/
 
-# Capstone / course docs kept locally at repo root; not published with the static site repo
+# Optional repo-root docs/ (local scratch — not tracked; no longer needed for builds)
 /docs/

@@ -90,7 +90,7 @@ The **static** McAllen Mobile Park Events site is live at GitHub Pages (URL abov
 
 ### Repository and engineering quality
 
-The **public** ***main*** **branch** is scoped to the **site**, supporting files under [**assets/docs/**](assets/docs/), data, images, and **maintenance scripts** under [**scripts/**](scripts/). **Local-only** material (*private/*, optional root *docs/*) is excluded via [**.gitignore**](.gitignore). **Closing work** included: consolidated **CSS** and client **JavaScript** with **section-level narrative comments** where appropriate; **no dead** duplicate audio assets on the branch; **JSZip** loaded with **Subresource Integrity** on form pages; **deferred** shared scripts on feature-event pages; **orphan** and **comment-only template bloat** reduced; small **single-purpose commits** with regular **pushes** so the live site stayed testable throughout.
+The **public** ***main*** **branch** is scoped to the **site**, supporting files under [**assets/docs/**](assets/docs/), data, images, and **maintenance scripts** under [**scripts/**](scripts/). **Local-only** material under [**private/**](private/) is excluded via [**.gitignore**](.gitignore). Repo-root **/docs/** is also ignored so optional local folders there are never published. **Closing work** included: consolidated **CSS** and client **JavaScript** with **section-level narrative comments** where appropriate; **no dead** duplicate audio assets on the branch; **JSZip** loaded with **Subresource Integrity** on form pages; **deferred** shared scripts on feature-event pages; **orphan** and **comment-only template bloat** reduced; small **single-purpose commits** with regular **pushes** so the live site stayed testable throughout.
 
 For full narrative of the final pass, see [Closing remarks](#closing-remarks).
 
@@ -123,10 +123,10 @@ mmpeventcalendar/
 │   │   ├── json/mmhp-master-data.json
 │   │   └── csv/                  # featured-events.csv, calendar import/export CSVs, export/
 │   ├── images/                   # banners; event-flyer/; activity-flyer/
-│   └── docs/                     # PDF + companion text
+│   └── docs/                     # tracked capstone narrative (case study)
 ```
 
-*Local-only (gitignored): an optional root **docs/** folder may exist for working drafts; it is not part of the published remote tree.*
+*Repo-root **docs/** is listed in [.gitignore](.gitignore) only for optional local scratch; it is not part of the shipped site and is not required for maintenance.*
 
 ### Path depth and linking
 
@@ -150,8 +150,8 @@ mmpeventcalendar/
 | [assets/data/json/](assets/data/json/) | **mmhp-master-data.json** — browser-facing aggregate for sidebar and forms. |
 | [assets/data/csv/](assets/data/csv/) | **featured-events.csv** (editorial/build input), Google Calendar–oriented CSVs, **export/** (optional local exports; generated CSVs under **export/** may be gitignored—folder kept via [.gitkeep](assets/data/csv/export/.gitkeep)). |
 | [assets/images/](assets/images/) | Park banner, **event-flyer/**, **activity-flyer/**, favicon, misc art. |
-| [assets/docs/](assets/docs/) | Capstone **case study** ([**case-study.md**](assets/docs/case-study.md)); proposal PDF and *.txt* companion. |
-| **docs/** *local, gitignored* | Optional working drafts; not in the published tree. |
+| [assets/docs/](assets/docs/) | Capstone **case study** — [**case-study.md**](assets/docs/case-study.md). |
+| **/docs/** (repo root only, gitignored) | Optional local scratch path only; not used for tracked deliverables. |
 | [scripts/](scripts/) | **build-features-from-csv.mjs**, **build-feature-event-pages.mjs**, **audit-local-html-links.mjs**; Python helpers for recurring expansion and Google Calendar CSV export—run locally, not at runtime. |
 
 ### Activity flyer pages
@@ -326,4 +326,4 @@ The final **closing** work for this repository included a **professional code sw
 
 **Code sweep (engineering hygiene).** Feature-event pages and their generator template were brought into one convention: shared scripts load with *defer*, commented-out ticket UI bulk was removed from the template and regenerated pages, and third-party **JSZip** on the submit and request-activity forms was **pinned** with **Subresource Integrity** (*integrity* + *crossorigin*) for supply-chain transparency. Narrative file headers and the existing single global CSS/JS strategy were preserved so reviewers can follow intent without redundant bundles.
 
-**Remote repository cleansing.** The public tree was audited so it contains **only** what ships the site and **assets/docs/** supporting files; a **local, gitignored** root **docs/** (if present) does not publish to the remote; **private/** remains ignored for background notes; and **npm run audit:links** was kept at **zero missing** internal links. **Untracked duplicate or orphan media** (e.g. unreferenced duplicate audio files with identical content) was removed from the branch to reduce clone noise and supervisor QA friction. After a push, ***origin/main*** was verified to match the intended **minimal, functional** snapshot—suitable for a **GitHub-style quality pass** alongside the rubric and this README.
+**Remote repository cleansing.** The public tree was audited so it contains **only** what ships the site and **assets/docs/** (case study). **private/** remains ignored for background notes; repo-root **/docs/** remains gitignored for any optional local-only folder; and **npm run audit:links** was kept at **zero missing** internal links. **Untracked duplicate or orphan media** (e.g. unreferenced duplicate audio files with identical content) was removed from the branch to reduce clone noise and supervisor QA friction. After a push, ***origin/main*** was verified to match the intended **minimal, functional** snapshot—suitable for a **GitHub-style quality pass** alongside the rubric and this README.
