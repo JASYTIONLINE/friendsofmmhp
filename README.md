@@ -13,6 +13,7 @@ The project is **not** an official park management system. Operational questions
 - [How the finished site is used](#how-the-finished-site-is-used)
 - [Final submission access](#final-submission-access)
 - [Project completion and quality assurance](#project-completion-and-quality-assurance)
+- [Case study (capstone narrative)](#case-study-capstone-narrative)
 - [Repository layout](#repository-layout) (includes [activity flyer pages](#activity-flyer-pages))
 - [Structure, UI, and presentation](#structure-ui-and-presentation)
 - [Pages and content types](#pages-and-content-types)
@@ -93,6 +94,10 @@ The **public** ***main*** **branch** is scoped to the **site**, supporting files
 
 For full narrative of the final pass, see [Closing remarks](#closing-remarks).
 
+### Case study (capstone narrative)
+
+The **structured case study** for this project—scope, stakeholders, methodology, and outcomes aligned with the Week 8 / Project 02 rubric—is kept in the repository as [**assets/docs/case-study.md**](assets/docs/case-study.md). It is the reviewer-oriented narrative complement to this README’s product and engineering focus.
+
 ---
 
 ## Repository layout
@@ -145,7 +150,7 @@ mmpeventcalendar/
 | [assets/data/json/](assets/data/json/) | **mmhp-master-data.json** — browser-facing aggregate for sidebar and forms. |
 | [assets/data/csv/](assets/data/csv/) | **featured-events.csv** (editorial/build input), Google Calendar–oriented CSVs, **export/** (optional local exports; generated CSVs under **export/** may be gitignored—folder kept via [.gitkeep](assets/data/csv/export/.gitkeep)). |
 | [assets/images/](assets/images/) | Park banner, **event-flyer/**, **activity-flyer/**, favicon, misc art. |
-| [assets/docs/](assets/docs/) | PDF and *.txt* companion under **assets/docs/**. |
+| [assets/docs/](assets/docs/) | Capstone **case study** ([**case-study.md**](assets/docs/case-study.md)); proposal PDF and *.txt* companion. |
 | **docs/** *local, gitignored* | Optional working drafts; not in the published tree. |
 | [scripts/](scripts/) | **build-features-from-csv.mjs**, **build-feature-event-pages.mjs**, **audit-local-html-links.mjs**; Python helpers for recurring expansion and Google Calendar CSV export—run locally, not at runtime. |
 

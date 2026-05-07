@@ -324,6 +324,106 @@
     overflow-y: auto;
   }
 
+  /* ---------------------------------------------------------------------------
+     Three-rail pages (not home): aside | main | aside under .site-shell.
+     Home nests rails inside .page-home-center-stack grid; these pages use the
+     outer .site-layout flex row. Switch to the same capped grid the home page
+     uses so mid-width viewports do not clip rails (overflow-x on body).
+     Uses :has() so individual HTML files do not need a new class.
+     --------------------------------------------------------------------------- */
+  @media (min-width: 1101px) {
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) {
+      display: grid;
+      grid-template-columns: minmax(0, 10.25rem) minmax(0, 1fr) minmax(0, 10rem);
+      gap: 0.65rem;
+      align-items: start;
+      width: 100%;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > aside.site-sidebar-left,
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > aside.sidebar-left {
+      grid-column: 1;
+      grid-row: 1;
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+      flex: unset;
+    }
+
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > .site-main,
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > .main-content {
+      grid-column: 2;
+      grid-row: 1;
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
+      flex: unset;
+      overflow-x: clip;
+      box-sizing: border-box;
+    }
+
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > aside.site-sidebar-right,
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > aside.sidebar-right {
+      grid-column: 3;
+      grid-row: 1;
+      width: 100%;
+      max-width: min(100%, 10rem);
+      min-width: 0;
+      flex: unset;
+      align-self: stretch;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  /* Tighter rail chrome and readable titles (match home rails; global sidebar title was oversized here). */
+  body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > aside.site-sidebar {
+    padding: 0.65rem 0.5rem;
+    box-sizing: border-box;
+  }
+
+  body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) .site-sidebar-left .site-sidebar-title,
+  body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) .sidebar-left .site-sidebar-title {
+    font-size: clamp(1.05rem, 0.9rem + 1vw, 1.35rem);
+    line-height: 1.15;
+    font-weight: 700;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    padding-inline: 0.1rem;
+    box-sizing: border-box;
+  }
+
+  body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) .site-sidebar-right .site-sidebar-title {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    font-size: clamp(1rem, 0.88rem + 0.9vw, 1.22rem);
+    line-height: 1.2;
+  }
+
+  body:not(.page-home) .site-wrapper {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: clamp(0.65rem, 2vw, 1rem);
+    padding-right: clamp(0.65rem, 2vw, 1rem);
+    box-sizing: border-box;
+  }
+
+  /* Center column must shrink inside capped grid rails (avoids horizontal clip). */
+  body.page-activity-flyer .site-main,
+  body.page-activity-flyer .main-content {
+    min-width: 0;
+  }
+
+  body.page-activity-flyer .site-main .site-main-content.content {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
   /* ================================================
      LEFT SIDEBAR - RECURRING EVENTS
      ================================================ */
@@ -1799,6 +1899,48 @@
       gap: 1rem;
     }
   }
+
+  /* Tablet non-home: mirror home — main full width, then recurring | featured side by side */
+  @media (max-width: 1100px) and (min-width: 769px) {
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: auto auto;
+      column-gap: 0.65rem;
+      row-gap: 0.65rem;
+      align-items: stretch;
+      flex-direction: unset;
+    }
+
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > .site-main,
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > .main-content {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      width: 100%;
+      min-width: 0;
+      order: unset;
+    }
+
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > aside.site-sidebar-left,
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > aside.sidebar-left {
+      grid-column: 1;
+      grid-row: 2;
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      order: unset;
+    }
+
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > aside.site-sidebar-right,
+    body:not(.page-home) .site-shell > .site-layout:has(aside.site-sidebar-left):has(aside.site-sidebar-right) > aside.sidebar-right {
+      grid-column: 2;
+      grid-row: 2;
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+      order: unset;
+    }
+  }
   
   /* Mobile: full-width sections (no sidebar rails), single-column featured, shorter calendar */
   @media (max-width: 768px) {
@@ -2332,6 +2474,168 @@
 
     body.page-home .site-footer-nav-btn,
     body.page-home .site-footer-back-top {
+      font-size: clamp(0.8rem, 0.74rem + 1.35vw, 0.92rem);
+      max-width: min(100%, 19rem);
+      box-sizing: border-box;
+      margin-inline: auto;
+    }
+
+    /* Home-guided shared shell mobile: tames global h1 scale for site-chrome pages (activity flyers, etc.). */
+    body:not(.page-home):not(.feature-events-page):not(.page-contact)
+      .site-shell
+      > .site-header.header-site
+      .site-header-title {
+      font-size: clamp(1.32rem, 1.08rem + 3vw, 1.68rem);
+      line-height: 1.15;
+      text-align: center;
+      margin-bottom: 0.2rem;
+    }
+
+    body.page-activity-flyer {
+      overflow-x: clip;
+    }
+
+    body.page-activity-flyer .site-wrapper,
+    body.page-activity-flyer .site-shell {
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+
+    body.page-activity-flyer .site-layout,
+    body.page-activity-flyer .site-main,
+    body.page-activity-flyer .main-content {
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+
+    body.page-activity-flyer .site-header {
+      padding: 0.5rem 0.65rem;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    body.page-activity-flyer .site-main-content,
+    body.page-activity-flyer .site-sidebar {
+      max-width: 100%;
+      margin-inline: auto;
+      box-sizing: border-box;
+    }
+
+    body.page-activity-flyer .site-sidebar-left {
+      text-align: center;
+      align-items: center;
+      box-sizing: border-box;
+      padding-inline: 0.75rem;
+    }
+
+    body.page-activity-flyer .site-sidebar-left .site-sidebar-title {
+      font-size: clamp(1.1rem, 1rem + 2.35vw, 1.42rem);
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      max-width: 24rem;
+    }
+
+    body.page-activity-flyer .site-sidebar-left .recurring-events-list,
+    body.page-activity-flyer .site-sidebar-left .schedule-by-day {
+      width: 100%;
+      max-width: 26rem;
+      margin-inline: auto;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    body.page-activity-flyer .sidebar-add-activity-btn {
+      font-size: clamp(0.88rem, 0.8rem + 1.2vw, 0.95rem);
+      padding: 0.42rem 0.88rem;
+      max-width: min(100%, 19rem);
+      margin-inline: auto;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    body.page-activity-flyer aside.site-sidebar-right .featured-card-line--name {
+      font-size: clamp(0.87rem, 0.8rem + 2.05vw, 1.03rem);
+    }
+
+    body.page-activity-flyer aside.site-sidebar-right .featured-card-line--detail {
+      font-size: clamp(0.82rem, 0.75rem + 1.85vw, 0.97rem);
+    }
+
+    body.page-activity-flyer aside.site-sidebar-right .featured-card-line--date {
+      font-size: clamp(0.77rem, 0.71rem + 1.65vw, 0.92rem);
+    }
+
+    body.page-activity-flyer aside.site-sidebar-right .featured-card-caption {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      padding-inline: 0.2rem;
+      box-sizing: border-box;
+    }
+
+    body.page-activity-flyer .site-main-content.content p {
+      font-size: clamp(1.02rem, 0.96rem + 2.05vw, 1.12rem);
+      line-height: 1.52;
+    }
+
+    body.page-activity-flyer .page-activity-flyer-lead {
+      font-size: clamp(1.05rem, 0.98rem + 2.1vw, 1.18rem);
+      line-height: 1.45;
+    }
+
+    body.page-activity-flyer .site-main-content.content h2 {
+      font-size: clamp(1.14rem, 1.02rem + 2.45vw, 1.42rem);
+      line-height: 1.22;
+    }
+
+    body.page-activity-flyer .page-activity-flyer-title {
+      font-size: clamp(1.18rem, 1.05rem + 2.65vw, 1.52rem);
+      line-height: 1.2;
+    }
+
+    body.page-activity-flyer .page-activity-flyer-actions .btn.site-button {
+      font-size: clamp(0.82rem, 0.76rem + 1.4vw, 0.95rem);
+      padding: 0.48rem 1rem;
+      max-width: min(100%, 19rem);
+      margin-inline: auto;
+    }
+
+    body.page-activity-flyer .site-footer {
+      padding: 0.8rem 0.65rem;
+      gap: 0.55rem;
+      box-sizing: border-box;
+      max-width: 100%;
+    }
+
+    body.page-activity-flyer .site-footer h2 {
+      font-size: clamp(0.98rem, 0.9rem + 2.05vw, 1.18rem);
+      line-height: 1.28;
+      text-align: center;
+      padding-inline: 0.35rem;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    body.page-activity-flyer .site-footer-address-row {
+      max-width: min(22rem, 100%);
+      width: 100%;
+      align-items: center;
+      gap: 0.55rem;
+      box-sizing: border-box;
+    }
+
+    body.page-activity-flyer .site-footer-address {
+      font-size: clamp(0.94rem, 0.87rem + 1.95vw, 1.06rem);
+      line-height: 1.45;
+      text-align: center;
+    }
+
+    body.page-activity-flyer .site-footer-nav-btn,
+    body.page-activity-flyer .site-footer-back-top {
       font-size: clamp(0.8rem, 0.74rem + 1.35vw, 0.92rem);
       max-width: min(100%, 19rem);
       box-sizing: border-box;
@@ -3334,6 +3638,50 @@
     }
   }
 
+  /* Activity flyer — tablet band: tame global headline/body vs. skinny rails (home-guided clamps). */
+  @media (max-width: 1100px) and (min-width: 769px) {
+    body.page-activity-flyer .site-main-content.content h2 {
+      font-size: clamp(1.32rem, 1.05rem + 2.2vw, 1.75rem);
+      line-height: 1.2;
+    }
+
+    body.page-activity-flyer .page-activity-flyer-title {
+      font-size: clamp(1.4rem, 1.08rem + 2.65vw, 1.92rem);
+    }
+
+    body.page-activity-flyer .site-main-content.content p {
+      font-size: clamp(0.98rem, 0.28vw + 0.92rem, 1.08rem);
+      line-height: 1.5;
+    }
+
+    body.page-activity-flyer .sidebar-add-activity-btn {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.85rem;
+      white-space: nowrap;
+    }
+
+    body.page-activity-flyer .recurring-events-item {
+      font-size: clamp(1.05rem, 0.35vw + 0.94rem, 1.28rem);
+    }
+
+    body.page-activity-flyer aside.site-sidebar-right .featured-card-line--name {
+      font-size: clamp(0.92rem, 0.82rem + 1.85vw, 1.06rem);
+    }
+
+    body.page-activity-flyer aside.site-sidebar-right .featured-card-line--detail {
+      font-size: clamp(0.84rem, 0.74rem + 1.65vw, 1rem);
+    }
+
+    body.page-activity-flyer aside.site-sidebar-right .featured-card-line--date {
+      font-size: clamp(0.8rem, 0.71rem + 1.55vw, 0.94rem);
+    }
+
+    body.page-activity-flyer .page-activity-flyer-actions .btn.site-button {
+      font-size: 0.88rem;
+      padding: 0.42rem 0.92rem;
+    }
+  }
+
   .page-activity-flyer-badge {
     display: inline-block;
     margin: 0 0 var(--space-sm);
@@ -3492,7 +3840,7 @@
     height: auto;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 1024px) {
     body.page-activity-flyer-alt .page-activity-flyer-layout-alt {
       grid-template-columns: 1fr;
     }
