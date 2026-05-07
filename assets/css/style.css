@@ -243,6 +243,11 @@
   .is-current-page {
     display: none !important;
   }
+
+  /* Hide “you are here” in main nav only (sidebar uses .sidebar-add-activity-btn separately). Applies all breakpoints. */
+  .site-shell .site-nav .site-nav-list > .site-nav-item:has(> .site-nav-link[aria-current="page"]) {
+    display: none;
+  }
   
   /* ================================================
      MAIN PAGE LAYOUT
@@ -1081,8 +1086,10 @@
     width: 100%;
     box-sizing: border-box;
     text-align: center;
-    font-size: 1.9rem;
-    padding: 0.5rem 0.65rem;
+    font-size: 0.9rem;
+    line-height: 1.25;
+    padding: 0.4rem 0.85rem;
+    white-space: nowrap;
   }
 
   /**
@@ -2045,11 +2052,6 @@
       hyphens: auto;
     }
 
-    /* Hide redundant “you are here” pill (main nav only; does not affect sidebar nav) */
-    .site-shell .site-nav .site-nav-list > .site-nav-item:has(> .site-nav-link[aria-current="page"]) {
-      display: none;
-    }
-
     /* Contact link: extra flex + slightly smaller type when label wraps (main nav only) */
     .site-shell .site-nav .site-nav-item:has(.site-nav-link[href$="contact.html"]) {
       flex: 1.65 1 0;
@@ -2545,17 +2547,6 @@
       margin-inline: auto;
       overflow-wrap: anywhere;
       word-break: break-word;
-    }
-
-    body.page-activity-flyer .sidebar-add-activity-btn {
-      font-size: clamp(0.88rem, 0.8rem + 1.2vw, 0.95rem);
-      padding: 0.42rem 0.88rem;
-      max-width: min(100%, 19rem);
-      margin-inline: auto;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      box-sizing: border-box;
     }
 
     body.page-activity-flyer aside.site-sidebar-right .featured-card-line--name {
@@ -3241,11 +3232,6 @@
       hyphens: none;
     }
 
-    body.page-home .site-sidebar-left .sidebar-add-activity-btn {
-      font-size: 0.9rem;
-      padding: 0.4rem 0.85rem;
-      white-space: nowrap;
-    }
   }
 
   /* Wide home: 3-column center-stack — left rail | calendar + Future Featured | spotlight */
@@ -3652,12 +3638,6 @@
     body.page-activity-flyer .site-main-content.content p {
       font-size: clamp(0.98rem, 0.28vw + 0.92rem, 1.08rem);
       line-height: 1.5;
-    }
-
-    body.page-activity-flyer .sidebar-add-activity-btn {
-      font-size: 0.9rem;
-      padding: 0.4rem 0.85rem;
-      white-space: nowrap;
     }
 
     body.page-activity-flyer .recurring-events-item {
