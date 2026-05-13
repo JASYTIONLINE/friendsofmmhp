@@ -5062,28 +5062,32 @@
     },
     {
       "id": "ac0024",
-      "description": "Horsecollar shuffle board games",
+      "description": "Picture the energy of a knock-down, drag-out bar fight—then trade the chaos for chalk, sunshine, and discs sliding the way classic bar shuffleboard intended. Horsecollar is that level of competitive theater, only nobody's swinging anything heavier than good-natured trash talk. Bar-table rules, teams, multiple rounds, a cumulative score that won't cut anyone slack—Sundays feel like the drama got upgraded and the furniture stayed upright. When the tally locks, one crew walks off swaggering; the rest quietly vow round two.",
       "location": "Shuffleboard Courts",
       "recurrenceType": "Recurring",
       "recurrenceDetails": {
         "weekdays": [
           "Sunday"
         ],
-        "startTime": "13:30"
+        "startTime": "11:30",
+        "endTime": "14:30"
       },
       "keywords": [
         "shuffleboard",
         "horsecollar",
-        "games"
+        "games",
+        "teams",
+        "bar shuffleboard",
+        "bragging rights"
       ],
-      "imagePath": null,
-      "activityName": "Horsecollar Shuffle Board",
+      "imagePath": "activity-flyer/horsecollar.png",
+      "activityName": "Horsecollar Shuffleboard",
       "contactResidentId": "re0025",
       "chairpersonId": "re0025",
-      "activeFrom": "10-01",
-      "activeTo": "04-15",
-      "isActive": false,
-      "adCopy": "Horsecollar shuffle board games",
+      "activeFrom": "11-01",
+      "activeTo": "02-21",
+      "isActive": true,
+      "adCopy": "Knock-down, drag-out bar-fight energy (shuffleboard edition): bar rules, teams, multi-round grudge tally, zero flying furniture. Bragging rights on the line. Sun 11:30 AM–2:30 PM, courts.",
       "isSeasonal": true
     },
     {
@@ -5197,6 +5201,143 @@
       "activeTo": "03-12",
       "isActive": true,
       "adCopy": "Exercise with Debbie",
+      "isSeasonal": true
+    },
+    {
+      "id": "ac0029",
+      "description": "You're invited: the Winter Ice Cream Social is a friendly pause for anyone in the park—no RSVP, no fee. It meets on the third Sunday of each month during the season; each month spotlights a flavor of the week at the scoop table: classic vanilla, tangy orange sherbet, frosty root-beer floats, or whatever surprise Sandy lines up next. Bring the kids, bring your sweet tooth, and meet neighbors you usually only wave at from the driveway. Thirty minutes of cold spoons, warm conversation, and small-town winter fun.",
+      "location": "Rec Hall",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Sunday"
+        ],
+        "startTime": "13:00",
+        "endTime": "13:30",
+        "weekOfMonth": 3
+      },
+      "keywords": [
+        "ice cream",
+        "winter",
+        "social",
+        "family",
+        "free",
+        "Sunday",
+        "monthly",
+        "third Sunday",
+        "Rec Hall"
+      ],
+      "imagePath": "activity-flyer/icecream.png",
+      "activityName": "Winter Ice Cream Social",
+      "contactResidentId": "re0027",
+      "chairpersonId": "re0027",
+      "activeFrom": "11-15",
+      "activeTo": "02-28",
+      "isActive": true,
+      "adCopy": "Free Winter Ice Cream Social—3rd Sunday each month, 1:00–1:30 PM, Rec Hall. Flavor of the week (vanilla, sherbet, floats & more). Kids welcome; all residents invited.",
+      "isSeasonal": true
+    },
+    {
+      "id": "ac0030",
+      "description": "Same scoop, warmer months: the Summer Ice Cream Social picks up when the Winter edition takes its break—third Sunday of each month March through mid-November. No fee, no RSVP; each date features a flavor of the week (vanilla, orange sherbet, root-beer floats, or Sandy’s pick). Kids and residents drop by the Rec Hall for half an hour of cones, bowls, and conversation with neighbors.",
+      "location": "Rec Hall",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Sunday"
+        ],
+        "startTime": "13:00",
+        "endTime": "13:30",
+        "weekOfMonth": 3
+      },
+      "keywords": [
+        "ice cream",
+        "summer",
+        "social",
+        "family",
+        "free",
+        "Sunday",
+        "monthly",
+        "third Sunday",
+        "Rec Hall",
+        "off season"
+      ],
+      "imagePath": "activity-flyer/icecream.png",
+      "activityName": "Summer Ice Cream Social",
+      "contactResidentId": "re0027",
+      "chairpersonId": "re0027",
+      "activeFrom": "03-01",
+      "activeTo": "11-14",
+      "isActive": true,
+      "adCopy": "Free Summer Ice Cream Social—3rd Sunday each month (Mar–Nov), 1:00–1:30 PM, Rec Hall. Flavor of the week. Kids welcome; all residents invited.",
+      "isSeasonal": true
+    },
+    {
+      "id": "ac0031",
+      "description": "Pull up a chair in Hall C and watch a block of wood become something worth showing off. Steve Heveron hosts Wood Carving with Steve—a relaxed, hands-on circle for small-scale projects with big personality: custom pens that feel like heirlooms, whimsical yard birds that make mailboxes smile, and other pocket-sized treasures. This isn’t timber-frame construction or all-weekend marathons—think fine detail, sharp tools, and neighborly coaching in a friendly hall. Curious first-timers welcome; old hands welcome too. Come sniff the shavings, trade tips, and go home with a little more swagger and maybe a project you brag about at the mail kiosk.",
+      "location": "Hall C",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Tuesday"
+        ],
+        "startTime": "13:00",
+        "endTime": "15:00"
+      },
+      "keywords": [
+        "wood carving",
+        "Steve Heveron",
+        "Hall C",
+        "pens",
+        "yard birds",
+        "crafts",
+        "hand tools",
+        "small projects",
+        "Tuesday"
+      ],
+      "imagePath": "activity-flyer/carving.png",
+      "activityName": "Wood Carving with Steve",
+      "contactResidentId": "re0005",
+      "chairpersonId": "re0005",
+      "activeFrom": "01-01",
+      "activeTo": "12-31",
+      "isActive": true,
+      "adCopy": "Wood Carving with Steve—Tuesdays in Hall C. Small wonders only: custom pens, yard birds, and clever carvings with neighborly coaching from Steve Heveron. Not big construction—just sharp tools, great company, and projects you’ll want to show off.",
+      "isSeasonal": false
+    },
+    {
+      "id": "ac0032",
+      "description": "Pétanque (say it with a little flair—pay-tonk) is the traditional French boules game that turns a patch of court into a coffeehouse: metal boules, a tiny target called the jack (cochonnet if you’re feeling continental), and neighbors taking turns rolling or tossing to cozy their balls closest—or politely evict someone else’s. If you know bocce ball, you’re already fluent: it’s the same happy genre (get near the pallino, guard your lie, celebrate a beautiful carom), just with Gallic swagger and a famously social pace. The point is points—whoever’s boules hug the jack after the dust settles—and the vibe is inclusive, outdoor, and dangerously easy to love. We gather Mondays while the court is in season: November 1 through March 29 at the pétanque court in the northwest corner of the park—bring shades when the sun’s sharp, bring banter always, maybe bring a friend you’ll beat by a whisper.",
+      "location": "Pétanque court (NW corner of park) — 26.2474823°N, 98.2041932°W",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Monday"
+        ],
+        "startTime": "09:15",
+        "endTime": "10:45"
+      },
+      "keywords": [
+        "pétanque",
+        "petanque",
+        "boules",
+        "bocce",
+        "bocce ball",
+        "outdoor",
+        "Monday",
+        "NW corner",
+        "jack",
+        "cochonnet",
+        "social"
+      ],
+      "imagePath": "activity-flyer/petanque.png",
+      "activityName": "Pétanque",
+      "contactResidentId": "re0000",
+      "chairpersonId": "re0000",
+      "activeFrom": "11-01",
+      "activeTo": "03-29",
+      "isActive": true,
+      "adCopy": "Pétanque Mondays 9:15 AM, NW court (season Nov 1–Mar 29)—French boules with a bocce soul: cozy up to the jack, finesse a roll, knock a rival ball off cruise control. Beginners welcome.",
       "isSeasonal": true
     }
   ],

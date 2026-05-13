@@ -8,7 +8,8 @@
  *
  * How it works: The loader reads body[data-mmhp-master-json], normalizes activities into weekday
  * buckets from recurrenceDetails, skips isActive:false rows, and filters seasonal activities by
- * activeFrom/activeTo (local date, MM-DD wrap) for display and exports. Featured
+ * activeFrom/activeTo (local date, MM-DD wrap) for display and exports. Optional recurrenceDetails.weekOfMonth
+ * (1–5) marks an nth-weekday-of-month pattern (e.g. third Sunday) for sidebar labels and exports. Featured
  * regions sort dated features, hydrate cards with images from assets/images/, and adjust hrefs
  * based on location.pathname so the same script runs on index.html and nested flyer paths.
  */
@@ -23,6 +24,32 @@
     "Sunday",
   ];
 
+  /** 1 → "1st" … 5 → "5th" for nth occurrence of a weekday in a month. */
+  function ordinalWeekOfMonth(n) {
+    var k = parseInt(n, 10);
+    if (!isFinite(k) || k < 1 || k > 5) return "";
+    if (k === 1) return "1st";
+    if (k === 2) return "2nd";
+    if (k === 3) return "3rd";
+    if (k === 4) return "4th";
+    return "5th";
+  }
+
+  /** Parse recurrenceDetails.weekOfMonth (1–5); null if absent or invalid. */
+  function monthWeekFromRecurrenceDetails(rd) {
+    if (!rd || rd.weekOfMonth == null) return null;
+    var n = parseInt(rd.weekOfMonth, 10);
+    if (!isFinite(n) || n < 1 || n > 5) return null;
+    return n;
+  }
+
+  /** Three-letter weekday label for sidebar monthly hint. */
+  function weekdayShortLabel(weekday) {
+    var w = String(weekday || "").trim();
+    if (!w) return "";
+    return w.length <= 3 ? w : w.slice(0, 3);
+  }
+
   var FALLBACK_IMAGES = ["rec-hall.png", "dinner.png", "park-banner.png"];
 
   /** Activity id → flyer file under contents/activity-flyer/ (see repo for HTML names). */
@@ -35,10 +62,15 @@
     ac0011: "vespers.html",
     ac0016: "kitchen-inventory.html",
     ac0023: "martial-arts-training.html",
+    ac0024: "horsecollar.html",
     ac0025: "mexican-train-wide.html",
     ac0026: "card-bingo-wide.html",
     ac0027: "stitch-and-bitch.html",
     ac0028: "exercise.html",
+    ac0029: "icecream-winter.html",
+    ac0030: "icecream-summer.html",
+    ac0031: "wood-carving-with-steve.html",
+    ac0032: "petanque.html",
   };
 
   /** Relative href to the activity flyer for the current page path. */
@@ -233,13 +265,21 @@
 
   function activityExportEntries(act) {
     var rd = act.recurrenceDetails || {};
+    var monthWeekN = monthWeekFromRecurrenceDetails(rd);
+
+    function dayLabel(wd) {
+      var w = String(wd || "").trim() || "Day TBA";
+      if (monthWeekN == null) return w;
+      return ordinalWeekOfMonth(monthWeekN) + " " + w + " (monthly)";
+    }
+
     var entries = [];
     if (Array.isArray(rd.slots) && rd.slots.length > 0) {
       for (var i = 0; i < rd.slots.length; i++) {
         var slot = rd.slots[i] || {};
         var w = String(slot.weekday || slot.day || "").trim();
         var st = String(slot.startTime || slot.time || "").trim();
-        if (w || st) entries.push({ weekday: w || "Day TBA", startTime: st });
+        if (w || st) entries.push({ weekday: dayLabel(w), startTime: st });
       }
       return entries;
     }
@@ -248,12 +288,12 @@
     var stOne = String(rd.startTime || rd.time || "").trim();
     if (Array.isArray(days) && days.length > 0) {
       for (var j = 0; j < days.length; j++) {
-        entries.push({ weekday: String(days[j] || "").trim() || "Day TBA", startTime: stOne });
+        entries.push({ weekday: dayLabel(String(days[j] || "").trim()), startTime: stOne });
       }
       return entries;
     }
 
-    entries.push({ weekday: "Day TBA", startTime: stOne });
+    entries.push({ weekday: dayLabel("Day TBA"), startTime: stOne });
     return entries;
   }
 
@@ -1258,6 +1298,8 @@
    * Optional activity schedule when there are no dated features yet.
    * recurrenceDetails.slots: [ { weekday: "Wednesday", startTime: "09:00" }, ... ]
    * Or recurrenceDetails.weekdays: [ "Monday", "Wednesday" ] + startTime: "14:00"
+   * Optional recurrenceDetails.weekOfMonth: 1–5 = nth occurrence of that weekday each month
+   * (e.g. weekdays ["Sunday"] + weekOfMonth 3 = third Sunday monthly).
    */
   function mergeRecurrenceFromActivity(buckets, act) {
     if (!isRecurringActivity(act)) return;
@@ -1267,6 +1309,7 @@
     if (!name || /^unknown$/i.test(name)) return;
 
     var rd = act.recurrenceDetails || {};
+    var monthWeekN = monthWeekFromRecurrenceDetails(rd);
     var entries = [];
 
     if (Array.isArray(rd.slots) && rd.slots.length > 0) {
@@ -1293,8 +1336,18 @@
       var st = e.startTime.trim();
       var loc = String(act.location || "").trim();
       var slot = sidebarSlotTitleAndMeta(name, st, loc);
+      if (monthWeekN != null) {
+        slot.title =
+          slot.title +
+          " (" +
+          ordinalWeekOfMonth(monthWeekN) +
+          " " +
+          weekdayShortLabel(e.weekday) +
+          "/mo)";
+      }
       var minutes = parseTimeToMinutes(st);
-      var dedupeKey = st + "\t" + name + "\t" + loc;
+      var dedupeKey =
+        st + "\t" + name + "\t" + loc + "\t" + (monthWeekN != null ? "wm" + monthWeekN : "");
       if (!buckets[di].has(dedupeKey)) {
         buckets[di].set(dedupeKey, {
           minutes: minutes,
