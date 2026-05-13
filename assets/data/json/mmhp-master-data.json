@@ -5307,12 +5307,13 @@
     },
     {
       "id": "ac0032",
-      "description": "Pétanque (say it with a little flair—pay-tonk) is the traditional French boules game that turns a patch of court into a coffeehouse: metal boules, a tiny target called the jack (cochonnet if you’re feeling continental), and neighbors taking turns rolling or tossing to cozy their balls closest—or politely evict someone else’s. If you know bocce ball, you’re already fluent: it’s the same happy genre (get near the pallino, guard your lie, celebrate a beautiful carom), just with Gallic swagger and a famously social pace. The point is points—whoever’s boules hug the jack after the dust settles—and the vibe is inclusive, outdoor, and dangerously easy to love. We gather Mondays while the court is in season: November 1 through March 29 at the pétanque court in the northwest corner of the park—bring shades when the sun’s sharp, bring banter always, maybe bring a friend you’ll beat by a whisper.",
+      "description": "Pétanque (say it with a little flair—pay-tonk) is the traditional French boules game that turns a patch of court into a coffeehouse: metal boules, a tiny target called the jack (cochonnet if you’re feeling continental), and neighbors taking turns rolling or tossing to cozy their balls closest—or politely evict someone else’s. If you know bocce ball, you’re already fluent: it’s the same happy genre (get near the pallino, guard your lie, celebrate a beautiful carom), just with Gallic swagger and a famously social pace. The point is points—whoever’s boules hug the jack after the dust settles—and the vibe is inclusive, outdoor, and dangerously easy to love. We gather Mondays and Thursdays while the court is in season: November 1 through March 29 at the pétanque court in the northwest corner of the park—bring shades when the sun’s sharp, bring banter always, maybe bring a friend you’ll beat by a whisper.",
       "location": "Pétanque court (NW corner of park) — 26.2474823°N, 98.2041932°W",
       "recurrenceType": "Recurring",
       "recurrenceDetails": {
         "weekdays": [
-          "Monday"
+          "Monday",
+          "Thursday"
         ],
         "startTime": "09:15",
         "endTime": "10:45"
@@ -5325,6 +5326,7 @@
         "bocce ball",
         "outdoor",
         "Monday",
+        "Thursday",
         "NW corner",
         "jack",
         "cochonnet",
@@ -5337,17 +5339,18 @@
       "activeFrom": "11-01",
       "activeTo": "03-29",
       "isActive": true,
-      "adCopy": "Pétanque Mondays 9:15 AM, NW court (season Nov 1–Mar 29)—French boules with a bocce soul: cozy up to the jack, finesse a roll, knock a rival ball off cruise control. Beginners welcome.",
+      "adCopy": "Pétanque Mon & Thu 9:15 AM, NW court (season Nov 1–Mar 29)—French boules with a bocce soul: cozy up to the jack, finesse a roll, knock a rival ball off cruise control. Beginners welcome.",
       "isSeasonal": true
     },
     {
       "id": "ac0033",
-      "description": "Stained Glass Class is where curiosity meets color: cut, foil, solder (or follow the steps your project needs), and watch daylight turn into something you made with your own two hands. It’s the joy of learning a new skill alongside neighbors—laughing over a tricky curve, celebrating a clean bead of solder, and walking away with panels, sun-catchers, or small pieces that look like they belong in a gallery but hang in your window instead. You don’t need a fine-art degree—just a willingness to try, a little patience, and a taste for glass that glows when the sun hits it. Mondays in Hall C through the cool months: come create something beautiful, one piece at a time.",
+      "description": "Stained Glass Class is where curiosity meets color: cut, foil, solder (or follow the steps your project needs), and watch daylight turn into something you made with your own two hands. It’s the joy of learning a new skill alongside neighbors—laughing over a tricky curve, celebrating a clean bead of solder, and walking away with panels, sun-catchers, or small pieces that look like they belong in a gallery but hang in your window instead. You don’t need a fine-art degree—just a willingness to try, a little patience, and a taste for glass that glows when the sun hits it. Mondays and Thursdays in Hall C through the cool months: come create something beautiful, one piece at a time.",
       "location": "Hall C",
       "recurrenceType": "Recurring",
       "recurrenceDetails": {
         "weekdays": [
-          "Monday"
+          "Monday",
+          "Thursday"
         ],
         "startTime": "13:00",
         "endTime": "14:00"
@@ -5358,6 +5361,7 @@
         "crafts",
         "Hall C",
         "Monday",
+        "Thursday",
         "beginners",
         "sun-catcher",
         "Steve Heveron"
@@ -5369,7 +5373,7 @@
       "activeFrom": "11-02",
       "activeTo": "03-29",
       "isActive": true,
-      "adCopy": "Stained Glass Class—Mondays 1:00–2:00 PM, Hall C (season Nov 2–Mar 29). Learn the craft while you build gorgeous glass projects: color, light, and neighbors cheering you on.",
+      "adCopy": "Stained Glass Class—Mon & Thu 1:00–2:00 PM, Hall C (season Nov 2–Mar 29). Learn the craft while you build gorgeous glass projects: color, light, and neighbors cheering you on.",
       "isSeasonal": true
     },
     {
@@ -5466,6 +5470,134 @@
       "activeTo": "11-03",
       "isActive": true,
       "adCopy": "Stitch & Bitch—Wednesdays 1–3 PM, Hall C (Apr 1–Nov 3). Open crafting circle—bring your project; neighbors swap tips on crochet, macrame, and more. Swedish weaving meets here in winter.",
+      "isSeasonal": true
+    },
+    {
+      "id": "ac0037",
+      "description": "The McAllen Mobile Home Park Association bylaws group meets on the first Wednesday of each month, starting right after the regular Wednesday association meeting adjourns. The association meeting begins at 9:00 AM; the Bylaws Committee session follows immediately—often within a few minutes, depending on how long the business meeting runs. This is a formal working session: members review current association business, discuss updates, and work through issues facing the park association. Attendance and conduct should reflect the seriousness of the committee's role—no joking around during the meeting. Season on the calendar: November 4 through March 3 each year (aligned with Nov 4, 2026–Mar 3, 2027). Confirm exact start time and room on the main calendar.",
+      "location": "Rec Hall",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Wednesday"
+        ],
+        "startTime": "09:15",
+        "endTime": "10:30",
+        "weekOfMonth": 1
+      },
+      "keywords": [
+        "bylaws",
+        "committee",
+        "association",
+        "McAllen Mobile Home Park Association",
+        "governance",
+        "monthly",
+        "Wednesday",
+        "Rec Hall",
+        "seasonal"
+      ],
+      "imagePath": "activity-flyer/by-laws.png",
+      "activityName": "Bylaws Committee",
+      "contactResidentId": "re0000",
+      "chairpersonId": "re0000",
+      "activeFrom": "11-04",
+      "activeTo": "03-03",
+      "isActive": true,
+      "adCopy": "Bylaws Committee—1st Wed after 9:00 AM association meeting, Rec Hall (season Nov 4–Mar 3). Starts when business meeting ends; check calendar.",
+      "isSeasonal": true
+    },
+    {
+      "id": "ac0038",
+      "description": "Weekly meeting of the McAllen Mobile Home Park Association. Residents discuss current events, hear updates on upcoming activities, deconflict schedules, and work through park business together. This session is a chance for all park members to stay informed and be part of the solution. Summer season on the calendar: April 1 through November 3 each year (weekly Wednesdays through the day before the winter slot begins November 4).",
+      "location": "Rec Hall",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Wednesday"
+        ],
+        "startTime": "09:00",
+        "endTime": "10:00"
+      },
+      "keywords": [
+        "association meeting",
+        "McAllen Mobile Home Park Association",
+        "MMHPA",
+        "residents",
+        "Wednesday",
+        "Rec Hall",
+        "summer season"
+      ],
+      "imagePath": "activity-flyer/association.png",
+      "activityName": "Association Meeting — Summer",
+      "contactResidentId": "re0000",
+      "chairpersonId": "re0000",
+      "activeFrom": "04-01",
+      "activeTo": "11-03",
+      "isActive": true,
+      "adCopy": "MMHPA association meeting—Wednesdays 9–10 AM, Rec Hall (summer Apr 1–Nov 3). Discuss park news, activities, and deconflict; stay informed.",
+      "isSeasonal": true
+    },
+    {
+      "id": "ac0039",
+      "description": "Weekly meeting of the McAllen Mobile Home Park Association. Residents discuss current events, hear updates on upcoming activities, deconflict schedules, and work through park business together. This session is a chance for all park members to stay informed and be part of the solution. Winter season on the calendar: November 4 through March 31 each year (weekly Wednesdays; summer slot resumes April 1).",
+      "location": "Rec Hall",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Wednesday"
+        ],
+        "startTime": "09:00",
+        "endTime": "10:00"
+      },
+      "keywords": [
+        "association meeting",
+        "McAllen Mobile Home Park Association",
+        "MMHPA",
+        "residents",
+        "Wednesday",
+        "Rec Hall",
+        "winter season"
+      ],
+      "imagePath": "activity-flyer/association.png",
+      "activityName": "Association Meeting — Winter",
+      "contactResidentId": "re0000",
+      "chairpersonId": "re0000",
+      "activeFrom": "11-04",
+      "activeTo": "03-31",
+      "isActive": true,
+      "adCopy": "MMHPA association meeting—Wednesdays 9–10 AM, Rec Hall (winter Nov 4–Mar 31). Discuss park news, activities, and deconflict; stay informed.",
+      "isSeasonal": true
+    },
+    {
+      "id": "ac0040",
+      "description": "Sewing Circle is a relaxed weekly stitch-and-chat in Hall C: bring a project (repairs, quilting, or something new), share tips, and sew alongside neighbors. No competition—just thread, conversation, and the small triumph of a straight seam. Season runs from November 5 through the last Thursday in March each year; the calendar model uses November 5 through March 31 so late-March meetings still appear—confirm the final Thursday on the main park calendar.",
+      "location": "Hall C",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Thursday"
+        ],
+        "startTime": "13:00",
+        "endTime": "14:00"
+      },
+      "keywords": [
+        "sewing",
+        "sewing circle",
+        "quilting",
+        "needlework",
+        "crafts",
+        "Hall C",
+        "Thursday",
+        "social"
+      ],
+      "imagePath": "activity-flyer/sewing.png",
+      "activityName": "Sewing Circle",
+      "contactResidentId": "re0000",
+      "chairpersonId": "re0000",
+      "activeFrom": "11-05",
+      "activeTo": "03-31",
+      "isActive": true,
+      "adCopy": "Sewing Circle—Thursdays 1–2 PM, Hall C (Nov 5–last Thu in Mar; calendar Nov 5–Mar 31). Bring your project; neighbors stitch together.",
       "isSeasonal": true
     }
   ],

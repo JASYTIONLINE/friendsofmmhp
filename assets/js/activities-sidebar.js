@@ -75,6 +75,10 @@
     ac0033: "stained-glass-class.html",
     ac0034: "hand-and-foot.html",
     ac0035: "computer-class.html",
+    ac0037: "bylaws-committee.html",
+    ac0038: "meeting-summer.html",
+    ac0039: "meeting-winter.html",
+    ac0040: "sewing-circle.html",
   };
 
   /** Relative href to the activity flyer for the current page path. */
@@ -212,6 +216,47 @@
     }, 0);
   }
 
+  function ensureActivitiesExportScopeDialog() {
+    var existing = document.getElementById("mmhp-activities-export-scope-dialog");
+    if (existing) return existing;
+
+    var dialog = document.createElement("dialog");
+    dialog.id = "mmhp-activities-export-scope-dialog";
+    dialog.className = "mmhp-export-format-dialog";
+    dialog.innerHTML =
+      '<div class="mmhp-export-format-panel">' +
+      '<h3 id="mmhp-activities-export-scope-title">Export recurring activities</h3>' +
+      '<p id="mmhp-activities-export-scope-desc">Choose which rows from the master list to include. <strong>Active only</strong> matches the sidebar for today\'s date (active and in-season). <strong>All activities</strong> includes inactive and off-season recurring rows too.</p>' +
+      '<div class="mmhp-export-format-actions">' +
+      '<button type="button" class="btn site-button" data-mmhp-export-scope="active">Active only</button>' +
+      '<button type="button" class="btn site-button" data-mmhp-export-scope="all">All activities</button>' +
+      '<button type="button" class="btn site-button mmhp-export-format-cancel" data-mmhp-export-scope="cancel">Cancel</button>' +
+      "</div>" +
+      "</div>";
+    dialog.setAttribute("aria-labelledby", "mmhp-activities-export-scope-title");
+    dialog.setAttribute("aria-describedby", "mmhp-activities-export-scope-desc");
+    document.body.appendChild(dialog);
+    return dialog;
+  }
+
+  function openActivitiesExportScopeDialog(onChooseScope) {
+    var dialog = ensureActivitiesExportScopeDialog();
+    function onClick(event) {
+      var btn = event.target.closest ? event.target.closest("[data-mmhp-export-scope]") : null;
+      if (!btn) return;
+      var scope = btn.getAttribute("data-mmhp-export-scope");
+      dialog.removeEventListener("click", onClick);
+      dialog.close();
+      if (scope === "active" || scope === "all") onChooseScope(scope);
+    }
+    dialog.addEventListener("click", onClick);
+    dialog.addEventListener("cancel", function cleanup() {
+      dialog.removeEventListener("click", onClick);
+      dialog.removeEventListener("cancel", cleanup);
+    });
+    dialog.showModal();
+  }
+
   function ensureExportFormatDialog() {
     var existing = document.getElementById("mmhp-export-format-dialog");
     if (existing) return existing;
@@ -319,12 +364,24 @@
     return rows;
   }
 
-  function activitiesExportText(data) {
+  /** scope: "active" = sidebar rules; "all" = every recurring row in master JSON. */
+  function activityRowShouldExport(act, scope) {
+    if (!isRecurringActivity(act)) return false;
+    if (scope === "all") return true;
+    if (act.isActive === false) return false;
+    if (!activityPassesSeasonFilter(act)) return false;
+    return true;
+  }
+
+  function activitiesExportText(data, scope) {
     var rows = sortedActivities(data);
-    var lines = ["McAllen Mobile Park Activities", "Activity name | Day of week | Time | Hall/location", ""];
+    var headerNote =
+      scope === "all"
+        ? "All recurring activities in master data (includes inactive and off-season)."
+        : "Active for today's date — matches the recurring sidebar.";
+    var lines = ["McAllen Mobile Park Activities", headerNote, "Activity name | Day of week | Time | Hall/location", ""];
     for (var i = 0; i < rows.length; i++) {
-      if (rows[i].isActive === false) continue;
-      if (!activityPassesSeasonFilter(rows[i])) continue;
+      if (!activityRowShouldExport(rows[i], scope)) continue;
       var entries = activityExportEntries(rows[i]);
       for (var j = 0; j < entries.length; j++) {
         lines.push(activityExportLine(rows[i], entries[j]));
@@ -333,12 +390,11 @@
     return lines.join("\r\n") + "\r\n";
   }
 
-  function activitiesExportCsv(data) {
+  function activitiesExportCsv(data, scope) {
     var rows = sortedActivities(data);
     var lines = [["Activity Name", "Day of Week", "Time", "Hall/Location", "Active"].map(csvCell).join(",")];
     for (var i = 0; i < rows.length; i++) {
-      if (rows[i].isActive === false) continue;
-      if (!activityPassesSeasonFilter(rows[i])) continue;
+      if (!activityRowShouldExport(rows[i], scope)) continue;
       var entries = activityExportEntries(rows[i]);
       for (var j = 0; j < entries.length; j++) {
         var act = rows[i];
@@ -357,12 +413,15 @@
     if (!button || !data) return;
     button.disabled = false;
     button.addEventListener("click", function () {
-      openExportFormatDialog(function (format) {
-        if (format === "csv") {
-          downloadTextFile("mmhp-activities.csv", activitiesExportCsv(data), "text/csv;charset=utf-8");
-          return;
-        }
-        downloadTextFile("mmhp-activities.txt", activitiesExportText(data), "text/plain;charset=utf-8");
+      openActivitiesExportScopeDialog(function (scope) {
+        openExportFormatDialog(function (format) {
+          var base = scope === "all" ? "mmhp-activities-all" : "mmhp-activities-active";
+          if (format === "csv") {
+            downloadTextFile(base + ".csv", activitiesExportCsv(data, scope), "text/csv;charset=utf-8");
+            return;
+          }
+          downloadTextFile(base + ".txt", activitiesExportText(data, scope), "text/plain;charset=utf-8");
+        });
       });
     });
   }

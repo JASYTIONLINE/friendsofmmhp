@@ -3708,6 +3708,10 @@
     align-items: start;
   }
 
+  .page-activity-flyer-grid > .card {
+    min-width: 0;
+  }
+
   .page-activity-flyer-grid > .page-activity-flyer-story {
     grid-column: 1 / -1;
   }
@@ -3739,6 +3743,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-md);
+    min-width: 0;
   }
 
   .page-activity-flyer-details h2 {
@@ -3770,10 +3775,12 @@
     font-weight: 600;
   }
 
+  /* Block flow (not inline-flex): avoids flex text items shrinking to a hairline beside the clock emoji. */
   .page-activity-flyer-time-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
     margin-top: 0.65rem;
     padding: 0.5rem 1rem;
     background: var(--color-ocean-mist);
@@ -3781,6 +3788,13 @@
     font-weight: 600;
     color: var(--color-text);
     border: 1px solid var(--color-border);
+    line-height: 1.45;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .page-activity-flyer-time-pill > span[aria-hidden="true"] {
+    margin-right: 0.35rem;
   }
 
   .page-activity-flyer-disclaimer {
