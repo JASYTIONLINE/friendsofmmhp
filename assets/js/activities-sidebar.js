@@ -7,7 +7,8 @@
  * aligned—students can grep one file to see how JSON fields become DOM.
  *
  * How it works: The loader reads body[data-mmhp-master-json], normalizes activities into weekday
- * buckets from recurrenceDetails, and skips isActive:false rows for display and exports. Featured
+ * buckets from recurrenceDetails, skips isActive:false rows, and filters seasonal activities by
+ * activeFrom/activeTo (local date, MM-DD wrap) for display and exports. Featured
  * regions sort dated features, hydrate cards with images from assets/images/, and adjust hrefs
  * based on location.pathname so the same script runs on index.html and nested flyer paths.
  */
@@ -277,6 +278,7 @@
     var lines = ["McAllen Mobile Park Activities", "Activity name | Day of week | Time | Hall/location", ""];
     for (var i = 0; i < rows.length; i++) {
       if (rows[i].isActive === false) continue;
+      if (!activityPassesSeasonFilter(rows[i])) continue;
       var entries = activityExportEntries(rows[i]);
       for (var j = 0; j < entries.length; j++) {
         lines.push(activityExportLine(rows[i], entries[j]));
@@ -290,6 +292,7 @@
     var lines = [["Activity Name", "Day of Week", "Time", "Hall/Location", "Active"].map(csvCell).join(",")];
     for (var i = 0; i < rows.length; i++) {
       if (rows[i].isActive === false) continue;
+      if (!activityPassesSeasonFilter(rows[i])) continue;
       var entries = activityExportEntries(rows[i]);
       for (var j = 0; j < entries.length; j++) {
         var act = rows[i];
@@ -482,6 +485,59 @@
     var idx = t.lastIndexOf(LISTING_TITLE_SEP);
     if (idx === -1) return "";
     return t.slice(idx + LISTING_TITLE_SEP.length).trim();
+  }
+
+  function pad2(n) {
+    return n < 10 ? "0" + n : String(n);
+  }
+
+  /** Validate master-data MM-DD; returns canonical MM-DD or null. */
+  function parseMmDdToken(s) {
+    var m = /^(\d{2})-(\d{2})$/.exec(String(s || "").trim());
+    if (!m) return null;
+    var mo = parseInt(m[1], 10);
+    var da = parseInt(m[2], 10);
+    if (mo < 1 || mo > 12 || da < 1 || da > 31) return null;
+    return m[1] + "-" + m[2];
+  }
+
+  function refDateMmDd(refDate) {
+    var d = refDate || startOfTodayLocal();
+    return pad2(d.getMonth() + 1) + "-" + pad2(d.getDate());
+  }
+
+  /**
+   * Year-round / no season filter: isSeasonal false, or missing isSeasonal with Jan–Dec
+   * or missing dates (legacy rows).
+   */
+  function isYearRoundActivity(act) {
+    if (!act) return true;
+    if (act.isSeasonal === false) return true;
+    if (act.isSeasonal === true) return false;
+    var af = String(act.activeFrom || "").trim();
+    var at = String(act.activeTo || "").trim();
+    if (!af || !at) return true;
+    return af === "01-01" && at === "12-31";
+  }
+
+  /** Inclusive MM-DD window; if start > end (e.g. 10-01..04-15), season wraps across year boundary. */
+  function mmDdInSeasonWindow(todayMmdd, startMmdd, endMmdd) {
+    if (startMmdd <= endMmdd) {
+      return todayMmdd >= startMmdd && todayMmdd <= endMmdd;
+    }
+    return todayMmdd >= startMmdd || todayMmdd <= endMmdd;
+  }
+
+  /**
+   * true = show in sidebar / exports for refDate (default: viewer's local today).
+   * isActive === false is handled separately upstream.
+   */
+  function activityPassesSeasonFilter(act, refDate) {
+    if (isYearRoundActivity(act)) return true;
+    var start = parseMmDdToken(act.activeFrom);
+    var end = parseMmDdToken(act.activeTo);
+    if (!start || !end) return false;
+    return mmDdInSeasonWindow(refDateMmDd(refDate), start, end);
   }
 
   function isRecurringActivity(act) {
@@ -1112,6 +1168,7 @@
   function mergeRecurrenceFromActivity(buckets, act) {
     if (!isRecurringActivity(act)) return;
     if (act.isActive === false) return;
+    if (!activityPassesSeasonFilter(act)) return;
     var name = (act.activityName || "").trim();
     if (!name || /^unknown$/i.test(name)) return;
 

@@ -4710,7 +4710,8 @@
       "activeFrom": "01-01",
       "activeTo": "12-31",
       "isActive": true,
-      "adCopy": "Community karaoke night"
+      "adCopy": "Community karaoke night",
+      "isSeasonal": false
     },
     {
       "id": "ac0002",
@@ -4729,7 +4730,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "DJ hosted karaoke event"
+      "adCopy": "DJ hosted karaoke event",
+      "isSeasonal": true
     },
     {
       "id": "ac0003",
@@ -4754,7 +4756,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": true,
-      "adCopy": "Bingo Night"
+      "adCopy": "Bingo Night",
+      "isSeasonal": true
     },
     {
       "id": "ac0004",
@@ -4778,7 +4781,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "Organized pool games"
+      "adCopy": "Organized pool games",
+      "isSeasonal": true
     },
     {
       "id": "ac0006",
@@ -4804,7 +4808,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "General art and craft activities"
+      "adCopy": "General art and craft activities",
+      "isSeasonal": true
     },
     {
       "id": "ac0008",
@@ -4827,7 +4832,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "Reading and discussion group"
+      "adCopy": "Reading and discussion group",
+      "isSeasonal": true
     },
     {
       "id": "ac0010",
@@ -4850,7 +4856,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "Group Bible study"
+      "adCopy": "Group Bible study",
+      "isSeasonal": true
     },
     {
       "id": "ac0011",
@@ -4873,7 +4880,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "Evening worship service"
+      "adCopy": "Evening worship service",
+      "isSeasonal": true
     },
     {
       "id": "ac0016",
@@ -4896,7 +4904,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "Kitchen supply management"
+      "adCopy": "Kitchen supply management",
+      "isSeasonal": true
     },
     {
       "id": "ac0017",
@@ -4916,7 +4925,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "One-off and special dance events"
+      "adCopy": "One-off and special dance events",
+      "isSeasonal": true
     },
     {
       "id": "ac0018",
@@ -4936,7 +4946,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "One-off theater performances"
+      "adCopy": "One-off theater performances",
+      "isSeasonal": true
     },
     {
       "id": "ac0019",
@@ -4955,7 +4966,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "One-off comedy performances"
+      "adCopy": "One-off comedy performances",
+      "isSeasonal": true
     },
     {
       "id": "ac0020",
@@ -4975,7 +4987,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "One-off live music performances"
+      "adCopy": "One-off live music performances",
+      "isSeasonal": true
     },
     {
       "id": "ac0021",
@@ -4995,7 +5008,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "One-off interactive mystery performances"
+      "adCopy": "One-off interactive mystery performances",
+      "isSeasonal": true
     },
     {
       "id": "ac0022",
@@ -5015,7 +5029,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "One-off talent and showcase events"
+      "adCopy": "One-off talent and showcase events",
+      "isSeasonal": true
     },
     {
       "id": "ac0023",
@@ -5042,7 +5057,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "Come learn the basics of martial arts with 1st Degree Black Belt and park resident Jyo Kyo Nim John Barkle (495 Grapefruit). We will learn body conditioning, very basic self defense, and do a light low impact workout designed to help us stay mobile and continue to enjoy life."
+      "adCopy": "Come learn the basics of martial arts with 1st Degree Black Belt and park resident Jyo Kyo Nim John Barkle (495 Grapefruit). We will learn body conditioning, very basic self defense, and do a light low impact workout designed to help us stay mobile and continue to enjoy life.",
+      "isSeasonal": true
     },
     {
       "id": "ac0024",
@@ -5067,7 +5083,8 @@
       "activeFrom": "10-01",
       "activeTo": "04-15",
       "isActive": false,
-      "adCopy": "Horsecollar shuffle board games"
+      "adCopy": "Horsecollar shuffle board games",
+      "isSeasonal": true
     },
     {
       "id": "ac0025",
@@ -5093,7 +5110,8 @@
       "activeFrom": "01-01",
       "activeTo": "12-31",
       "isActive": true,
-      "adCopy": "Mexican Train Dominoes games"
+      "adCopy": "Mexican Train Dominoes games",
+      "isSeasonal": false
     },
     {
       "id": "ac0026",
@@ -5120,7 +5138,8 @@
       "activeFrom": "01-01",
       "activeTo": "12-31",
       "isActive": false,
-      "adCopy": "Card Bingo is a fast, easy-to-learn table game with simple rules, low buy-in, and cash pots. Each table has 4 players using 1 deck of cards. Players race to empty their hands as the dealer flips cards one at a time."
+      "adCopy": "Card Bingo is a fast, easy-to-learn table game with simple rules, low buy-in, and cash pots. Each table has 4 players using 1 deck of cards. Players race to empty their hands as the dealer flips cards one at a time.",
+      "isSeasonal": false
     },
     {
       "id": "ac0027",
@@ -5151,7 +5170,8 @@
       "activeFrom": "01-01",
       "activeTo": "12-31",
       "isActive": true,
-      "adCopy": "Bring your favorite crafting project to our weekly crafting circle. Enjoy good company, learn or teach a new skill, and spend time with neighbors. Examples of crafts include Swedish weaving, animal stuffing, loom knitting, crochet, needlepoint, and macrame. No skill or experience is needed."
+      "adCopy": "Bring your favorite crafting project to our weekly crafting circle. Enjoy good company, learn or teach a new skill, and spend time with neighbors. Examples of crafts include Swedish weaving, animal stuffing, loom knitting, crochet, needlepoint, and macrame. No skill or experience is needed.",
+      "isSeasonal": false
     }
   ],
   "features": [

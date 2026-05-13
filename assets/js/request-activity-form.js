@@ -61,6 +61,13 @@
     return n < 10 ? "0" + n : String(n);
   }
 
+  /** HTML date input value (YYYY-MM-DD) → MM-DD for mmhp-master-data.json */
+  function dateInputToMmDd(yyyyMmDd) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(yyyyMmDd || "").trim());
+    if (!m) return null;
+    return m[2] + "-" + m[3];
+  }
+
   function fileDateStamp() {
     var n = new Date();
     return n.getFullYear() + "-" + pad2(n.getMonth() + 1) + "-" + pad2(n.getDate());
@@ -150,7 +157,7 @@
 
     var p0 = document.createElement("p");
     p0.textContent =
-      "Many email programs start to grumble when attachments get big. Huge photos sometimes bounce back or never leave your outbox.";
+      "Many email apps struggle with very large attachments. Very large photos sometimes bounce back or never leave your outbox.";
     body.appendChild(p0);
 
     var p1 = document.createElement("p");
@@ -177,7 +184,7 @@
       p3.textContent =
         "All together: " +
         formatBytesShort(stats.total) +
-        " (biggest single file: " +
+        " (largest single photo: " +
         formatBytesShort(stats.maxSingle) +
         ").";
       body.appendChild(p3);
@@ -383,7 +390,7 @@
     var fullBody;
     if (notice) {
       fullBody =
-        "Please read — attachment note\r\n" +
+        "Note about attachments\r\n" +
         notice +
         "\r\n\r\n————————————————————————————\r\n\r\n" +
         body;
@@ -399,7 +406,7 @@
       encodeURIComponent(fullBody);
     if (statusEl) {
       statusEl.textContent =
-        "Your email should be open—if a file downloaded, attach it, then send.";
+        "If your email opened, you’re set—if a file downloaded instead, attach it, then send.";
       statusEl.hidden = false;
     }
   }
@@ -446,7 +453,7 @@
           .then(function () {
             if (statusEl) {
               statusEl.textContent =
-                "Shared your request. Double-check the message is addressed to " + coordinatorEmail + ".";
+                "Shared your request. If the To: line is blank, add " + coordinatorEmail + ".";
               statusEl.hidden = false;
             }
             resolve();
@@ -482,7 +489,7 @@
                 .then(function () {
                   if (statusEl) {
                     statusEl.textContent =
-                      "Shared your package. If the address looks empty, add " + coordinatorEmail + ".";
+                      "Shared your request. If the To: line is blank, add " + coordinatorEmail + ".";
                     statusEl.hidden = false;
                   }
                   resolve();
@@ -490,17 +497,17 @@
                 .catch(function () {
                   downloadBlob(zipBlob, zipName);
                   afterDownloadMailto(
-                    "A file downloaded (" +
+                    "A zip file downloaded (" +
                       zipName +
-                      "). Please attach it to your email—it holds your full request and photos.\r\n"
+                      "). Please attach it to your email—it has your request and photos together.\r\n"
                   );
                 });
             } else {
               downloadBlob(zipBlob, zipName);
               afterDownloadMailto(
-                "A file downloaded (" +
+                "A zip file downloaded (" +
                   zipName +
-                  "). Please attach it to your email—it holds your full request and photos.\r\n"
+                  "). Please attach it to your email—it has your request and photos together.\r\n"
               );
             }
           })
@@ -510,7 +517,7 @@
               "mmhp-activity-request-" + stamp + ".txt"
             );
             afterDownloadMailto(
-              "A small text file downloaded—attach it plus your activity photos to the email.\r\n"
+              "A small text file downloaded—attach it, along with your photos if you have any, to the email.\r\n"
             );
           });
       }
@@ -525,6 +532,99 @@
     var locOtherWrap = document.getElementById("mmhp-request-location-other-wrap");
     var locOther = document.getElementById("mmhp-request-location-other");
     var statusEl = document.getElementById("mmhp-request-activity-status");
+
+    var callmeCb = document.getElementById("mmhp-request-callme");
+    var callmeWrap = document.getElementById("mmhp-request-callme-wrap");
+    var callmeName = document.getElementById("mmhp-request-callme-name");
+    var callmePhone = document.getElementById("mmhp-request-callme-phone");
+    var callmeSend = document.getElementById("mmhp-request-callme-send");
+    var CALLME_SUBJECT = "Please call me";
+
+    function syncCallMe() {
+      var on = !!(callmeCb && callmeCb.checked);
+      if (callmeWrap) {
+        callmeWrap.hidden = !on;
+      }
+      if (callmeCb) {
+        callmeCb.setAttribute("aria-expanded", on ? "true" : "false");
+      }
+      if (!on) {
+        if (callmeName) callmeName.value = "";
+        if (callmePhone) callmePhone.value = "";
+      }
+    }
+    if (callmeCb) {
+      callmeCb.addEventListener("change", function () {
+        syncCallMe();
+        if (statusEl && callmeCb.checked) {
+          statusEl.textContent = "";
+          statusEl.hidden = true;
+        }
+      });
+      syncCallMe();
+    }
+    if (callmeSend) {
+      callmeSend.addEventListener("click", function () {
+        if (statusEl) {
+          statusEl.textContent = "";
+          statusEl.hidden = true;
+        }
+        var nm = String(callmeName ? callmeName.value : "").trim();
+        var ph = String(callmePhone ? callmePhone.value : "").trim();
+        if (!nm) {
+          if (statusEl) {
+            statusEl.hidden = false;
+            statusEl.textContent =
+              "Please add your name—both name and phone are required if you want the coordinator to call you.";
+          }
+          try {
+            if (callmeName) callmeName.focus({ preventScroll: true });
+          } catch (f) {
+            try {
+              if (callmeName) callmeName.focus();
+            } catch (f2) {}
+          }
+          return;
+        }
+        if (!ph) {
+          if (statusEl) {
+            statusEl.hidden = false;
+            statusEl.textContent =
+              "Please add your phone number—both name and phone are required if you want the coordinator to call you.";
+          }
+          try {
+            if (callmePhone) callmePhone.focus({ preventScroll: true });
+          } catch (f3) {
+            try {
+              if (callmePhone) callmePhone.focus();
+            } catch (f4) {}
+          }
+          return;
+        }
+        var email =
+          typeof mmhpGetCoordinatorEmail === "function" ? mmhpGetCoordinatorEmail() : "";
+        if (!email) {
+          window.alert(
+            "We can’t find the coordinator’s email for this site. Ask whoever looks after the calendar to add it in the site settings."
+          );
+          return;
+        }
+        var body =
+          "I'm having trouble with the “request an activity” form and would like a phone call instead.\r\n\r\n" +
+          "Name: " +
+          nm +
+          "\r\n" +
+          "Phone: " +
+          ph +
+          "\r\n";
+        window.location.href = buildMailtoHref(email, CALLME_SUBJECT, body);
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent =
+            "If your email opened, add the coordinator in “To:” if needed, then send. If nothing opened, check that an email app is set up on this device.";
+        }
+      });
+    }
 
     if (locPreset && locOtherWrap && locOther) {
       function syncLoc() {
@@ -546,6 +646,33 @@
       }
       locPreset.addEventListener("change", syncLoc);
       syncLoc();
+    }
+
+    var seasonalCb = document.getElementById("mmhp-request-is-seasonal");
+    var seasonWrap = document.getElementById("mmhp-request-season-dates-wrap");
+    var activeFromEl = document.getElementById("mmhp-request-active-from");
+    var activeToEl = document.getElementById("mmhp-request-active-to");
+
+    function syncSeasonal() {
+      var on = !!(seasonalCb && seasonalCb.checked);
+      if (seasonWrap) {
+        seasonWrap.hidden = !on;
+      }
+      if (activeFromEl) {
+        activeFromEl.required = on;
+        if (!on) activeFromEl.value = "";
+      }
+      if (activeToEl) {
+        activeToEl.required = on;
+        if (!on) activeToEl.value = "";
+      }
+      if (seasonalCb) {
+        seasonalCb.setAttribute("aria-expanded", on ? "true" : "false");
+      }
+    }
+    if (seasonalCb) {
+      seasonalCb.addEventListener("change", syncSeasonal);
+      syncSeasonal();
     }
 
     wireRequestImageSizeWarningOnChange();
@@ -590,14 +717,14 @@
       if (!name) {
         if (statusEl) {
           statusEl.hidden = false;
-          statusEl.textContent = "Add a name for the activity.";
+          statusEl.textContent = "Please add a name for the activity.";
         }
         return;
       }
       if (!description) {
         if (statusEl) {
           statusEl.hidden = false;
-          statusEl.textContent = "Add a short description of what happens at the activity.";
+          statusEl.textContent = "Please write a short description of what happens at the activity.";
         }
         return;
       }
@@ -606,60 +733,87 @@
           statusEl.hidden = false;
           statusEl.textContent =
             locPreset && locPreset.value === "__other__"
-              ? "Say where you’ll meet—in the box under Other."
-              : "Pick where you meet—or choose Other and describe it.";
+              ? "Please say where you meet—in the line under Other."
+              : "Please pick where you meet, or choose Other and describe it.";
         }
         return;
       }
       if (weekdays.length === 0) {
         if (statusEl) {
           statusEl.hidden = false;
-          statusEl.textContent = "Check at least one day this activity usually runs.";
+          statusEl.textContent = "Please tap at least one day the group usually meets.";
         }
         return;
       }
       if (!/^([01]?\d|2[0-3]):[0-5]\d$/.test(startTime)) {
         if (statusEl) {
           statusEl.hidden = false;
-          statusEl.textContent = "Pick a start time using the time box above.";
+          statusEl.textContent = "Please choose a start time with the clock box above.";
         }
         return;
       }
-      if (!featImg || !featImg.files || !featImg.files[0]) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent = "Add a main photo for the activity.";
+
+      var isSeasonal = !!(seasonalCb && seasonalCb.checked);
+      var activeFromMmdd;
+      var activeToMmdd;
+      if (isSeasonal) {
+        var fromVal = activeFromEl ? String(activeFromEl.value || "").trim() : "";
+        var toVal = activeToEl ? String(activeToEl.value || "").trim() : "";
+        activeFromMmdd = dateInputToMmDd(fromVal);
+        activeToMmdd = dateInputToMmDd(toVal);
+        if (!activeFromMmdd || !activeToMmdd) {
+          if (statusEl) {
+            statusEl.hidden = false;
+            statusEl.textContent =
+              "Please pick both a season start and season end, or uncheck the box above if the activity runs year-round.";
+          }
+          return;
         }
-        try {
-          featImg.focus({ preventScroll: true });
-        } catch (f) {
-          try {
-            featImg.focus();
-          } catch (f2) {}
+        if (activeFromMmdd === activeToMmdd) {
+          if (statusEl) {
+            statusEl.hidden = false;
+            statusEl.textContent = "Season start and season end need to be two different calendar days.";
+          }
+          return;
         }
-        return;
+      } else {
+        activeFromMmdd = "01-01";
+        activeToMmdd = "12-31";
       }
 
       function finishSubmitAfterNotice() {
         var keywords = parseKeywords(document.getElementById("mmhp-request-keywords").value);
-        var imagePath = featImg.files[0].name;
+        var imagePath =
+          featImg && featImg.files && featImg.files[0] ? featImg.files[0].name : null;
 
-        var recurrenceDetails =
-          weekdays.length > 0
-            ? {
-                weekdays: weekdays,
-                startTime: startTime,
-              }
-            : {};
+        var adCopyOpt = String(document.getElementById("mmhp-request-adCopy").value || "").trim();
+        var adCopyFinal = adCopyOpt || description;
+
+        var endTimeEl = document.getElementById("mmhp-request-endTime");
+        var endTime = endTimeEl ? String(endTimeEl.value || "").trim() : "";
+        if (endTimeEl && endTimeEl.type === "time" && endTime.length >= 5) {
+          endTime = endTime.slice(0, 5);
+        }
+
+        var recurrenceDetails = {
+          weekdays: weekdays,
+          startTime: startTime,
+        };
+        if (endTime && /^([01]?\d|2[0-3]):[0-5]\d$/.test(endTime)) {
+          recurrenceDetails.endTime = endTime;
+        }
 
         var activityPayload = {
           activityName: name,
           description: description,
-          adCopy: description,
+          adCopy: adCopyFinal,
           location: location,
           recurrenceType: recurrenceType,
           recurrenceDetails: recurrenceDetails,
           isActive: true,
+          isSeasonal: isSeasonal,
+          activeFrom: activeFromMmdd,
+          activeTo: activeToMmdd,
           keywords: keywords,
           imagePath: imagePath,
         };
@@ -669,16 +823,15 @@
         var proposerEmail = String(document.getElementById("mmhp-request-proposer-email").value || "").trim();
         var willingPocEl = document.getElementById("mmhp-request-willing-poc");
         var willingPointOfContact = !!(willingPocEl && willingPocEl.checked);
-        activityPayload.willingPointOfContact = willingPointOfContact;
 
         var jsonBlock = JSON.stringify(activityPayload, null, 2);
         var fullTextBody =
-          "Please review this request to add a recurring activity to the site calendar (activities in mmhp-master-data.json).\r\n\r\n" +
-          "The coordinator should assign id, contactResidentId, and chairpersonId when adding the row.\r\n\r\n" +
-          "--- Suggested JSON object (merge into activities[]) ---\r\n" +
+          "Request to add a recurring activity to the park calendar.\r\n\r\n" +
+          "The coordinator still wires in the activity’s id numbers and who to list as contacts before it is live.\r\n\r\n" +
+          "--- Activity details (structured for the site data file; mmhp-master-data.json activities list) ---\r\n" +
           jsonBlock +
           "\r\n\r\n" +
-          "--- Submitter (not part of JSON) ---\r\n" +
+          "--- Who sent this (for the coordinator; not part of the activity entry) ---\r\n" +
           "Name: " +
           (proposerName || "—") +
           "\r\n" +
@@ -693,22 +846,24 @@
           "\r\n";
 
         var mailtoBodyShort =
-          "Full activity request (JSON + submitter details + photo filenames) is in the attached file(s) or ZIP.\r\n\r\n" +
+          "The attached file or zip has everything the coordinator needs (your wording, optional photos, and a plain summary).\r\n\r\n" +
           "Activity name: " +
           name +
           "\r\n" +
-          "Featured image filename (hint for imagePath): " +
-          imagePath +
+          "Main photo file name: " +
+          (imagePath || "none sent") +
           "\r\n" +
-          "Submitter willing to be point of contact: " +
+          "Willing to be a contact for neighbors: " +
           (willingPointOfContact ? "Yes" : "No") +
           "\r\n\r\n" +
-          "Open mmhp-activity-request-*.txt inside the ZIP, or use the shared text file, then merge the JSON into activities[] in mmhp-master-data.json.\r\n";
+          "If something downloaded, attach it before sending. The text file lists full details for the calendar keeper.\r\n";
 
         var email =
           typeof mmhpGetCoordinatorEmail === "function" ? mmhpGetCoordinatorEmail() : "";
         if (!email) {
-          window.alert("We can’t find the coordinator’s email for this site. The person who maintains the calendar needs to add it.");
+          window.alert(
+            "We can’t find the coordinator’s email for this site. Ask whoever looks after the calendar to add it in the site settings."
+          );
           return;
         }
 

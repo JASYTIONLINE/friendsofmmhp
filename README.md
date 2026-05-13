@@ -217,7 +217,7 @@ HTML under **contents/feature-events/** often includes **embedded** CSS for flye
 
 | Module | Responsibility |
 |--------|----------------|
-| [activities-sidebar.js](assets/js/activities-sidebar.js) | Loads master JSON; renders recurring lists and featured grids according to page context. |
+| [activities-sidebar.js](assets/js/activities-sidebar.js) | Loads master JSON; renders recurring lists and featured grids. Recurring sidebar and **activities export** include only **active** rows whose **activeFrom** / **activeTo** window (when seasonal) contains **today** in the viewer’s local timezone; **isActive:false** always excludes the row. |
 | [event-submit-form.js](assets/js/event-submit-form.js) | Featured / one-time event submission: validation, CSV payload, and attachment / mailto / share flows as implemented. |
 | [request-activity-form.js](assets/js/request-activity-form.js) | Recurring activity request flow. |
 | [feature-events-ics.js](assets/js/feature-events-ics.js) | Calendar download and help UX on feature-event pages that include it. |
@@ -283,7 +283,9 @@ People in the park — **id**, **name**, **phone**, **memberSince**, **isFullTim
 Lots — **id**, **spaceNumber**, **street**, **residentId**, **status** (For Sale | For Rent | Unavailable), **notes**, **imagePath**.
 
 #### activities
-Ongoing programs — **id**, **activityName**, **description**, **chairpersonId**, **coChairIds[]**, **notes**, **imagePath**, plus recurrence-oriented fields as present in JSON (for example **recurrenceType**, **recurrenceDetails** for display).
+Ongoing programs — **id**, **activityName**, **description**, **chairpersonId**, **coChairIds[]**, **notes**, **imagePath**, **isSeasonal** (whether **activeFrom** / **activeTo** define a partial-year window vs year-round `01-01`–`12-31`), **activeFrom** / **activeTo** (month-day strings `MM-DD`), **isActive**, **adCopy**, **keywords[]**, plus recurrence-oriented fields as present in JSON (for example **recurrenceType**, **recurrenceDetails** with optional **endTime** for display).
+
+**Live UI:** [activities-sidebar.js](assets/js/activities-sidebar.js) treats **off-season** by dates (including windows that wrap the year, e.g. Oct–Apr); use **isActive:false** only for an explicit coordinator pause, not for routine off-season hiding.
 
 #### events
 Scheduled occurrences — **id**, **eventName**, **activityId**, **chairpersonId**, **locationId**, **date**, **time**, **recurrenceType** (OneTime | Weekly | Monthly), **isFeatured**, **isActive**, **notes**, **imagePath**.

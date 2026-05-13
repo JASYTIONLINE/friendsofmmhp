@@ -1012,8 +1012,14 @@
   }
 
   #request-activity-main .submission-page__hints {
-    font-size: 0.86em;
+    font-size: clamp(1.08rem, 0.94rem + 0.55vw, 1.24rem);
+    line-height: 1.58;
     max-width: min(42em, 100%);
+    color: var(--color-text);
+  }
+
+  #request-activity-main .submission-page__hints li + li {
+    margin-top: 0.55em;
   }
 
   .event-submit-form__actions {
@@ -2739,8 +2745,7 @@
       max-width: min(42rem, 100%);
     }
 
-    body.page-request-activity #request-activity-main .content-section > p,
-    body.page-request-activity #request-activity-main .submission-page__hints {
+    body.page-request-activity #request-activity-main .content-section > p {
       font-size: clamp(1.03rem, 0.96rem + 2.05vw, 1.12rem);
       line-height: 1.52;
       max-width: min(42rem, 100%);
@@ -2748,9 +2753,18 @@
     }
 
     body.page-request-activity #request-activity-main .submission-page__hints {
+      font-size: clamp(1.16rem, 1.02rem + 3.1vw, 1.34rem);
+      line-height: 1.58;
+      max-width: min(42rem, 100%);
+      margin-inline: auto;
+      color: var(--color-text);
       text-align: left;
       box-sizing: border-box;
       padding-inline: 1.05rem;
+    }
+
+    body.page-request-activity #request-activity-main .submission-page__hints li + li {
+      margin-top: 0.55em;
     }
 
     body.page-request-activity #mmhp-request-activity-form {
