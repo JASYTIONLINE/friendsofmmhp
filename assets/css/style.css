@@ -3847,3 +3847,152 @@
       grid-template-columns: 1fr;
     }
   }
+
+  /* Activity flyers: compact header (title + marquee only), hero = activity image above the fold. */
+  body.page-activity-flyer .site-header.page-activity-flyer-header,
+  body.page-activity-flyer .site-header.header-site.page-activity-flyer-header {
+    padding: 0.4rem 0.65rem 0.5rem;
+    gap: 0.35rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body.page-activity-flyer .page-activity-flyer-header .site-header-title {
+    font-size: clamp(1rem, 0.88rem + 2.2vw, 1.28rem);
+    line-height: 1.2;
+    margin: 0 0 0.15rem;
+    text-align: center;
+  }
+
+  body.page-activity-flyer .site-header-marquee {
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(90deg, var(--color-driftwood-dark), var(--color-driftwood));
+    color: var(--color-white);
+    font-size: clamp(0.65rem, 0.58rem + 1.4vw, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.28rem 0;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 1px 6px var(--color-shadow);
+  }
+
+  body.page-activity-flyer .site-header-marquee__track {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    width: max-content;
+    animation: activity-flyer-marquee-track 24s linear infinite;
+  }
+
+  @keyframes activity-flyer-marquee-track {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body.page-activity-flyer .site-header-marquee__track {
+      animation: none;
+      justify-content: center;
+      width: 100%;
+      flex-wrap: wrap;
+      white-space: normal;
+      text-align: center;
+      text-transform: none;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      font-size: clamp(0.75rem, 0.7rem + 1.2vw, 0.88rem);
+      padding-inline: 0.5rem;
+      box-sizing: border-box;
+    }
+
+    body.page-activity-flyer .site-header-marquee__track span:last-child {
+      display: none;
+    }
+  }
+
+  body.page-activity-flyer .navbar.site-nav {
+    padding-block: 0.35rem;
+  }
+
+  body.page-activity-flyer .site-nav-list {
+    gap: 0.35rem 0.5rem;
+  }
+
+  body.page-activity-flyer .site-main-content.page-activity-flyer-main {
+    padding: 0.75rem 1rem 1.25rem;
+  }
+
+  body.page-activity-flyer .page-activity-flyer-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 0.65rem;
+    padding: var(--space-sm);
+    min-height: 0;
+    background: linear-gradient(145deg, var(--color-ocean-mist), var(--color-white));
+    border-radius: var(--radius-sm);
+  }
+
+  body.page-activity-flyer .page-activity-flyer-hero-img {
+    width: 100%;
+    height: auto;
+    max-height: min(46vh, 380px);
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 14px var(--color-shadow);
+  }
+
+  body.page-activity-flyer .page-activity-flyer-headline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.75rem;
+    margin: 0 0 0.4rem;
+  }
+
+  body.page-activity-flyer .page-activity-flyer-headline .page-activity-flyer-title {
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  body.page-activity-flyer .page-activity-flyer-headline .page-activity-flyer-badge {
+    margin-bottom: 0;
+  }
+
+  body.page-activity-flyer .site-main-content.page-activity-flyer-main > .page-activity-flyer-lead {
+    margin: 0 0 var(--space-md);
+    font-size: clamp(0.95rem, 0.88rem + 1.65vw, 1.05rem);
+    line-height: 1.42;
+    max-width: none;
+  }
+
+  body.page-activity-flyer .page-activity-flyer-stack.page-activity-flyer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-top: 0;
+  }
+
+  body.page-activity-flyer .page-activity-flyer-stack .page-activity-flyer-story {
+    grid-column: 1;
+  }
+
+  @media (max-height: 520px) {
+    body.page-activity-flyer .page-activity-flyer-hero-img {
+      max-height: min(34vh, 220px);
+    }
+
+    body.page-activity-flyer .site-main-content.page-activity-flyer-main > .page-activity-flyer-lead {
+      font-size: 0.92rem;
+      margin-bottom: 0.6rem;
+    }
+  }

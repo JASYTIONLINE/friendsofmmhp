@@ -65,12 +65,16 @@
     ac0024: "horsecollar.html",
     ac0025: "mexican-train-wide.html",
     ac0026: "card-bingo-wide.html",
-    ac0027: "stitch-and-bitch.html",
+    ac0027: "swedish-weaving.html",
+    ac0036: "stitch-and-bitch.html",
     ac0028: "exercise.html",
     ac0029: "icecream-winter.html",
     ac0030: "icecream-summer.html",
     ac0031: "wood-carving-with-steve.html",
     ac0032: "petanque.html",
+    ac0033: "stained-glass-class.html",
+    ac0034: "hand-and-foot.html",
+    ac0035: "computer-class.html",
   };
 
   /** Relative href to the activity flyer for the current page path. */
