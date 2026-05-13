@@ -57,6 +57,50 @@
       .filter(Boolean);
   }
 
+  function getMasterJsonUrl() {
+    var u = document.body && document.body.getAttribute("data-mmhp-master-json");
+    u = u ? String(u).trim() : "";
+    if (u) return u;
+    var aside = document.querySelector("aside.site-sidebar-left[data-mmhp-master-json]");
+    return aside ? String(aside.getAttribute("data-mmhp-master-json") || "").trim() : "";
+  }
+
+  var VACANT_RESIDENT_ID = "re0000";
+
+  function filterSortResidents(raw) {
+    var list = Array.isArray(raw) ? raw.slice() : [];
+    var out = [];
+    for (var i = 0; i < list.length; i++) {
+      var r = list[i];
+      if (!r || typeof r !== "object") continue;
+      var id = String(r.id || "").trim();
+      if (!id || id === VACANT_RESIDENT_ID) continue;
+      var name = String(r.name || "").trim();
+      if (!name) name = id;
+      out.push({ id: id, name: name });
+    }
+    out.sort(function (a, b) {
+      return a.name.localeCompare(b.name, undefined, { sensitivity: "base" });
+    });
+    return out;
+  }
+
+  function fillResidentSelect(selectEl, residents, placeholderText) {
+    if (!selectEl) return;
+    while (selectEl.firstChild) selectEl.removeChild(selectEl.firstChild);
+    var ph = document.createElement("option");
+    ph.value = "";
+    ph.textContent = placeholderText || "Choose a resident…";
+    selectEl.appendChild(ph);
+    for (var i = 0; i < residents.length; i++) {
+      var r = residents[i];
+      var opt = document.createElement("option");
+      opt.value = r.id;
+      opt.textContent = r.name;
+      selectEl.appendChild(opt);
+    }
+  }
+
   function pad2(n) {
     return n < 10 ? "0" + n : String(n);
   }
@@ -376,7 +420,10 @@
   function buildActivityRequestZipBlob(textBody, stamp, imageFiles) {
     if (typeof JSZip === "undefined") return Promise.reject(new Error("JSZip not loaded"));
     var zip = new JSZip();
-    zip.file("mmhp-activity-request-" + stamp + ".txt", textBody);
+    var t = textBody != null ? String(textBody) : "";
+    if (t.length) {
+      zip.file("mmhp-activity-request-" + stamp + ".txt", t);
+    }
     for (var i = 0; i < imageFiles.length; i++) {
       var f = imageFiles[i];
       var prefix = i === 0 ? "featured" : "extra-" + i;
@@ -390,10 +437,9 @@
     var fullBody;
     if (notice) {
       fullBody =
-        "Note about attachments\r\n" +
-        notice +
+        body +
         "\r\n\r\n————————————————————————————\r\n\r\n" +
-        body;
+        notice;
     } else {
       fullBody = body;
     }
@@ -405,13 +451,14 @@
       "&body=" +
       encodeURIComponent(fullBody);
     if (statusEl) {
-      statusEl.textContent =
-        "If your email opened, you’re set—if a file downloaded instead, attach it, then send.";
+      statusEl.textContent = notice
+        ? "If your email opened, attach the downloaded zip (full request + photos), then send."
+        : "If your email opened, send when ready—the full activity request is in the message.";
       statusEl.hidden = false;
     }
   }
 
-  function deliverActivityRequest(coordinatorEmail, subject, mailtoBodyShort, fullTextForZip, statusEl, stamp) {
+  function deliverActivityRequest(coordinatorEmail, subject, mailtoBodyFull, statusEl, stamp) {
     return new Promise(function (resolve, reject) {
       coordinatorEmail =
         coordinatorEmail && String(coordinatorEmail).trim()
@@ -422,17 +469,36 @@
 
       var shareHint =
         "Send to: " + coordinatorEmail + " (add them in To: if your app left it blank).";
-      var txtBlob = new Blob([fullTextForZip], { type: "text/plain;charset=utf-8" });
-      var txtFile = new File([txtBlob], "mmhp-activity-request-" + stamp + ".txt", { type: "text/plain;charset=utf-8" });
       var imageFiles = collectRequestImageFiles();
-      var allFiles = [txtFile].concat(imageFiles);
+      var txtBlob = new Blob([mailtoBodyFull], { type: "text/plain;charset=utf-8" });
+      var txtFile = new File([txtBlob], "mmhp-activity-request-" + stamp + ".txt", {
+        type: "text/plain;charset=utf-8",
+      });
 
       function afterDownloadMailto(footer) {
         window.setTimeout(function () {
-          openMailtoActivityRequest(coordinatorEmail, subject, mailtoBodyShort, statusEl, footer);
+          openMailtoActivityRequest(coordinatorEmail, subject, mailtoBodyFull, statusEl, footer);
           resolve();
         }, 400);
       }
+
+      if (imageFiles.length === 0) {
+        window.setTimeout(function () {
+          openMailtoActivityRequest(coordinatorEmail, subject, mailtoBodyFull, statusEl, null);
+        }, 0);
+        window.setTimeout(function () {
+          downloadBlob(txtBlob, "mmhp-activity-request-" + stamp + ".txt");
+          if (statusEl) {
+            statusEl.textContent =
+              "If your email opened, send when ready. A .txt copy of the full request also downloaded—attach it if the message looks shortened or empty.";
+            statusEl.hidden = false;
+          }
+          resolve();
+        }, 400);
+        return;
+      }
+
+      var allFiles = [txtFile].concat(imageFiles);
 
       var canShareAll = false;
       if (navigator.share && allFiles.length && navigator.canShare) {
@@ -448,12 +514,14 @@
           .share({
             files: allFiles,
             title: subject,
-            text: shareHint,
+            text: mailtoBodyFull + "\r\n\r\n—\r\n" + shareHint,
           })
           .then(function () {
             if (statusEl) {
               statusEl.textContent =
-                "Shared your request. If the To: line is blank, add " + coordinatorEmail + ".";
+                "Shared your request file and photos. In your mail app, add " +
+                coordinatorEmail +
+                " to To: if needed, and confirm the full text appeared—or attach the shared .txt as a backup.";
               statusEl.hidden = false;
             }
             resolve();
@@ -467,7 +535,7 @@
       tryZipOrFallback();
 
       function tryZipOrFallback() {
-        buildActivityRequestZipBlob(fullTextForZip, stamp, imageFiles)
+        buildActivityRequestZipBlob(mailtoBodyFull, stamp, imageFiles)
           .then(function (zipBlob) {
             var zipName = "mmhp-activity-request-" + stamp + ".zip";
             var zipFile = new File([zipBlob], zipName, { type: "application/zip" });
@@ -479,45 +547,43 @@
                 canShareZip = false;
               }
             }
+            var zipFooter =
+              "A zip downloaded (" +
+              zipName +
+              ") with the full request as a .txt inside plus your photos. Attach it as a backup if you like—the same text is in the email above.\r\n";
             if (canShareZip) {
               navigator
                 .share({
                   files: [zipFile],
                   title: subject,
-                  text: shareHint,
+                  text: mailtoBodyFull + "\r\n\r\n—\r\n" + shareHint,
                 })
                 .then(function () {
                   if (statusEl) {
                     statusEl.textContent =
-                      "Shared your request. If the To: line is blank, add " + coordinatorEmail + ".";
+                      "Shared the zip (request + photos). Add " +
+                      coordinatorEmail +
+                      " to To: if needed. Attach the zip if the message body is incomplete.";
                     statusEl.hidden = false;
                   }
                   resolve();
                 })
                 .catch(function () {
                   downloadBlob(zipBlob, zipName);
-                  afterDownloadMailto(
-                    "A zip file downloaded (" +
-                      zipName +
-                      "). Please attach it to your email—it has your request and photos together.\r\n"
-                  );
+                  afterDownloadMailto(zipFooter);
                 });
             } else {
               downloadBlob(zipBlob, zipName);
-              afterDownloadMailto(
-                "A zip file downloaded (" +
-                  zipName +
-                  "). Please attach it to your email—it has your request and photos together.\r\n"
-              );
+              afterDownloadMailto(zipFooter);
             }
           })
           .catch(function () {
             downloadBlob(
-              new Blob([fullTextForZip], { type: "text/plain;charset=utf-8" }),
+              new Blob([mailtoBodyFull], { type: "text/plain;charset=utf-8" }),
               "mmhp-activity-request-" + stamp + ".txt"
             );
             afterDownloadMailto(
-              "A small text file downloaded—attach it, along with your photos if you have any, to the email.\r\n"
+              "Could not build a photo zip. A text file with your full request downloaded—please add your photos manually to the email.\r\n"
             );
           });
       }
@@ -675,6 +741,91 @@
       syncSeasonal();
     }
 
+    var chairSel = document.getElementById("mmhp-request-chairperson-id");
+    var contactSameCb = document.getElementById("mmhp-request-contact-same-as-chair");
+    var contactWrap = document.getElementById("mmhp-request-contact-resident-wrap");
+    var contactSel = document.getElementById("mmhp-request-contact-resident-id");
+    var residentsList = [];
+    var residentsLoadFailed = false;
+
+    function syncContactResidentUi() {
+      if (!contactSameCb || !contactWrap || !contactSel || !chairSel) return;
+      var same = !!contactSameCb.checked;
+      contactWrap.hidden = same;
+      if (same) {
+        contactSel.disabled = true;
+        contactSel.required = false;
+        contactSel.value = "";
+      } else {
+        contactSel.disabled = residentsLoadFailed || !residentsList.length;
+        contactSel.required = true;
+      }
+    }
+
+    if (chairSel && contactSel && contactSameCb) {
+      contactSameCb.addEventListener("change", function () {
+        syncContactResidentUi();
+        if (!contactSameCb.checked && chairSel.value && !contactSel.value) {
+          contactSel.value = chairSel.value;
+        }
+      });
+      chairSel.addEventListener("change", function () {
+        if (!contactSameCb.checked && !contactSel.value && chairSel.value) {
+          contactSel.value = chairSel.value;
+        }
+      });
+    }
+
+    var jsonUrl = getMasterJsonUrl();
+    if (!jsonUrl) {
+      residentsLoadFailed = true;
+      if (chairSel) {
+        fillResidentSelect(chairSel, [], "Resident list unavailable (missing data path)");
+        chairSel.disabled = true;
+      }
+      if (contactSel) {
+        fillResidentSelect(contactSel, [], "—");
+        contactSel.disabled = true;
+      }
+      if (statusEl) {
+        statusEl.hidden = false;
+        statusEl.textContent =
+          "This page couldn’t find the resident list URL. Ask the site maintainer to set data-mmhp-master-json on the page.";
+      }
+    } else {
+      fetch(jsonUrl)
+        .then(function (r) {
+          if (!r.ok) throw new Error("bad status");
+          return r.json();
+        })
+        .then(function (data) {
+          residentsList = filterSortResidents(data && data.residents);
+          if (!chairSel || !contactSel) return;
+          fillResidentSelect(chairSel, residentsList, "Choose who will chair…");
+          fillResidentSelect(contactSel, residentsList, "Choose neighbor contact…");
+          chairSel.disabled = false;
+          syncContactResidentUi();
+        })
+        .catch(function () {
+          residentsLoadFailed = true;
+          if (chairSel) {
+            fillResidentSelect(chairSel, [], "Could not load resident list—refresh the page");
+            chairSel.disabled = true;
+          }
+          if (contactSel) {
+            fillResidentSelect(contactSel, [], "—");
+            contactSel.disabled = true;
+          }
+          if (statusEl) {
+            statusEl.hidden = false;
+            statusEl.textContent =
+              "Could not load the resident list. Check your connection, then refresh the page.";
+          }
+          syncContactResidentUi();
+        });
+    }
+    syncContactResidentUi();
+
     wireRequestImageSizeWarningOnChange();
 
     form.addEventListener("submit", function (ev) {
@@ -781,6 +932,51 @@
         activeToMmdd = "12-31";
       }
 
+      if (!chairSel || residentsLoadFailed || !residentsList.length) {
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent =
+            "The resident list didn’t load. Refresh the page and try again, or contact the coordinator.";
+        }
+        return;
+      }
+      var chairpersonId = String(chairSel.value || "").trim();
+      if (!chairpersonId) {
+        if (statusEl) {
+          statusEl.hidden = false;
+          statusEl.textContent = "Please choose who will chair this activity.";
+        }
+        try {
+          chairSel.focus({ preventScroll: true });
+        } catch (foc) {
+          try {
+            chairSel.focus();
+          } catch (foc2) {}
+        }
+        return;
+      }
+      var contactResidentId;
+      if (contactSameCb && contactSameCb.checked) {
+        contactResidentId = chairpersonId;
+      } else {
+        contactResidentId = String(contactSel ? contactSel.value : "").trim();
+        if (!contactResidentId) {
+          if (statusEl) {
+            statusEl.hidden = false;
+            statusEl.textContent =
+              "Please choose a neighbor point of contact, or check “same as chair” above.";
+          }
+          try {
+            if (contactSel) contactSel.focus({ preventScroll: true });
+          } catch (foc3) {
+            try {
+              if (contactSel) contactSel.focus();
+            } catch (foc4) {}
+          }
+          return;
+        }
+      }
+
       function finishSubmitAfterNotice() {
         var keywords = parseKeywords(document.getElementById("mmhp-request-keywords").value);
         var imagePath =
@@ -816,22 +1012,43 @@
           activeTo: activeToMmdd,
           keywords: keywords,
           imagePath: imagePath,
+          chairpersonId: chairpersonId,
+          contactResidentId: contactResidentId,
         };
 
         var proposerName = String(document.getElementById("mmhp-request-proposer-name").value || "").trim();
         var proposerPhone = String(document.getElementById("mmhp-request-proposer-phone").value || "").trim();
         var proposerEmail = String(document.getElementById("mmhp-request-proposer-email").value || "").trim();
-        var willingPocEl = document.getElementById("mmhp-request-willing-poc");
-        var willingPointOfContact = !!(willingPocEl && willingPocEl.checked);
+
+        var chairLabel = "";
+        var contactLabel = "";
+        if (chairSel && chairSel.selectedOptions && chairSel.selectedOptions[0]) {
+          chairLabel = String(chairSel.selectedOptions[0].textContent || "").trim();
+        }
+        if (contactSameCb && contactSameCb.checked) {
+          contactLabel = chairLabel;
+        } else if (contactSel && contactSel.selectedOptions && contactSel.selectedOptions[0]) {
+          contactLabel = String(contactSel.selectedOptions[0].textContent || "").trim();
+        }
 
         var jsonBlock = JSON.stringify(activityPayload, null, 2);
         var fullTextBody =
           "Request to add a recurring activity to the park calendar.\r\n\r\n" +
-          "The coordinator still wires in the activity’s id numbers and who to list as contacts before it is live.\r\n\r\n" +
+          "The coordinator still assigns the activity id in the site data before it goes live; chair and neighbor contact are included in the JSON block below.\r\n\r\n" +
           "--- Activity details (structured for the site data file; mmhp-master-data.json activities list) ---\r\n" +
           jsonBlock +
           "\r\n\r\n" +
           "--- Who sent this (for the coordinator; not part of the activity entry) ---\r\n" +
+          "Chair (resident): " +
+          (chairLabel || chairpersonId) +
+          " (" +
+          chairpersonId +
+          ")\r\n" +
+          "Neighbor contact (resident): " +
+          (contactLabel || contactResidentId) +
+          " (" +
+          contactResidentId +
+          ")\r\n" +
           "Name: " +
           (proposerName || "—") +
           "\r\n" +
@@ -840,23 +1057,7 @@
           "\r\n" +
           "Email: " +
           (proposerEmail || "—") +
-          "\r\n" +
-          "Willing to be point of contact for neighbors: " +
-          (willingPointOfContact ? "Yes" : "No") +
           "\r\n";
-
-        var mailtoBodyShort =
-          "The attached file or zip has everything the coordinator needs (your wording, optional photos, and a plain summary).\r\n\r\n" +
-          "Activity name: " +
-          name +
-          "\r\n" +
-          "Main photo file name: " +
-          (imagePath || "none sent") +
-          "\r\n" +
-          "Willing to be a contact for neighbors: " +
-          (willingPointOfContact ? "Yes" : "No") +
-          "\r\n\r\n" +
-          "If something downloaded, attach it before sending. The text file lists full details for the calendar keeper.\r\n";
 
         var email =
           typeof mmhpGetCoordinatorEmail === "function" ? mmhpGetCoordinatorEmail() : "";
@@ -871,7 +1072,7 @@
         var stamp = fileDateStamp();
 
         function runDeliver() {
-          deliverActivityRequest(email, subject, mailtoBodyShort, fullTextBody, statusEl, stamp).catch(function () {
+          deliverActivityRequest(email, subject, fullTextBody, statusEl, stamp).catch(function () {
             if (statusEl) {
               statusEl.textContent =
                 "We couldn’t finish sharing or downloading. Check your connection, allow downloads if asked, or try another browser.";

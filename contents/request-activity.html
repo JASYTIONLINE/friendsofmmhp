@@ -279,6 +279,25 @@
               </fieldset>
 
               <fieldset class="event-submit-form__fieldset">
+                <legend class="event-submit-form__legend">Who will chair this activity?</legend>
+                <p class="event-submit-form__help">
+                  The chair is the neighbor who runs the group—starts on time, knows the house rules, and can answer “how does this work today?” questions.
+                  The park coordinator still publishes the calendar; the chair is the volunteer lead for this activity.
+                </p>
+                <div class="event-submit-form__detail-grid">
+                  <div class="event-submit-form__detail-field">
+                    <label class="event-submit-form__field-label" for="mmhp-request-chairperson-id">Resident who will chair</label>
+                    <p class="event-submit-form__field-subtitle">
+                      Pick the person from the park list. If the list doesn’t load, refresh the page or check your connection.
+                    </p>
+                    <select id="mmhp-request-chairperson-id" name="chairpersonId" class="event-submit-form__input" required disabled>
+                      <option value="">Loading resident list…</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="event-submit-form__fieldset">
                 <legend class="event-submit-form__legend">Optional — photos</legend>
                 <p class="event-submit-form__help">
                   A main photo helps neighbors recognize the activity, but you can send the request without one.
@@ -315,7 +334,26 @@
                 <p class="event-submit-form__help">
                   You don’t have to fill this out, but it helps if the coordinator needs to reach you with a quick question.
                 </p>
+                <p class="event-submit-form__help">
+                  <strong>Neighbor point of contact</strong> is who should be listed for residents browsing the schedule—not the park office.
+                  That contact is usually the chair; you can pick someone else if a different neighbor answers questions from the group.
+                </p>
                 <div class="event-submit-form__detail-grid">
+                  <div class="event-submit-form__detail-field">
+                    <label class="event-submit-form__detail-check">
+                      <input type="checkbox" id="mmhp-request-contact-same-as-chair" name="contactSameAsChair" checked />
+                      <span class="event-submit-form__detail-check-text">Neighbor contact is the same person as the chair</span>
+                    </label>
+                  </div>
+                  <div class="event-submit-form__detail-field" id="mmhp-request-contact-resident-wrap" hidden>
+                    <label class="event-submit-form__field-label" for="mmhp-request-contact-resident-id">Neighbor point of contact (resident)</label>
+                    <p class="event-submit-form__field-subtitle">
+                      Choose who neighbors should ask about this activity. Uncheck the box above if the chair and the contact should differ.
+                    </p>
+                    <select id="mmhp-request-contact-resident-id" name="contactResidentId" class="event-submit-form__input" disabled>
+                      <option value="">Loading resident list…</option>
+                    </select>
+                  </div>
                   <div class="event-submit-form__detail-field">
                     <label class="event-submit-form__field-label" for="mmhp-request-proposer-name">Your name</label>
                     <p class="event-submit-form__field-subtitle"><strong>Up to 120 characters.</strong></p>
@@ -330,17 +368,6 @@
                     <label class="event-submit-form__field-label" for="mmhp-request-proposer-email">Email</label>
                     <p class="event-submit-form__field-subtitle"><strong>Up to 120 characters.</strong></p>
                     <input type="email" id="mmhp-request-proposer-email" name="proposerEmail" class="event-submit-form__input" maxlength="120" autocomplete="email" />
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <span class="event-submit-form__field-label">Point of contact</span>
-                    <p class="event-submit-form__field-subtitle">
-                      If someone sees this activity on the schedule and wants to know more, the coordinator can list you so neighbors know who to ask.
-                    </p>
-                    <label class="event-submit-form__detail-check">
-                      <input type="checkbox" id="mmhp-request-willing-poc" name="willingPointOfContact" />
-                      <span class="event-submit-form__detail-check-text">I’m willing to be the point of contact for this activity</span>
-                    </label>
                   </div>
                 </div>
               </fieldset>
@@ -383,10 +410,13 @@
       <h2 id="mmhp-request-submit-notice-modal-title" class="event-submit-modal__title">Ready to send?</h2>
       <div class="event-submit-modal__body">
         <p>
-          Your email app should open with the coordinator’s address and your message ready. On many phones and tablets your photos come along automatically.
+          Your email app should open with the coordinator’s address and the <strong>full activity request</strong> already in the message.
         </p>
         <p>
-          On some computers a file may download first—if that happens, attach it to the email before you send. It’s simply your words and pictures together for the coordinator.
+          A <strong>.txt</strong> copy of the same request usually downloads right after as a backup—attach it if your mail app leaves the body blank or cuts it short.
+        </p>
+        <p>
+          If you added <strong>photos</strong>, a <strong>zip</strong> may download (or your device may offer to share it). That zip holds the same full request as a .txt <em>and</em> your pictures; attach it if you want one file for the coordinator.
         </p>
       </div>
       <div class="event-submit-modal__actions">

@@ -36,7 +36,9 @@
     ac0016: "kitchen-inventory.html",
     ac0023: "martial-arts-training.html",
     ac0025: "mexican-train-wide.html",
+    ac0026: "card-bingo-wide.html",
     ac0027: "stitch-and-bitch.html",
+    ac0028: "exercise.html",
   };
 
   /** Relative href to the activity flyer for the current page path. */
@@ -764,6 +766,98 @@
         openFromImg();
       }
     });
+  }
+
+  var MONTH_NAMES_EN = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  /** MM-DD from master JSON → "Month D" for display (repeats annually). */
+  function mmDdToMonthDayLabel(mmdd) {
+    var m = /^(\d{2})-(\d{2})$/.exec(String(mmdd || "").trim());
+    if (!m) return "";
+    var mo = parseInt(m[1], 10) - 1;
+    var d = parseInt(m[2], 10);
+    if (isNaN(mo) || isNaN(d) || mo < 0 || mo > 11 || d < 1 || d > 31) return "";
+    return MONTH_NAMES_EN[mo] + " " + d;
+  }
+
+  function formatActivitySeasonRangeForFlyer(act) {
+    if (!act) return "";
+    if (act.isSeasonal !== true) {
+      return "Runs year-round on the calendar (not limited to a season).";
+    }
+    var fromL = mmDdToMonthDayLabel(act.activeFrom);
+    var toL = mmDdToMonthDayLabel(act.activeTo);
+    if (!fromL || !toL) {
+      return "Seasonal activity—see the main calendar for active dates.";
+    }
+    return "Season runs " + fromL + " through " + toL + " each year.";
+  }
+
+  /** True when this document is an activity flyer with a schedule block we can hydrate. */
+  function isActivityFlyerSchedulePage() {
+    return !!(
+      document.body &&
+      document.body.classList.contains("page-activity-flyer") &&
+      document.querySelector("main[data-mmhp-activity-id]") &&
+      document.querySelector(".page-activity-flyer-schedule")
+    );
+  }
+
+  function wireActivityFlyerSeasonRange(data) {
+    if (!document.body || !document.body.classList.contains("page-activity-flyer")) return;
+    var main = document.querySelector("main[data-mmhp-activity-id]");
+    if (!main) return;
+    var schedule = main.querySelector(".page-activity-flyer-schedule");
+    if (!schedule) return;
+    var activityId = String(main.getAttribute("data-mmhp-activity-id") || "").trim();
+    var el = schedule.querySelector("[data-mmhp-activity-season]");
+    if (!el) {
+      el = document.createElement("p");
+      el.className = "page-activity-flyer-season-range";
+      el.setAttribute("data-mmhp-activity-season", "");
+      el.setAttribute("aria-live", "polite");
+      var h2sched = schedule.querySelector("h2");
+      if (h2sched) {
+        h2sched.insertAdjacentElement("afterend", el);
+      } else {
+        schedule.insertBefore(el, schedule.firstChild);
+      }
+    }
+    if (!activityId) {
+      el.textContent =
+        "Set data-mmhp-activity-id on main to show season from calendar data.";
+      return;
+    }
+    if (!data || !data.activities || !data.activities.length) {
+      el.textContent =
+        "Could not load calendar data—check the main schedule for season.";
+      return;
+    }
+    var act = null;
+    for (var i = 0; i < data.activities.length; i++) {
+      if (String(data.activities[i].id || "").trim() === activityId) {
+        act = data.activities[i];
+        break;
+      }
+    }
+    if (!act) {
+      el.textContent = "Season not found in calendar data—see the main schedule.";
+      return;
+    }
+    el.textContent = formatActivitySeasonRangeForFlyer(act);
   }
 
   var MAX_FEATURED_CARDS = 2;
@@ -1504,7 +1598,16 @@
     var featuredExportButton = document.getElementById("mmhp-featured-export");
     var activitiesExportButton = document.getElementById("mmhp-activities-export");
 
-    if (!url || (!list && !homeFeaturedGrid && !rightGrid && !featuredExportButton && !activitiesExportButton)) return;
+    if (
+      !url ||
+      (!list &&
+        !homeFeaturedGrid &&
+        !rightGrid &&
+        !featuredExportButton &&
+        !activitiesExportButton &&
+        !isActivityFlyerSchedulePage())
+    )
+      return;
 
     var dataRef = null;
 
@@ -1524,6 +1627,7 @@
         if (featuredExportButton) bindFeaturedExportButton(featuredExportButton, data);
         if (activitiesExportButton) bindActivitiesExportButton(activitiesExportButton, data);
         if (list) renderRecurringSchedule(data, list);
+        wireActivityFlyerSeasonRange(data);
         if (homeFeaturedGrid) {
           requestAnimationFrame(function () {
             requestAnimationFrame(runHomeFit);
@@ -1587,6 +1691,7 @@
           activitiesExportButton.disabled = true;
           activitiesExportButton.textContent = "Export Unavailable";
         }
+        wireActivityFlyerSeasonRange(null);
       });
   }
 

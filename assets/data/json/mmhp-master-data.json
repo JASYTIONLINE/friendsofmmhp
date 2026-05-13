@@ -5172,6 +5172,32 @@
       "isActive": true,
       "adCopy": "Bring your favorite crafting project to our weekly crafting circle. Enjoy good company, learn or teach a new skill, and spend time with neighbors. Examples of crafts include Swedish weaving, animal stuffing, loom knitting, crochet, needlepoint, and macrame. No skill or experience is needed.",
       "isSeasonal": false
+    },
+    {
+      "id": "ac0028",
+      "description": "Exercise with Debbie",
+      "location": "Hall B",
+      "recurrenceType": "Recurring",
+      "recurrenceDetails": {
+        "weekdays": [
+          "Monday",
+          "Tuesday",
+          "Thursday",
+          "Friday"
+        ],
+        "startTime": "08:00",
+        "endTime": "09:00"
+      },
+      "keywords": [],
+      "imagePath": "activity-flyer/exercise-w.png",
+      "activityName": "Exercise Class",
+      "contactResidentId": "re0080",
+      "chairpersonId": "re0080",
+      "activeFrom": "11-01",
+      "activeTo": "03-12",
+      "isActive": true,
+      "adCopy": "Exercise with Debbie",
+      "isSeasonal": true
     }
   ],
   "features": [
