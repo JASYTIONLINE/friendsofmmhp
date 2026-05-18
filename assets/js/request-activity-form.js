@@ -23,7 +23,7 @@
   var MMHP_IMAGE_MAX_SINGLE_BYTES = 4 * 1024 * 1024;
   var MMHP_IMAGE_MAX_TOTAL_BYTES = 16 * 1024 * 1024;
 
-  var LOCATION_OTHER_PLACEHOLDER = "Example: Rec hall, library, pool room…";
+  var LOCATION_OTHER_PLACEHOLDER = "Example: Hall B, library, pool room…";
 
   var __mmhpRequestSizeModalKeyHandler = null;
   var __mmhpRequestSubmitNoticeKeyHandler = null;

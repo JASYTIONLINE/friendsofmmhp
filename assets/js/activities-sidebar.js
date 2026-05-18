@@ -12,6 +12,8 @@
  * (1–5) marks an nth-weekday-of-month pattern (e.g. third Sunday) for sidebar labels and exports. Featured
  * regions sort dated features, hydrate cards with images from assets/images/, and adjust hrefs
  * based on location.pathname so the same script runs on index.html and nested flyer paths.
+ * Recurring exports (TXT/CSV) use one row per activity: comma-separated weekday abbreviations
+ * (e.g. mon,wed,thur), time, season start/end from activeFrom/activeTo (two columns), and location.
  */
 (function () {
   var WEEKDAYS = [
@@ -79,6 +81,11 @@
     ac0038: "meeting-summer.html",
     ac0039: "meeting-winter.html",
     ac0040: "sewing-circle.html",
+    ac0041: "whist.html",
+    ac0042: "watercolor-painting.html",
+    ac0043: "crafting-workshop-linda.html",
+    ac0044: "line-dancing.html",
+    ac0045: "garden-flag-painting.html",
   };
 
   /** Relative href to the activity flyer for the current page path. */
@@ -312,46 +319,114 @@
     });
   }
 
-  function activityExportEntries(act) {
-    var rd = act.recurrenceDetails || {};
+  /** Full weekday name → mon…sun for compact exports. */
+  function weekdayToExportAbbrev(weekdayFull) {
+    var w = String(weekdayFull || "").trim();
+    var idx = WEEKDAYS.indexOf(w);
+    if (idx < 0) {
+      if (!w) return "";
+      var low = w.toLowerCase();
+      return low.length >= 3 ? low.slice(0, 3) : low;
+    }
+    return ["mon", "tue", "wed", "thur", "fri", "sat", "sun"][idx];
+  }
+
+  function sortExportDayAbbrevs(abbrevs) {
+    var order = { mon: 0, tue: 1, wed: 2, thur: 3, fri: 4, sat: 5, sun: 6 };
+    return abbrevs.slice().sort(function (a, b) {
+      var oa = order[a];
+      var ob = order[b];
+      oa = oa !== undefined ? oa : 99;
+      ob = ob !== undefined ? ob : 99;
+      return oa - ob;
+    });
+  }
+
+  /**
+   * One row per activity: comma-separated days (e.g. mon,wed,thu), single time when shared.
+   * Nth weekday of month: "4th mon" prefix when recurrenceDetails.weekOfMonth is set.
+   */
+  function activityExportDaysAndTime(act) {
+    var rd = (act && act.recurrenceDetails) || {};
     var monthWeekN = monthWeekFromRecurrenceDetails(rd);
 
-    function dayLabel(wd) {
-      var w = String(wd || "").trim() || "Day TBA";
-      if (monthWeekN == null) return w;
-      return ordinalWeekOfMonth(monthWeekN) + " " + w + " (monthly)";
-    }
-
-    var entries = [];
     if (Array.isArray(rd.slots) && rd.slots.length > 0) {
-      for (var i = 0; i < rd.slots.length; i++) {
-        var slot = rd.slots[i] || {};
-        var w = String(slot.weekday || slot.day || "").trim();
-        var st = String(slot.startTime || slot.time || "").trim();
-        if (w || st) entries.push({ weekday: dayLabel(w), startTime: st });
+      var timeToDays = {};
+      for (var si = 0; si < rd.slots.length; si++) {
+        var slot = rd.slots[si] || {};
+        var wds = String(slot.weekday || slot.day || "").trim();
+        var stS = String(slot.startTime || slot.time || "").trim();
+        var ab = weekdayToExportAbbrev(wds);
+        var key = stS || "_";
+        if (!timeToDays[key]) timeToDays[key] = [];
+        if (ab) timeToDays[key].push(ab);
       }
-      return entries;
+      var keys = Object.keys(timeToDays);
+      if (keys.length === 0) {
+        return { days: "—", time: "Time TBA" };
+      }
+      var allAb = [];
+      for (var ki = 0; ki < keys.length; ki++) {
+        allAb = allAb.concat(timeToDays[keys[ki]]);
+      }
+      var daysCol = sortExportDayAbbrevs(allAb).join(",");
+      if (keys.length === 1) {
+        var k0 = keys[0];
+        var t0 = k0 === "_" ? "" : k0;
+        return {
+          days: daysCol || "—",
+          time: formatSlotTime(t0) || "Time TBA",
+        };
+      }
+      var timeParts = [];
+      for (var kx = 0; kx < keys.length; kx++) {
+        var kk = keys[kx];
+        var dlist = sortExportDayAbbrevs(timeToDays[kk]).join(",");
+        var tshow = formatSlotTime(kk === "_" ? "" : kk) || "Time TBA";
+        timeParts.push(dlist + " " + tshow);
+      }
+      return { days: daysCol || "—", time: timeParts.join("; ") };
     }
 
     var days = rd.weekdays || rd.daysOfWeek || [];
     var stOne = String(rd.startTime || rd.time || "").trim();
+    var abb = [];
     if (Array.isArray(days) && days.length > 0) {
-      for (var j = 0; j < days.length; j++) {
-        entries.push({ weekday: dayLabel(String(days[j] || "").trim()), startTime: stOne });
+      for (var dj = 0; dj < days.length; dj++) {
+        var ax = weekdayToExportAbbrev(String(days[dj] || "").trim());
+        if (ax) abb.push(ax);
       }
-      return entries;
+      abb = sortExportDayAbbrevs(abb);
+      if (monthWeekN != null) {
+        var ord = ordinalWeekOfMonth(monthWeekN);
+        var dayStr = ord && abb.length ? ord + " " + abb.join(",") : abb.join(",");
+        return {
+          days: dayStr || "—",
+          time: formatSlotTime(stOne) || "Time TBA",
+        };
+      }
+      return {
+        days: abb.join(",") || "—",
+        time: formatSlotTime(stOne) || "Time TBA",
+      };
     }
 
-    entries.push({ weekday: dayLabel("Day TBA"), startTime: stOne });
-    return entries;
+    return { days: "—", time: formatSlotTime(stOne) || "Time TBA" };
   }
 
-  function activityExportLine(act, entry) {
-    var name = String(act.activityName || act.description || act.id || "Activity").trim();
-    var day = String(entry.weekday || "Day TBA").trim();
-    var time = formatSlotTime(entry.startTime || "") || "Time TBA";
-    var location = String(act.location || "").trim() || "Location TBA";
-    return name + " | " + day + " | " + time + " | " + location;
+  /** Season start and end as separate export cells (annual MM-DD window). */
+  function activityExportSeasonStart(act) {
+    if (!act) return "—";
+    if (isYearRoundActivity(act)) return "Year-round";
+    var fromL = mmDdToMonthDayLabel(act.activeFrom);
+    return fromL || "—";
+  }
+
+  function activityExportSeasonEnd(act) {
+    if (!act) return "—";
+    if (isYearRoundActivity(act)) return "Year-round";
+    var toL = mmDdToMonthDayLabel(act.activeTo);
+    return toL || "—";
   }
 
   function sortedActivities(data) {
@@ -379,32 +454,66 @@
       scope === "all"
         ? "All recurring activities in master data (includes inactive and off-season)."
         : "Active for today's date — matches the recurring sidebar.";
-    var lines = ["McAllen Mobile Park Activities", headerNote, "Activity name | Day of week | Time | Hall/location", ""];
+    var lines = [
+      "McAllen Mobile Park Activities",
+      headerNote,
+      "Activity name | Days | Time | Season start | Season end | Hall/location",
+      "",
+    ];
     for (var i = 0; i < rows.length; i++) {
       if (!activityRowShouldExport(rows[i], scope)) continue;
-      var entries = activityExportEntries(rows[i]);
-      for (var j = 0; j < entries.length; j++) {
-        lines.push(activityExportLine(rows[i], entries[j]));
-      }
+      var act = rows[i];
+      var dt = activityExportDaysAndTime(act);
+      var name = String(act.activityName || act.description || act.id || "Activity").trim();
+      var location = String(act.location || "").trim() || "Location TBA";
+      var seasonStart = activityExportSeasonStart(act);
+      var seasonEnd = activityExportSeasonEnd(act);
+      lines.push(
+        name +
+          " | " +
+          dt.days +
+          " | " +
+          dt.time +
+          " | " +
+          seasonStart +
+          " | " +
+          seasonEnd +
+          " | " +
+          location
+      );
     }
     return lines.join("\r\n") + "\r\n";
   }
 
   function activitiesExportCsv(data, scope) {
     var rows = sortedActivities(data);
-    var lines = [["Activity Name", "Day of Week", "Time", "Hall/Location", "Active"].map(csvCell).join(",")];
+    var lines = [
+      [
+        "Activity Name",
+        "Days",
+        "Time",
+        "Season start",
+        "Season end",
+        "Hall/Location",
+        "Active",
+      ]
+        .map(csvCell)
+        .join(","),
+    ];
     for (var i = 0; i < rows.length; i++) {
       if (!activityRowShouldExport(rows[i], scope)) continue;
-      var entries = activityExportEntries(rows[i]);
-      for (var j = 0; j < entries.length; j++) {
-        var act = rows[i];
-        var name = String(act.activityName || act.description || act.id || "Activity").trim();
-        var day = String(entries[j].weekday || "Day TBA").trim();
-        var time = formatSlotTime(entries[j].startTime || "") || "Time TBA";
-        var location = String(act.location || "").trim() || "Location TBA";
-        var active = act.isActive === false ? "false" : "true";
-        lines.push([name, day, time, location, active].map(csvCell).join(","));
-      }
+      var act = rows[i];
+      var dt = activityExportDaysAndTime(act);
+      var name = String(act.activityName || act.description || act.id || "Activity").trim();
+      var seasonStart = activityExportSeasonStart(act);
+      var seasonEnd = activityExportSeasonEnd(act);
+      var location = String(act.location || "").trim() || "Location TBA";
+      var active = act.isActive === false ? "false" : "true";
+      lines.push(
+        [name, dt.days, dt.time, seasonStart, seasonEnd, location, active]
+          .map(csvCell)
+          .join(",")
+      );
     }
     return lines.join("\r\n") + "\r\n";
   }

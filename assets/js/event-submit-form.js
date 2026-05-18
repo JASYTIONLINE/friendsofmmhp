@@ -13,7 +13,7 @@
   var KNOWN_HALLS = { "Hall A": true, "Hall B": true, "Hall C": true };
   /** Must match `<option value="…">` for Other on contents/submit-feature.html. */
   var LOCATION_PRESET_OTHER = "__other__";
-  var LOCATION_OTHER_PLACEHOLDER = "Example: Rec hall, library, pool room…";
+  var LOCATION_OTHER_PLACEHOLDER = "Example: Hall B, library, pool room…";
 
   var TIME_24H_RE = /^\d{1,2}:\d{2}$/;
   /** `<select>` value for open-ended end time → exported as plain language for the coordinator. */

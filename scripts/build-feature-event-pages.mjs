@@ -116,7 +116,7 @@ function buildHtmlForFeature(ev, tpl) {
   const endTime = String(ev.endTime || "").trim();
   const visibleTime = endTime ? `${formatTime12(startTime)} - ${formatTime12(endTime)}` : formatTime12(startTime);
   const timePill = `${visibleTime} · ${loc}`;
-  const imgPath = String(ev.imagePath || "").trim().replace(/^\//, "");
+  const imgPath = String(ev.imagePathFlyer || ev.imagePath || "").trim().replace(/^\//, "");
   const imgSrc = imgPath ? `../../assets/images/${imgPath}` : "../../assets/images/event-flyer/bookme.png";
   const descRaw = String(ev.adCopy || ev.description || "").trim() || repeatableFeatureDescription(ev);
   const descHtml = descRaw

@@ -156,7 +156,7 @@
   }
 
   function imageSrcForFeature(f) {
-    var raw = String((f && f.imagePath) || "").replace(/^\/+/, "").trim();
+    var raw = String((f && (f.imagePathFlyer || f.imagePath)) || "").replace(/^\/+/, "").trim();
     return raw ? "../../assets/images/" + raw : "";
   }
 

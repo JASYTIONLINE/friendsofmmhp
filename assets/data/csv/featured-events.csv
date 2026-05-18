@@ -1,6 +1,6 @@
 # Source of truth for master JSON "features" array. Run: node scripts/build-features-from-csv.mjs
-# Columns: Date (YYYY-MM-DD), Time (e.g. 7:00 PM), Event (card line 1), Activity (card line 2 / category), Description (optional), Location (optional; default Hall A), isFeatured (optional true/false; default true), Image (optional; path under assets/images e.g. event-flyer/name.jpg — Karaoke/DJ rows may omit and use defaults)
-Date,Time,Event,Activity,Description,Location,isFeatured,Image
+# Columns: Date (YYYY-MM-DD), Time, Event, Activity, Description, Location, isFeatured, Image (card / index), EndTime (optional), ImageFlyer (optional wide hero for feature page detail)
+Date,Time,Event,Activity,Description,Location,isFeatured,Image,EndTime,ImageFlyer
 2026-11-07,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-11-14,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-11-21,7:00 PM,DJ Dance,DJ Karaoke,,Hall A,true,event-flyer/djdance.png
@@ -23,10 +23,12 @@ Date,Time,Event,Activity,Description,Location,isFeatured,Image
 2026-05-02,7:00 PM,Dance Party with DJ Dana,Dance,,Hall A,true,event-flyer/djdance.png
 2026-05-09,7:00 PM,Dance Party with DJ Dana,Dance,,Hall A,true,event-flyer/djdance.png
 2026-05-16,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
-2026-05-23,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
-2026-05-30,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
-2026-06-06,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
-2026-06-13,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
+2026-05-23,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png,,
+2026-05-25,12:00 PM,Memorial Day,Community potluck & remembrance,"Join us this Memorial Day as we come together to honor the sacrifices of our Armed Forces and remember those who gave everything in service to our nation. Dinner begins at 12:00 PM and will feature classic hot dogs and authentic Iowa-style Maid-Rite sandwiches. This is a community pot luck, so guests are encouraged to bring their favorite sides and desserts to share. Enjoy good food, great company, and a moment of gratitude as we celebrate the spirit of remembrance and fellowship together.",Hall A,true,event-flyer/memorial-day.png,4:00 PM,event-flyer/memorial-day-w.png
+2026-05-30,7:00 PM,This date available,Saturday evening,"No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",Hall A,true,event-flyer/bookme.png,,
+2026-05-31,1:00 PM,Hall B reserved,Private event,"Hall B is reserved for a private event from 1:00–6:00 PM. Residents are asked to respect the reservation and keep foot traffic through Hall B to a minimum during that time. Halls A and C remain available for other activities.",Hall B,true,temp-img/shower2.png,6:00 PM
+2026-06-06,7:00 PM,Book now,Saturday evening,"No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",Hall A,true,event-flyer/bookme.png
+2026-06-13,7:00 PM,Book now,Saturday evening,"No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",Hall A,true,event-flyer/bookme.png
 2026-06-20,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-06-27,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-07-04,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png

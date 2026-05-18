@@ -213,9 +213,12 @@ function main() {
     n++;
 
     const startTime = parseTimeTo24h(timeRaw);
+    const endTimeRaw = String(o.EndTime != null ? o.EndTime : "").trim();
+    const endTime = endTimeRaw ? parseTimeTo24h(endTimeRaw) : addHours24h(startTime, 3);
     const eventName = deriveListingTitle(cardLine1, cardLine2);
     const cardLine3 = formatCardLine3FromIso(date);
     const imagePath = resolveImagePath(cardLine1, cardLine2, o.Image);
+    const imagePathFlyer = resolveImagePath("", "", o.ImageFlyer != null ? o.ImageFlyer : "");
     const adCopy = desc || repeatableAdCopy(cardLine1, cardLine2, imagePath);
 
     const row = {
@@ -223,7 +226,7 @@ function main() {
       id: featureId,
       date,
       startTime,
-      endTime: addHours24h(startTime, 3),
+      endTime,
       location,
       isActive: true,
       isFeatured,
@@ -235,6 +238,7 @@ function main() {
     };
     if (desc) row.description = desc;
     if (imagePath) row.imagePath = imagePath;
+    if (imagePathFlyer) row.imagePathFlyer = imagePathFlyer;
     features.push(row);
   }
 
