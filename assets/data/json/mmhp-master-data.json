@@ -6148,6 +6148,24 @@
     {
       "featureId": "fe0023",
       "id": "fe0023",
+      "date": "2026-05-17",
+      "startTime": "13:00",
+      "endTime": "13:30",
+      "location": "Hall B",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "Ice Cream Social",
+      "cardLine2": "3rd Sunday monthly",
+      "cardLine3": "May 17 2026",
+      "eventName": "Ice Cream Social — 3rd Sunday monthly",
+      "adCopy": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "description": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "imagePath": "event-flyer/icecream.png",
+      "imagePathFlyer": "event-flyer/icecream-w.png"
+    },
+    {
+      "featureId": "fe0024",
+      "id": "fe0024",
       "date": "2026-05-23",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6162,8 +6180,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0024",
-      "id": "fe0024",
+      "featureId": "fe0025",
+      "id": "fe0025",
       "date": "2026-05-25",
       "startTime": "12:00",
       "endTime": "16:00",
@@ -6180,8 +6198,8 @@
       "imagePathFlyer": "event-flyer/memorial-day-w.png"
     },
     {
-      "featureId": "fe0025",
-      "id": "fe0025",
+      "featureId": "fe0026",
+      "id": "fe0026",
       "date": "2026-05-30",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6197,8 +6215,8 @@
       "imagePath": "event-flyer/bookme.png"
     },
     {
-      "featureId": "fe0026",
-      "id": "fe0026",
+      "featureId": "fe0027",
+      "id": "fe0027",
       "date": "2026-05-31",
       "startTime": "13:00",
       "endTime": "18:00",
@@ -6214,8 +6232,8 @@
       "imagePath": "temp-img/shower2.png"
     },
     {
-      "featureId": "fe0027",
-      "id": "fe0027",
+      "featureId": "fe0028",
+      "id": "fe0028",
       "date": "2026-06-06",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6231,8 +6249,8 @@
       "imagePath": "event-flyer/bookme.png"
     },
     {
-      "featureId": "fe0028",
-      "id": "fe0028",
+      "featureId": "fe0029",
+      "id": "fe0029",
       "date": "2026-06-13",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6248,8 +6266,8 @@
       "imagePath": "event-flyer/bookme.png"
     },
     {
-      "featureId": "fe0029",
-      "id": "fe0029",
+      "featureId": "fe0030",
+      "id": "fe0030",
       "date": "2026-06-20",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6264,8 +6282,26 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0030",
-      "id": "fe0030",
+      "featureId": "fe0031",
+      "id": "fe0031",
+      "date": "2026-06-21",
+      "startTime": "13:00",
+      "endTime": "13:30",
+      "location": "Hall B",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "Ice Cream Social",
+      "cardLine2": "3rd Sunday monthly",
+      "cardLine3": "Jun 21 2026",
+      "eventName": "Ice Cream Social — 3rd Sunday monthly",
+      "adCopy": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "description": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "imagePath": "event-flyer/icecream.png",
+      "imagePathFlyer": "event-flyer/icecream-w.png"
+    },
+    {
+      "featureId": "fe0032",
+      "id": "fe0032",
       "date": "2026-06-27",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6280,8 +6316,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0031",
-      "id": "fe0031",
+      "featureId": "fe0033",
+      "id": "fe0033",
       "date": "2026-07-04",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6296,8 +6332,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0032",
-      "id": "fe0032",
+      "featureId": "fe0034",
+      "id": "fe0034",
       "date": "2026-07-11",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6312,8 +6348,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0033",
-      "id": "fe0033",
+      "featureId": "fe0035",
+      "id": "fe0035",
       "date": "2026-07-18",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6328,8 +6364,26 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0034",
-      "id": "fe0034",
+      "featureId": "fe0036",
+      "id": "fe0036",
+      "date": "2026-07-19",
+      "startTime": "13:00",
+      "endTime": "13:30",
+      "location": "Hall B",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "Ice Cream Social",
+      "cardLine2": "3rd Sunday monthly",
+      "cardLine3": "Jul 19 2026",
+      "eventName": "Ice Cream Social — 3rd Sunday monthly",
+      "adCopy": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "description": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "imagePath": "event-flyer/icecream.png",
+      "imagePathFlyer": "event-flyer/icecream-w.png"
+    },
+    {
+      "featureId": "fe0037",
+      "id": "fe0037",
       "date": "2026-07-25",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6344,8 +6398,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0035",
-      "id": "fe0035",
+      "featureId": "fe0038",
+      "id": "fe0038",
       "date": "2026-08-01",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6360,8 +6414,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0036",
-      "id": "fe0036",
+      "featureId": "fe0039",
+      "id": "fe0039",
       "date": "2026-08-08",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6376,8 +6430,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0037",
-      "id": "fe0037",
+      "featureId": "fe0040",
+      "id": "fe0040",
       "date": "2026-08-15",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6392,8 +6446,26 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0038",
-      "id": "fe0038",
+      "featureId": "fe0041",
+      "id": "fe0041",
+      "date": "2026-08-16",
+      "startTime": "13:00",
+      "endTime": "13:30",
+      "location": "Hall B",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "Ice Cream Social",
+      "cardLine2": "3rd Sunday monthly",
+      "cardLine3": "Aug 16 2026",
+      "eventName": "Ice Cream Social — 3rd Sunday monthly",
+      "adCopy": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "description": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "imagePath": "event-flyer/icecream.png",
+      "imagePathFlyer": "event-flyer/icecream-w.png"
+    },
+    {
+      "featureId": "fe0042",
+      "id": "fe0042",
       "date": "2026-08-22",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6408,8 +6480,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0039",
-      "id": "fe0039",
+      "featureId": "fe0043",
+      "id": "fe0043",
       "date": "2026-08-29",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6424,8 +6496,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0040",
-      "id": "fe0040",
+      "featureId": "fe0044",
+      "id": "fe0044",
       "date": "2026-09-05",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6440,8 +6512,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0041",
-      "id": "fe0041",
+      "featureId": "fe0045",
+      "id": "fe0045",
       "date": "2026-09-12",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6456,8 +6528,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0042",
-      "id": "fe0042",
+      "featureId": "fe0046",
+      "id": "fe0046",
       "date": "2026-09-19",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6472,8 +6544,26 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0043",
-      "id": "fe0043",
+      "featureId": "fe0047",
+      "id": "fe0047",
+      "date": "2026-09-20",
+      "startTime": "13:00",
+      "endTime": "13:30",
+      "location": "Hall B",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "Ice Cream Social",
+      "cardLine2": "3rd Sunday monthly",
+      "cardLine3": "Sep 20 2026",
+      "eventName": "Ice Cream Social — 3rd Sunday monthly",
+      "adCopy": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "description": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "imagePath": "event-flyer/icecream.png",
+      "imagePathFlyer": "event-flyer/icecream-w.png"
+    },
+    {
+      "featureId": "fe0048",
+      "id": "fe0048",
       "date": "2026-09-26",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6488,8 +6578,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0044",
-      "id": "fe0044",
+      "featureId": "fe0049",
+      "id": "fe0049",
       "date": "2026-10-03",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6504,8 +6594,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0045",
-      "id": "fe0045",
+      "featureId": "fe0050",
+      "id": "fe0050",
       "date": "2026-10-10",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6520,8 +6610,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0046",
-      "id": "fe0046",
+      "featureId": "fe0051",
+      "id": "fe0051",
       "date": "2026-10-17",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6536,8 +6626,26 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0047",
-      "id": "fe0047",
+      "featureId": "fe0052",
+      "id": "fe0052",
+      "date": "2026-10-18",
+      "startTime": "13:00",
+      "endTime": "13:30",
+      "location": "Hall B",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "Ice Cream Social",
+      "cardLine2": "3rd Sunday monthly",
+      "cardLine3": "Oct 18 2026",
+      "eventName": "Ice Cream Social — 3rd Sunday monthly",
+      "adCopy": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "description": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "imagePath": "event-flyer/icecream.png",
+      "imagePathFlyer": "event-flyer/icecream-w.png"
+    },
+    {
+      "featureId": "fe0053",
+      "id": "fe0053",
       "date": "2026-10-24",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6552,8 +6660,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0048",
-      "id": "fe0048",
+      "featureId": "fe0054",
+      "id": "fe0054",
       "date": "2026-10-31",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6568,8 +6676,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0049",
-      "id": "fe0049",
+      "featureId": "fe0055",
+      "id": "fe0055",
       "date": "2026-04-29",
       "startTime": "19:00",
       "endTime": "22:00",

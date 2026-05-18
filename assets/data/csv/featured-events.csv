@@ -22,7 +22,8 @@ Date,Time,Event,Activity,Description,Location,isFeatured,Image,EndTime,ImageFlye
 2027-03-17,7:00 PM,St Patricks Day Party,Talent Show,Talent show with a focus on the green luck theme,Hall A,true,event-flyer/st-patty-party.jpg
 2026-05-02,7:00 PM,Dance Party with DJ Dana,Dance,,Hall A,true,event-flyer/djdance.png
 2026-05-09,7:00 PM,Dance Party with DJ Dana,Dance,,Hall A,true,event-flyer/djdance.png
-2026-05-16,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
+2026-05-16,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png,,
+2026-05-17,1:00 PM,Ice Cream Social,3rd Sunday monthly,"Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",Hall B,true,event-flyer/icecream.png,1:30 PM,event-flyer/icecream-w.png
 2026-05-23,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png,,
 2026-05-25,12:00 PM,Memorial Day,Community potluck & remembrance,"Join us this Memorial Day as we come together to honor the sacrifices of our Armed Forces and remember those who gave everything in service to our nation. Dinner begins at 12:00 PM and will feature classic hot dogs and authentic Iowa-style Maid-Rite sandwiches. This is a community pot luck, so guests are encouraged to bring their favorite sides and desserts to share. Enjoy good food, great company, and a moment of gratitude as we celebrate the spirit of remembrance and fellowship together.",Hall A,true,event-flyer/memorial-day.png,4:00 PM,event-flyer/memorial-day-w.png
 2026-05-30,7:00 PM,This date available,Saturday evening,"No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",Hall A,true,event-flyer/bookme.png,,
@@ -30,23 +31,28 @@ Date,Time,Event,Activity,Description,Location,isFeatured,Image,EndTime,ImageFlye
 2026-06-06,7:00 PM,Book now,Saturday evening,"No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",Hall A,true,event-flyer/bookme.png
 2026-06-13,7:00 PM,Book now,Saturday evening,"No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",Hall A,true,event-flyer/bookme.png
 2026-06-20,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
+2026-06-21,1:00 PM,Ice Cream Social,3rd Sunday monthly,"Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",Hall B,true,event-flyer/icecream.png,1:30 PM,event-flyer/icecream-w.png
 2026-06-27,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-07-04,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-07-11,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-07-18,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
+2026-07-19,1:00 PM,Ice Cream Social,3rd Sunday monthly,"Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",Hall B,true,event-flyer/icecream.png,1:30 PM,event-flyer/icecream-w.png
 2026-07-25,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-08-01,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-08-08,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-08-15,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
+2026-08-16,1:00 PM,Ice Cream Social,3rd Sunday monthly,"Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",Hall B,true,event-flyer/icecream.png,1:30 PM,event-flyer/icecream-w.png
 2026-08-22,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-08-29,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-09-05,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-09-12,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-09-19,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
+2026-09-20,1:00 PM,Ice Cream Social,3rd Sunday monthly,"Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",Hall B,true,event-flyer/icecream.png,1:30 PM,event-flyer/icecream-w.png
 2026-09-26,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-10-03,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-10-10,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-10-17,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
+2026-10-18,1:00 PM,Ice Cream Social,3rd Sunday monthly,"Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",Hall B,true,event-flyer/icecream.png,1:30 PM,event-flyer/icecream-w.png
 2026-10-24,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-10-31,7:00 PM,Karaoke,Karaoke,,Hall A,true,event-flyer/karaoke.png
 2026-04-29,7:00 PM,Encore Karaoke,Special Musical Review,Encore Karaoke with a special musical review.,Hall A,true,event-flyer/encore-karaoke.png
