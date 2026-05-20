@@ -6184,8 +6184,8 @@
       "id": "fe0025",
       "date": "2026-05-25",
       "startTime": "12:00",
-      "endTime": "16:00",
-      "location": "Hall A",
+      "endTime": "13:00",
+      "location": "Hall B",
       "isActive": true,
       "isFeatured": true,
       "cardLine1": "Memorial Day",
@@ -6286,7 +6286,25 @@
       "id": "fe0031",
       "date": "2026-06-21",
       "startTime": "13:00",
-      "endTime": "13:30",
+      "endTime": "13:45",
+      "location": "Hall A",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "Father's Day Potluck",
+      "cardLine2": "Father's Day dinner",
+      "cardLine3": "Jun 21 2026",
+      "eventName": "Father's Day Potluck — Father's Day dinner",
+      "adCopy": "Father's Day at McAllen Mobile Park belongs to the dads, granddads, stepdads, uncles, and every father-figure who shows up for this community year after year. Join us for a hearty potluck dinner with neighbors who know how to cook and how to tell a story—bring a favorite dish to share, pull up a chair, and pass the plates with pride. Please bring your own plates, silverware, and drinks. Stop by Hall A in the days ahead to sign up and give us a head count so we can welcome everyone comfortably. Dinner begins at 1:00 PM. When the table quiets down, wander over to Hall B for our monthly ice cream social at 1:45 PM—cones, bowls, and a sweet finish to the afternoon together.",
+      "description": "Father's Day at McAllen Mobile Park belongs to the dads, granddads, stepdads, uncles, and every father-figure who shows up for this community year after year. Join us for a hearty potluck dinner with neighbors who know how to cook and how to tell a story—bring a favorite dish to share, pull up a chair, and pass the plates with pride. Please bring your own plates, silverware, and drinks. Stop by Hall A in the days ahead to sign up and give us a head count so we can welcome everyone comfortably. Dinner begins at 1:00 PM. When the table quiets down, wander over to Hall B for our monthly ice cream social at 1:45 PM—cones, bowls, and a sweet finish to the afternoon together.",
+      "imagePath": "event-flyer/fathers-day-w.png",
+      "imagePathFlyer": "event-flyer/fathers-day-w.png"
+    },
+    {
+      "featureId": "fe0032",
+      "id": "fe0032",
+      "date": "2026-06-21",
+      "startTime": "13:45",
+      "endTime": "14:15",
       "location": "Hall B",
       "isActive": true,
       "isFeatured": true,
@@ -6294,14 +6312,14 @@
       "cardLine2": "3rd Sunday monthly",
       "cardLine3": "Jun 21 2026",
       "eventName": "Ice Cream Social — 3rd Sunday monthly",
-      "adCopy": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
-      "description": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "adCopy": "On this Sunday we scoop right after the Father's Day potluck wraps in Hall A. Same friendly third-Sunday tradition May through October: free ice cream in Hall B, flavor of the week, cones and bowls, 1:45–2:15 PM. Kids and residents welcome; no fee or RSVP.",
+      "description": "On this Sunday we scoop right after the Father's Day potluck wraps in Hall A. Same friendly third-Sunday tradition May through October: free ice cream in Hall B, flavor of the week, cones and bowls, 1:45–2:15 PM. Kids and residents welcome; no fee or RSVP.",
       "imagePath": "event-flyer/icecream.png",
       "imagePathFlyer": "event-flyer/icecream-w.png"
     },
     {
-      "featureId": "fe0032",
-      "id": "fe0032",
+      "featureId": "fe0033",
+      "id": "fe0033",
       "date": "2026-06-27",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6316,8 +6334,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0033",
-      "id": "fe0033",
+      "featureId": "fe0034",
+      "id": "fe0034",
       "date": "2026-07-04",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6332,8 +6350,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0034",
-      "id": "fe0034",
+      "featureId": "fe0035",
+      "id": "fe0035",
       "date": "2026-07-11",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6348,8 +6366,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0035",
-      "id": "fe0035",
+      "featureId": "fe0036",
+      "id": "fe0036",
       "date": "2026-07-18",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6364,8 +6382,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0036",
-      "id": "fe0036",
+      "featureId": "fe0037",
+      "id": "fe0037",
       "date": "2026-07-19",
       "startTime": "13:00",
       "endTime": "13:30",
@@ -6382,8 +6400,8 @@
       "imagePathFlyer": "event-flyer/icecream-w.png"
     },
     {
-      "featureId": "fe0037",
-      "id": "fe0037",
+      "featureId": "fe0038",
+      "id": "fe0038",
       "date": "2026-07-25",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6398,8 +6416,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0038",
-      "id": "fe0038",
+      "featureId": "fe0039",
+      "id": "fe0039",
       "date": "2026-08-01",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6414,8 +6432,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0039",
-      "id": "fe0039",
+      "featureId": "fe0040",
+      "id": "fe0040",
       "date": "2026-08-08",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6430,8 +6448,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0040",
-      "id": "fe0040",
+      "featureId": "fe0041",
+      "id": "fe0041",
       "date": "2026-08-15",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6446,8 +6464,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0041",
-      "id": "fe0041",
+      "featureId": "fe0042",
+      "id": "fe0042",
       "date": "2026-08-16",
       "startTime": "13:00",
       "endTime": "13:30",
@@ -6464,8 +6482,8 @@
       "imagePathFlyer": "event-flyer/icecream-w.png"
     },
     {
-      "featureId": "fe0042",
-      "id": "fe0042",
+      "featureId": "fe0043",
+      "id": "fe0043",
       "date": "2026-08-22",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6480,8 +6498,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0043",
-      "id": "fe0043",
+      "featureId": "fe0044",
+      "id": "fe0044",
       "date": "2026-08-29",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6496,8 +6514,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0044",
-      "id": "fe0044",
+      "featureId": "fe0045",
+      "id": "fe0045",
       "date": "2026-09-05",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6512,8 +6530,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0045",
-      "id": "fe0045",
+      "featureId": "fe0046",
+      "id": "fe0046",
       "date": "2026-09-12",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6528,8 +6546,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0046",
-      "id": "fe0046",
+      "featureId": "fe0047",
+      "id": "fe0047",
       "date": "2026-09-19",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6544,8 +6562,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0047",
-      "id": "fe0047",
+      "featureId": "fe0048",
+      "id": "fe0048",
       "date": "2026-09-20",
       "startTime": "13:00",
       "endTime": "13:30",
@@ -6562,8 +6580,8 @@
       "imagePathFlyer": "event-flyer/icecream-w.png"
     },
     {
-      "featureId": "fe0048",
-      "id": "fe0048",
+      "featureId": "fe0049",
+      "id": "fe0049",
       "date": "2026-09-26",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6578,8 +6596,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0049",
-      "id": "fe0049",
+      "featureId": "fe0050",
+      "id": "fe0050",
       "date": "2026-10-03",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6594,8 +6612,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0050",
-      "id": "fe0050",
+      "featureId": "fe0051",
+      "id": "fe0051",
       "date": "2026-10-10",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6610,8 +6628,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0051",
-      "id": "fe0051",
+      "featureId": "fe0052",
+      "id": "fe0052",
       "date": "2026-10-17",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6626,8 +6644,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0052",
-      "id": "fe0052",
+      "featureId": "fe0053",
+      "id": "fe0053",
       "date": "2026-10-18",
       "startTime": "13:00",
       "endTime": "13:30",
@@ -6644,8 +6662,8 @@
       "imagePathFlyer": "event-flyer/icecream-w.png"
     },
     {
-      "featureId": "fe0053",
-      "id": "fe0053",
+      "featureId": "fe0054",
+      "id": "fe0054",
       "date": "2026-10-24",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6660,8 +6678,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0054",
-      "id": "fe0054",
+      "featureId": "fe0055",
+      "id": "fe0055",
       "date": "2026-10-31",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6676,8 +6694,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0055",
-      "id": "fe0055",
+      "featureId": "fe0056",
+      "id": "fe0056",
       "date": "2026-04-29",
       "startTime": "19:00",
       "endTime": "22:00",
