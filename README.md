@@ -121,7 +121,7 @@ mmpeventcalendar/
 │   ├── js/                       # sidebar, forms, ICS helper, coordinator config
 │   ├── data/
 │   │   ├── json/mmhp-master-data.json
-│   │   └── csv/                  # featured-events.csv, calendar import/export CSVs, export/
+│   │   └── csv/export/           # generated audit CSVs only
 │   ├── images/                   # banners; event-flyer/; activity-flyer/
 │   └── docs/                     # tracked capstone narrative (case study)
 ```
@@ -147,12 +147,12 @@ mmpeventcalendar/
 | [contents/activity-flyer/](contents/activity-flyer/) | **Recurring-activity** explainers (typical week pattern, not one night); optional **data-mmhp-activity-id** ties copy to **activities[]** in master JSON. Individual pages are linked below. |
 | [assets/css/style.css](assets/css/style.css) | **One stylesheet:** tokens, layout, components, page-scoped overrides (**page-home**, **page-activity-flyer**, etc.). |
 | [assets/js/](assets/js/) | **Client behavior:** master JSON load, sidebar and cards, event and activity request forms, feature-event ICS, coordinator mailto hooks. |
-| [assets/data/json/](assets/data/json/) | **mmhp-master-data.json** — browser-facing aggregate for sidebar and forms. |
-| [assets/data/csv/](assets/data/csv/) | **featured-events.csv** (editorial/build input), Google Calendar–oriented CSVs, **export/** (optional local exports; generated CSVs under **export/** may be gitignored—folder kept via [.gitkeep](assets/data/csv/export/.gitkeep)). |
+| [assets/data/json/](assets/data/json/) | **mmhp-master-data.json** — the single editable source of truth for activities, featured events, sidebar cards, and forms. |
+| [assets/data/csv/export/](assets/data/csv/export/) | Generated audit CSVs only. These are review outputs for Excel / Google Sheets, not editable source data; the folder is kept via [.gitkeep](assets/data/csv/export/.gitkeep). |
 | [assets/images/](assets/images/) | Park banner, **event-flyer/**, **activity-flyer/**, favicon, misc art. |
 | [assets/docs/](assets/docs/) | Capstone **case study** — [**case-study.md**](assets/docs/case-study.md). |
 | **/docs/** (repo root only, gitignored) | Optional local scratch path only; not used for tracked deliverables. |
-| [scripts/](scripts/) | **build-features-from-csv.mjs**, **build-feature-event-pages.mjs**, **audit-local-html-links.mjs**; Python helpers for recurring expansion and Google Calendar CSV export—run locally, not at runtime. |
+| [scripts/](scripts/) | **build-feature-event-pages.mjs**, **export-features-to-csv.mjs**, **audit-local-html-links.mjs**; local tooling that reads the JSON source of truth and does not run at site runtime. |
 
 ### Activity flyer pages
 
@@ -231,11 +231,11 @@ Scripts load **per page** as needed (**defer** on external scripts). The master 
 
 ## Data and automation
 
-- **Master JSON** — [mmhp-master-data.json](assets/data/json/mmhp-master-data.json) is the **browser-facing** aggregate: activities, features, and related entities consumed by sidebar and form logic.
+- **Master JSON** — [mmhp-master-data.json](assets/data/json/mmhp-master-data.json) is the **single editable source of truth**: activities, features, and related entities consumed by sidebar and form logic. Make event and activity data changes here.
 
-- **Featured CSV** — [featured-events.csv](assets/data/csv/featured-events.csv) supports editorial workflows; [build-features-from-csv.mjs](scripts/build-features-from-csv.mjs) merges approved rows into master JSON **features[]** (and related fields) for republication.
+- **Audit CSV export** — run `npm run export:features` to generate [featured-events-audit.csv](assets/data/csv/export/featured-events-audit.csv) from the current JSON for review in Excel / Google Sheets. Treat this CSV as disposable output, not an input file.
 
-- **Other scripts** — [scripts/](scripts/) also holds Node tooling (feature page generation, featured CSV merge, local HTML link audit) and Python helpers for Google Calendar–oriented CSV generation and recurring expansions. These are **offline** tools; they are not required at runtime for the static pages.
+- **Other scripts** — [scripts/](scripts/) also holds Node tooling for feature page generation and local HTML link audits. These are **offline** tools; they are not required at runtime for the static pages.
 
 The **center** calendar on the home page is typically a **Google Calendar embed**. It operates **alongside** the site’s JSON-driven cards and lists rather than as a server dependency of this codebase—a design that keeps **familiar calendar UX** for subscribers while still allowing **curated** sidebar content from JSON.
 
