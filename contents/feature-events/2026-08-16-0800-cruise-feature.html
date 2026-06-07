@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mexico Cruise — MSC Seascape · 7 nights | McAllen Mobile Park Events</title>
+  <meta name="description" content="7-night Mexico cruise aboard MSC Seascape from Galveston, August 16, 2026. Group trip info, example pricing, and how to join McAllen Mobile Park neighbors." />
+  <link rel="icon" type="image/svg+xml" href="../../assets/images/favicon.svg" />
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <style>
+    .feature-events-page {
+      overflow-x: clip;
+      --feature-events-max: min(100%, 56rem);
+      --feature-events-pad: clamp(1rem, 4vw, 2rem);
+      --feature-events-accent: var(--color-driftwood-dark);
+      --feature-events-glow: rgba(135, 206, 235, 0.45);
+      --cruise-body-size: clamp(1rem, 2.2vw, 1.12rem);
+      --cruise-heading-size: clamp(1.75rem, 4vw, 2.35rem);
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse 120% 80% at 50% -20%, var(--feature-events-glow), transparent 55%),
+        linear-gradient(180deg, var(--color-ocean-mist) 0%, var(--color-white) 28%, var(--color-sand) 120%);
+      margin: 0;
+    }
+
+    @media (min-width: 900px) {
+      .feature-events-page--cruise {
+        --feature-events-max: min(94vw, 1200px);
+        --feature-events-pad: clamp(1.25rem, 2.5vw, 2.5rem);
+        --cruise-body-size: clamp(1.08rem, 1.15vw, 1.22rem);
+        --cruise-heading-size: clamp(2rem, 2.8vw, 2.75rem);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .feature-events-page--cruise {
+        --feature-events-max: min(96vw, 1440px);
+        --cruise-body-size: 1.2rem;
+        --cruise-heading-size: 2.85rem;
+      }
+    }
+
+    .feature-events-page * { box-sizing: border-box; }
+
+    .feature-events-page h1,
+    .feature-events-page h2,
+    .feature-events-page h3 { text-align: left; }
+
+    .feature-events-page p,
+    .feature-events-page li {
+      font-size: var(--cruise-body-size);
+      line-height: 1.55;
+      color: var(--color-text);
+    }
+
+    .feature-events-banner--cruise img {
+      width: 100%;
+      max-height: min(52vh, 480px);
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    @media (min-width: 900px) {
+      .feature-events-page--cruise .feature-events-banner--cruise img {
+        max-height: min(48vh, 560px);
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .feature-events-page--cruise .feature-events-banner--cruise img {
+        max-height: min(42vh, 620px);
+      }
+    }
+
+    .feature-events-banner {
+      position: relative;
+      overflow: hidden;
+      border-bottom: 4px solid var(--color-sand-dark);
+      box-shadow: 0 8px 32px var(--color-shadow);
+    }
+
+    .feature-events-banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(20, 45, 70, 0.55) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    .feature-events-banner-marquee {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      padding: var(--feature-events-pad);
+      padding-bottom: clamp(1.25rem, 4vw, 2rem);
+      max-width: none;
+      margin: 0;
+      text-align: center;
+    }
+
+    .feature-events-banner-marquee p {
+      margin: 0 auto;
+      max-width: var(--feature-events-max);
+      font-size: clamp(1.1rem, 3vw, 1.65rem);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-white);
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+    }
+
+    .feature-events-wave {
+      height: 14px;
+      background: repeating-linear-gradient(-45deg, var(--color-sand), var(--color-sand) 6px, var(--color-sand-dark) 6px, var(--color-sand-dark) 12px);
+      opacity: 0.85;
+    }
+
+    .feature-events-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 1rem;
+      padding: var(--space-lg) var(--feature-events-pad);
+      max-width: var(--feature-events-max);
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .feature-events-actions a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: 0.65rem 1.5rem;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: var(--font-main);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .feature-events-back {
+      background: var(--color-white);
+      color: var(--feature-events-accent);
+      border: 2px solid var(--color-border);
+      box-shadow: 0 4px 14px var(--color-shadow);
+    }
+
+    .feature-events-back:hover { transform: translateY(-2px); }
+
+    .feature-events-main {
+      max-width: var(--feature-events-max);
+      margin: 0 auto;
+      padding: 0 var(--feature-events-pad) var(--space-xl);
+      width: 100%;
+    }
+
+    .feature-events-title {
+      margin: 0 0 0.35rem;
+      font-size: var(--cruise-heading-size);
+      color: var(--feature-events-accent);
+      line-height: 1.15;
+    }
+
+    .feature-events-subtitle {
+      margin: 0 0 var(--space-md);
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+      color: var(--color-text-soft);
+      font-weight: 600;
+    }
+
+    @media (min-width: 1200px) {
+      .feature-events-page--cruise .feature-events-subtitle {
+        font-size: 1.4rem;
+      }
+    }
+
+    .feature-events-box {
+      background: var(--color-white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--color-border);
+      box-shadow: 0 4px 24px var(--color-shadow);
+      padding: clamp(1rem, 2vw, 1.75rem);
+      margin-bottom: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .feature-events-box h2 {
+      margin: 0 0 0.85rem;
+      font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-soft);
+    }
+
+    .feature-events-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1rem, 3vw, 2.25rem);
+    }
+
+    .feature-events-grid-2 .feature-events-box {
+      margin-bottom: 0;
+    }
+
+    .cruise-top-layout {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(1rem, 3vw, 1.75rem);
+      margin-bottom: clamp(1rem, 3vw, 1.75rem);
+    }
+
+    .cruise-when-full {
+      margin-bottom: 0;
+    }
+
+    .cruise-when-layout {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(0.85rem, 2.5vw, 1.25rem);
+    }
+
+    .cruise-when-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(1.25rem, 4vw, 2.5rem);
+      align-items: start;
+    }
+
+    .cruise-when-primary {
+      min-width: 0;
+    }
+
+    .cruise-when-port {
+      min-width: 0;
+    }
+
+    .cruise-when-port .feature-events-loc {
+      margin: 0;
+      font-size: var(--cruise-body-size);
+      line-height: 1.55;
+      color: var(--color-text);
+    }
+
+    .cruise-when-port .feature-events-loc strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    .cruise-when-badge {
+      width: 100%;
+    }
+
+    .cruise-when-badge .feature-events-time-pill {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      background: var(--color-ocean-mist);
+      font-size: clamp(0.95rem, 1.1vw, 1.12rem);
+      font-weight: 700;
+      color: #2a5570;
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+    @media (min-width: 900px) {
+      .feature-events-page--cruise .feature-events-ribbon,
+      .feature-events-page--cruise a.feature-events-directions {
+        min-height: 2.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.78rem;
+      }
+
+      .feature-events-page--cruise .cruise-cta {
+        font-size: 1.15rem;
+        padding: 0.85rem 2rem;
+      }
+
+      .feature-events-page--cruise .cruise-itinerary-link {
+        font-size: 0.92rem;
+        padding: 0.55rem 1.1rem;
+      }
+
+      .feature-events-page--cruise .feature-events-footer {
+        font-size: 1.05rem;
+      }
+    }
+
+    .cruise-when-travel p {
+      margin: 0;
+      font-size: var(--cruise-body-size);
+      line-height: 1.55;
+      color: var(--color-text);
+    }
+
+    .cruise-when-travel p + p {
+      margin-top: 0.75rem;
+    }
+
+    @media (max-width: 720px) {
+      .cruise-when-top {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .feature-events-grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .cruise-when-primary time {
+      display: block;
+      font-size: var(--cruise-body-size);
+      font-weight: 400;
+      color: var(--color-text);
+      margin: 0.5rem 0 0;
+      line-height: 1.45;
+    }
+
+    .cruise-when-primary .feature-events-when-actions {
+      margin-bottom: 0;
+    }
+
+    .cruise-cost-figure {
+      margin: 0;
+    }
+
+    .cruise-cost-figure img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: var(--radius-md);
+      box-shadow: 0 6px 20px rgba(40, 90, 120, 0.12);
+      cursor: zoom-in;
+    }
+
+    .cruise-cost-figure img:hover,
+    .cruise-cost-figure img:focus-visible {
+      box-shadow: 0 8px 28px rgba(40, 90, 120, 0.22);
+      outline: 2px solid var(--color-sky);
+      outline-offset: 3px;
+    }
+
+    @media (min-width: 900px) {
+      .feature-events-page--cruise .cruise-pricing-grid {
+        gap: clamp(1.25rem, 2.5vw, 2.75rem);
+      }
+
+      .feature-events-page--cruise .cruise-pricing-grid .feature-events-box {
+        padding: clamp(1.25rem, 2vw, 2rem);
+      }
+
+      .feature-events-page--cruise .cruise-cost-figure img {
+        min-height: 280px;
+        object-fit: contain;
+        object-position: center top;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .feature-events-page--cruise .cruise-cost-figure img {
+        min-height: 360px;
+      }
+    }
+
+    .cruise-cost-caption {
+      margin: 0.85rem 0 0;
+      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      color: var(--color-text-soft);
+      line-height: 1.45;
+    }
+
+    .cruise-port-list {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    .cruise-itinerary-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 0.85rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--color-white);
+      background: linear-gradient(90deg, #4a7a8f, var(--color-sky));
+      box-shadow: 0 2px 8px rgba(80, 120, 150, 0.25);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .cruise-itinerary-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(80, 120, 150, 0.35);
+      color: var(--color-white);
+    }
+
+    .cruise-port-list a {
+      color: var(--feature-events-accent);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .cruise-port-list a:hover {
+      color: var(--color-sky);
+    }
+
+    .cruise-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3rem;
+      padding: 0.75rem 1.75rem;
+      margin-top: 0.75rem;
+      border-radius: var(--radius-md);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--color-white);
+      background: linear-gradient(90deg, #2a6a8a, var(--color-sky));
+      box-shadow: 0 4px 16px rgba(60, 120, 150, 0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .cruise-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(60, 120, 150, 0.45);
+      color: var(--color-white);
+    }
+
+    .cruise-cta:focus-visible {
+      outline: 3px solid var(--color-sky);
+      outline-offset: 3px;
+    }
+
+    .feature-events-footer {
+      text-align: center;
+      padding: var(--space-lg) var(--feature-events-pad);
+      font-size: clamp(0.95rem, 1vw, 1.05rem);
+      color: var(--color-text-soft);
+      border-top: 1px solid var(--color-border);
+      background: rgba(255, 255, 255, 0.6);
+      max-width: none;
+    }
+
+    .feature-events-footer address,
+    .feature-events-footer p {
+      max-width: var(--feature-events-max);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .feature-events-footer a { color: var(--feature-events-accent); }
+
+    .feature-events-when-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-events-ribbon,
+    a.feature-events-directions {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.2rem;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .feature-events-ribbon {
+      color: var(--color-white);
+      background: linear-gradient(90deg, var(--color-driftwood-dark), var(--color-driftwood));
+    }
+
+    a.feature-events-directions {
+      color: var(--color-white);
+      background: linear-gradient(90deg, #4a7a8f, var(--color-sky));
+    }
+
+    .feature-events-about p { margin: 0 0 1rem; }
+    .feature-events-about p:last-child { margin-bottom: 0; }
+
+    .cruise-ship-tour-media {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1rem, 3vw, 1.75rem);
+      margin-top: 1.25rem;
+    }
+
+    .cruise-ship-tour-link {
+      flex: 0 1 49%;
+      max-width: 49%;
+      min-width: 0;
+      display: block;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(40, 90, 120, 0.12);
+    }
+
+    .cruise-ship-tour-link img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cruise-ship-tour-link:hover,
+    .cruise-ship-tour-link:focus-visible {
+      box-shadow: 0 8px 28px rgba(40, 90, 120, 0.22);
+      outline: 2px solid var(--color-sky);
+      outline-offset: 3px;
+    }
+
+    .cruise-ship-tour-qr {
+      flex: 0 0 auto;
+      margin: 0;
+    }
+
+    .cruise-ship-tour-qr img {
+      display: block;
+      width: clamp(240px, 44vw, 360px);
+      height: auto;
+      border-radius: var(--radius-sm);
+      box-shadow: 0 4px 14px rgba(40, 90, 120, 0.1);
+    }
+
+    .feature-events-loc strong { display: block; margin-bottom: 0.25rem; }
+  </style>
+</head>
+
+<body id="top" class="feature-events-page feature-events-page--cruise"
+  data-mmhp-master-json="../../assets/data/json/mmhp-master-data.json"
+  data-mmhp-feature-id="fe0042"
+  data-mmhp-custom-feature-page="true">
+
+  <header class="feature-events-banner feature-events-banner--cruise" aria-label="Mexico cruise hero">
+    <img src="../../assets/images/cruise/cruise-hero.png" alt="MSC Seascape — 7-night Mexico cruise from Galveston">
+    <div class="feature-events-banner-marquee">
+      <p>3 tropical ports · 1 incredible experience</p>
+    </div>
+  </header>
+  <div class="feature-events-wave" aria-hidden="true"></div>
+
+  <nav class="feature-events-actions" aria-label="Featured event actions">
+    <a class="feature-events-back" href="../../index.html">← Back To Calendar</a>
+  </nav>
+
+  <main class="feature-events-main">
+    <h1 class="feature-events-title">Mexico Cruise — MSC Seascape · 7 nights</h1>
+    <p class="feature-events-subtitle">Western Caribbean group sailing · departs Galveston, Texas</p>
+
+    <div class="cruise-top-layout">
+      <div class="feature-events-box cruise-when-full">
+        <h2>When &amp; where</h2>
+        <div class="cruise-when-layout">
+          <div class="cruise-when-top">
+            <div class="cruise-when-primary">
+              <div class="feature-events-when-actions">
+                <button type="button" class="feature-events-ribbon" id="feature-events-save-calendar"
+                  aria-haspopup="dialog"
+                  aria-controls="feature-events-ics-help-dialog"
+                  aria-label="Save The Date: Open Instructions To Add This Event To Your Calendar">
+                  Save The Date
+                </button>
+                <a class="feature-events-directions" href="https://www.google.com/maps/dir/?api=1&amp;destination=105%2025th%20St%2C%20Galveston%2C%20TX%2077550-1403%2C%20United%20States" target="_blank" rel="noopener noreferrer">Get Directions</a>
+              </div>
+              <time datetime="2026-08-16T08:00">Sunday, August 16, 2026</time>
+            </div>
+            <div class="cruise-when-port">
+              <p class="feature-events-loc">
+                <strong>Ship &amp; port</strong>
+                MSC Seascape<br>
+                105 25th St, Galveston, TX 77550-1403<br>
+                United States
+              </p>
+            </div>
+          </div>
+          <div class="cruise-when-badge">
+            <p class="feature-events-time-pill" aria-label="Event time">Embarkation · 7 nights · Galveston, TX</p>
+          </div>
+          <div class="cruise-when-travel">
+            <p><strong>Travel plan:</strong> our carpool leaves <strong>Saturday, August 15</strong>. We are booking a hotel overnight in Galveston so traffic, weather, or road delays cannot keep us from boarding. <strong>I do not recommend driving to Galveston on embarkation day</strong>—Sunday, August 16 is board day; arrive the night before if you can.</p>
+            <p>We are working with a travel agent to explore this as a <strong>possible group trip</strong>. They can assist with hotels, cruise bookings, and other travel arrangements. A larger group may unlock benefits such as group discounts, onboard credit, bonus perks, or drink and Wi‑Fi incentives — <em>nothing is guaranteed yet</em>, but the earlier we build interest, the better our chances.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-events-grid-2 cruise-pricing-grid">
+        <div class="feature-events-box">
+          <h2>Example base cost</h2>
+          <figure class="cruise-cost-figure">
+            <img src="../../assets/images/cruise/actual-cost.png" alt="Example cruise cost breakdown for two adults — interior cabin before optional packages">
+          </figure>
+          <p class="cruise-cost-caption">$757 total for 2 adults — interior cabin, MSC Book Now checkout as of June 1, 2026 (before optional packages).</p>
+        </div>
+
+        <div class="feature-events-box">
+          <h2>With drink &amp; Wi‑Fi packages</h2>
+          <figure class="cruise-cost-figure">
+            <img src="../../assets/images/cruise/actual-cost-with-drinks-wifi.png" alt="Example cruise cost for two adults including interior cabin plus drink and Wi-Fi packages">
+          </figure>
+          <p class="cruise-cost-caption">Same sailing with typical drink and Wi‑Fi packages added — packages are optional.</p>
+        </div>
+      </div>
+    </div>
+
+    <section class="feature-events-box feature-events-story" aria-labelledby="cruise-about-heading">
+      <h2 id="cruise-about-heading">About this sailing</h2>
+      <div class="feature-events-about">
+        <p>Sun, salt air, and a week at sea with neighbors who know how to travel well — this is a <strong>7-night Western Caribbean cruise</strong> aboard <strong>MSC Seascape</strong>, sailing from <strong>Galveston, Texas</strong> on <strong>Sunday, August 16, 2026</strong>. Think warm decks, shore days in Mexico and Honduras, and the kind of easy camaraderie that starts when someone at the park says, “We should all go together.”</p>
+        <div class="cruise-ship-tour-media">
+          <a class="cruise-ship-tour-link" href="https://www.youtube.com/watch?v=6g4G4cS8ix4&amp;t=57s" target="_blank" rel="noopener noreferrer">
+            <img src="../../assets/images/cruise/cruise-ship-tour.png" alt="Watch MSC Seascape ship tour on YouTube">
+          </a>
+          <figure class="cruise-ship-tour-qr">
+            <img src="../../assets/images/cruise/cruise-ship-tour-qr.png" alt="QR code — scan to open MSC Seascape ship tour on YouTube">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <div class="feature-events-grid-2">
+      <section class="feature-events-box" aria-labelledby="cruise-itinerary-heading">
+        <h2 id="cruise-itinerary-heading">Itinerary</h2>
+        <ul class="cruise-port-list">
+          <li><a href="https://www.msccruisesusa.com/itinerary-details/7-nights-western-caribbean?cruiseid=SC20260830GLSGLS&amp;departureDateFrom=01-08-2026&amp;departureDateTo=31-08-2026" target="_blank" rel="noopener noreferrer"><strong>Costa Maya, Mexico</strong></a></li>
+          <li><a href="https://www.msccruisesusa.com/itinerary-details/7-nights-western-caribbean?cruiseid=SC20260830GLSGLS&amp;departureDateFrom=01-08-2026&amp;departureDateTo=31-08-2026" target="_blank" rel="noopener noreferrer"><strong>Roatan, Honduras</strong></a></li>
+          <li><a href="https://www.msccruisesusa.com/itinerary-details/7-nights-western-caribbean?cruiseid=SC20260830GLSGLS&amp;departureDateFrom=01-08-2026&amp;departureDateTo=31-08-2026" target="_blank" rel="noopener noreferrer"><strong>Cozumel, Mexico</strong></a></li>
+        </ul>
+        <a class="cruise-itinerary-link" href="https://www.msccruisesusa.com/itinerary-details/7-nights-western-caribbean?cruiseid=SC20260830GLSGLS&amp;departureDateFrom=01-08-2026&amp;departureDateTo=31-08-2026" target="_blank" rel="noopener noreferrer">View Itinerary</a>
+      </section>
+
+      <section class="feature-events-box" aria-labelledby="cruise-included-heading">
+        <h2 id="cruise-included-heading">What's included vs. extra</h2>
+        <p><strong>Typically included</strong> in your cruise fare: stateroom, main dining, many onboard activities, and port calls as listed on your booking.</p>
+        <p><strong>Often extra:</strong> specialty dining, drink packages, Wi‑Fi, spa, shore excursions, gratuities, and travel to Galveston. Compare the base and package pricing cards above.</p>
+      </section>
+    </div>
+
+    <section class="feature-events-box" aria-labelledby="cruise-pricing-heading">
+      <h2 id="cruise-pricing-heading">Example pricing shown</h2>
+      <p>The pricing graphic shows approximately <strong>$757 total for two adults</strong> (interior cabin, before optional drink or Wi‑Fi packages). That figure is the <strong>final checkout price on MSC's Book Now page</strong> as of <strong>June 1, 2026</strong>—what it would cost to book this sailing on that day. I clicked through MSC's site myself to capture it. Cruise fares change often; <strong>treat this as a snapshot, not a guarantee</strong>, and expect the total to shift day by day until a reservation is locked in.</p>
+    </section>
+
+    <section class="feature-events-box" aria-labelledby="cruise-interested-heading">
+      <h2 id="cruise-interested-heading">Interested in joining?</h2>
+      <div class="feature-events-about">
+        <p>Whether you are traveling solo, bringing your spouse, planning a couples getaway, organizing a family vacation, or splitting costs with friends — we can help coordinate cabins, timing, and possible carpool arrangements.</p>
+        <p><strong>Reach out and let us know:</strong></p>
+        <ul class="cruise-port-list">
+          <li>How many travelers</li>
+          <li>Preferred cabin type</li>
+          <li>Whether you may want to carpool</li>
+          <li>Whether you'd like pre-cruise hotel coordination</li>
+        </ul>
+        <a class="cruise-cta" href="mailto:johnbarkle@msn.com"
+          data-mmhp-coordinator-mailto
+          data-mmhp-mailto-subject="MSC Mexico Cruise — group trip interest"
+          data-mmhp-mailto-body="Hi,
+
+I am interested in the MSC Mexico cruise sailing August 16, 2026.
+
+Number of travelers:
+Preferred cabin type:
+Interested in carpool: Yes / No
+Interested in pre-cruise hotel: Yes / No
+
+Thank you!">Email to express interest</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="feature-events-footer">
+    <address>
+      McAllen Mobile Park · 4900 N Mc Coll Rd · McAllen, TX 78504
+    </address>
+    <p>
+      <a href="mailto:johnbarkle@msn.com"
+        data-mmhp-coordinator-mailto
+        data-mmhp-mailto-subject="MSC Mexico Cruise — question">Contact about this cruise</a>
+      ·
+      <a href="https://www.google.com/maps/dir/?api=1&amp;destination=105%2025th%20St%2C%20Galveston%2C%20TX%2077550-1403%2C%20United%20States" target="_blank" rel="noopener noreferrer">Directions to port</a>
+      ·
+      <a href="../../index.html">Calendar Home</a>
+      ·
+      <a href="#top" class="site-footer-back-top">Back To Top</a>
+    </p>
+  </footer>
+
+  <script src="../../assets/js/mmhp-coordinator-config.js" defer></script>
+  <script src="../../assets/js/feature-events-ics.js" defer></script>
+</body>
+
+</html>

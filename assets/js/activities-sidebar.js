@@ -843,13 +843,21 @@
 
   /** Link to generated contents/feature-events/<basename>. */
   function featureEventDetailHref(ev) {
-    var base = featureEventPageBasename(ev);
+    var detailPath = ev && ev.detailPath != null ? String(ev.detailPath).trim().replace(/\\/g, "/").replace(/^\/+/, "") : "";
+    if (!detailPath && ev && ev.date === "2026-06-13" && String(ev.eventName || "").indexOf("Save Kitty Fundraiser DJ Dance") !== -1) {
+      detailPath = "contents/feature-events/2026-06-13-1900-djdanadance.html";
+    }
+    var base = detailPath || featureEventPageBasename(ev);
     if (!base) return learnMoreHref();
     var path = (window.location.pathname || "").replace(/\\/g, "/");
-    if (/feature-events[/\\]/i.test(path)) return base;
-    if (isActivityFlyerPagePath(path)) return "../feature-events/" + base;
-    if (/contents[/\\]/i.test(path)) return "feature-events/" + base;
-    return "contents/feature-events/" + base;
+    var inFeatureEvents = /feature-events[/\\]/i.test(path);
+    var inContents = /contents[/\\]/i.test(path);
+    var isFullDetailPath = /^contents\/feature-events\//i.test(base);
+    var fileOnly = base.split("/").pop() || base;
+    if (inFeatureEvents) return fileOnly;
+    if (isActivityFlyerPagePath(path)) return isFullDetailPath ? "../" + base.replace(/^contents\//i, "") : "../feature-events/" + base;
+    if (inContents) return isFullDetailPath ? base.replace(/^contents\//i, "") : "feature-events/" + base;
+    return isFullDetailPath ? base : "contents/feature-events/" + base;
   }
 
   function openImagePreview(src, altText) {
@@ -1105,6 +1113,78 @@
     return items.filter(isFeaturedItemUpcoming);
   }
 
+  function featureItemId(item) {
+    if (!item || !item.ev) return "";
+    return String(item.ev.featureId || item.ev.id || "").trim();
+  }
+
+  function featuredPinOrder(ev) {
+    if (!ev) return 0;
+    var n = parseInt(ev.featuredPinOrder, 10);
+    return Number.isFinite(n) && n > 0 ? n : 0;
+  }
+
+  /** Pinned rows (featuredPinOrder > 0), sorted by pin slot ascending. */
+  function getPinnedFeaturedItems(enriched) {
+    var pinned = [];
+    for (var i = 0; i < enriched.length; i++) {
+      if (featuredPinOrder(enriched[i].ev) > 0) pinned.push(enriched[i]);
+    }
+    pinned.sort(function (a, b) {
+      return featuredPinOrder(a.ev) - featuredPinOrder(b.ev);
+    });
+    return pinned;
+  }
+
+  /**
+   * Home Future Featured grid: slot 1+ = pinned items, slot 2 = next upcoming unpinned,
+   * then current month and fill columns from later months (desktop).
+   */
+  function buildHomeFeaturedDisplayItems(enriched, groupItems, stateIndex, groups, featuredMobileLayout, grid) {
+    var pinned = filterFeaturedItemsUpcoming(getPinnedFeaturedItems(enriched));
+    var shown = {};
+    var displayItems = [];
+    var p, u, m, fill, fillItems, f, id;
+
+    for (p = 0; p < pinned.length; p++) {
+      id = featureItemId(pinned[p]);
+      if (id && shown[id]) continue;
+      displayItems.push(pinned[p]);
+      if (id) shown[id] = true;
+    }
+
+    for (u = 0; u < enriched.length; u++) {
+      id = featureItemId(enriched[u]);
+      if (id && shown[id]) continue;
+      displayItems.push(enriched[u]);
+      if (id) shown[id] = true;
+      break;
+    }
+
+    var monthUpcoming = filterFeaturedItemsUpcoming(groupItems.slice());
+    for (m = 0; m < monthUpcoming.length; m++) {
+      id = featureItemId(monthUpcoming[m]);
+      if (id && shown[id]) continue;
+      displayItems.push(monthUpcoming[m]);
+      if (id) shown[id] = true;
+    }
+
+    if (!featuredMobileLayout) {
+      var minCards = homeFeaturedColumnCount(grid);
+      for (fill = stateIndex + 1; displayItems.length < minCards && fill < groups.length; fill++) {
+        fillItems = filterFeaturedItemsUpcoming(groups[fill].items.slice());
+        for (f = 0; f < fillItems.length; f++) {
+          id = featureItemId(fillItems[f]);
+          if (id && shown[id]) continue;
+          displayItems.push(fillItems[f]);
+          if (id) shown[id] = true;
+        }
+      }
+    }
+
+    return displayItems;
+  }
+
   function buildEnrichedFeatured(data, includePast) {
     var features = (data.features || []).filter(function (ev) {
       if (ev.isActive === false) return false;
@@ -1169,6 +1249,9 @@
 
       var article = document.createElement("article");
       article.className = "site-card featured-card";
+      if (featuredPinOrder(ev) > 0) {
+        article.classList.add("featured-card--pinned");
+      }
 
       var a = document.createElement("a");
       a.className = "featured-card-link";
@@ -1405,14 +1488,14 @@
         grid.setAttribute("aria-label", "Featured events for " + group.label);
       }
 
-      var displayItems = filterFeaturedItemsUpcoming(group.items.slice());
-
-      if (!featuredMobileLayout) {
-        var minCards = homeFeaturedColumnCount(grid);
-        for (var fill = state.index + 1; displayItems.length < minCards && fill < groups.length; fill++) {
-          displayItems = displayItems.concat(filterFeaturedItemsUpcoming(groups[fill].items.slice()));
-        }
-      }
+      var displayItems = buildHomeFeaturedDisplayItems(
+        enriched,
+        group.items,
+        state.index,
+        groups,
+        featuredMobileLayout,
+        grid
+      );
 
       renderFeaturedFromEnriched(displayItems, grid, jsonUrl, group.imageOffset);
     }

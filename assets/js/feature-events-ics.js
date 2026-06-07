@@ -162,6 +162,8 @@
 
   function hydrateFeaturePageFromJson(f) {
     if (!f) return;
+    var body = document.body;
+    if (body && body.getAttribute("data-mmhp-custom-feature-page") === "true") return;
     var title = escapeText(f.eventName || f.cardLine1 || "Featured event");
     var titleEl = document.querySelector(".feature-events-title");
     if (titleEl && title) titleEl.textContent = title;
@@ -282,13 +284,12 @@
     } catch (f) {}
   }
 
-  function wireFeatureFlyerPreview() {
-    var img = document.querySelector(".feature-events-feature-frame img");
+  function wireSingleImagePreview(img, ariaLabel) {
     if (!img || img.getAttribute("data-mmhp-flyer-preview-wired") === "1") return;
     img.setAttribute("data-mmhp-flyer-preview-wired", "1");
     img.setAttribute("role", "button");
     img.setAttribute("tabindex", "0");
-    img.setAttribute("aria-label", "Enlarge flyer image");
+    img.setAttribute("aria-label", ariaLabel || "Enlarge image");
     img.style.cursor = "zoom-in";
 
     function openFromImg() {
@@ -307,6 +308,17 @@
         openFromImg();
       }
     });
+  }
+
+  function wireFeatureFlyerPreview() {
+    wireSingleImagePreview(
+      document.querySelector(".feature-events-feature-frame img"),
+      "Enlarge flyer image"
+    );
+    var costImgs = document.querySelectorAll(".cruise-cost-figure img");
+    for (var i = 0; i < costImgs.length; i++) {
+      wireSingleImagePreview(costImgs[i], "View full-size pricing image");
+    }
   }
 
   function gatherFromDom() {

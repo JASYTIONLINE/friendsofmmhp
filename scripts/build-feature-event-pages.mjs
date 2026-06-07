@@ -46,6 +46,8 @@ function imageStem(ev) {
 }
 
 function pageBasename(ev) {
+  const detailPath = ev && ev.detailPath != null ? String(ev.detailPath).trim().replace(/\\/g, "/") : "";
+  if (detailPath) return detailPath.split("/").pop() || null;
   const date = String(ev.date || "").trim();
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
   return `${date}-${fileHm(ev.startTime)}-${imageStem(ev)}.html`;
@@ -183,8 +185,15 @@ function main() {
       continue;
     }
     if (skipBasenames.has(base)) continue;
-    const html = buildHtmlForFeature(ev, tpl);
     const outPath = path.join(outDir, base);
+    if (fs.existsSync(outPath)) {
+      const existing = fs.readFileSync(outPath, "utf8");
+      if (existing.includes("data-mmhp-custom-feature-page")) {
+        console.log("Skip custom page:", base);
+        continue;
+      }
+    }
+    const html = buildHtmlForFeature(ev, tpl);
     fs.writeFileSync(outPath, html, "utf8");
     written.push(base);
   }

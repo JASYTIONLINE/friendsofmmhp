@@ -239,6 +239,11 @@ function main() {
     if (desc) row.description = desc;
     if (imagePath) row.imagePath = imagePath;
     if (imagePathFlyer) row.imagePathFlyer = imagePathFlyer;
+    const pinRaw = String(o.PinOrder != null ? o.PinOrder : "").trim();
+    const pinOrder = pinRaw ? parseInt(pinRaw, 10) : 0;
+    if (Number.isFinite(pinOrder) && pinOrder > 0) row.featuredPinOrder = pinOrder;
+    const detailPath = String(o.DetailPath != null ? o.DetailPath : "").trim().replace(/^\/+/, "");
+    if (detailPath) row.detailPath = detailPath;
     features.push(row);
   }
 

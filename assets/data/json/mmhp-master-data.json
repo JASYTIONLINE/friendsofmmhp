@@ -5143,7 +5143,7 @@
         "weekdays": [
           "Thursday"
         ],
-        "startTime": "10:00"
+        "startTime": "13:00"
       },
       "keywords": [
         "card bingo",
@@ -5153,12 +5153,12 @@
         "cash pots"
       ],
       "imagePath": "activity-flyer/card-bingo.jpg",
-      "activityName": "Card Bingo Night",
+      "activityName": "Card Bingo",
       "contactResidentId": "re0000",
       "chairpersonId": "re0000",
       "activeFrom": "01-01",
       "activeTo": "12-31",
-      "isActive": false,
+      "isActive": true,
       "adCopy": "Card Bingo is a fast, easy-to-learn table game with simple rules, low buy-in, and cash pots. Each table has 4 players using 1 deck of cards. Players race to empty their hands as the dealer flips cards one at a time.",
       "isSeasonal": false
     },
@@ -6254,16 +6254,17 @@
       "date": "2026-06-13",
       "startTime": "19:00",
       "endTime": "22:00",
-      "location": "Hall A",
+      "location": "Hall B",
       "isActive": true,
       "isFeatured": true,
-      "cardLine1": "Book now",
-      "cardLine2": "Saturday evening",
+      "cardLine1": "Save Kitty Fundraiser DJ Dance",
+      "cardLine2": "DJ Dana dance fundraiser",
       "cardLine3": "Jun 13 2026",
-      "eventName": "Book now — Saturday evening",
-      "adCopy": "No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",
-      "description": "No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",
-      "imagePath": "event-flyer/bookme.png"
+      "eventName": "Save Kitty Fundraiser DJ Dance — DJ Dana dance fundraiser",
+      "adCopy": "Come dance, have fun, and help save Kitty, DJ Dana's pit bull terrier. Kitty had a tumor removed, and the surgery was expensive. There is no cover charge for this Hall B fundraiser, but donations will be accepted at the event to help pay for Kitty's surgery. Requests are welcome, so bring your favorite songs, enjoy each other's company, and help a neighbor save a beloved dog.",
+      "description": "Come dance, have fun, and help save Kitty, DJ Dana's pit bull terrier. Kitty had a tumor removed, and the surgery was expensive. There is no cover charge for this Hall B fundraiser, but donations will be accepted at the event to help pay for Kitty's surgery. Requests are welcome, so bring your favorite songs, enjoy each other's company, and help a neighbor save a beloved dog.",
+      "imagePath": "event-flyer/djdance.png",
+      "detailPath": "contents/feature-events/2026-06-13-1900-djdanadance.html"
     },
     {
       "featureId": "fe0030",
@@ -6467,6 +6468,25 @@
       "featureId": "fe0042",
       "id": "fe0042",
       "date": "2026-08-16",
+      "startTime": "08:00",
+      "endTime": "11:00",
+      "location": "Galveston TX Port",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "Mexico Cruise",
+      "cardLine2": "MSC Seascape · 7 nights",
+      "cardLine3": "Aug 16 2026",
+      "eventName": "Mexico Cruise — MSC Seascape · 7 nights",
+      "adCopy": "Seven nights aboard MSC Seascape from Galveston—Costa Maya, Roatan, and Cozumel. McAllen Mobile Park neighbors are exploring a group sailing with possible discounts and perks. See pricing, what's included, and how to join.",
+      "description": "Seven nights aboard MSC Seascape from Galveston—Costa Maya, Roatan, and Cozumel. McAllen Mobile Park neighbors are exploring a group sailing with possible discounts and perks. See pricing, what's included, and how to join.",
+      "imagePath": "cruise/cruise-feature.png",
+      "imagePathFlyer": "cruise/cruise-hero.png",
+      "featuredPinOrder": 1
+    },
+    {
+      "featureId": "fe0043",
+      "id": "fe0043",
+      "date": "2026-08-16",
       "startTime": "13:00",
       "endTime": "13:30",
       "location": "Hall B",
@@ -6482,8 +6502,8 @@
       "imagePathFlyer": "event-flyer/icecream-w.png"
     },
     {
-      "featureId": "fe0043",
-      "id": "fe0043",
+      "featureId": "fe0044",
+      "id": "fe0044",
       "date": "2026-08-22",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6498,8 +6518,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0044",
-      "id": "fe0044",
+      "featureId": "fe0045",
+      "id": "fe0045",
       "date": "2026-08-29",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6514,8 +6534,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0045",
-      "id": "fe0045",
+      "featureId": "fe0046",
+      "id": "fe0046",
       "date": "2026-09-05",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6530,8 +6550,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0046",
-      "id": "fe0046",
+      "featureId": "fe0047",
+      "id": "fe0047",
       "date": "2026-09-12",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6546,8 +6566,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0047",
-      "id": "fe0047",
+      "featureId": "fe0048",
+      "id": "fe0048",
       "date": "2026-09-19",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6562,8 +6582,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0048",
-      "id": "fe0048",
+      "featureId": "fe0049",
+      "id": "fe0049",
       "date": "2026-09-20",
       "startTime": "13:00",
       "endTime": "13:30",
@@ -6580,8 +6600,8 @@
       "imagePathFlyer": "event-flyer/icecream-w.png"
     },
     {
-      "featureId": "fe0049",
-      "id": "fe0049",
+      "featureId": "fe0050",
+      "id": "fe0050",
       "date": "2026-09-26",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6596,8 +6616,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0050",
-      "id": "fe0050",
+      "featureId": "fe0051",
+      "id": "fe0051",
       "date": "2026-10-03",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6612,8 +6632,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0051",
-      "id": "fe0051",
+      "featureId": "fe0052",
+      "id": "fe0052",
       "date": "2026-10-10",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6628,8 +6648,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0052",
-      "id": "fe0052",
+      "featureId": "fe0053",
+      "id": "fe0053",
       "date": "2026-10-17",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6644,8 +6664,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0053",
-      "id": "fe0053",
+      "featureId": "fe0054",
+      "id": "fe0054",
       "date": "2026-10-18",
       "startTime": "13:00",
       "endTime": "13:30",
@@ -6662,8 +6682,8 @@
       "imagePathFlyer": "event-flyer/icecream-w.png"
     },
     {
-      "featureId": "fe0054",
-      "id": "fe0054",
+      "featureId": "fe0055",
+      "id": "fe0055",
       "date": "2026-10-24",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6678,8 +6698,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0055",
-      "id": "fe0055",
+      "featureId": "fe0056",
+      "id": "fe0056",
       "date": "2026-10-31",
       "startTime": "19:00",
       "endTime": "22:00",
@@ -6694,8 +6714,8 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
-      "featureId": "fe0056",
-      "id": "fe0056",
+      "featureId": "fe0057",
+      "id": "fe0057",
       "date": "2026-04-29",
       "startTime": "19:00",
       "endTime": "22:00",
