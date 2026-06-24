@@ -49,7 +49,7 @@
                   only</strong>, use this form to send a message directly to the event coordinator.
               </p>
               <form class="event-submit-form" id="mmhp-contact-coordinator-form" action="https://formspree.io/f/xnjkjbbe" method="POST">
-                <input type="hidden" name="_subject" id="mmhp-contact-formspree-subject" value="McAllen Mobile Park event calendar contact">
+                <input type="hidden" name="_subject" value="MMHP Events Request.">
                 <input type="hidden" name="source_page" value="McAllen Mobile Park contact page">
 
                 <fieldset class="event-submit-form__fieldset">
@@ -139,18 +139,10 @@
       var subject = params.get("subject") || "";
       var message = params.get("message") || "";
       var subjectEl = document.getElementById("mmhp-contact-subject");
-      var hiddenSubjectEl = document.getElementById("mmhp-contact-formspree-subject");
       var messageEl = document.getElementById("mmhp-contact-message");
-
-      function syncSubject() {
-        if (!hiddenSubjectEl || !subjectEl) return;
-        hiddenSubjectEl.value = subjectEl.value || "McAllen Mobile Park event calendar contact";
-      }
 
       if (subjectEl && subject) subjectEl.value = subject;
       if (messageEl && message) messageEl.value = message;
-      syncSubject();
-      if (subjectEl) subjectEl.addEventListener("input", syncSubject);
     })();
   </script>
 </body>

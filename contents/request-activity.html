@@ -60,12 +60,14 @@
               <ul class="submission-page__hints">
                 <li>Prefer a phone call? At the top of the form, check the box that asks the coordinator to call you—then add your <strong>name</strong> and <strong>phone</strong> (both are required for a callback) and tap <strong>Please call me</strong>.</li>
                 <li>We always ask for the basics: what it’s called, what happens there, where you meet, which day or days, what time, and whether it runs all year or only part of the year.</li>
-                <li>The rest is up to you—a short tag line, words to search by, end time, photos. Whatever you add rides with your request so the coordinator can put it on the site.</li>
-                <li>When you send, your email should open with the coordinator’s address filled in. On a phone you might see Share instead. Same gentle handoff as Submit Event.</li>
+                <li>The rest is up to you—a short tag line, words to search by, end time, and optional photo names. Whatever you add rides with your request so the coordinator can put it on the site.</li>
+                <li>When you send, the text request goes directly to the event coordinator. You do not need an email app on your phone or computer.</li>
               </ul>
             </div>
 
-            <form id="mmhp-request-activity-form" class="event-submit-form" novalidate>
+            <form id="mmhp-request-activity-form" class="event-submit-form" action="https://formspree.io/f/xnjkjbbe" method="POST" novalidate>
+              <input type="hidden" name="_subject" value="MMHP Events Request." />
+              <input type="hidden" name="request_type" value="Recurring activity request" />
               <input type="hidden" id="mmhp-request-recurrenceType" name="recurrenceType" value="Recurring" />
 
               <fieldset class="event-submit-form__fieldset">
@@ -96,7 +98,7 @@
                   <div class="event-submit-form__detail-field">
                     <button type="button" id="mmhp-request-callme-send" class="btn site-button">Please call me</button>
                     <p class="event-submit-form__field-subtitle">
-                      This opens your email app with the coordinator’s address, the subject line, and your name and phone already in the message—then you tap send like any other email.
+                      This sends your name and phone directly to the coordinator. No email app is required.
                     </p>
                   </div>
                 </div>
@@ -300,11 +302,10 @@
                 <legend class="event-submit-form__legend">Optional — photos</legend>
                 <p class="event-submit-form__help">
                   A main photo helps neighbors recognize the activity, but you can send the request without one.
-                  Any extra pictures you pick come along when you send.
+                  The automatic request sends text only. If photos are important, the coordinator can follow up after receiving your request.
                 </p>
                 <p class="event-submit-form__size-hint" id="mmhp-request-size-hint">
-                  For email, smaller files send more easily: about <strong>4&nbsp;MB</strong> per photo and <strong>16&nbsp;MB</strong> total is a comfortable target (not a strict cap, just a friendly guide).
-                  We’ll give you a heads-up if your picks run bigger than that.
+                  Photo files are not attached to the automatic request. Their filenames can still help the coordinator know what you intended to provide.
                 </p>
                 <label class="event-submit-form__field">
                   <span class="event-submit-form__label">Main photo (optional)</span>
@@ -409,13 +410,13 @@
       <h2 id="mmhp-request-submit-notice-modal-title" class="event-submit-modal__title">Ready to send?</h2>
       <div class="event-submit-modal__body">
         <p>
-          Your email app should open with the coordinator’s address and the <strong>full activity request</strong> already in the message.
+          The site will send the <strong>text activity request</strong> directly to the event coordinator.
         </p>
         <p>
-          A <strong>.txt</strong> copy of the same request usually downloads right after as a backup—attach it if your mail app leaves the body blank or cuts it short.
+          No email app is required. Please wait for the confirmation message before leaving the page.
         </p>
         <p>
-          If you added <strong>photos</strong>, a <strong>zip</strong> may download (or your device may offer to share it). That zip holds the same full request as a .txt <em>and</em> your pictures; attach it if you want one file for the coordinator.
+          Photos are not attached to this automatic text request. The coordinator can follow up if pictures are needed.
         </p>
       </div>
       <div class="event-submit-modal__actions">
@@ -425,23 +426,6 @@
     </div>
   </div>
 
-  <div id="mmhp-request-size-modal" class="event-submit-modal" hidden role="dialog" aria-modal="true"
-    aria-labelledby="mmhp-request-size-modal-title">
-    <div class="event-submit-modal__backdrop" id="mmhp-request-size-modal-backdrop"></div>
-    <div class="event-submit-modal__panel">
-      <h2 id="mmhp-request-size-modal-title" class="event-submit-modal__title">Photos may be too large for email</h2>
-      <div class="event-submit-modal__body" id="mmhp-request-size-modal-body"></div>
-      <div class="event-submit-modal__actions">
-        <button type="button" class="btn site-button" id="mmhp-request-size-modal-ok">OK</button>
-        <button type="button" class="btn site-button" id="mmhp-request-size-modal-continue" hidden>Continue anyway</button>
-        <button type="button" class="btn site-button" id="mmhp-request-size-modal-back" hidden>Go back</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"
-    integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG"
-    crossorigin="anonymous" defer></script>
   <script src="../assets/js/mmhp-coordinator-config.js" defer></script>
   <script src="../assets/js/request-activity-form.js" defer></script>
   <script src="../assets/js/activities-sidebar.js" defer></script>

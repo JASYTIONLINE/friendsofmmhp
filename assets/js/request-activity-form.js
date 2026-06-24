@@ -1,5 +1,5 @@
 /**
- * Request a new recurring activity — builds a coordinator handoff (same flow as event submit: validate images, Share or ZIP + email).
+ * Request a new recurring activity — validates the request and sends the text to Formspree.
  */
 (function () {
   var WEEKDAYS_ORDER = [
@@ -12,31 +12,12 @@
     "Sunday",
   ];
 
-  var REQUEST_IMAGE_INPUT_IDS = [
-    "mmhp-request-image-feature",
-    "mmhp-request-image-extra-1",
-    "mmhp-request-image-extra-2",
-    "mmhp-request-image-extra-3",
-    "mmhp-request-image-extra-4",
-  ];
-
-  var MMHP_IMAGE_MAX_SINGLE_BYTES = 4 * 1024 * 1024;
-  var MMHP_IMAGE_MAX_TOTAL_BYTES = 16 * 1024 * 1024;
+  var FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjkjbbe";
+  var FORMSPREE_EMAIL_SUBJECT = "MMHP Events Request.";
 
   var LOCATION_OTHER_PLACEHOLDER = "Example: Hall B, library, pool room…";
 
-  var __mmhpRequestSizeModalKeyHandler = null;
   var __mmhpRequestSubmitNoticeKeyHandler = null;
-
-  function buildMailtoHref(email, subject, body) {
-    var addr = String(email || "").replace(/^mailto:/i, "").trim();
-    var h = "mailto:" + addr;
-    var params = [];
-    if (subject) params.push("subject=" + encodeURIComponent(subject));
-    if (body) params.push("body=" + encodeURIComponent(body));
-    if (params.length) h += "?" + params.join("&");
-    return h;
-  }
 
   function sortWeekdays(days) {
     var set = {};
@@ -112,242 +93,6 @@
     return m[2] + "-" + m[3];
   }
 
-  function fileDateStamp() {
-    var n = new Date();
-    return n.getFullYear() + "-" + pad2(n.getMonth() + 1) + "-" + pad2(n.getDate());
-  }
-
-  function formatBytesShort(bytes) {
-    var num = Number(bytes);
-    if (!isFinite(num) || num < 0) return "0 MB";
-    var mb = num / (1024 * 1024);
-    if (mb >= 1) return mb.toFixed(mb >= 10 ? 0 : 1) + " MB";
-    var kb = num / 1024;
-    return kb.toFixed(0) + " KB";
-  }
-
-  function collectRequestImageFiles() {
-    var out = [];
-    for (var i = 0; i < REQUEST_IMAGE_INPUT_IDS.length; i++) {
-      var el = document.getElementById(REQUEST_IMAGE_INPUT_IDS[i]);
-      if (el && el.files && el.files[0]) out.push(el.files[0]);
-    }
-    return out;
-  }
-
-  function getRequestImageStats() {
-    var items = [];
-    var total = 0;
-    var maxSingle = 0;
-    for (var i = 0; i < REQUEST_IMAGE_INPUT_IDS.length; i++) {
-      var el = document.getElementById(REQUEST_IMAGE_INPUT_IDS[i]);
-      if (el && el.files && el.files[0]) {
-        var f = el.files[0];
-        items.push({ name: f.name, size: f.size });
-        total += f.size;
-        if (f.size > maxSingle) maxSingle = f.size;
-      }
-    }
-    return { items: items, total: total, maxSingle: maxSingle };
-  }
-
-  function imageSelectionOverRecommendedLimit(stats) {
-    if (!stats || !stats.items.length) return false;
-    if (stats.maxSingle > MMHP_IMAGE_MAX_SINGLE_BYTES) return true;
-    if (stats.total > MMHP_IMAGE_MAX_TOTAL_BYTES) return true;
-    return false;
-  }
-
-  function sanitizeZipEntryName(name) {
-    var n = String(name || "image").replace(/[/\\]/g, "_").replace(/\.\.+/g, ".");
-    n = n.replace(/^\.+/, "") || "image";
-    if (n.length > 100) n = n.slice(-100);
-    return n;
-  }
-
-  function downloadBlob(blob, filename) {
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    a.rel = "noopener";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  }
-
-  function closeRequestSizeModal() {
-    var modal = document.getElementById("mmhp-request-size-modal");
-    var backdrop = document.getElementById("mmhp-request-size-modal-backdrop");
-    var btnOk = document.getElementById("mmhp-request-size-modal-ok");
-    var btnContinue = document.getElementById("mmhp-request-size-modal-continue");
-    var btnBack = document.getElementById("mmhp-request-size-modal-back");
-    if (backdrop) backdrop.onclick = null;
-    if (btnOk) btnOk.onclick = null;
-    if (btnContinue) btnContinue.onclick = null;
-    if (btnBack) btnBack.onclick = null;
-    if (__mmhpRequestSizeModalKeyHandler) {
-      document.removeEventListener("keydown", __mmhpRequestSizeModalKeyHandler);
-      __mmhpRequestSizeModalKeyHandler = null;
-    }
-    if (modal) modal.hidden = true;
-  }
-
-  function populateRequestSizeModalBody(stats, forSubmitStep) {
-    var body = document.getElementById("mmhp-request-size-modal-body");
-    if (!body) return;
-    while (body.firstChild) body.removeChild(body.firstChild);
-
-    var p0 = document.createElement("p");
-    p0.textContent =
-      "Many email apps struggle with very large attachments. Very large photos sometimes bounce back or never leave your outbox.";
-    body.appendChild(p0);
-
-    var p1 = document.createElement("p");
-    p1.textContent =
-      "We suggest keeping each photo under about " +
-      formatBytesShort(MMHP_IMAGE_MAX_SINGLE_BYTES) +
-      " and all of them together under about " +
-      formatBytesShort(MMHP_IMAGE_MAX_TOTAL_BYTES) +
-      "—that’s usually a safe, friendly size.";
-    body.appendChild(p1);
-
-    if (stats.items.length) {
-      var p2 = document.createElement("p");
-      p2.textContent = "Here’s what you picked:";
-      body.appendChild(p2);
-      var ul = document.createElement("ul");
-      for (var i = 0; i < stats.items.length; i++) {
-        var li = document.createElement("li");
-        li.textContent = stats.items[i].name + " — " + formatBytesShort(stats.items[i].size);
-        ul.appendChild(li);
-      }
-      body.appendChild(ul);
-      var p3 = document.createElement("p");
-      p3.textContent =
-        "All together: " +
-        formatBytesShort(stats.total) +
-        " (largest single photo: " +
-        formatBytesShort(stats.maxSingle) +
-        ").";
-      body.appendChild(p3);
-    }
-
-    var pEnd = document.createElement("p");
-    pEnd.textContent = forSubmitStep
-      ? "You can swap in smaller photos, or continue anyway—just know a very large message might not deliver."
-      : "If you’d like an easier send, try smaller or more compressed photos.";
-    body.appendChild(pEnd);
-  }
-
-  function showRequestSizeModalAfterFilePick() {
-    var stats = getRequestImageStats();
-    if (!imageSelectionOverRecommendedLimit(stats)) return;
-
-    var modal = document.getElementById("mmhp-request-size-modal");
-    var btnOk = document.getElementById("mmhp-request-size-modal-ok");
-    var btnContinue = document.getElementById("mmhp-request-size-modal-continue");
-    var btnBack = document.getElementById("mmhp-request-size-modal-back");
-    var backdrop = document.getElementById("mmhp-request-size-modal-backdrop");
-    if (!modal || !btnOk || !btnContinue || !btnBack || !backdrop) return;
-
-    if (__mmhpRequestSizeModalKeyHandler) {
-      document.removeEventListener("keydown", __mmhpRequestSizeModalKeyHandler);
-      __mmhpRequestSizeModalKeyHandler = null;
-    }
-    backdrop.onclick = null;
-    btnOk.onclick = null;
-    btnContinue.onclick = null;
-    btnBack.onclick = null;
-
-    populateRequestSizeModalBody(stats, false);
-    btnOk.hidden = false;
-    btnContinue.hidden = true;
-    btnBack.hidden = true;
-    modal.hidden = false;
-
-    __mmhpRequestSizeModalKeyHandler = function (e) {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        closeRequestSizeModal();
-      }
-    };
-    document.addEventListener("keydown", __mmhpRequestSizeModalKeyHandler);
-
-    btnOk.onclick = function () {
-      closeRequestSizeModal();
-    };
-    backdrop.onclick = function (ev) {
-      if (ev.target === backdrop) closeRequestSizeModal();
-    };
-
-    try {
-      btnOk.focus();
-    } catch (f) {}
-  }
-
-  function showRequestSizeModalBeforeSubmit(onContinue) {
-    var stats = getRequestImageStats();
-    var modal = document.getElementById("mmhp-request-size-modal");
-    var btnOk = document.getElementById("mmhp-request-size-modal-ok");
-    var btnContinue = document.getElementById("mmhp-request-size-modal-continue");
-    var btnBack = document.getElementById("mmhp-request-size-modal-back");
-    var backdrop = document.getElementById("mmhp-request-size-modal-backdrop");
-    if (!modal || !btnOk || !btnContinue || !btnBack || !backdrop) {
-      if (typeof onContinue === "function") onContinue();
-      return;
-    }
-
-    if (__mmhpRequestSizeModalKeyHandler) {
-      document.removeEventListener("keydown", __mmhpRequestSizeModalKeyHandler);
-      __mmhpRequestSizeModalKeyHandler = null;
-    }
-    backdrop.onclick = null;
-    btnOk.onclick = null;
-    btnContinue.onclick = null;
-    btnBack.onclick = null;
-
-    populateRequestSizeModalBody(stats, true);
-    btnOk.hidden = true;
-    btnContinue.hidden = false;
-    btnBack.hidden = false;
-    modal.hidden = false;
-
-    __mmhpRequestSizeModalKeyHandler = function (e) {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        closeRequestSizeModal();
-      }
-    };
-    document.addEventListener("keydown", __mmhpRequestSizeModalKeyHandler);
-
-    btnContinue.onclick = function () {
-      closeRequestSizeModal();
-      if (typeof onContinue === "function") onContinue();
-    };
-    btnBack.onclick = function () {
-      closeRequestSizeModal();
-      var feat = document.getElementById("mmhp-request-image-feature");
-      if (feat && typeof feat.focus === "function") {
-        try {
-          feat.focus({ preventScroll: true });
-        } catch (f) {
-          try {
-            feat.focus();
-          } catch (f2) {}
-        }
-      }
-    };
-    backdrop.onclick = function (ev) {
-      if (ev.target === backdrop) btnBack.onclick();
-    };
-
-    try {
-      btnBack.focus();
-    } catch (f2) {}
-  }
-
   function closeSubmitNoticeModal() {
     var modal = document.getElementById("mmhp-request-submit-notice-modal");
     var backdrop = document.getElementById("mmhp-request-submit-notice-modal-backdrop");
@@ -407,185 +152,33 @@
     } catch (f) {}
   }
 
-  function wireRequestImageSizeWarningOnChange() {
-    for (var i = 0; i < REQUEST_IMAGE_INPUT_IDS.length; i++) {
-      var inp = document.getElementById(REQUEST_IMAGE_INPUT_IDS[i]);
-      if (!inp) continue;
-      inp.addEventListener("change", function () {
-        window.setTimeout(showRequestSizeModalAfterFilePick, 0);
-      });
-    }
-  }
+  function submitActivityRequestText(subject, message, statusEl, senderName, senderEmail) {
+    var formData = new FormData();
+    formData.append("_subject", FORMSPREE_EMAIL_SUBJECT);
+    formData.append("request_type", "Recurring activity request");
+    formData.append("subject", subject || "Request activity");
+    formData.append("message", message || "");
+    formData.append("source_page", "Request Activity");
+    if (senderName) formData.append("name", senderName);
+    if (senderEmail) formData.append("email", senderEmail);
 
-  function buildActivityRequestZipBlob(textBody, stamp, imageFiles) {
-    if (typeof JSZip === "undefined") return Promise.reject(new Error("JSZip not loaded"));
-    var zip = new JSZip();
-    var t = textBody != null ? String(textBody) : "";
-    if (t.length) {
-      zip.file("mmhp-activity-request-" + stamp + ".txt", t);
-    }
-    for (var i = 0; i < imageFiles.length; i++) {
-      var f = imageFiles[i];
-      var prefix = i === 0 ? "featured" : "extra-" + i;
-      zip.file(prefix + "-" + sanitizeZipEntryName(f.name), f);
-    }
-    return zip.generateAsync({ type: "blob" });
-  }
-
-  function openMailtoActivityRequest(coordinatorEmail, subject, body, statusEl, leadNotice) {
-    var notice = leadNotice != null ? String(leadNotice).trim() : "";
-    var fullBody;
-    if (notice) {
-      fullBody =
-        body +
-        "\r\n\r\n————————————————————————————\r\n\r\n" +
-        notice;
-    } else {
-      fullBody = body;
-    }
-    window.location.href =
-      "mailto:" +
-      coordinatorEmail +
-      "?subject=" +
-      encodeURIComponent(subject) +
-      "&body=" +
-      encodeURIComponent(fullBody);
     if (statusEl) {
-      statusEl.textContent = notice
-        ? "If your email opened, attach the downloaded zip (full request + photos), then send."
-        : "If your email opened, send when ready—the full activity request is in the message.";
       statusEl.hidden = false;
+      statusEl.textContent = "Sending your request...";
     }
-  }
 
-  function deliverActivityRequest(coordinatorEmail, subject, mailtoBodyFull, statusEl, stamp) {
-    return new Promise(function (resolve, reject) {
-      coordinatorEmail =
-        coordinatorEmail && String(coordinatorEmail).trim()
-          ? String(coordinatorEmail).trim()
-          : typeof mmhpGetCoordinatorEmail === "function"
-            ? mmhpGetCoordinatorEmail()
-            : "";
-
-      var shareHint =
-        "Send to: " + coordinatorEmail + " (add them in To: if your app left it blank).";
-      var imageFiles = collectRequestImageFiles();
-      var txtBlob = new Blob([mailtoBodyFull], { type: "text/plain;charset=utf-8" });
-      var txtFile = new File([txtBlob], "mmhp-activity-request-" + stamp + ".txt", {
-        type: "text/plain;charset=utf-8",
-      });
-
-      function afterDownloadMailto(footer) {
-        window.setTimeout(function () {
-          openMailtoActivityRequest(coordinatorEmail, subject, mailtoBodyFull, statusEl, footer);
-          resolve();
-        }, 400);
-      }
-
-      if (imageFiles.length === 0) {
-        window.setTimeout(function () {
-          openMailtoActivityRequest(coordinatorEmail, subject, mailtoBodyFull, statusEl, null);
-        }, 0);
-        window.setTimeout(function () {
-          downloadBlob(txtBlob, "mmhp-activity-request-" + stamp + ".txt");
-          if (statusEl) {
-            statusEl.textContent =
-              "If your email opened, send when ready. A .txt copy of the full request also downloaded—attach it if the message looks shortened or empty.";
-            statusEl.hidden = false;
-          }
-          resolve();
-        }, 400);
-        return;
-      }
-
-      var allFiles = [txtFile].concat(imageFiles);
-
-      var canShareAll = false;
-      if (navigator.share && allFiles.length && navigator.canShare) {
-        try {
-          canShareAll = navigator.canShare({ files: allFiles });
-        } catch (err1) {
-          canShareAll = false;
-        }
-      }
-
-      if (canShareAll) {
-        navigator
-          .share({
-            files: allFiles,
-            title: subject,
-            text: mailtoBodyFull + "\r\n\r\n—\r\n" + shareHint,
-          })
-          .then(function () {
-            if (statusEl) {
-              statusEl.textContent =
-                "Shared your request file and photos. In your mail app, add " +
-                coordinatorEmail +
-                " to To: if needed, and confirm the full text appeared—or attach the shared .txt as a backup.";
-              statusEl.hidden = false;
-            }
-            resolve();
-          })
-          .catch(function () {
-            tryZipOrFallback();
-          });
-        return;
-      }
-
-      tryZipOrFallback();
-
-      function tryZipOrFallback() {
-        buildActivityRequestZipBlob(mailtoBodyFull, stamp, imageFiles)
-          .then(function (zipBlob) {
-            var zipName = "mmhp-activity-request-" + stamp + ".zip";
-            var zipFile = new File([zipBlob], zipName, { type: "application/zip" });
-            var canShareZip = false;
-            if (navigator.share && navigator.canShare) {
-              try {
-                canShareZip = navigator.canShare({ files: [zipFile] });
-              } catch (err2) {
-                canShareZip = false;
-              }
-            }
-            var zipFooter =
-              "A zip downloaded (" +
-              zipName +
-              ") with the full request as a .txt inside plus your photos. Attach it as a backup if you like—the same text is in the email above.\r\n";
-            if (canShareZip) {
-              navigator
-                .share({
-                  files: [zipFile],
-                  title: subject,
-                  text: mailtoBodyFull + "\r\n\r\n—\r\n" + shareHint,
-                })
-                .then(function () {
-                  if (statusEl) {
-                    statusEl.textContent =
-                      "Shared the zip (request + photos). Add " +
-                      coordinatorEmail +
-                      " to To: if needed. Attach the zip if the message body is incomplete.";
-                    statusEl.hidden = false;
-                  }
-                  resolve();
-                })
-                .catch(function () {
-                  downloadBlob(zipBlob, zipName);
-                  afterDownloadMailto(zipFooter);
-                });
-            } else {
-              downloadBlob(zipBlob, zipName);
-              afterDownloadMailto(zipFooter);
-            }
-          })
-          .catch(function () {
-            downloadBlob(
-              new Blob([mailtoBodyFull], { type: "text/plain;charset=utf-8" }),
-              "mmhp-activity-request-" + stamp + ".txt"
-            );
-            afterDownloadMailto(
-              "Could not build a photo zip. A text file with your full request downloaded—please add your photos manually to the email.\r\n"
-            );
-          });
+    return fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+      },
+      body: formData,
+    }).then(function (response) {
+      if (!response.ok) throw new Error("Formspree request failed");
+      if (statusEl) {
+        statusEl.hidden = false;
+        statusEl.textContent =
+          "Your request was sent to the event coordinator. Thank you!";
       }
     });
   }
@@ -667,14 +260,6 @@
           }
           return;
         }
-        var email =
-          typeof mmhpGetCoordinatorEmail === "function" ? mmhpGetCoordinatorEmail() : "";
-        if (!email) {
-          window.alert(
-            "We can’t find the coordinator’s email for this site. Ask whoever looks after the calendar to add it in the site settings."
-          );
-          return;
-        }
         var body =
           "I'm having trouble with the “request an activity” form and would like a phone call instead.\r\n\r\n" +
           "Name: " +
@@ -683,12 +268,13 @@
           "Phone: " +
           ph +
           "\r\n";
-        window.location.href = buildMailtoHref(email, CALLME_SUBJECT, body);
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent =
-            "If your email opened, add the coordinator in “To:” if needed, then send. If nothing opened, check that an email app is set up on this device.";
-        }
+        submitActivityRequestText(CALLME_SUBJECT, body, statusEl, nm, "").catch(function () {
+          if (statusEl) {
+            statusEl.hidden = false;
+            statusEl.textContent =
+              "We could not send the call request automatically. Check your connection and try again.";
+          }
+        });
       });
     }
 
@@ -825,8 +411,6 @@
         });
     }
     syncContactResidentUi();
-
-    wireRequestImageSizeWarningOnChange();
 
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
@@ -1059,34 +643,14 @@
           (proposerEmail || "—") +
           "\r\n";
 
-        var email =
-          typeof mmhpGetCoordinatorEmail === "function" ? mmhpGetCoordinatorEmail() : "";
-        if (!email) {
-          window.alert(
-            "We can’t find the coordinator’s email for this site. Ask whoever looks after the calendar to add it in the site settings."
-          );
-          return;
-        }
-
         var subject = "Request new recurring activity: " + name;
-        var stamp = fileDateStamp();
-
-        function runDeliver() {
-          deliverActivityRequest(email, subject, fullTextBody, statusEl, stamp).catch(function () {
-            if (statusEl) {
-              statusEl.textContent =
-                "We couldn’t finish sharing or downloading. Check your connection, allow downloads if asked, or try another browser.";
-              statusEl.hidden = false;
-            }
-          });
-        }
-
-        var stats = getRequestImageStats();
-        if (imageSelectionOverRecommendedLimit(stats)) {
-          showRequestSizeModalBeforeSubmit(runDeliver);
-        } else {
-          runDeliver();
-        }
+        submitActivityRequestText(subject, fullTextBody, statusEl, proposerName, proposerEmail).catch(function () {
+          if (statusEl) {
+            statusEl.textContent =
+              "We could not send the request automatically. Check your connection and try again.";
+            statusEl.hidden = false;
+          }
+        });
       }
 
       showSubmitNoticeModal(finishSubmitAfterNotice);

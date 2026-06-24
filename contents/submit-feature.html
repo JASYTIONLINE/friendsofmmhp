@@ -53,8 +53,8 @@
               <h2>Submit an Event</h2>
               <p>
                 Tell us about your one-time event below. When you’re done, send it to the event coordinator
-                using the button at the bottom. Your phone or computer will open email or Share with the details
-                and photos attached. On some computers a zip file downloads first—just attach it to the email that opens.
+                using the button at the bottom. The text submission goes directly to the coordinator; no email app is required.
+                Please wait for the confirmation message before leaving the page.
               </p>
               <ul class="submission-page__hints">
                 <li><strong>Title on the card</strong> — the main line people see (up to 48 characters).</li>
@@ -65,7 +65,9 @@
 
             <p class="submission-decision__placeholder-notice" id="mmhp-event-submit-load-err" hidden role="alert"></p>
 
-            <form id="mmhp-event-submit-form" class="event-submit-form" hidden novalidate>
+            <form id="mmhp-event-submit-form" class="event-submit-form" action="https://formspree.io/f/xnjkjbbe" method="POST" hidden novalidate>
+              <input type="hidden" name="_subject" value="MMHP Events Request." />
+              <input type="hidden" name="request_type" value="One-time event submission" />
               <fieldset class="event-submit-form__fieldset event-submit-form__event-section">
                 <legend class="event-submit-form__legend">Event details</legend>
 
@@ -169,11 +171,10 @@
               <fieldset class="event-submit-form__fieldset">
                 <legend class="event-submit-form__legend">Photos</legend>
                 <p class="event-submit-form__help">
-                  Please add one main photo for the event. You can add more if you like—they ride along when you email or share the submission.
+                  Please choose one main photo filename for the coordinator to reference. Automatic submission sends text only; the coordinator can follow up for photo files if needed.
                 </p>
                 <p class="event-submit-form__size-hint" id="mmhp-submit-size-hint">
-                  For email, smaller files send more reliably: about <strong>4&nbsp;MB</strong> per photo and <strong>16&nbsp;MB</strong> total is a comfortable target.
-                  We’ll give you a heads-up if your picks run bigger than that.
+                  Photo files are not attached to this automatic request. Their filenames are included in the text submission.
                 </p>
                 <label class="event-submit-form__field">
                   <span class="event-submit-form__label">Main photo (required)</span>
@@ -244,23 +245,6 @@
     </div>
   </div>
 
-  <div id="mmhp-submit-size-modal" class="event-submit-modal" hidden role="dialog" aria-modal="true"
-    aria-labelledby="mmhp-submit-size-modal-title">
-    <div class="event-submit-modal__backdrop" id="mmhp-submit-size-modal-backdrop"></div>
-    <div class="event-submit-modal__panel">
-      <h2 id="mmhp-submit-size-modal-title" class="event-submit-modal__title">Photos may be too large for email</h2>
-      <div class="event-submit-modal__body" id="mmhp-submit-size-modal-body"></div>
-      <div class="event-submit-modal__actions">
-        <button type="button" class="btn site-button" id="mmhp-submit-size-modal-ok">OK</button>
-        <button type="button" class="btn site-button" id="mmhp-submit-size-modal-continue" hidden>Continue anyway</button>
-        <button type="button" class="btn site-button" id="mmhp-submit-size-modal-back" hidden>Go back</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"
-    integrity="sha384-+mbV2IY1Zk/X1p/nWllGySJSUN8uMs+gUAN10Or95UBH0fpj6GfKgPmgC5EXieXG"
-    crossorigin="anonymous" defer></script>
   <script src="../assets/js/mmhp-coordinator-config.js" defer></script>
   <script src="../assets/js/event-submit-form.js" defer></script>
   <script src="../assets/js/activities-sidebar.js" defer></script>
