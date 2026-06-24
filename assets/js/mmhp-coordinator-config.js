@@ -1,18 +1,15 @@
 /**
- * Single source for the event coordinator email address used across mailto handoffs.
+ * Single source for event coordinator contact handoffs.
  *
- * Why isolate this in one IIFE: HTML pages intentionally keep human-readable placeholders and
- * data-* hooks; this script is the one place that turns those hooks into working mailto URLs.
- * That separation lets course reviewers see the accessibility story—static fallbacks still work
- * if JavaScript fails—while production behavior stays consistent site-wide.
+ * Why isolate this in one IIFE: HTML pages intentionally keep human-readable fallback links and
+ * data-* hooks; this script is the one place that turns those hooks into the current contact form.
  *
  * How it works: On DOM ready, mmhpApplyCoordinatorMailto scans for anchors tagged with
- * data-mmhp-coordinator-mailto and rewrites href using the coordinator address (body attribute
- * override or the default constant). buildMailtoHref centralizes encoding so subject/body never
- * leak raw characters into the URL.
+ * data-mmhp-coordinator-mailto and rewrites href to contents/contact.html. Optional subject/body
+ * data attributes are carried as query parameters so the contact form can prefill them.
  *
- * Maintenance: Change MMHP_COORDINATOR_EMAIL_DEFAULT below, or set data-mmhp-coordinator-email
- * on <body> to override without editing this file (advanced).
+ * Maintenance: Change MMHP_COORDINATOR_EMAIL_DEFAULT only for non-form fallbacks such as submit
+ * workflows. General contact links should go through the Formspree-backed contact page.
  */
 (function (global) {
   var MMHP_COORDINATOR_EMAIL_DEFAULT = "johnbarkle@msn.com";
@@ -44,16 +41,31 @@
     return h;
   }
 
+  function coordinatorContactBaseHref() {
+    var path = (global.location && global.location.pathname ? global.location.pathname : "").replace(/\\/g, "/");
+    if (/contents\/(activity-flyer|feature-events)\//i.test(path)) return "../contact.html";
+    if (/contents\//i.test(path)) return "contact.html";
+    return "contents/contact.html";
+  }
+
+  function buildCoordinatorContactHref(subject, body) {
+    var h = coordinatorContactBaseHref();
+    var params = [];
+    if (subject) params.push("subject=" + encodeURIComponent(subject));
+    if (body) params.push("message=" + encodeURIComponent(body));
+    if (params.length) h += "?" + params.join("&");
+    return h;
+  }
+
   function mmhpApplyCoordinatorMailtoLinks(root) {
     root = root || document;
     if (!root || !root.querySelectorAll) return;
-    var email = mmhpGetCoordinatorEmail();
     var nodes = root.querySelectorAll("a[data-mmhp-coordinator-mailto]");
     for (var i = 0; i < nodes.length; i++) {
       var a = nodes[i];
       var sub = a.getAttribute("data-mmhp-mailto-subject") || "";
       var bod = a.getAttribute("data-mmhp-mailto-body") || "";
-      a.setAttribute("href", buildMailtoHref(email, sub, bod));
+      a.setAttribute("href", buildCoordinatorContactHref(sub, bod));
     }
   }
 
@@ -61,6 +73,7 @@
   global.mmhpGetCoordinatorEmail = mmhpGetCoordinatorEmail;
   global.mmhpApplyCoordinatorMailtoLinks = mmhpApplyCoordinatorMailtoLinks;
   global.mmhpValidateCoordinatorEmail = basicEmailCheck;
+  global.mmhpBuildMailtoHref = buildMailtoHref;
 
   function onReady() {
     mmhpApplyCoordinatorMailtoLinks(document);

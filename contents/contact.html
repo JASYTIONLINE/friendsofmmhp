@@ -46,8 +46,41 @@
               <h2>Contact Event Coordinator</h2>
               <p>
                 For help with <strong>Event Calendar, Event Submissions, or General Social Event Questions
-                  only</strong>, <a href="mailto:johnbarkle@msn.com" data-mmhp-coordinator-mailto>email the event coordinator</a> with your concerns.
+                  only</strong>, use this form to send a message directly to the event coordinator.
               </p>
+              <form class="event-submit-form" id="mmhp-contact-coordinator-form" action="https://formspree.io/f/xnjkjbbe" method="POST">
+                <input type="hidden" name="_subject" id="mmhp-contact-formspree-subject" value="McAllen Mobile Park event calendar contact">
+                <input type="hidden" name="source_page" value="McAllen Mobile Park contact page">
+
+                <fieldset class="event-submit-form__fieldset">
+                  <legend class="event-submit-form__legend">Your message</legend>
+
+                  <div class="event-submit-form__field">
+                    <label class="event-submit-form__label" for="mmhp-contact-name">Your name</label>
+                    <input class="event-submit-form__input" id="mmhp-contact-name" name="name" type="text" autocomplete="name" required>
+                  </div>
+
+                  <div class="event-submit-form__field">
+                    <label class="event-submit-form__label" for="mmhp-contact-email">Your email</label>
+                    <input class="event-submit-form__input" id="mmhp-contact-email" name="email" type="email" autocomplete="email" required>
+                    <p class="event-submit-form__hint">Formspree uses this so the coordinator can reply to you.</p>
+                  </div>
+
+                  <div class="event-submit-form__field">
+                    <label class="event-submit-form__label" for="mmhp-contact-subject">Subject</label>
+                    <input class="event-submit-form__input" id="mmhp-contact-subject" name="subject" type="text" value="Event calendar question" required>
+                  </div>
+
+                  <div class="event-submit-form__field">
+                    <label class="event-submit-form__label" for="mmhp-contact-message">Message</label>
+                    <textarea class="event-submit-form__input" id="mmhp-contact-message" name="message" rows="8" required></textarea>
+                  </div>
+
+                  <div class="event-submit-form__actions">
+                    <button type="submit" class="btn site-button">Send Message</button>
+                  </div>
+                </fieldset>
+              </form>
             </div>
             <div class="content-section">
               <div class="site-footer-address-row contact-address-block">
@@ -100,7 +133,26 @@
 
     </div>
   </div>
-  <script src="../assets/js/mmhp-coordinator-config.js" defer></script>
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search || "");
+      var subject = params.get("subject") || "";
+      var message = params.get("message") || "";
+      var subjectEl = document.getElementById("mmhp-contact-subject");
+      var hiddenSubjectEl = document.getElementById("mmhp-contact-formspree-subject");
+      var messageEl = document.getElementById("mmhp-contact-message");
+
+      function syncSubject() {
+        if (!hiddenSubjectEl || !subjectEl) return;
+        hiddenSubjectEl.value = subjectEl.value || "McAllen Mobile Park event calendar contact";
+      }
+
+      if (subjectEl && subject) subjectEl.value = subject;
+      if (messageEl && message) messageEl.value = message;
+      syncSubject();
+      if (subjectEl) subjectEl.addEventListener("input", syncSubject);
+    })();
+  </script>
 </body>
 
 </html>

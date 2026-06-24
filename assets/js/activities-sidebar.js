@@ -844,9 +844,6 @@
   /** Link to generated contents/feature-events/<basename>. */
   function featureEventDetailHref(ev) {
     var detailPath = ev && ev.detailPath != null ? String(ev.detailPath).trim().replace(/\\/g, "/").replace(/^\/+/, "") : "";
-    if (!detailPath && ev && ev.date === "2026-06-13" && String(ev.eventName || "").indexOf("Save Kitty Fundraiser DJ Dance") !== -1) {
-      detailPath = "contents/feature-events/2026-06-13-1900-djdanadance.html";
-    }
     var base = detailPath || featureEventPageBasename(ev);
     if (!base) return learnMoreHref();
     var path = (window.location.pathname || "").replace(/\\/g, "/");

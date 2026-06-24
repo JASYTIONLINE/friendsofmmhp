@@ -241,6 +241,199 @@ The **center** calendar on the home page is typically a **Google Calendar embed*
 
 ---
 
+## Site maintenance: how to update content
+
+This site is intentionally **JSON-first**. Do not edit CSV files as source data. Make content changes in [mmhp-master-data.json](assets/data/json/mmhp-master-data.json), then update or generate any HTML pages that should exist for that content.
+
+### Before editing
+
+1. Open [assets/data/json/mmhp-master-data.json](assets/data/json/mmhp-master-data.json).
+2. Decide which array owns the change:
+   - **features[]** — one-time featured cards and dated landing pages.
+   - **activities[]** — recurring programs shown in the recurring schedule/sidebar.
+   - Other arrays such as **residents[]**, **locations[]**, or **committees[]** only if the change is about those entities.
+3. Keep JSON valid:
+   - Use double quotes around keys and strings.
+   - Put commas between properties and objects, but not after the final item in an object or array.
+   - Preserve ids. Do not reuse an existing id for a different thing.
+4. Save images before referencing them:
+   - Featured event images usually go in `assets/images/event-flyer/`.
+   - Activity images usually go in `assets/images/activity-flyer/`.
+   - JSON image paths are relative to `assets/images/`, for example `event-flyer/karaoke.png`.
+5. After editing, open `index.html` in a browser and confirm the card/sidebar changed as expected.
+
+### Add a new featured event
+
+Use this for a one-time event that should appear in the index page featured sections and may have a dedicated landing page.
+
+1. Choose the next feature id:
+   - Look at the last `features[]` entry in [mmhp-master-data.json](assets/data/json/mmhp-master-data.json).
+   - Increment the numeric part, for example `fe0056` becomes `fe0057`.
+   - Use the same value for both `featureId` and `id`.
+2. Add a new object inside `features[]`.
+3. Include these fields:
+
+```json
+{
+  "featureId": "fe0057",
+  "id": "fe0057",
+  "date": "2026-06-13",
+  "startTime": "19:00",
+  "endTime": "22:00",
+  "location": "Hall B",
+  "isActive": true,
+  "isFeatured": true,
+  "cardLine1": "Save Kitty Fundraiser DJ Dance",
+  "cardLine2": "DJ Dana dance fundraiser",
+  "cardLine3": "Jun 13 2026",
+  "eventName": "Save Kitty Fundraiser DJ Dance — DJ Dana dance fundraiser",
+  "adCopy": "Short promotional copy used by cards, exports, and generated pages.",
+  "description": "Longer event description for the landing page or detail views.",
+  "imagePath": "event-flyer/djdance.png",
+  "detailPath": "contents/feature-events/2026-06-13-1900-djdanadance.html"
+}
+```
+
+4. Set dates and times carefully:
+   - `date` uses `YYYY-MM-DD`.
+   - `startTime` and `endTime` use 24-hour `HH:MM`.
+   - `cardLine3` is the short display date, for example `Jun 13 2026`.
+5. Set the image:
+   - `imagePath` controls the index card image.
+   - `imagePathFlyer` is optional and can be used when the landing page should use a different wide flyer image.
+6. Set the landing page link:
+   - If the page filename follows the automatic pattern, `detailPath` is optional.
+   - Automatic pattern: `contents/feature-events/YYYY-MM-DD-HHmm-image-stem.html`.
+   - Example: `date` `2026-06-13`, `startTime` `19:00`, and `imagePath` `event-flyer/djdance.png` becomes `contents/feature-events/2026-06-13-1900-djdance.html`.
+   - If the page has a custom filename, add `detailPath` exactly.
+7. Create or update the landing page:
+   - For a standard page, run `npm run build:feature-pages`.
+   - For a custom page, copy an existing page in [contents/feature-events/](contents/feature-events/), rename it, update its title, flyer image, date/time, location, copy, and `data-mmhp-feature-id`.
+   - Add `data-mmhp-custom-feature-page="true"` on custom pages if you do not want `npm run build:feature-pages` to overwrite them.
+8. Verify:
+   - Open `index.html`.
+   - Confirm the featured card text, image, and link.
+   - Open the landing page directly.
+   - Try the Save The Date button if the page includes [feature-events-ics.js](assets/js/feature-events-ics.js).
+9. Optional audit:
+   - Run `npm run export:features` to create `assets/data/csv/export/featured-events-audit.csv`.
+   - Open that CSV only for review. Do not edit it as source data.
+
+### Add a new recurring activity
+
+Use this for a program that repeats on a schedule and should appear in the recurring schedule/sidebar.
+
+1. Choose the next activity id:
+   - Look at the last `activities[]` entry in [mmhp-master-data.json](assets/data/json/mmhp-master-data.json).
+   - Increment the numeric part, for example `ac0038` becomes `ac0039`.
+2. Add a new object inside `activities[]`.
+3. Include the main fields:
+
+```json
+{
+  "id": "ac0039",
+  "activityName": "Example Activity",
+  "description": "Longer explanation of what the activity is and who should attend.",
+  "location": "Hall B",
+  "recurrenceType": "Recurring",
+  "recurrenceDetails": {
+    "weekdays": [
+      "Tuesday"
+    ],
+    "startTime": "10:00",
+    "endTime": "11:00"
+  },
+  "keywords": [
+    "example",
+    "Tuesday",
+    "Hall B"
+  ],
+  "imagePath": "activity-flyer/example-activity.png",
+  "contactResidentId": "re0000",
+  "chairpersonId": "re0000",
+  "activeFrom": "01-01",
+  "activeTo": "12-31",
+  "isActive": true,
+  "adCopy": "Short sidebar/export description.",
+  "isSeasonal": false
+}
+```
+
+4. Configure recurrence:
+   - `weekdays` uses full names: `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`.
+   - `startTime` and `endTime` use 24-hour `HH:MM`.
+   - Add `weekOfMonth` for monthly patterns, for example `"weekOfMonth": 3` for the third Tuesday.
+5. Configure seasonality:
+   - Year-round: `activeFrom: "01-01"`, `activeTo: "12-31"`, `isSeasonal: false`.
+   - Seasonal: use `MM-DD` values and set `isSeasonal: true`.
+   - A season can wrap the year, for example `11-04` to `03-03`.
+   - Use `isActive: false` only when the activity should be hidden completely.
+6. Add an activity flyer page if needed:
+   - Copy a similar file from [contents/activity-flyer/](contents/activity-flyer/).
+   - Update the page title, copy, image, schedule, location, and contact text.
+   - If you want the sidebar/flyer tooling to connect it to JSON, add the right `data-mmhp-activity-id`.
+7. Link the flyer if needed:
+   - Some activity flyer links are controlled in `ACTIVITY_FLYER_FILENAMES` inside [activities-sidebar.js](assets/js/activities-sidebar.js).
+   - Add the new `ac####` id there only if the activity card/sidebar should link to a specific flyer page.
+8. Verify:
+   - Open `index.html`.
+   - Confirm the activity appears in the recurring schedule on the correct day.
+   - Confirm off-season behavior if the activity is seasonal.
+   - Open the activity flyer page if one was added.
+
+### Modify an existing featured event
+
+1. Find the event in `features[]` by `featureId`, date, or `eventName`.
+2. Edit only the fields that are changing:
+   - Text on the card: `cardLine1`, `cardLine2`, `cardLine3`.
+   - Long copy: `adCopy` and/or `description`.
+   - Date/time: `date`, `startTime`, `endTime`.
+   - Place: `location`.
+   - Card image: `imagePath`.
+   - Landing page: `detailPath`.
+   - Featured visibility: `isFeatured`.
+   - Full hide/show: `isActive`.
+3. If the event has a custom landing page, update the HTML file in [contents/feature-events/](contents/feature-events/) too.
+4. If the event uses a generated landing page, run `npm run build:feature-pages`.
+5. Verify the index card and the landing page link.
+
+### Modify an existing recurring activity
+
+1. Find the activity in `activities[]` by `id` or `activityName`.
+2. Edit only the fields that are changing:
+   - Display name: `activityName`.
+   - Description: `description`.
+   - Sidebar/export copy: `adCopy`.
+   - Schedule: `recurrenceDetails`.
+   - Season: `activeFrom`, `activeTo`, `isSeasonal`.
+   - Hide/show: `isActive`.
+   - Image: `imagePath`.
+   - Search terms: `keywords`.
+3. If there is a matching page in [contents/activity-flyer/](contents/activity-flyer/), update that page too.
+4. Verify the recurring schedule on `index.html`.
+
+### Modify another JSON entity
+
+Use this for residents, locations, committees, roles, and similar records.
+
+1. Find the correct array in [mmhp-master-data.json](assets/data/json/mmhp-master-data.json).
+2. Preserve the existing id.
+3. Update the smallest possible set of fields.
+4. If another object references that id, do not rename or remove it unless you also update every reference.
+5. Verify the page or form that uses that data.
+
+### Useful commands
+
+```powershell
+npm run build:feature-pages
+npm run export:features
+npm run audit:links
+```
+
+Use `npm run build:feature-pages` only when you want JSON to generate standard feature landing pages. Use `npm run export:features` only when you want a spreadsheet review file. The index page itself reads JSON directly and does not need a build step after normal JSON edits.
+
+---
+
 ## Data model (reference)
 
 This section is **mostly forward-looking infrastructure**: it documents a **broader entity architecture** so that **future, more comprehensive** web versions of the park site—authentication, richer resident or committee tooling, deeper scheduling, and similar upgrades—can adopt the **same ids and relationships** without a ground-up redesign. Those structures are **defined and kept in step with master JSON now** so today’s data stays **compatible** when those capabilities arrive.
