@@ -6335,6 +6335,25 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
+      "featureId": "fe0058",
+      "id": "fe0058",
+      "date": "2026-07-04",
+      "startTime": "12:00",
+      "endTime": "13:00",
+      "location": "Hall B",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "4th of July Picnic",
+      "cardLine2": "Picnic & Potluck",
+      "cardLine3": "Jul 4 2026",
+      "eventName": "4th of July Picnic — Picnic & Potluck",
+      "adCopy": "Celebrate the 4th of July with neighbors at a picnic and potluck in Hall B. Sandwiches will be provided as the main course by the Summer MMP Group. Please sign up in Hall A to bring a salad, side dish, other food, or dessert.",
+      "description": "Celebrate the 4th of July with neighbors at a picnic and potluck in Hall B. Sandwiches will be provided as the main course by the Summer MMP Group. Please sign up in Hall A to bring a salad, side dish, other food, or dessert.",
+      "imagePath": "event-flyer/4thofjuly-sq.png",
+      "imagePathFlyer": "event-flyer/4thofjuly-rec.png",
+      "detailPath": "contents/feature-events/2026-07-04-1200-fourth-july-picnic.html"
+    },
+    {
       "featureId": "fe0034",
       "id": "fe0034",
       "date": "2026-07-04",
