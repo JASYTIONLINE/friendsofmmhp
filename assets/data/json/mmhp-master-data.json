@@ -6362,12 +6362,15 @@
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
-      "cardLine1": "Karaoke",
-      "cardLine2": "Karaoke",
+      "cardLine1": "4th of July Dance",
+      "cardLine2": "DJ Dana Karaoke Party",
       "cardLine3": "Jul 4 2026",
-      "eventName": "Karaoke — Karaoke",
-      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
-      "imagePath": "event-flyer/karaoke.png"
+      "eventName": "4th of July Dance — DJ Dana Karaoke Party",
+      "adCopy": "Come one, come all, and help us celebrate our nation's independence with fun family music, dancing, and song. DJ Dana will host the dance party, take music requests, and keep the evening moving with favorites residents can sing along to. Bring snacks, drinks, and your best holiday spirit. This can be a memorable 4th of July night, but only if our residents come out, fill the hall, make requests, dance, sing, laugh, and celebrate together.",
+      "description": "Come one, come all, and help us celebrate our nation's independence with fun family music, dancing, and song. DJ Dana will host the dance party, take music requests, and keep the evening moving with favorites residents can sing along to. Bring snacks, drinks, and your best holiday spirit. This can be a memorable 4th of July night, but only if our residents come out, fill the hall, make requests, dance, sing, laugh, and celebrate together.",
+      "imagePath": "event-flyer/4thofjuly-dance-karaoke.png",
+      "imagePathFlyer": "event-flyer/4thofjuly-dance-karaoke.png",
+      "detailPath": "contents/feature-events/2026-07-04-1900-karaoke.html"
     },
     {
       "featureId": "fe0035",
