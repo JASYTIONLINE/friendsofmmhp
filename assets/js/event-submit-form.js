@@ -9,7 +9,7 @@
  */
 (function () {
   var KNOWN_HALLS = { "Hall A": true, "Hall B": true, "Hall C": true };
-  /** Must match `<option value="…">` for Other on contents/submit-feature.html. */
+  /** Must match `<option value="…">` for Other on the one-time event contact form. */
   var LOCATION_PRESET_OTHER = "__other__";
   var LOCATION_OTHER_PLACEHOLDER = "Example: Hall B, library, pool room…";
 

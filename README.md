@@ -111,9 +111,7 @@ mmpeventcalendar/
 ├── index.html                    # home (three-column layout, calendar embed)
 ├── contents/
 │   ├── learn-more.html           # operational pages (same shell as home)
-│   ├── submit-feature.html
 │   ├── contact.html
-│   ├── request-activity.html
 │   ├── activity-flyer/           # recurring-activity pages + template-recurring-activity.html
 │   └── feature-events/           # dated one-off landings + yyyy-mm-dd-… template
 ├── assets/
@@ -133,7 +131,7 @@ mmpeventcalendar/
 | Where the HTML file lives | Typical asset prefix | Notes |
 |---------------------------|----------------------|--------|
 | Repo root (**index.html**) | *assets/…* | Links into **contents/** use the *contents/…* prefix. |
-| [contents/](contents/) (e.g. learn-more, submit) | *../assets/…* | Sibling pages in **contents/** use bare filenames (e.g. *contact.html*). |
+| [contents/](contents/) (e.g. learn-more, contact) | *../assets/…* | Sibling pages in **contents/** use bare filenames (e.g. *contact.html*). |
 | [contents/activity-flyer/](contents/activity-flyer/) | *../../assets/…* | Links to other **contents/** pages use *../* (e.g. *../learn-more.html*). **activities-sidebar.js** adjusts featured-event and nav targets for this extra directory level. |
 | [contents/feature-events/](contents/feature-events/) | *../../assets/…* | Same depth as activity-flyer; paths mirror conventions used on those pages. |
 
@@ -205,7 +203,7 @@ HTML under **contents/feature-events/** often includes **embedded** CSS for flye
 
 - **Home** — Header copy, full-width park-banner hero, main navigation, **left** rail (recurring schedule from master JSON), **center** column (iframe calendar plus home featured section), **right** rail (week spotlight / featured cards where enabled). The **spatial split** is a deliberate **information-architecture** choice: recurring rhythm vs. embedded calendar vs. promotional cards.
 
-- **Operational pages** — **learn-more**, **submit**, **contact**, **request-activity** reuse the multi-column shell, the **data-mmhp-master-json** hook, and shared footer and navigation patterns with path-adjusted asset URLs. Users therefore **do not** relearn navigation when they move from reading to submitting.
+- **Operational pages** — **learn-more** and **contact** reuse the multi-column shell, the **data-mmhp-master-json** hook, and shared footer and navigation patterns with path-adjusted asset URLs. Users therefore **do not** relearn navigation when they move from reading to submitting.
 
 - **Featured events** — **Date-specific** marketing or landing pages; imagery lives under **assets/images/event-flyer/**. Shared scripts add coordinator **mailto** hooks where included, and **feature-events-ics.js** provides calendar download / “Save the date” handoff.
 
@@ -225,7 +223,7 @@ HTML under **contents/feature-events/** often includes **embedded** CSS for flye
 
 Scripts load **per page** as needed (**defer** on external scripts). The master JSON path is supplied on **body** or follows layout conventions—keeping configuration **visible** in markup for a static site.
 
-**Static asset trade-offs:** The site intentionally uses **one global** stylesheet and a **shared** [**activities-sidebar.js**](assets/js/activities-sidebar.js) so repeat visitors cache a single copy. Pages without sidebar or export hooks still download that script, but initialization **skips** the master JSON fetch when no hooked regions exist—acceptable for this architecture. Forms that build ZIP attachments load **JSZip** from jsDelivr **pinned to 3.10.1** with *integrity* and *crossorigin="anonymous"* for Subresource Integrity (see [**contents/submit-feature.html**](contents/submit-feature.html) and [**contents/request-activity.html**](contents/request-activity.html)).
+**Static asset trade-offs:** The site intentionally uses **one global** stylesheet and a **shared** [**activities-sidebar.js**](assets/js/activities-sidebar.js) so repeat visitors cache a single copy. Pages without sidebar or export hooks still download that script, but initialization **skips** the master JSON fetch when no hooked regions exist—acceptable for this architecture.
 
 ---
 
