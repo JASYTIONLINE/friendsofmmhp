@@ -56,6 +56,35 @@
       : "";
   }
 
+  function focusStatus(statusEl) {
+    if (!statusEl) return;
+    if (!statusEl.hasAttribute("tabindex")) statusEl.setAttribute("tabindex", "-1");
+    window.setTimeout(function () {
+      if (statusEl.scrollIntoView) {
+        statusEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      if (typeof statusEl.focus === "function") {
+        try {
+          statusEl.focus({ preventScroll: true });
+        } catch (e) {
+          try {
+            statusEl.focus();
+          } catch (e2) {}
+        }
+      }
+    }, 0);
+  }
+
+  function setStatusState(statusEl, state) {
+    if (!statusEl) return;
+    statusEl.classList.remove(
+      "event-submit-form__status--sending",
+      "event-submit-form__status--success",
+      "event-submit-form__status--error"
+    );
+    if (state) statusEl.classList.add("event-submit-form__status--" + state);
+  }
+
   function getMasterJsonUrl() {
     var u = document.body && document.body.getAttribute("data-mmhp-master-json");
     u = u ? String(u).trim() : "";
@@ -185,7 +214,9 @@
 
     if (statusEl) {
       statusEl.hidden = false;
+      setStatusState(statusEl, "sending");
       statusEl.textContent = "Sending your request...";
+      focusStatus(statusEl);
     }
 
     return fetch(FORMSPREE_ENDPOINT, {
@@ -198,11 +229,13 @@
       if (!response.ok) throw new Error("Formspree request failed");
       if (statusEl) {
         statusEl.hidden = false;
+        setStatusState(statusEl, "success");
         statusEl.textContent =
           "Your request has been submitted to " +
           coordinatorEmail() +
           "." +
           confirmationCopyText(senderEmail);
+        focusStatus(statusEl);
       }
     });
   }
@@ -210,6 +243,7 @@
   function announceMissingRequired(statusEl, message, focusEl) {
     if (statusEl) {
       statusEl.hidden = false;
+      setStatusState(statusEl, "error");
       statusEl.textContent =
         "Please fill in all required fields before sending. " + message;
     }
@@ -273,6 +307,7 @@
         if (statusEl) {
           statusEl.textContent = "";
           statusEl.hidden = true;
+          setStatusState(statusEl, "");
         }
         var nm = String(callmeName ? callmeName.value : "").trim();
         var ph = String(callmePhone ? callmePhone.value : "").trim();
@@ -302,9 +337,11 @@
           "\r\n";
         submitActivityRequestText(CALLME_SUBJECT, body, statusEl, nm, "").catch(function () {
           if (statusEl) {
+            setStatusState(statusEl, "error");
             statusEl.hidden = false;
             statusEl.textContent =
               "We could not send the call request automatically. Check your connection and try again.";
+            focusStatus(statusEl);
           }
         });
       });
@@ -449,6 +486,7 @@
       if (statusEl) {
         statusEl.textContent = "";
         statusEl.hidden = true;
+        setStatusState(statusEl, "");
       }
 
       var name = String(document.getElementById("mmhp-request-activityName").value || "").trim();
@@ -653,9 +691,11 @@
         var subject = "Request new recurring activity: " + name;
         submitActivityRequestText(subject, fullTextBody, statusEl, proposerName, proposerEmail).catch(function () {
           if (statusEl) {
+            setStatusState(statusEl, "error");
             statusEl.textContent =
               "We could not send the request automatically. Check your connection and try again.";
             statusEl.hidden = false;
+            focusStatus(statusEl);
           }
         });
       }

@@ -64,6 +64,35 @@
       : "";
   }
 
+  function focusStatus(statusEl) {
+    if (!statusEl) return;
+    if (!statusEl.hasAttribute("tabindex")) statusEl.setAttribute("tabindex", "-1");
+    window.setTimeout(function () {
+      if (statusEl.scrollIntoView) {
+        statusEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      if (typeof statusEl.focus === "function") {
+        try {
+          statusEl.focus({ preventScroll: true });
+        } catch (e) {
+          try {
+            statusEl.focus();
+          } catch (e2) {}
+        }
+      }
+    }, 0);
+  }
+
+  function setStatusState(statusEl, state) {
+    if (!statusEl) return;
+    statusEl.classList.remove(
+      "event-submit-form__status--sending",
+      "event-submit-form__status--success",
+      "event-submit-form__status--error"
+    );
+    if (state) statusEl.classList.add("event-submit-form__status--" + state);
+  }
+
   /** Append half-hour options after the first “until tired” option (runs once). */
   function buildEndTimeSelectOptions() {
     var sel = document.getElementById("mmhp-submit-endTime");
@@ -357,7 +386,9 @@
 
     if (statusEl) {
       statusEl.hidden = false;
+      setStatusState(statusEl, "sending");
       statusEl.textContent = "Sending your event submission...";
+      focusStatus(statusEl);
     }
 
     return fetch(FORMSPREE_ENDPOINT, {
@@ -370,11 +401,13 @@
       if (!response.ok) throw new Error("Formspree request failed");
       if (statusEl) {
         statusEl.hidden = false;
+        setStatusState(statusEl, "success");
         statusEl.textContent =
           "Your request has been submitted to " +
           coordinatorEmail() +
           "." +
           confirmationCopyText(ev.requesterEmail);
+        focusStatus(statusEl);
       }
     });
   }
@@ -543,8 +576,11 @@
         announceIncompleteForm(status, check.message, check.focusEl);
         return;
       }
-      status.textContent = "";
-      status.hidden = true;
+      if (status) {
+        status.textContent = "";
+        status.hidden = true;
+        setStatusState(status, "");
+      }
 
       var confirmed = window.confirm(
         "Send this event submission to " + coordinatorEmail() + " now?\n\n" + eventSummaryPlainText(ev)
@@ -566,9 +602,11 @@
         })
         .catch(function () {
           if (status) {
+            setStatusState(status, "error");
             status.textContent =
               "Could not send the event submission automatically. Please check your connection and try again.";
             status.hidden = false;
+            focusStatus(status);
           }
         });
     });
