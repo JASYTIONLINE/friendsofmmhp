@@ -4,431 +4,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Request an activity | McAllen Mobile Park Event Calendar</title>
-  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <meta http-equiv="refresh" content="0; url=contact.html?type=activity">
+  <title>Request Activity | McAllen Mobile Park Event Calendar</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/stock-images/favicon.svg" />
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body id="top" class="page-request-activity" data-mmhp-master-json="../assets/data/json/mmhp-master-data.json">
+<body id="top" class="page-request-activity">
   <div class="site-wrapper">
     <div class="site-shell">
-
       <header class="site-header header-site">
         <h1 class="site-header-title">McAllen Mobile Park</h1>
         <section class="site-hero hero" aria-label="Park banner">
           <div class="hero-image">
             <picture>
-              <source media="(max-width: 768px)" srcset="../assets/images/headers/request-activity.imag.png">
-              <img src="../assets/images/park-banner.png" alt="McAllen Mobile Park Banner">
+              <source media="(max-width: 768px)" srcset="../assets/images/pages/request-activity.imag.png">
+              <img src="../assets/images/park-b-roll/park-banner.png" alt="McAllen Mobile Park Banner">
             </picture>
           </div>
-          <p class="site-header-subtitle">Simple, clear community event information in one place</p>
+          <p class="site-header-subtitle">Contact Event Coordinator</p>
         </section>
       </header>
 
-      <nav class="site-nav navbar" aria-label="Main navigation">
-        <ul class="site-nav-list">
-          <li class="site-nav-item"><a class="site-nav-link" href="../index.html">Calendar</a></li>
-          <li class="site-nav-item"><a class="site-nav-link" href="learn-more.html">Learn More</a></li>
-          <li class="site-nav-item"><span class="site-nav-link" aria-current="page">Request Activity</span></li>
-          <li class="site-nav-item"><a class="site-nav-link" href="submit-feature.html">Submit Event</a></li>
-          <li class="site-nav-item"><a class="site-nav-link" href="contact.html">Contact Event Coordinator</a></li>
-        </ul>
-      </nav>
-
-      <div class="site-layout layout">
-
-        <aside class="site-sidebar site-sidebar-left sidebar-left" aria-labelledby="schedule-sidebar-heading">
-          <h2 id="schedule-sidebar-heading" class="site-sidebar-title">Recurring Schedule</h2>
-          <div class="sidebar-left-body">
-            <p class="sidebar-add-activity-wrap">
-              <a class="btn site-button sidebar-add-activity-btn" href="request-activity.html" aria-current="page">Add Activity</a>
+      <main class="site-main main-content">
+        <section class="site-main-content content">
+          <div class="content-section">
+            <h2>Taking you to the event coordinator form</h2>
+            <p>
+              Activity requests now start on the consolidated coordinator page so the site can first
+              ask whether this is a one time event or a recurring activity.
             </p>
-            <ul class="recurring-events-list" aria-busy="true"></ul>
-
+            <p>
+              If you are not redirected automatically, use this button:
+              <a class="btn site-button" href="contact.html?type=activity">Continue to recurring activity form</a>
+            </p>
           </div>
-        </aside>
-
-        <main class="site-main main-content">
-          <section class="site-main-content content submission-page" id="request-activity-main" tabindex="-1">
-            <div class="content-section">
-              <h2>Add Something to the Recurring Schedule</h2>
-              <p>
-                Want a <strong>weekly</strong> or regular activity on the left-hand schedule—book club, cards, walking group, whatever? Fill this out and send it to the event coordinator.
-                One-time parties or special nights go on <a href="submit-feature.html">Submit Event</a> instead.
-              </p>
-              <ul class="submission-page__hints">
-                <li>Prefer a phone call? At the top of the form, check the box that asks the coordinator to call you—then add your <strong>name</strong> and <strong>phone</strong> (both are required for a callback) and tap <strong>Please call me</strong>.</li>
-                <li>We always ask for the basics: what it’s called, what happens there, where you meet, which day or days, what time, and whether it runs all year or only part of the year.</li>
-                <li>The rest is up to you—a short tag line, words to search by, end time, and optional photo names. Whatever you add rides with your request so the coordinator can put it on the site.</li>
-                <li>When you send, the text request goes directly to the event coordinator. You do not need an email app on your phone or computer.</li>
-              </ul>
-            </div>
-
-            <form id="mmhp-request-activity-form" class="event-submit-form" action="https://formspree.io/f/xnjkjbbe" method="POST" novalidate>
-              <input type="hidden" name="_subject" value="MMHP Events Request." />
-              <input type="hidden" name="request_type" value="Recurring activity request" />
-              <input type="hidden" id="mmhp-request-recurrenceType" name="recurrenceType" value="Recurring" />
-
-              <fieldset class="event-submit-form__fieldset">
-                <legend class="event-submit-form__legend">Rather talk to someone?</legend>
-                <p class="event-submit-form__help">
-                  If the rest of this page feels like too much, you can ask the event coordinator to call you—no need to fill out the long form.
-                </p>
-                <div class="event-submit-form__detail-field">
-                  <label class="event-submit-form__field event-submit-form__field--check">
-                    <input type="checkbox" id="mmhp-request-callme" name="requestCallMe" aria-controls="mmhp-request-callme-wrap" />
-                    <span class="event-submit-form__detail-check-text">This feels too technical for me—please have the coordinator call me instead (you’ll need to add your name and phone below).</span>
-                  </label>
-                </div>
-                <div id="mmhp-request-callme-wrap" class="event-submit-form__detail-grid" hidden>
-                  <p class="event-submit-form__help" id="mmhp-request-callme-required-note">
-                    If you want the coordinator to call you, both your <strong>name</strong> and <strong>phone number</strong> are required—otherwise there’s no way to reach you back.
-                  </p>
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-callme-name">Your name <em>(required for a call)</em></label>
-                    <p class="event-submit-form__field-subtitle">We need this to know who to ask for. <strong>Up to 120 characters.</strong></p>
-                    <input type="text" id="mmhp-request-callme-name" class="event-submit-form__input" maxlength="120" autocomplete="name" aria-required="true" />
-                  </div>
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-callme-phone">Phone number <em>(required for a call)</em></label>
-                    <p class="event-submit-form__field-subtitle">We need a number where you can be reached. <strong>Up to 40 characters.</strong></p>
-                    <input type="tel" id="mmhp-request-callme-phone" class="event-submit-form__input" maxlength="40" autocomplete="tel" aria-required="true" />
-                  </div>
-                  <div class="event-submit-form__detail-field">
-                    <button type="button" id="mmhp-request-callme-send" class="btn site-button">Please call me</button>
-                    <p class="event-submit-form__field-subtitle">
-                      This sends your name and phone directly to the coordinator. No email app is required.
-                    </p>
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset class="event-submit-form__fieldset">
-                <legend class="event-submit-form__legend">What we need to know about the activity</legend>
-
-                <div class="event-submit-form__detail-grid">
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-activityName">What should we call it?</label>
-                    <p class="event-submit-form__field-subtitle">
-                      The name neighbors will see on the schedule—keep it clear.
-                      <strong>Example:</strong> “Tuesday night bingo in Hall B—everyone’s welcome.”
-                      <strong>Up to 120 characters.</strong>
-                    </p>
-                    <input type="text" id="mmhp-request-activityName" name="activityName" class="event-submit-form__input" required maxlength="120" autocomplete="off" placeholder="Example: Tuesday night bingo in Hall B—everyone’s welcome." />
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-description">What happens there?</label>
-                    <p class="event-submit-form__field-subtitle">
-                      A few sentences are plenty: who it’s for, what to bring, prizes or supplies, if people should arrive early, and so on.
-                      <strong>Example:</strong> “Cards and dabbers provided; small prizes. Come a few minutes early to get a table.”
-                      <strong>Up to 2,000 characters.</strong>
-                    </p>
-                    <textarea id="mmhp-request-description" name="description" class="event-submit-form__input" rows="4" required maxlength="2000" placeholder='Example: Cards and dabbers provided; small prizes. Come a few minutes early to get a table.'></textarea>
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-location-preset">Where does it meet?</label>
-                    <p class="event-submit-form__field-subtitle">
-                      Pick the closest spot from the list—no character limit here. If it’s somewhere else, choose <strong>Other</strong> and describe it below (that line has a limit).
-                    </p>
-                    <select id="mmhp-request-location-preset" name="locationPreset" class="event-submit-form__input" required>
-                      <option value="">— Choose location —</option>
-                      <option value="Hall A">Hall A</option>
-                      <option value="Hall B">Hall B</option>
-                      <option value="Hall C">Hall C</option>
-                      <option value="Pool Room">Pool Room</option>
-                      <option value="Library">Library</option>
-                      <option value="__other__">Other</option>
-                    </select>
-                  </div>
-
-                  <div class="event-submit-form__detail-field" id="mmhp-request-location-other-wrap" hidden>
-                    <label class="event-submit-form__field-label" for="mmhp-request-location-other">Describe the place</label>
-                    <p class="event-submit-form__field-subtitle">
-                      Name the room or area so people know where to go. <strong>Up to 120 characters.</strong>
-                    </p>
-                    <input type="text" id="mmhp-request-location-other" name="locationOther" class="event-submit-form__input" maxlength="120" autocomplete="off" readonly tabindex="-1" placeholder="Example: Hall B, library, pool room…" />
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset class="event-submit-form__fieldset">
-                <legend class="event-submit-form__legend">When you usually meet</legend>
-                <p class="event-submit-form__help">
-                  These gatherings usually happen on the same weekday or weekdays every week. Check each day that fits—you can always ask the coordinator to adjust it later.
-                </p>
-
-                <div class="event-submit-form__detail-grid">
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-startTime">Usual start time</label>
-                    <p class="event-submit-form__field-subtitle">
-                      Use the time picker your device shows—most people pick something like 7:00 p.m. The same start time applies to each day you check below (there is no separate typing limit—just hours and minutes).
-                    </p>
-                    <input type="time" id="mmhp-request-startTime" name="startTime" class="event-submit-form__input" required />
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <span class="event-submit-form__field-label">Repeats on</span>
-                    <p class="event-submit-form__field-subtitle">
-                      Tap each day this activity usually meets. Pick at least one day so we can list it. (No text limit—just check the days.)
-                    </p>
-                    <div class="request-activity-weekdays" role="group" aria-label="Days of the week">
-                      <label class="event-submit-form__field event-submit-form__field--check">
-                        <input type="checkbox" name="mmhp-request-weekday" value="Monday" />
-                        <span>Monday</span>
-                      </label>
-                      <label class="event-submit-form__field event-submit-form__field--check">
-                        <input type="checkbox" name="mmhp-request-weekday" value="Tuesday" />
-                        <span>Tuesday</span>
-                      </label>
-                      <label class="event-submit-form__field event-submit-form__field--check">
-                        <input type="checkbox" name="mmhp-request-weekday" value="Wednesday" />
-                        <span>Wednesday</span>
-                      </label>
-                      <label class="event-submit-form__field event-submit-form__field--check">
-                        <input type="checkbox" name="mmhp-request-weekday" value="Thursday" />
-                        <span>Thursday</span>
-                      </label>
-                      <label class="event-submit-form__field event-submit-form__field--check">
-                        <input type="checkbox" name="mmhp-request-weekday" value="Friday" />
-                        <span>Friday</span>
-                      </label>
-                      <label class="event-submit-form__field event-submit-form__field--check">
-                        <input type="checkbox" name="mmhp-request-weekday" value="Saturday" />
-                        <span>Saturday</span>
-                      </label>
-                      <label class="event-submit-form__field event-submit-form__field--check">
-                        <input type="checkbox" name="mmhp-request-weekday" value="Sunday" />
-                        <span>Sunday</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset class="event-submit-form__fieldset">
-                <legend class="event-submit-form__legend">Does it run all year or part of the year?</legend>
-                <p class="event-submit-form__help">
-                  Some activities run <strong>all year</strong>. Others pick up for part of the year (for example October through April).
-                  Tell us which fits so the coordinator can show it on the schedule during the right months.
-                </p>
-                <div class="event-submit-form__detail-field">
-                  <label class="event-submit-form__field event-submit-form__field--check">
-                    <input type="checkbox" id="mmhp-request-is-seasonal" name="isSeasonal" aria-controls="mmhp-request-season-dates-wrap" />
-                    <span class="event-submit-form__detail-check-text">This activity has a set start and stop date each year (it does not run year-round).</span>
-                  </label>
-                  <p class="event-submit-form__field-subtitle">
-                    If you leave this box <strong>unchecked</strong>, we’ll treat it as year-round (<abbr title="January 1 through December 31">January through December</abbr>) unless someone who runs the site changes that later.
-                  </p>
-                </div>
-                <div id="mmhp-request-season-dates-wrap" class="event-submit-form__detail-grid" hidden>
-                  <div class="event-submit-form__detail-field" role="group" aria-labelledby="mmhp-request-season-dates-heading">
-                    <span id="mmhp-request-season-dates-heading" class="event-submit-form__field-label">When the season starts and ends</span>
-                    <p class="event-submit-form__field-subtitle">
-                      First and last day the group is usually meeting <strong>each year</strong>. Use the calendar or type a date.
-                      Only the <strong>month and day</strong> count for the schedule—the year is just to help this form’s date picker. (These are date boxes, not a typing limit.)
-                    </p>
-                    <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-active-from">Season start</label>
-                      <input type="date" id="mmhp-request-active-from" name="activeFrom" class="event-submit-form__input" />
-                    </div>
-                    <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-active-to">Season end</label>
-                      <input type="date" id="mmhp-request-active-to" name="activeTo" class="event-submit-form__input" />
-                    </div>
-                    <p class="event-submit-form__field-subtitle">
-                      If you’re not sure of exact dates, choose your best guess—the coordinator can adjust.
-                    </p>
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset class="event-submit-form__fieldset">
-                <legend class="event-submit-form__legend">A little extra (only if you want)</legend>
-                <p class="event-submit-form__help">
-                  Skip anything you’re unsure about. Whatever you do add here is included when the coordinator puts your activity on the site.
-                </p>
-                <div class="event-submit-form__detail-grid">
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-adCopy">Short line for flyers or the web</label>
-                    <p class="event-submit-form__field-subtitle">
-                      Same activity as above, in one tight line—like the title on a flyer.
-                      <strong>Example (short):</strong> “Tuesday bingo in Hall B—cards supplied, friendly games.”
-                      If you leave this blank, we’ll use your longer description in both places.
-                      <strong>Up to 500 characters.</strong>
-                    </p>
-                    <textarea id="mmhp-request-adCopy" name="adCopy" class="event-submit-form__input" rows="2" maxlength="500" placeholder="Example: Tuesday bingo in Hall B—cards supplied, friendly games."></textarea>
-                  </div>
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-endTime">Usual end time</label>
-                    <p class="event-submit-form__field-subtitle">
-                      If the group wraps up at a regular time, add it here (hours and minutes). Leave blank if it varies or you’re not sure.
-                    </p>
-                    <input type="time" id="mmhp-request-endTime" name="endTime" class="event-submit-form__input" />
-                  </div>
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-keywords">Words to help people find it</label>
-                    <p class="event-submit-form__field-subtitle">
-                      A few words with commas between—like <em>bingo, Hall B, Tuesday, beginners</em>—so neighbors can search the site.
-                      <strong>Up to 200 characters</strong> altogether (letters, commas, and spaces).
-                    </p>
-                    <input type="text" id="mmhp-request-keywords" name="keywords" class="event-submit-form__input" maxlength="200" placeholder="bingo, Hall B, Tuesday, beginners" autocomplete="off" />
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset class="event-submit-form__fieldset">
-                <legend class="event-submit-form__legend">Who will chair this activity?</legend>
-                <p class="event-submit-form__help">
-                  The chair is the neighbor who runs the group—starts on time, knows the house rules, and can answer “how does this work today?” questions.
-                  The park coordinator still publishes the calendar; the chair is the volunteer lead for this activity.
-                </p>
-                <div class="event-submit-form__detail-grid">
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-chairperson-id">Resident who will chair</label>
-                    <p class="event-submit-form__field-subtitle">
-                      Pick the person from the park list. If the list doesn’t load, refresh the page or check your connection.
-                    </p>
-                    <select id="mmhp-request-chairperson-id" name="chairpersonId" class="event-submit-form__input" required disabled>
-                      <option value="">Loading resident list…</option>
-                    </select>
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset class="event-submit-form__fieldset">
-                <legend class="event-submit-form__legend">Optional — photos</legend>
-                <p class="event-submit-form__help">
-                  A main photo helps neighbors recognize the activity, but you can send the request without one.
-                  The automatic request sends text only. If photos are important, the coordinator can follow up after receiving your request.
-                </p>
-                <p class="event-submit-form__size-hint" id="mmhp-request-size-hint">
-                  Photo files are not attached to the automatic request. Their filenames can still help the coordinator know what you intended to provide.
-                </p>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Main photo (optional)</span>
-                  <input type="file" id="mmhp-request-image-feature" name="imageFeatured" class="event-submit-form__file" accept="image/*" />
-                </label>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Extra photo 1 (optional)</span>
-                  <input type="file" id="mmhp-request-image-extra-1" name="imageExtra1" class="event-submit-form__file" accept="image/*" />
-                </label>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Extra photo 2 (optional)</span>
-                  <input type="file" id="mmhp-request-image-extra-2" name="imageExtra2" class="event-submit-form__file" accept="image/*" />
-                </label>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Extra photo 3 (optional)</span>
-                  <input type="file" id="mmhp-request-image-extra-3" name="imageExtra3" class="event-submit-form__file" accept="image/*" />
-                </label>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Extra photo 4 (optional)</span>
-                  <input type="file" id="mmhp-request-image-extra-4" name="imageExtra4" class="event-submit-form__file" accept="image/*" />
-                </label>
-              </fieldset>
-
-              <fieldset class="event-submit-form__fieldset">
-                <legend class="event-submit-form__legend">How can the coordinator reach you?</legend>
-                <p class="event-submit-form__help">
-                  You don’t have to fill this out, but it helps if the coordinator needs to reach you with a quick question.
-                </p>
-                <p class="event-submit-form__help">
-                  <strong>Neighbor point of contact</strong> is who should be listed for residents browsing the schedule—not the park office.
-                  That contact is usually the chair; you can pick someone else if a different neighbor answers questions from the group.
-                </p>
-                <div class="event-submit-form__detail-grid">
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__detail-check">
-                      <input type="checkbox" id="mmhp-request-contact-same-as-chair" name="contactSameAsChair" checked />
-                      <span class="event-submit-form__detail-check-text">Neighbor contact is the same person as the chair</span>
-                    </label>
-                  </div>
-                  <div class="event-submit-form__detail-field" id="mmhp-request-contact-resident-wrap" hidden>
-                    <label class="event-submit-form__field-label" for="mmhp-request-contact-resident-id">Neighbor point of contact (resident)</label>
-                    <p class="event-submit-form__field-subtitle">
-                      Choose who neighbors should ask about this activity. Uncheck the box above if the chair and the contact should differ.
-                    </p>
-                    <select id="mmhp-request-contact-resident-id" name="contactResidentId" class="event-submit-form__input" disabled>
-                      <option value="">Loading resident list…</option>
-                    </select>
-                  </div>
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-proposer-name">Your name</label>
-                    <p class="event-submit-form__field-subtitle"><strong>Up to 120 characters.</strong></p>
-                    <input type="text" id="mmhp-request-proposer-name" name="proposerName" class="event-submit-form__input" maxlength="120" autocomplete="name" />
-                  </div>
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-proposer-phone">Phone</label>
-                    <p class="event-submit-form__field-subtitle"><strong>Up to 40 characters.</strong></p>
-                    <input type="tel" id="mmhp-request-proposer-phone" name="proposerPhone" class="event-submit-form__input" maxlength="40" autocomplete="tel" />
-                  </div>
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-request-proposer-email">Email</label>
-                    <p class="event-submit-form__field-subtitle"><strong>Up to 120 characters.</strong></p>
-                    <input type="email" id="mmhp-request-proposer-email" name="proposerEmail" class="event-submit-form__input" maxlength="120" autocomplete="email" />
-                  </div>
-                </div>
-              </fieldset>
-
-              <div class="event-submit-form__actions">
-                <button type="submit" class="btn site-button">Send to event coordinator</button>
-                <a class="btn site-button" href="../index.html">Back To Calendar</a>
-              </div>
-
-              <p id="mmhp-request-activity-status" class="event-submit-form__status" hidden role="status" aria-live="polite"></p>
-            </form>
-          </section>
-        </main>
-
-        <aside class="site-sidebar site-sidebar-right sidebar-right" aria-labelledby="featured-events-heading">
-          <h2 id="featured-events-heading" class="site-sidebar-title">Featured Events</h2>
-          <div class="featured-events-grid" aria-live="polite"></div>
-        </aside>
-      </div>
-
-      <footer class="site-footer">
-        <h2>McAllen Mobile Park Event Calendar</h2>
-        <div class="site-footer-address-row">
-          <address class="site-footer-address">
-            McAllen Mobile<br>
-            4900 N Mc Coll Rd<br>
-            Mcallen, TX 78504
-          </address>
-          <a class="btn site-button site-footer-nav-btn" href="https://maps.app.goo.gl/sVCaEKHYQw5QcqK7A" target="_blank" rel="noopener noreferrer" aria-label="Open address in Google Maps">Navigate</a>
-          <a href="#top" class="site-footer-back-top" aria-label="Back To Top Of Page">Back To Top</a>
-        </div>
-      </footer>
+        </section>
+      </main>
     </div>
   </div>
-
-  <div id="mmhp-request-submit-notice-modal" class="event-submit-modal" hidden role="dialog" aria-modal="true"
-    aria-labelledby="mmhp-request-submit-notice-modal-title">
-    <div class="event-submit-modal__backdrop" id="mmhp-request-submit-notice-modal-backdrop"></div>
-    <div class="event-submit-modal__panel">
-      <h2 id="mmhp-request-submit-notice-modal-title" class="event-submit-modal__title">Ready to send?</h2>
-      <div class="event-submit-modal__body">
-        <p>
-          The site will send the <strong>text activity request</strong> directly to the event coordinator.
-        </p>
-        <p>
-          No email app is required. Please wait for the confirmation message before leaving the page.
-        </p>
-        <p>
-          Photos are not attached to this automatic text request. The coordinator can follow up if pictures are needed.
-        </p>
-      </div>
-      <div class="event-submit-modal__actions">
-        <button type="button" class="btn site-button" id="mmhp-request-submit-notice-cancel">Not yet</button>
-        <button type="button" class="btn site-button" id="mmhp-request-submit-notice-continue">Continue</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="../assets/js/mmhp-coordinator-config.js" defer></script>
-  <script src="../assets/js/request-activity-form.js" defer></script>
-  <script src="../assets/js/activities-sidebar.js" defer></script>
+  <script>
+    window.location.replace("contact.html?type=activity");
+  </script>
 </body>
 
 </html>

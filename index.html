@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>McAllen Mobile Park Events</title>
-  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/stock-images/favicon.svg" />
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -19,8 +19,8 @@
         <section class="site-hero hero" aria-label="Park banner">
           <div class="hero-image">
             <picture>
-              <source media="(max-width: 768px)" srcset="assets/images/headers/index.img.png">
-              <img src="assets/images/park-banner.png" alt="McAllen Mobile Park Banner">
+              <source media="(max-width: 768px)" srcset="assets/images/pages/index.img.png">
+              <img src="assets/images/park-b-roll/park-banner.png" alt="McAllen Mobile Park Banner">
             </picture>
           </div>
           <p class="site-header-subtitle">Simple, clear community event information in one place</p>
@@ -32,10 +32,7 @@
         <ul class="site-nav-list">
           <li class="site-nav-item"><span class="site-nav-link" aria-current="page">Calendar</span></li>
           <li class="site-nav-item"><a class="site-nav-link" href="contents/learn-more.html">Learn More</a></li>
-          <li class="site-nav-item"><a class="site-nav-link" href="contents/request-activity.html">Request Activity</a></li>
-          <li class="site-nav-item"><a class="site-nav-link" href="contents/submit-feature.html">Submit Event</a></li>
-          <li class="site-nav-item"><a class="site-nav-link" href="contents/contact.html">Contact Event Coordinator</a>
-          </li>
+          <li class="site-nav-item"><a class="site-nav-link" href="contents/contact.html">Contact Event Coordinator</a></li>
         </ul>
       </nav>
 
@@ -82,7 +79,7 @@
               <h2 id="schedule-sidebar-heading" class="site-sidebar-title">Recurring<br />Schedule</h2>
               <div class="sidebar-left-body">
                 <p class="sidebar-add-activity-wrap">
-                  <a class="btn site-button sidebar-add-activity-btn" href="contents/request-activity.html">Add Activity</a>
+                  <a class="btn site-button sidebar-add-activity-btn" href="contents/contact.html?type=activity">Add Activity</a>
                 </p>
                 <ul class="recurring-events-list" aria-busy="true"></ul>
                 <button type="button" class="btn site-button recurring-events-export-btn" id="mmhp-activities-export">
@@ -116,7 +113,7 @@
               <section class="site-main-content content page-home-featured" aria-labelledby="home-featured-heading">
                 <div class="page-home-featured-header">
                   <h3 id="home-featured-heading" class="page-home-featured-heading">Future Featured Events</h3>
-                  <a class="btn site-button page-home-featured-submit-btn" href="contents/submit-feature.html">Add one-time event</a>
+                  <a class="btn site-button page-home-featured-submit-btn" href="contents/contact.html?type=event">Add one-time event</a>
                 </div>
                 <div class="featured-events-grid page-home-featured-grid" aria-live="polite"></div>
               </section>
@@ -147,7 +144,7 @@
   </div>
   <a class="secret-calendar-link" href="https://calendar.google.com/calendar/u/0/r?cid=mmhpevents%40gmail.com"
     target="_blank" rel="noopener noreferrer" aria-label="Open Google Calendar manager">
-    <img src="assets/images/secret-squirrel.png" alt="">
+    <img src="assets/images/stock-images/secret-squirrel.png" alt="">
   </a>
   <script src="assets/js/activities-sidebar.js" defer></script>
 </body>

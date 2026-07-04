@@ -1,252 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submit-Feature | McAllen Mobile Park Event Calendar</title>
-  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg" />
+  <meta http-equiv="refresh" content="0; url=contact.html?type=event">
+  <title>Submit Event | McAllen Mobile Park Event Calendar</title>
+  <link rel="icon" type="image/svg+xml" href="../assets/images/stock-images/favicon.svg" />
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body id="top" class="page-submit" data-mmhp-master-json="../assets/data/json/mmhp-master-data.json">
+
+<body id="top" class="page-submit">
   <div class="site-wrapper">
     <div class="site-shell">
-
       <header class="site-header header-site">
         <h1 class="site-header-title">McAllen Mobile Park</h1>
         <section class="site-hero hero" aria-label="Park banner">
           <div class="hero-image">
             <picture>
-              <source media="(max-width: 768px)" srcset="../assets/images/headers/submit-feature.img.png">
-              <img src="../assets/images/park-banner.png" alt="McAllen Mobile Park Banner">
+              <source media="(max-width: 768px)" srcset="../assets/images/pages/submit-feature.img.png">
+              <img src="../assets/images/park-b-roll/park-banner.png" alt="McAllen Mobile Park Banner">
             </picture>
           </div>
-          <p class="site-header-subtitle">Simple, clear community event information in one place</p>
+          <p class="site-header-subtitle">Contact Event Coordinator</p>
         </section>
       </header>
 
-      <nav class="site-nav navbar" aria-label="Main navigation">
-        <ul class="site-nav-list">
-          <li class="site-nav-item"><a class="site-nav-link" href="../index.html">Calendar</a></li>
-          <li class="site-nav-item"><a class="site-nav-link" href="learn-more.html">Learn More</a></li>
-          <li class="site-nav-item"><a class="site-nav-link" href="request-activity.html">Request Activity</a></li>
-          <li class="site-nav-item"><span class="site-nav-link" aria-current="page">Submit Event</span></li>
-          <li class="site-nav-item"><a class="site-nav-link" href="contact.html">Contact Event Coordinator</a></li>
-        </ul>
-      </nav>
-
-      <div class="site-layout layout">
-
-        <aside class="site-sidebar site-sidebar-left sidebar-left" aria-labelledby="schedule-sidebar-heading">
-          <h2 id="schedule-sidebar-heading" class="site-sidebar-title">Recurring Schedule</h2>
-          <div class="sidebar-left-body">
-            <p class="sidebar-add-activity-wrap">
-              <a class="btn site-button sidebar-add-activity-btn" href="request-activity.html">Add Activity</a>
+      <main class="site-main main-content">
+        <section class="site-main-content content">
+          <div class="content-section">
+            <h2>Taking you to the event coordinator form</h2>
+            <p>
+              Event submissions now start on the consolidated coordinator page so the site can first
+              ask whether this is a one time event or a recurring activity.
             </p>
-            <ul class="recurring-events-list" aria-busy="true"></ul>
+            <p>
+              If you are not redirected automatically, use this button:
+              <a class="btn site-button" href="contact.html?type=event">Continue to one time event form</a>
+            </p>
           </div>
-        </aside>
-
-        <main class="site-main main-content">
-
-          <section class="site-main-content content submission-page" id="submission-main" tabindex="-1">
-            <div class="content-section">
-              <h2>Submit an Event</h2>
-              <p>
-                Tell us about your one-time event below. When you’re done, send it to the event coordinator
-                using the button at the bottom. The text submission goes directly to the coordinator; no email app is required.
-                Please wait for the confirmation message before leaving the page.
-              </p>
-              <ul class="submission-page__hints">
-                <li><strong>Title on the card</strong> — the main line people see (up to 48 characters).</li>
-                <li><strong>Subtitle on the card</strong> — a short line for what kind of night it is (up to 48 characters).</li>
-                <li>The <strong>date line on the card</strong> comes from the date you pick here—no extra field.</li>
-              </ul>
-            </div>
-
-            <p class="submission-decision__placeholder-notice" id="mmhp-event-submit-load-err" hidden role="alert"></p>
-
-            <form id="mmhp-event-submit-form" class="event-submit-form" action="https://formspree.io/f/xnjkjbbe" method="POST" hidden novalidate>
-              <input type="hidden" name="_subject" value="MMHP Events Request." />
-              <input type="hidden" name="request_type" value="One-time event submission" />
-              <fieldset class="event-submit-form__fieldset event-submit-form__event-section">
-                <legend class="event-submit-form__legend">Event details</legend>
-
-                <div class="event-submit-form__detail-grid">
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-submit-date">When is it?</label>
-                    <p class="event-submit-form__field-subtitle">
-                      Pick the day the event actually runs (not necessarily today).
-                    </p>
-                    <input type="date" id="mmhp-submit-date" name="date" class="event-submit-form__input" required />
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-submit-startTime">Start time</label>
-                    <p class="event-submit-form__field-subtitle">
-                      24-hour time—<strong>19:00</strong> is 7:00&nbsp;p.m.
-                    </p>
-                    <input type="text" id="mmhp-submit-startTime" name="startTime" class="event-submit-form__input" placeholder="19:00" required pattern="^\d{1,2}:\d{2}$" />
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-submit-endTime">End time</label>
-                    <p class="event-submit-form__field-subtitle">
-                      When should people expect to wrap up? Choose <strong>Until we get tired</strong> if there’s no fixed end time.
-                    </p>
-                    <select id="mmhp-submit-endTime" name="endTime" class="event-submit-form__input" required>
-                      <option value="__until_tired__">Until we get tired</option>
-                    </select>
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-submit-location-preset">Where is it?</label>
-                    <p class="event-submit-form__field-subtitle">
-                      Pick a hall. If the spot isn’t listed, choose <strong>Other</strong> and describe it in the next box.
-                    </p>
-                    <select id="mmhp-submit-location-preset" name="locationPreset" class="event-submit-form__input" required>
-                      <option value="">— Choose location —</option>
-                      <option value="Hall A">Hall A</option>
-                      <option value="Hall B">Hall B</option>
-                      <option value="Hall C">Hall C</option>
-                      <option value="__other__">Other</option>
-                    </select>
-                  </div>
-
-                  <div class="event-submit-form__detail-field" id="mmhp-submit-location-other-wrap" hidden>
-                    <label class="event-submit-form__field-label" for="mmhp-submit-location-other">Describe the place</label>
-                    <p class="event-submit-form__field-subtitle">
-                      Name the room or area so neighbors know where to go.
-                    </p>
-                    <input type="text" id="mmhp-submit-location-other" name="locationOther" class="event-submit-form__input" maxlength="120" autocomplete="off" readonly tabindex="-1" placeholder="Example: Hall B, library, pool room…" />
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-submit-cardLine1">Title on the card (up to 48 characters)</label>
-                    <p class="event-submit-form__field-subtitle">
-                      The big line on the flyer—say it the way you’d tell a friend.
-                    </p>
-                    <input type="text" id="mmhp-submit-cardLine1" name="cardLine1" class="event-submit-form__input" required maxlength="48" autocomplete="off" />
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-submit-cardLine2">Subtitle on the card (up to 48 characters)</label>
-                    <p class="event-submit-form__field-subtitle">
-                      A quick label for the kind of night—dance, potluck, bingo night, karaoke…
-                    </p>
-                    <input type="text" id="mmhp-submit-cardLine2" name="cardLine2" class="event-submit-form__input" required maxlength="48" autocomplete="off" />
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <label class="event-submit-form__field-label" for="mmhp-submit-adCopy">More for the flyer</label>
-                    <p class="event-submit-form__field-subtitle">
-                      What should people know—what’s planned, any cost, bring a dish or supper provided, door prizes, and so on.
-                    </p>
-                    <textarea id="mmhp-submit-adCopy" name="adCopy" class="event-submit-form__input" rows="4" required maxlength="2000"></textarea>
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <span class="event-submit-form__field-label">On the calendar</span>
-                    <p class="event-submit-form__field-subtitle">
-                      Turn this off only if you don’t want the event listed on the site yet.
-                    </p>
-                    <label class="event-submit-form__detail-check">
-                      <input type="checkbox" id="mmhp-submit-isActive" name="isActive" checked />
-                      <span class="event-submit-form__detail-check-text">Show on the calendar</span>
-                    </label>
-                  </div>
-
-                  <div class="event-submit-form__detail-field">
-                    <span class="event-submit-form__field-label">Featured strip</span>
-                    <p class="event-submit-form__field-subtitle">
-                      Check this if you’d like the night considered for a featured spot up top when there’s room.
-                    </p>
-                    <label class="event-submit-form__detail-check">
-                      <input type="checkbox" id="mmhp-submit-isFeatured" name="isFeatured" />
-                      <span class="event-submit-form__detail-check-text">Ask to be featured</span>
-                    </label>
-                  </div>
-                </div>
-              </fieldset>
-
-              <fieldset class="event-submit-form__fieldset">
-                <legend class="event-submit-form__legend">Photos</legend>
-                <p class="event-submit-form__help">
-                  Please choose one main photo filename for the coordinator to reference. Automatic submission sends text only; the coordinator can follow up for photo files if needed.
-                </p>
-                <p class="event-submit-form__size-hint" id="mmhp-submit-size-hint">
-                  Photo files are not attached to this automatic request. Their filenames are included in the text submission.
-                </p>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Main photo (required)</span>
-                  <input type="file" id="mmhp-submit-image-feature" name="imageFeatured" class="event-submit-form__file" accept="image/*" />
-                </label>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Extra photo 1 (optional)</span>
-                  <input type="file" id="mmhp-submit-image-extra-1" name="imageExtra1" class="event-submit-form__file" accept="image/*" />
-                </label>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Extra photo 2 (optional)</span>
-                  <input type="file" id="mmhp-submit-image-extra-2" name="imageExtra2" class="event-submit-form__file" accept="image/*" />
-                </label>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Extra photo 3 (optional)</span>
-                  <input type="file" id="mmhp-submit-image-extra-3" name="imageExtra3" class="event-submit-form__file" accept="image/*" />
-                </label>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Extra photo 4 (optional)</span>
-                  <input type="file" id="mmhp-submit-image-extra-4" name="imageExtra4" class="event-submit-form__file" accept="image/*" />
-                </label>
-              </fieldset>
-
-              <div class="event-submit-form__readonly-summary event-submit-form__event-section">
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">How the full name will look</span>
-                  <input type="text" id="mmhp-submit-eventName" class="event-submit-form__input" readonly tabindex="-1" />
-                </label>
-                <label class="event-submit-form__field">
-                  <span class="event-submit-form__label">Event reference number</span>
-                  <input type="hidden" id="mmhp-submit-id" name="id" autocomplete="off" />
-                  <div class="event-submit-form__id-readout" id="mmhp-submit-id-display" aria-live="polite" role="status"></div>
-                  <span class="event-submit-form__hint">We fill this in for you so the coordinator can match your event to their list.</span>
-                </label>
-              </div>
-
-              <div class="event-submit-form__actions">
-                <button type="submit" class="btn site-button">Send to event coordinator</button>
-                <a class="btn site-button" href="../index.html">Back To Calendar</a>
-              </div>
-
-              <p class="event-submit-form__status" id="mmhp-event-submit-status" role="status" aria-live="polite" hidden></p>
-            </form>
-          </section>
-
-        </main>
-
-        <aside class="site-sidebar site-sidebar-right sidebar-right" aria-labelledby="featured-events-heading">
-          <h2 id="featured-events-heading" class="site-sidebar-title">Featured Events</h2>
-          <div class="featured-events-grid" aria-live="polite"></div>
-        </aside>
-
-      </div>
-
-      <footer class="site-footer">
-        <h2>McAllen Mobile Park Event Calendar</h2>
-        <div class="site-footer-address-row">
-          <address class="site-footer-address">
-            McAllen Mobile<br>
-            4900 N Mc Coll Rd<br>
-            Mcallen, TX 78504
-          </address>
-          <a class="btn site-button site-footer-nav-btn" href="https://maps.app.goo.gl/sVCaEKHYQw5QcqK7A" target="_blank" rel="noopener noreferrer" aria-label="Open map">Navigate</a>
-          <a href="#top" class="site-footer-back-top" aria-label="Back To Top Of Page">Back To Top</a>
-        </div>
-      </footer>
-
+        </section>
+      </main>
     </div>
   </div>
-
-  <script src="../assets/js/mmhp-coordinator-config.js" defer></script>
-  <script src="../assets/js/event-submit-form.js" defer></script>
-  <script src="../assets/js/activities-sidebar.js" defer></script>
+  <script>
+    window.location.replace("contact.html?type=event");
+  </script>
 </body>
+
 </html>

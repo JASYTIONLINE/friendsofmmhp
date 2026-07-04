@@ -804,9 +804,9 @@
   function submitHref() {
     var path = (window.location.pathname || "").replace(/\\/g, "/");
     if (/contents[/\\]/i.test(path)) {
-      return isActivityFlyerPagePath(path) ? "../submit-feature.html" : "submit-feature.html";
+      return isActivityFlyerPagePath(path) ? "../contact.html?type=event" : "contact.html?type=event";
     }
-    return "contents/submit-feature.html";
+    return "contents/contact.html?type=event";
   }
 
   function padHourMinForFilename(h) {
@@ -1805,17 +1805,17 @@
       aPh.className = "featured-card-link featured-card-link--bookme-text";
       aPh.href = submitHref();
       aPh.title =
-        "Open evening slot — open Submit an Event to request this evening (Hall A, 7–10 pm).";
+        "Open evening slot - contact the event coordinator to request this evening (Hall A, 7-10 pm).";
       aPh.setAttribute(
         "aria-label",
-        "Open evening slot: submit an event to book Hall A, 7 to 10 p.m. Opens the Submit Event page."
+        "Open evening slot: contact the event coordinator to book Hall A, 7 to 10 p.m. Opens the one time event form."
       );
 
       var capPh = createFeaturedCaptionElement(phEv, null, slotDate);
       var hintPh = document.createElement("p");
       hintPh.className = "featured-card-booking-hint";
       hintPh.textContent =
-        "No featured event is scheduled yet. Use Submit Event below to reserve this typical Hall A evening.";
+        "No featured event is scheduled yet. Use the coordinator form below to reserve this typical Hall A evening.";
 
       aPh.appendChild(capPh);
       aPh.appendChild(hintPh);
