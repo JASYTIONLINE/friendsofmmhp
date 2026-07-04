@@ -12,7 +12,7 @@
  * workflows. General contact links should go through the Formspree-backed contact page.
  */
 (function (global) {
-  var MMHP_COORDINATOR_EMAIL_DEFAULT = "mmhpevents@gmail.com";
+  var MMHP_COORDINATOR_EMAIL_DEFAULT = "eventcoordinator@friendsofmmhp.com";
 
   function basicEmailCheck(s) {
     s = String(s || "").trim();

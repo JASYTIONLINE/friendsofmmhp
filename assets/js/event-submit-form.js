@@ -46,6 +46,24 @@
     return TIME_24H_RE.test(t);
   }
 
+  function isValidEmail(s) {
+    if (window.mmhpValidateCoordinatorEmail) return window.mmhpValidateCoordinatorEmail(s);
+    s = String(s || "").trim();
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+  }
+
+  function coordinatorEmail() {
+    if (window.mmhpGetCoordinatorEmailDefault) return window.mmhpGetCoordinatorEmailDefault();
+    if (window.mmhpGetCoordinatorEmail) return window.mmhpGetCoordinatorEmail();
+    return "eventcoordinator@friendsofmmhp.com";
+  }
+
+  function confirmationCopyText(email) {
+    return email
+      ? " If email confirmation is enabled for this form, a confirmation copy will be sent to " + email + "."
+      : "";
+  }
+
   /** Append half-hour options after the first “until tired” option (runs once). */
   function buildEndTimeSelectOptions() {
     var sel = document.getElementById("mmhp-submit-endTime");
@@ -189,6 +207,12 @@
 
     var el;
 
+    el = document.getElementById("mmhp-submit-requester-email");
+    if (!needStr(ev.requesterEmail))
+      return { message: "Please add your email address.", focusEl: el };
+    if (!isValidEmail(ev.requesterEmail))
+      return { message: "Please enter a valid email address.", focusEl: el };
+
     if (!needStr(ev.id))
       return { message: "Something’s wrong with your event number. Try refreshing the page.", focusEl: document.getElementById("mmhp-submit-date") };
 
@@ -247,16 +271,13 @@
         focusEl: document.getElementById("mmhp-submit-isActive"),
       };
 
-    el = document.getElementById("mmhp-submit-image-feature");
-    if (!el || !el.files || !el.files[0])
-      return { message: "Please add a main photo.", focusEl: el };
-
     return { message: "", focusEl: null };
   }
 
   function announceIncompleteForm(statusEl, message, focusEl) {
     if (statusEl) {
-      statusEl.textContent = message + " Complete the form to continue.";
+      statusEl.textContent =
+        "Please fill in all required fields before sending. " + message;
       statusEl.hidden = false;
     }
     var main = document.getElementById("submission-main");
@@ -316,8 +337,8 @@
       "Card line 3: " + (ev.cardLine3 || ""),
       "Promotional copy: " + (ev.adCopy || ""),
       "Active: " + (ev.isActive === false ? "false" : "true"),
-      "Featured: " + (ev.isFeatured === true ? "true" : ev.isFeatured === false ? "false" : ""),
       "Image filename hint: " + (ev.imagePath || "(none)"),
+      "Requester email: " + (ev.requesterEmail || ""),
     ];
     return lines.join("\r\n");
   }
@@ -329,6 +350,10 @@
     formData.append("subject", "Submit event: " + (ev.eventName || ev.id || "new event"));
     formData.append("message", eventSummaryPlainText(ev));
     formData.append("source_page", "Submit Event");
+    if (ev.requesterEmail) {
+      formData.append("email", ev.requesterEmail);
+      formData.append("_replyto", ev.requesterEmail);
+    }
 
     if (statusEl) {
       statusEl.hidden = false;
@@ -346,7 +371,10 @@
       if (statusEl) {
         statusEl.hidden = false;
         statusEl.textContent =
-          "Your event submission was sent to the coordinator. Thank you!";
+          "Your request has been submitted to " +
+          coordinatorEmail() +
+          "." +
+          confirmationCopyText(ev.requesterEmail);
       }
     });
   }
@@ -402,6 +430,7 @@
     var ev = {
       id: fid,
       featureId: fid,
+      requesterEmail: String(document.getElementById("mmhp-submit-requester-email").value || "").trim(),
       date: String(document.getElementById("mmhp-submit-date").value || "").trim(),
       startTime: String(document.getElementById("mmhp-submit-startTime").value || "").trim(),
       endTime: normalizeEndTimeFromSelect(
@@ -414,7 +443,7 @@
       cardLine2: String(document.getElementById("mmhp-submit-cardLine2").value || "").trim(),
       adCopy: String(document.getElementById("mmhp-submit-adCopy").value || "").trim(),
       isActive: document.getElementById("mmhp-submit-isActive").checked,
-      isFeatured: document.getElementById("mmhp-submit-isFeatured").checked,
+      isFeatured: false,
     };
     ev.cardLine3 = cardLine3FromEventDate(ev.date);
     var featImg = document.getElementById("mmhp-submit-image-feature");
@@ -452,7 +481,6 @@
     var endSel = document.getElementById("mmhp-submit-endTime");
     if (endSel) endSel.value = "21:00";
     document.getElementById("mmhp-submit-isActive").checked = true;
-    document.getElementById("mmhp-submit-isFeatured").checked = false;
     for (var ii = 0; ii < IMAGE_INPUT_IDS.length; ii++) {
       var imgIn = document.getElementById(IMAGE_INPUT_IDS[ii]);
       if (imgIn) imgIn.value = "";
@@ -519,7 +547,7 @@
       status.hidden = true;
 
       var confirmed = window.confirm(
-        "Send this event submission to the coordinator now?\n\n" + eventSummaryPlainText(ev)
+        "Send this event submission to " + coordinatorEmail() + " now?\n\n" + eventSummaryPlainText(ev)
       );
       if (!confirmed) return;
 
@@ -530,7 +558,6 @@
           document.getElementById("mmhp-submit-startTime").value = "19:00";
           if (endSel) endSel.value = "21:00";
           document.getElementById("mmhp-submit-isActive").checked = true;
-          document.getElementById("mmhp-submit-isFeatured").checked = false;
           if (locPreset) locPreset.dataset.mmhpTouched = "";
           if (locOther) locOther.dataset.mmhpTouched = "";
           if (c2) c2.dataset.mmhpTouched = "";

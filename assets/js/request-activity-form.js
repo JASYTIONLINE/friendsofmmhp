@@ -38,6 +38,24 @@
       .filter(Boolean);
   }
 
+  function isValidEmail(s) {
+    if (window.mmhpValidateCoordinatorEmail) return window.mmhpValidateCoordinatorEmail(s);
+    s = String(s || "").trim();
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s);
+  }
+
+  function coordinatorEmail() {
+    if (window.mmhpGetCoordinatorEmailDefault) return window.mmhpGetCoordinatorEmailDefault();
+    if (window.mmhpGetCoordinatorEmail) return window.mmhpGetCoordinatorEmail();
+    return "eventcoordinator@friendsofmmhp.com";
+  }
+
+  function confirmationCopyText(email) {
+    return email
+      ? " If email confirmation is enabled for this form, a confirmation copy will be sent to " + email + "."
+      : "";
+  }
+
   function getMasterJsonUrl() {
     var u = document.body && document.body.getAttribute("data-mmhp-master-json");
     u = u ? String(u).trim() : "";
@@ -160,7 +178,10 @@
     formData.append("message", message || "");
     formData.append("source_page", "Request Activity");
     if (senderName) formData.append("name", senderName);
-    if (senderEmail) formData.append("email", senderEmail);
+    if (senderEmail) {
+      formData.append("email", senderEmail);
+      formData.append("_replyto", senderEmail);
+    }
 
     if (statusEl) {
       statusEl.hidden = false;
@@ -178,9 +199,34 @@
       if (statusEl) {
         statusEl.hidden = false;
         statusEl.textContent =
-          "Your request was sent to the event coordinator. Thank you!";
+          "Your request has been submitted to " +
+          coordinatorEmail() +
+          "." +
+          confirmationCopyText(senderEmail);
       }
     });
+  }
+
+  function announceMissingRequired(statusEl, message, focusEl) {
+    if (statusEl) {
+      statusEl.hidden = false;
+      statusEl.textContent =
+        "Please fill in all required fields before sending. " + message;
+    }
+    window.setTimeout(function () {
+      if (focusEl && typeof focusEl.focus === "function") {
+        try {
+          focusEl.focus({ preventScroll: true });
+        } catch (e) {
+          try {
+            focusEl.focus();
+          } catch (e2) {}
+        }
+      }
+      if (focusEl && focusEl.scrollIntoView) {
+        focusEl.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }, 0);
   }
 
   function init() {
@@ -231,33 +277,19 @@
         var nm = String(callmeName ? callmeName.value : "").trim();
         var ph = String(callmePhone ? callmePhone.value : "").trim();
         if (!nm) {
-          if (statusEl) {
-            statusEl.hidden = false;
-            statusEl.textContent =
-              "Please add your name—both name and phone are required if you want the coordinator to call you.";
-          }
-          try {
-            if (callmeName) callmeName.focus({ preventScroll: true });
-          } catch (f) {
-            try {
-              if (callmeName) callmeName.focus();
-            } catch (f2) {}
-          }
+          announceMissingRequired(
+            statusEl,
+            "Please add your name; both name and phone are required if you want the coordinator to call you.",
+            callmeName
+          );
           return;
         }
         if (!ph) {
-          if (statusEl) {
-            statusEl.hidden = false;
-            statusEl.textContent =
-              "Please add your phone number—both name and phone are required if you want the coordinator to call you.";
-          }
-          try {
-            if (callmePhone) callmePhone.focus({ preventScroll: true });
-          } catch (f3) {
-            try {
-              if (callmePhone) callmePhone.focus();
-            } catch (f4) {}
-          }
+          announceMissingRequired(
+            statusEl,
+            "Please add your phone number; both name and phone are required if you want the coordinator to call you.",
+            callmePhone
+          );
           return;
         }
         var body =
@@ -448,43 +480,34 @@
       }
 
       var featImg = document.getElementById("mmhp-request-image-feature");
+      var proposerName = String(document.getElementById("mmhp-request-proposer-name").value || "").trim();
+      var proposerPhone = String(document.getElementById("mmhp-request-proposer-phone").value || "").trim();
+      var proposerEmail = String(document.getElementById("mmhp-request-proposer-email").value || "").trim();
 
       if (!name) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent = "Please add a name for the activity.";
-        }
+        announceMissingRequired(statusEl, "Please add a name for the activity.", document.getElementById("mmhp-request-activityName"));
         return;
       }
       if (!description) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent = "Please write a short description of what happens at the activity.";
-        }
+        announceMissingRequired(statusEl, "Please write a short description of what happens at the activity.", document.getElementById("mmhp-request-description"));
         return;
       }
       if (!location) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent =
-            locPreset && locPreset.value === "__other__"
-              ? "Please say where you meet—in the line under Other."
-              : "Please pick where you meet, or choose Other and describe it.";
-        }
+        announceMissingRequired(
+          statusEl,
+          locPreset && locPreset.value === "__other__"
+            ? "Please say where you meet in the line under Other."
+            : "Please pick where you meet, or choose Other and describe it.",
+          locPreset && locPreset.value === "__other__" ? locOther : locPreset
+        );
         return;
       }
       if (weekdays.length === 0) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent = "Please tap at least one day the group usually meets.";
-        }
+        announceMissingRequired(statusEl, "Please tap at least one day the group usually meets.", form.querySelector('input[name="mmhp-request-weekday"]'));
         return;
       }
       if (!/^([01]?\d|2[0-3]):[0-5]\d$/.test(startTime)) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent = "Please choose a start time with the clock box above.";
-        }
+        announceMissingRequired(statusEl, "Please choose a start time with the clock box above.", startTimeEl);
         return;
       }
 
@@ -497,18 +520,15 @@
         activeFromMmdd = dateInputToMmDd(fromVal);
         activeToMmdd = dateInputToMmDd(toVal);
         if (!activeFromMmdd || !activeToMmdd) {
-          if (statusEl) {
-            statusEl.hidden = false;
-            statusEl.textContent =
-              "Please pick both a season start and season end, or uncheck the box above if the activity runs year-round.";
-          }
+          announceMissingRequired(
+            statusEl,
+            "Please pick both a season start and season end, or uncheck the box above if the activity runs year-round.",
+            !activeFromMmdd ? activeFromEl : activeToEl
+          );
           return;
         }
         if (activeFromMmdd === activeToMmdd) {
-          if (statusEl) {
-            statusEl.hidden = false;
-            statusEl.textContent = "Season start and season end need to be two different calendar days.";
-          }
+          announceMissingRequired(statusEl, "Season start and season end need to be two different calendar days.", activeToEl);
           return;
         }
       } else {
@@ -517,26 +537,24 @@
       }
 
       if (!chairSel || residentsLoadFailed || !residentsList.length) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent =
-            "The resident list didn’t load. Refresh the page and try again, or contact the coordinator.";
-        }
+        announceMissingRequired(
+          statusEl,
+          "The resident list did not load. Refresh the page and try again, or contact the coordinator.",
+          chairSel
+        );
         return;
       }
       var chairpersonId = String(chairSel.value || "").trim();
       if (!chairpersonId) {
-        if (statusEl) {
-          statusEl.hidden = false;
-          statusEl.textContent = "Please choose who will chair this activity.";
-        }
-        try {
-          chairSel.focus({ preventScroll: true });
-        } catch (foc) {
-          try {
-            chairSel.focus();
-          } catch (foc2) {}
-        }
+        announceMissingRequired(statusEl, "Please choose who will chair this activity.", chairSel);
+        return;
+      }
+      if (!proposerEmail) {
+        announceMissingRequired(statusEl, "Please add your email address.", document.getElementById("mmhp-request-proposer-email"));
+        return;
+      }
+      if (!isValidEmail(proposerEmail)) {
+        announceMissingRequired(statusEl, "Please enter a valid email address.", document.getElementById("mmhp-request-proposer-email"));
         return;
       }
       var contactResidentId;
@@ -545,18 +563,11 @@
       } else {
         contactResidentId = String(contactSel ? contactSel.value : "").trim();
         if (!contactResidentId) {
-          if (statusEl) {
-            statusEl.hidden = false;
-            statusEl.textContent =
-              "Please choose a neighbor point of contact, or check “same as chair” above.";
-          }
-          try {
-            if (contactSel) contactSel.focus({ preventScroll: true });
-          } catch (foc3) {
-            try {
-              if (contactSel) contactSel.focus();
-            } catch (foc4) {}
-          }
+          announceMissingRequired(
+            statusEl,
+            "Please choose a neighbor point of contact, or check \"same as chair\" above.",
+            contactSel
+          );
           return;
         }
       }
@@ -599,10 +610,6 @@
           chairpersonId: chairpersonId,
           contactResidentId: contactResidentId,
         };
-
-        var proposerName = String(document.getElementById("mmhp-request-proposer-name").value || "").trim();
-        var proposerPhone = String(document.getElementById("mmhp-request-proposer-phone").value || "").trim();
-        var proposerEmail = String(document.getElementById("mmhp-request-proposer-email").value || "").trim();
 
         var chairLabel = "";
         var contactLabel = "";

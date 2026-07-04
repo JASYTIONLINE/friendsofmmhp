@@ -720,6 +720,23 @@
     color: var(--color-text);
   }
 
+  .event-submit-form__field-tag {
+    display: inline-block;
+    margin-left: 0.25em;
+    font-size: 0.5em;
+    font-weight: 700;
+    line-height: 1;
+    vertical-align: baseline;
+  }
+
+  .event-submit-form__field-tag--required {
+    color: #b00020;
+  }
+
+  .event-submit-form__field-tag--optional {
+    color: #000000;
+  }
+
   .event-submit-form__field-subtitle {
     margin: 0 0 0.45rem;
     max-width: 36rem;

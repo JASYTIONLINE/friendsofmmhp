@@ -46,7 +46,7 @@
             </div>
 
             <fieldset class="event-submit-form__fieldset coordinator-choice" aria-describedby="mmhp-coordinator-choice-help">
-              <legend class="event-submit-form__legend">Is this a one time event or a recurring activity?</legend>
+              <legend class="event-submit-form__legend">Is this a one time event or a recurring activity? <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></legend>
               <p class="event-submit-form__help" id="mmhp-coordinator-choice-help">
                 Choose <strong>one time event</strong> for a picnic, party, dance, show, or special date.
                 Choose <strong>recurring activity</strong> for something that repeats on the schedule.
@@ -87,29 +87,41 @@
               <form id="mmhp-event-submit-form" class="event-submit-form" action="https://formspree.io/f/xnjkjbbe" method="POST" hidden novalidate>
                 <input type="hidden" name="_subject" value="MMHP Events Request." />
                 <input type="hidden" name="request_type" value="One-time event submission" />
+                <p class="event-submit-form__status" id="mmhp-event-submit-status" role="status" aria-live="polite" hidden></p>
+
+                <fieldset class="event-submit-form__fieldset">
+                  <legend class="event-submit-form__legend">How can the coordinator reach you?</legend>
+                  <div class="event-submit-form__detail-grid">
+                    <div class="event-submit-form__detail-field">
+                      <label class="event-submit-form__field-label" for="mmhp-submit-requester-email">Your email <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
+                      <p class="event-submit-form__field-subtitle">Used so the coordinator can reply and so Formspree can send a confirmation if that feature is enabled.</p>
+                      <input type="email" id="mmhp-submit-requester-email" name="email" class="event-submit-form__input" required maxlength="120" autocomplete="email" />
+                    </div>
+                  </div>
+                </fieldset>
 
                 <fieldset class="event-submit-form__fieldset event-submit-form__event-section">
                   <legend class="event-submit-form__legend">Event details</legend>
                   <div class="event-submit-form__detail-grid">
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-submit-date">When is it?</label>
+                      <label class="event-submit-form__field-label" for="mmhp-submit-date">When is it? <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <p class="event-submit-form__field-subtitle">Pick the day the event actually runs.</p>
                       <input type="date" id="mmhp-submit-date" name="date" class="event-submit-form__input" required />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-submit-startTime">Start time</label>
+                      <label class="event-submit-form__field-label" for="mmhp-submit-startTime">Start time <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <p class="event-submit-form__field-subtitle">Use 24-hour time. Example: <strong>19:00</strong> is 7:00 p.m.</p>
                       <input type="text" id="mmhp-submit-startTime" name="startTime" class="event-submit-form__input" placeholder="19:00" required pattern="^\d{1,2}:\d{2}$" />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-submit-endTime">End time</label>
+                      <label class="event-submit-form__field-label" for="mmhp-submit-endTime">End time <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <p class="event-submit-form__field-subtitle">Choose an end time or <strong>Until we get tired</strong>.</p>
                       <select id="mmhp-submit-endTime" name="endTime" class="event-submit-form__input" required>
                         <option value="__until_tired__">Until we get tired</option>
                       </select>
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-submit-location-preset">Where is it?</label>
+                      <label class="event-submit-form__field-label" for="mmhp-submit-location-preset">Where is it? <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <p class="event-submit-form__field-subtitle">Pick a hall, or choose Other and describe it.</p>
                       <select id="mmhp-submit-location-preset" name="locationPreset" class="event-submit-form__input" required>
                         <option value="">- Choose location -</option>
@@ -120,37 +132,30 @@
                       </select>
                     </div>
                     <div class="event-submit-form__detail-field" id="mmhp-submit-location-other-wrap" hidden>
-                      <label class="event-submit-form__field-label" for="mmhp-submit-location-other">Describe the place</label>
+                      <label class="event-submit-form__field-label" for="mmhp-submit-location-other">Describe the place <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required if Other)</span></label>
                       <p class="event-submit-form__field-subtitle">Name the room or area so neighbors know where to go.</p>
                       <input type="text" id="mmhp-submit-location-other" name="locationOther" class="event-submit-form__input" maxlength="120" autocomplete="off" readonly tabindex="-1" placeholder="Example: Hall B, library, pool room..." />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-submit-cardLine1">Title on the card</label>
+                      <label class="event-submit-form__field-label" for="mmhp-submit-cardLine1">Title on the card <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <p class="event-submit-form__field-subtitle">The big line on the flyer or card. Up to 48 characters.</p>
                       <input type="text" id="mmhp-submit-cardLine1" name="cardLine1" class="event-submit-form__input" required maxlength="48" autocomplete="off" />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-submit-cardLine2">Subtitle on the card</label>
+                      <label class="event-submit-form__field-label" for="mmhp-submit-cardLine2">Subtitle on the card <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <p class="event-submit-form__field-subtitle">A quick label, such as dance, potluck, bingo night, or karaoke.</p>
                       <input type="text" id="mmhp-submit-cardLine2" name="cardLine2" class="event-submit-form__input" required maxlength="48" autocomplete="off" />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-submit-adCopy">More for the flyer</label>
+                      <label class="event-submit-form__field-label" for="mmhp-submit-adCopy">More for the flyer <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <p class="event-submit-form__field-subtitle">What should people know? Include food, cost, prizes, music, or what to bring.</p>
                       <textarea id="mmhp-submit-adCopy" name="adCopy" class="event-submit-form__input" rows="4" required maxlength="2000"></textarea>
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <span class="event-submit-form__field-label">On the calendar</span>
+                      <span class="event-submit-form__field-label">On the calendar <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></span>
                       <label class="event-submit-form__detail-check">
                         <input type="checkbox" id="mmhp-submit-isActive" name="isActive" checked />
                         <span class="event-submit-form__detail-check-text">Show on the calendar</span>
-                      </label>
-                    </div>
-                    <div class="event-submit-form__detail-field">
-                      <span class="event-submit-form__field-label">Featured strip</span>
-                      <label class="event-submit-form__detail-check">
-                        <input type="checkbox" id="mmhp-submit-isFeatured" name="isFeatured" />
-                        <span class="event-submit-form__detail-check-text">Ask to be featured</span>
                       </label>
                     </div>
                   </div>
@@ -160,34 +165,34 @@
                   <legend class="event-submit-form__legend">Photos</legend>
                   <p class="event-submit-form__help">Photo files are not attached automatically. Their filenames are included so the coordinator can follow up.</p>
                   <label class="event-submit-form__field">
-                    <span class="event-submit-form__label">Main photo (required)</span>
+                    <span class="event-submit-form__label">Main photo <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></span>
                     <input type="file" id="mmhp-submit-image-feature" name="imageFeatured" class="event-submit-form__file" accept="image/*" />
                   </label>
                   <label class="event-submit-form__field">
-                    <span class="event-submit-form__label">Extra photo 1 (optional)</span>
+                    <span class="event-submit-form__label">Extra photo 1 <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></span>
                     <input type="file" id="mmhp-submit-image-extra-1" name="imageExtra1" class="event-submit-form__file" accept="image/*" />
                   </label>
                   <label class="event-submit-form__field">
-                    <span class="event-submit-form__label">Extra photo 2 (optional)</span>
+                    <span class="event-submit-form__label">Extra photo 2 <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></span>
                     <input type="file" id="mmhp-submit-image-extra-2" name="imageExtra2" class="event-submit-form__file" accept="image/*" />
                   </label>
                   <label class="event-submit-form__field">
-                    <span class="event-submit-form__label">Extra photo 3 (optional)</span>
+                    <span class="event-submit-form__label">Extra photo 3 <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></span>
                     <input type="file" id="mmhp-submit-image-extra-3" name="imageExtra3" class="event-submit-form__file" accept="image/*" />
                   </label>
                   <label class="event-submit-form__field">
-                    <span class="event-submit-form__label">Extra photo 4 (optional)</span>
+                    <span class="event-submit-form__label">Extra photo 4 <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></span>
                     <input type="file" id="mmhp-submit-image-extra-4" name="imageExtra4" class="event-submit-form__file" accept="image/*" />
                   </label>
                 </fieldset>
 
                 <div class="event-submit-form__readonly-summary event-submit-form__event-section">
                   <label class="event-submit-form__field">
-                    <span class="event-submit-form__label">How the full name will look</span>
+                    <span class="event-submit-form__label">How the full name will look <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(automatic)</span></span>
                     <input type="text" id="mmhp-submit-eventName" class="event-submit-form__input" readonly tabindex="-1" />
                   </label>
                   <label class="event-submit-form__field">
-                    <span class="event-submit-form__label">Event reference number</span>
+                    <span class="event-submit-form__label">Event reference number <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(automatic)</span></span>
                     <input type="hidden" id="mmhp-submit-id" name="id" autocomplete="off" />
                     <div class="event-submit-form__id-readout" id="mmhp-submit-id-display" aria-live="polite" role="status"></div>
                     <span class="event-submit-form__hint">This helps the coordinator match your request to the site list.</span>
@@ -198,7 +203,6 @@
                   <button type="submit" class="btn site-button">Send one time event to coordinator</button>
                   <a class="btn site-button" href="../index.html">Back To Calendar</a>
                 </div>
-                <p class="event-submit-form__status" id="mmhp-event-submit-status" role="status" aria-live="polite" hidden></p>
               </form>
             </section>
 
@@ -215,21 +219,22 @@
                 <input type="hidden" name="_subject" value="MMHP Events Request." />
                 <input type="hidden" name="request_type" value="Recurring activity request" />
                 <input type="hidden" id="mmhp-request-recurrenceType" name="recurrenceType" value="Recurring" />
+                <p id="mmhp-request-activity-status" class="event-submit-form__status" hidden role="status" aria-live="polite"></p>
 
                 <fieldset class="event-submit-form__fieldset">
                   <legend class="event-submit-form__legend">Rather talk to someone?</legend>
                   <p class="event-submit-form__help">If the form feels like too much, ask the coordinator to call you instead.</p>
                   <label class="event-submit-form__field event-submit-form__field--check">
                     <input type="checkbox" id="mmhp-request-callme" name="requestCallMe" aria-controls="mmhp-request-callme-wrap" />
-                    <span class="event-submit-form__detail-check-text">Please have the coordinator call me instead.</span>
+                    <span class="event-submit-form__detail-check-text">Please have the coordinator call me instead. <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></span>
                   </label>
                   <div id="mmhp-request-callme-wrap" class="event-submit-form__detail-grid" hidden>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-callme-name">Your name</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-callme-name">Your name <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required if requesting a call)</span></label>
                       <input type="text" id="mmhp-request-callme-name" class="event-submit-form__input" maxlength="120" autocomplete="name" />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-callme-phone">Phone number</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-callme-phone">Phone number <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required if requesting a call)</span></label>
                       <input type="tel" id="mmhp-request-callme-phone" class="event-submit-form__input" maxlength="40" autocomplete="tel" />
                     </div>
                     <div class="event-submit-form__detail-field">
@@ -242,17 +247,17 @@
                   <legend class="event-submit-form__legend">What we need to know about the activity</legend>
                   <div class="event-submit-form__detail-grid">
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-activityName">What should we call it?</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-activityName">What should we call it? <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <p class="event-submit-form__field-subtitle">The name neighbors will see on the schedule.</p>
                       <input type="text" id="mmhp-request-activityName" name="activityName" class="event-submit-form__input" required maxlength="120" autocomplete="off" />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-description">What happens there?</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-description">What happens there? <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <p class="event-submit-form__field-subtitle">A few sentences are plenty: who it is for, what to bring, prizes, or supplies.</p>
                       <textarea id="mmhp-request-description" name="description" class="event-submit-form__input" rows="4" required maxlength="2000"></textarea>
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-location-preset">Where does it meet?</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-location-preset">Where does it meet? <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <select id="mmhp-request-location-preset" name="locationPreset" class="event-submit-form__input" required>
                         <option value="">- Choose location -</option>
                         <option value="Hall A">Hall A</option>
@@ -264,7 +269,7 @@
                       </select>
                     </div>
                     <div class="event-submit-form__detail-field" id="mmhp-request-location-other-wrap" hidden>
-                      <label class="event-submit-form__field-label" for="mmhp-request-location-other">Describe the place</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-location-other">Describe the place <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required if Other)</span></label>
                       <input type="text" id="mmhp-request-location-other" name="locationOther" class="event-submit-form__input" maxlength="120" autocomplete="off" readonly tabindex="-1" placeholder="Example: Hall B, library, pool room..." />
                     </div>
                   </div>
@@ -274,11 +279,11 @@
                   <legend class="event-submit-form__legend">When you usually meet</legend>
                   <div class="event-submit-form__detail-grid">
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-startTime">Usual start time</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-startTime">Usual start time <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <input type="time" id="mmhp-request-startTime" name="startTime" class="event-submit-form__input" required />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <span class="event-submit-form__field-label">Repeats on</span>
+                      <span class="event-submit-form__field-label">Repeats on <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></span>
                       <div class="request-activity-weekdays" role="group" aria-label="Days of the week">
                         <label class="event-submit-form__field event-submit-form__field--check"><input type="checkbox" name="mmhp-request-weekday" value="Monday" /><span>Monday</span></label>
                         <label class="event-submit-form__field event-submit-form__field--check"><input type="checkbox" name="mmhp-request-weekday" value="Tuesday" /><span>Tuesday</span></label>
@@ -296,15 +301,15 @@
                   <legend class="event-submit-form__legend">Does it run all year or part of the year?</legend>
                   <label class="event-submit-form__field event-submit-form__field--check">
                     <input type="checkbox" id="mmhp-request-is-seasonal" name="isSeasonal" aria-controls="mmhp-request-season-dates-wrap" />
-                    <span class="event-submit-form__detail-check-text">This activity has a set start and stop date each year.</span>
+                    <span class="event-submit-form__detail-check-text">This activity has a set start and stop date each year. <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></span>
                   </label>
                   <div id="mmhp-request-season-dates-wrap" class="event-submit-form__detail-grid" hidden>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-active-from">Season start</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-active-from">Season start <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required if seasonal)</span></label>
                       <input type="date" id="mmhp-request-active-from" name="activeFrom" class="event-submit-form__input" />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-active-to">Season end</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-active-to">Season end <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required if seasonal)</span></label>
                       <input type="date" id="mmhp-request-active-to" name="activeTo" class="event-submit-form__input" />
                     </div>
                   </div>
@@ -314,15 +319,15 @@
                   <legend class="event-submit-form__legend">A little extra</legend>
                   <div class="event-submit-form__detail-grid">
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-adCopy">Short line for flyers or the web</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-adCopy">Short line for flyers or the web <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></label>
                       <textarea id="mmhp-request-adCopy" name="adCopy" class="event-submit-form__input" rows="2" maxlength="500"></textarea>
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-endTime">Usual end time</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-endTime">Usual end time <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></label>
                       <input type="time" id="mmhp-request-endTime" name="endTime" class="event-submit-form__input" />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-keywords">Words to help people find it</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-keywords">Words to help people find it <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></label>
                       <input type="text" id="mmhp-request-keywords" name="keywords" class="event-submit-form__input" maxlength="200" placeholder="bingo, Hall B, Tuesday, beginners" autocomplete="off" />
                     </div>
                   </div>
@@ -332,7 +337,7 @@
                   <legend class="event-submit-form__legend">Who will chair this activity?</legend>
                   <div class="event-submit-form__detail-grid">
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-chairperson-id">Resident who will chair</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-chairperson-id">Resident who will chair <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
                       <select id="mmhp-request-chairperson-id" name="chairpersonId" class="event-submit-form__input" required disabled>
                         <option value="">Loading resident list...</option>
                       </select>
@@ -344,32 +349,32 @@
                   <legend class="event-submit-form__legend">Photos and contact information</legend>
                   <div class="event-submit-form__detail-grid">
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-image-feature">Main photo filename (optional)</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-image-feature">Main photo filename <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></label>
                       <input type="file" id="mmhp-request-image-feature" name="imageFeatured" class="event-submit-form__file" accept="image/*" />
                     </div>
                     <div class="event-submit-form__detail-field">
                       <label class="event-submit-form__detail-check">
                         <input type="checkbox" id="mmhp-request-contact-same-as-chair" name="contactSameAsChair" checked />
-                        <span class="event-submit-form__detail-check-text">Neighbor contact is the same person as the chair</span>
+                        <span class="event-submit-form__detail-check-text">Neighbor contact is the same person as the chair <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></span>
                       </label>
                     </div>
                     <div class="event-submit-form__detail-field" id="mmhp-request-contact-resident-wrap" hidden>
-                      <label class="event-submit-form__field-label" for="mmhp-request-contact-resident-id">Neighbor point of contact</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-contact-resident-id">Neighbor point of contact <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required if not same as chair)</span></label>
                       <select id="mmhp-request-contact-resident-id" name="contactResidentId" class="event-submit-form__input" disabled>
                         <option value="">Loading resident list...</option>
                       </select>
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-proposer-name">Your name</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-proposer-name">Your name <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></label>
                       <input type="text" id="mmhp-request-proposer-name" name="proposerName" class="event-submit-form__input" maxlength="120" autocomplete="name" />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-proposer-phone">Phone</label>
+                      <label class="event-submit-form__field-label" for="mmhp-request-proposer-phone">Phone <span class="event-submit-form__field-tag event-submit-form__field-tag--optional">(optional)</span></label>
                       <input type="tel" id="mmhp-request-proposer-phone" name="proposerPhone" class="event-submit-form__input" maxlength="40" autocomplete="tel" />
                     </div>
                     <div class="event-submit-form__detail-field">
-                      <label class="event-submit-form__field-label" for="mmhp-request-proposer-email">Email</label>
-                      <input type="email" id="mmhp-request-proposer-email" name="proposerEmail" class="event-submit-form__input" maxlength="120" autocomplete="email" />
+                      <label class="event-submit-form__field-label" for="mmhp-request-proposer-email">Email <span class="event-submit-form__field-tag event-submit-form__field-tag--required">(required)</span></label>
+                      <input type="email" id="mmhp-request-proposer-email" name="proposerEmail" class="event-submit-form__input" required maxlength="120" autocomplete="email" />
                     </div>
                   </div>
                 </fieldset>
@@ -378,7 +383,6 @@
                   <button type="submit" class="btn site-button">Send recurring activity to coordinator</button>
                   <a class="btn site-button" href="../index.html">Back To Calendar</a>
                 </div>
-                <p id="mmhp-request-activity-status" class="event-submit-form__status" hidden role="status" aria-live="polite"></p>
               </form>
             </section>
           </section>
