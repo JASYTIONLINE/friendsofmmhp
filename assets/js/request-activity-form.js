@@ -50,10 +50,6 @@
     return "eventcoordinator@friendsofmmhp.com";
   }
 
-  function confirmationCopyText(email) {
-    return " A confirmation copy will be sent to " + email + ".";
-  }
-
   function focusStatus(statusEl) {
     if (!statusEl) return;
     if (!statusEl.hasAttribute("tabindex")) statusEl.setAttribute("tabindex", "-1");
@@ -229,8 +225,7 @@
         statusEl.textContent =
           "Your request has been submitted to " +
           coordinatorEmail() +
-          "." +
-          confirmationCopyText(senderEmail);
+          ".";
         focusStatus(statusEl);
       }
     });
