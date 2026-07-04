@@ -535,7 +535,6 @@
         startTime = startTime.slice(0, 5);
       }
 
-      var featImg = document.getElementById("mmhp-request-image-feature");
       var proposerName = String(document.getElementById("mmhp-request-proposer-name").value || "").trim();
       var proposerPhone = String(document.getElementById("mmhp-request-proposer-phone").value || "").trim();
       var proposerEmail = String(document.getElementById("mmhp-request-proposer-email").value || "").trim();
@@ -630,8 +629,6 @@
 
       function finishSubmitAfterNotice() {
         var keywords = parseKeywords(document.getElementById("mmhp-request-keywords").value);
-        var imagePath =
-          featImg && featImg.files && featImg.files[0] ? featImg.files[0].name : null;
 
         var adCopyOpt = String(document.getElementById("mmhp-request-adCopy").value || "").trim();
         var adCopyFinal = adCopyOpt || description;
@@ -662,7 +659,6 @@
           activeFrom: activeFromMmdd,
           activeTo: activeToMmdd,
           keywords: keywords,
-          imagePath: imagePath,
           chairpersonId: chairpersonId,
           contactResidentId: contactResidentId,
         };

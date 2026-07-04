@@ -18,14 +18,6 @@
   var END_TIME_UNTIL_TIRED_VALUE = "__until_tired__";
   var END_TIME_UNTIL_TIRED_LABEL = "Until we get tired";
 
-  var IMAGE_INPUT_IDS = [
-    "mmhp-submit-image-feature",
-    "mmhp-submit-image-extra-1",
-    "mmhp-submit-image-extra-2",
-    "mmhp-submit-image-extra-3",
-    "mmhp-submit-image-extra-4",
-  ];
-
   var FORMSPREE_ENDPOINT = "https://formspree.io/f/xnjkjbbe";
   var FORMSPREE_EMAIL_SUBJECT = "MMHP Events Request.";
 
@@ -364,7 +356,6 @@
       "Card line 3: " + (ev.cardLine3 || ""),
       "Promotional copy: " + (ev.adCopy || ""),
       "Active: " + (ev.isActive === false ? "false" : "true"),
-      "Image filename hint: " + (ev.imagePath || "(none)"),
       "Requester email: " + (ev.requesterEmail || ""),
     ];
     return lines.join("\r\n");
@@ -475,10 +466,6 @@
       isFeatured: false,
     };
     ev.cardLine3 = cardLine3FromEventDate(ev.date);
-    var featImg = document.getElementById("mmhp-submit-image-feature");
-    if (featImg && featImg.files && featImg.files[0]) {
-      ev.imagePath = featImg.files[0].name;
-    }
     finalizeFeatureRow(ev);
     return ev;
   }
@@ -510,10 +497,6 @@
     var endSel = document.getElementById("mmhp-submit-endTime");
     if (endSel) endSel.value = "21:00";
     document.getElementById("mmhp-submit-isActive").checked = true;
-    for (var ii = 0; ii < IMAGE_INPUT_IDS.length; ii++) {
-      var imgIn = document.getElementById(IMAGE_INPUT_IDS[ii]);
-      if (imgIn) imgIn.value = "";
-    }
 
     var locPreset = document.getElementById("mmhp-submit-location-preset");
     var locOther = document.getElementById("mmhp-submit-location-other");
