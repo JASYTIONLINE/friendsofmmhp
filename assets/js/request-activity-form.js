@@ -51,9 +51,7 @@
   }
 
   function confirmationCopyText(email) {
-    return email
-      ? " If email confirmation is enabled for this form, a confirmation copy will be sent to " + email + "."
-      : "";
+    return " A confirmation copy will be sent to " + email + ".";
   }
 
   function focusStatus(statusEl) {
@@ -207,10 +205,8 @@
     formData.append("message", message || "");
     formData.append("source_page", "Request Activity");
     if (senderName) formData.append("name", senderName);
-    if (senderEmail) {
-      formData.append("email", senderEmail);
-      formData.append("_replyto", senderEmail);
-    }
+    formData.append("email", senderEmail);
+    formData.append("_replyto", senderEmail);
 
     if (statusEl) {
       statusEl.hidden = false;
@@ -276,6 +272,7 @@
     var callmeWrap = document.getElementById("mmhp-request-callme-wrap");
     var callmeName = document.getElementById("mmhp-request-callme-name");
     var callmePhone = document.getElementById("mmhp-request-callme-phone");
+    var callmeEmail = document.getElementById("mmhp-request-callme-email");
     var callmeSend = document.getElementById("mmhp-request-callme-send");
     var CALLME_SUBJECT = "Please call me";
 
@@ -287,9 +284,13 @@
       if (callmeCb) {
         callmeCb.setAttribute("aria-expanded", on ? "true" : "false");
       }
+      if (callmeName) callmeName.required = on;
+      if (callmePhone) callmePhone.required = on;
+      if (callmeEmail) callmeEmail.required = on;
       if (!on) {
         if (callmeName) callmeName.value = "";
         if (callmePhone) callmePhone.value = "";
+        if (callmeEmail) callmeEmail.value = "";
       }
     }
     if (callmeCb) {
@@ -298,6 +299,7 @@
         if (statusEl && callmeCb.checked) {
           statusEl.textContent = "";
           statusEl.hidden = true;
+          setStatusState(statusEl, "");
         }
       });
       syncCallMe();
@@ -311,10 +313,11 @@
         }
         var nm = String(callmeName ? callmeName.value : "").trim();
         var ph = String(callmePhone ? callmePhone.value : "").trim();
+        var em = String(callmeEmail ? callmeEmail.value : "").trim();
         if (!nm) {
           announceMissingRequired(
             statusEl,
-            "Please add your name; both name and phone are required if you want the coordinator to call you.",
+            "Please add your name; name, phone, and email are required if you want the coordinator to call you.",
             callmeName
           );
           return;
@@ -322,9 +325,21 @@
         if (!ph) {
           announceMissingRequired(
             statusEl,
-            "Please add your phone number; both name and phone are required if you want the coordinator to call you.",
+            "Please add your phone number; name, phone, and email are required if you want the coordinator to call you.",
             callmePhone
           );
+          return;
+        }
+        if (!em) {
+          announceMissingRequired(
+            statusEl,
+            "Please add your email address; name, phone, and email are required if you want the coordinator to call you.",
+            callmeEmail
+          );
+          return;
+        }
+        if (!isValidEmail(em)) {
+          announceMissingRequired(statusEl, "Please enter a valid email address.", callmeEmail);
           return;
         }
         var body =
@@ -334,8 +349,11 @@
           "\r\n" +
           "Phone: " +
           ph +
+          "\r\n" +
+          "Email: " +
+          em +
           "\r\n";
-        submitActivityRequestText(CALLME_SUBJECT, body, statusEl, nm, "").catch(function () {
+        submitActivityRequestText(CALLME_SUBJECT, body, statusEl, nm, em).catch(function () {
           if (statusEl) {
             setStatusState(statusEl, "error");
             statusEl.hidden = false;

@@ -59,9 +59,7 @@
   }
 
   function confirmationCopyText(email) {
-    return email
-      ? " If email confirmation is enabled for this form, a confirmation copy will be sent to " + email + "."
-      : "";
+    return " A confirmation copy will be sent to " + email + ".";
   }
 
   function focusStatus(statusEl) {
@@ -379,10 +377,8 @@
     formData.append("subject", "Submit event: " + (ev.eventName || ev.id || "new event"));
     formData.append("message", eventSummaryPlainText(ev));
     formData.append("source_page", "Submit Event");
-    if (ev.requesterEmail) {
-      formData.append("email", ev.requesterEmail);
-      formData.append("_replyto", ev.requesterEmail);
-    }
+    formData.append("email", ev.requesterEmail);
+    formData.append("_replyto", ev.requesterEmail);
 
     if (statusEl) {
       statusEl.hidden = false;
