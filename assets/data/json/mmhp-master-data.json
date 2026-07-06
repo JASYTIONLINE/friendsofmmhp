@@ -6455,6 +6455,25 @@
       "imagePath": "event-flyer/karaoke.png"
     },
     {
+      "featureId": "fe0059",
+      "id": "fe0059",
+      "date": "2026-08-02",
+      "startTime": "13:00",
+      "endTime": "14:30",
+      "location": "Hall B",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "August Luncheon",
+      "cardLine2": "Potluck",
+      "cardLine3": "Aug 2 2026",
+      "eventName": "August Luncheon — Potluck",
+      "adCopy": "Share a relaxed Sunday lunch with neighbors at the August Luncheon Potluck in Hall B. Bring a favorite dish, try something homemade, and enjoy an easy afternoon around the table. Please sign up in Hall A so we know you are coming and note what you plan to bring. Main dishes, salads, vegetables, desserts, and other favorites are all welcome.",
+      "description": "Share a relaxed Sunday lunch with neighbors at the August Luncheon Potluck in Hall B. Bring a favorite dish, try something homemade, and enjoy an easy afternoon around the table. Please sign up in Hall A so we know you are coming and note what you plan to bring. Main dishes, salads, vegetables, desserts, and other favorites are all welcome.",
+      "imagePath": "event-flyer/august-luncheon-potluck-sq.png",
+      "imagePathFlyer": "event-flyer/august-luncheon-potluck.png",
+      "detailPath": "contents/feature-events/2026-08-02-1300-potluck.html"
+    },
+    {
       "featureId": "fe0040",
       "id": "fe0040",
       "date": "2026-08-08",
