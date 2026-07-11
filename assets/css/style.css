@@ -2308,9 +2308,9 @@
     }
 
     body.page-home .page-home-mobile-spotlight .featured-card-image {
-      aspect-ratio: 1 / 1 !important;
-      max-height: none;
-      object-fit: cover !important;
+      aspect-ratio: auto !important;
+      max-height: min(52vh, 22rem);
+      object-fit: contain !important;
     }
 
     body.page-home .page-home-mobile-spotlight .featured-card-line--name {
@@ -3681,7 +3681,6 @@
     flex-direction: column;
   }
 
-  body.page-home .featured-card-image,
   body.page-home .page-home-featured .featured-events-grid.page-home-featured-grid .featured-card-image {
     width: 100%;
     max-width: 100%;
