@@ -90,14 +90,14 @@ function repeatableFeatureDescription(ev) {
 
   if (line1.includes("karaoke") || line2.includes("karaoke") || image.includes("karaoke")) {
     if (line1.includes("dance") || line2.includes("dj") || image.includes("djdance")) {
-      return "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. This featured listing uses the same event format each time it appears; check the date and time above for the current scheduled night.";
+      return "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This featured listing uses the same event format each time it appears; check the date and time above for the current scheduled night.";
     }
 
     return "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. This listing uses the same event format each time it appears; check the date and time above for the current scheduled night.";
   }
 
   if (line1.includes("dance party") || image.includes("djdance")) {
-    return "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music and dancing. This featured listing uses the same event format each time it appears; check the date and time above for the current scheduled night.";
+    return "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This featured listing uses the same event format each time it appears; check the date and time above for the current scheduled night.";
   }
 
   return "";

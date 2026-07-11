@@ -5823,12 +5823,14 @@
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
-      "cardLine1": "DJ Dance",
-      "cardLine2": "DJ Karaoke",
+      "cardLine1": "Saturday Dance",
+      "cardLine2": "DJ Kushman",
       "cardLine3": "Nov 21 2026",
-      "eventName": "DJ Dance — DJ Karaoke",
-      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
-      "imagePath": "event-flyer/djdance.png"
+      "eventName": "Saturday Dance with DJ Kushman",
+      "adCopy": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePath": "event-flyer/djdance-sq.png",
+      "description": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePathFlyer": "event-flyer/djdance.png"
     },
     {
       "featureId": "fe0004",
@@ -5839,12 +5841,14 @@
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
-      "cardLine1": "DJ Dance",
-      "cardLine2": "DJ Karaoke",
+      "cardLine1": "Saturday Dance",
+      "cardLine2": "DJ Kushman",
       "cardLine3": "Nov 28 2026",
-      "eventName": "DJ Dance — DJ Karaoke",
-      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
-      "imagePath": "event-flyer/djdance.png"
+      "eventName": "Saturday Dance with DJ Kushman",
+      "adCopy": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePath": "event-flyer/djdance-sq.png",
+      "description": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePathFlyer": "event-flyer/djdance.png"
     },
     {
       "featureId": "fe0005",
@@ -5871,12 +5875,14 @@
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
-      "cardLine1": "DJ Dance",
-      "cardLine2": "DJ Karaoke",
+      "cardLine1": "Saturday Dance",
+      "cardLine2": "DJ Kushman",
       "cardLine3": "Dec 12 2026",
-      "eventName": "DJ Dance — DJ Karaoke",
-      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
-      "imagePath": "event-flyer/djdance.png"
+      "eventName": "Saturday Dance with DJ Kushman",
+      "adCopy": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePath": "event-flyer/djdance-sq.png",
+      "description": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePathFlyer": "event-flyer/djdance.png"
     },
     {
       "featureId": "fe0007",
@@ -5903,12 +5909,14 @@
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
-      "cardLine1": "DJ Dance",
-      "cardLine2": "DJ Karaoke",
+      "cardLine1": "Saturday Dance",
+      "cardLine2": "DJ Kushman",
       "cardLine3": "Dec 26 2026",
-      "eventName": "DJ Dance — DJ Karaoke",
-      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
-      "imagePath": "event-flyer/djdance.png"
+      "eventName": "Saturday Dance with DJ Kushman",
+      "adCopy": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePath": "event-flyer/djdance-sq.png",
+      "description": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePathFlyer": "event-flyer/djdance.png"
     },
     {
       "featureId": "fe0009",
@@ -6106,12 +6114,14 @@
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
-      "cardLine1": "Dance Party with DJ Dana",
-      "cardLine2": "Dance",
+      "cardLine1": "Saturday Dance",
+      "cardLine2": "DJ Kushman",
       "cardLine3": "May 2 2026",
-      "eventName": "Dance Party with DJ Dana — Dance",
-      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
-      "imagePath": "event-flyer/djdance.png"
+      "eventName": "Saturday Dance with DJ Kushman",
+      "adCopy": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePath": "event-flyer/djdance-sq.png",
+      "description": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePathFlyer": "event-flyer/djdance.png"
     },
     {
       "featureId": "fe0021",
@@ -6122,12 +6132,14 @@
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
-      "cardLine1": "Dance Party with DJ Dana",
-      "cardLine2": "Dance",
+      "cardLine1": "Saturday Dance",
+      "cardLine2": "DJ Kushman",
       "cardLine3": "May 9 2026",
-      "eventName": "Dance Party with DJ Dana — Dance",
-      "adCopy": "Dance Party with DJ Dana brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and karaoke-style fun. Check the date and time for the current scheduled night.",
-      "imagePath": "event-flyer/djdance.png"
+      "eventName": "Saturday Dance with DJ Kushman",
+      "adCopy": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePath": "event-flyer/djdance-sq.png",
+      "description": "Saturday Dance with DJ Kushman brings neighbors together for a familiar McAllen Mobile Park evening of music, dancing, and friends. This is the Saturday evening dance event used when karaoke is not scheduled; check the date and time for the current scheduled night.",
+      "imagePathFlyer": "event-flyer/djdance.png"
     },
     {
       "featureId": "fe0022",
@@ -6433,14 +6445,15 @@
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
-      "cardLine1": "Book now",
-      "cardLine2": "Saturday evening",
+      "cardLine1": "Benefit Dance",
+      "cardLine2": "DJ Kushman",
       "cardLine3": "Jul 25 2026",
-      "eventName": "Book now — Saturday evening",
-      "adCopy": "No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",
-      "description": "No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",
-      "imagePath": "event-flyer/bookme.png",
-      "detailPath": "contents/feature-events/2026-07-25-1900-karaoke.html"
+      "eventName": "Benefit Dance with DJ Kushman",
+      "adCopy": "Come out and spend time with friends and enjoy music by DJ Kushman. This Benefit Dance supports McAllen Mobile Home Park resident Todd Baker, whose mother recently passed away after a long struggle. Todd incurred debt while caring for her and must travel back north to handle final arrangements. Our goal is to raise $2,000 to help with travel and final expenses.",
+      "description": "Come out and spend time with friends and enjoy music by DJ Kushman. This Benefit Dance supports McAllen Mobile Home Park resident Todd Baker, whose mother recently passed away after a long struggle. Todd incurred debt while caring for her and must travel back north to handle final arrangements. Our goal is to raise $2,000 to help with travel and final expenses.",
+      "imagePath": "event-flyer/benefit-dance-dj-kushman-sq.png",
+      "imagePathFlyer": "event-flyer/benefit-dance-dj-kushman.png",
+      "detailPath": "contents/feature-events/2026-07-25-1900-benefit.html"
     },
     {
       "featureId": "fe0039",
