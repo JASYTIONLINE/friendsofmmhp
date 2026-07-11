@@ -6519,12 +6519,14 @@
       "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
-      "cardLine1": "Karaoke",
-      "cardLine2": "Karaoke",
+      "cardLine1": "Book now",
+      "cardLine2": "Saturday evening",
       "cardLine3": "Aug 15 2026",
-      "eventName": "Karaoke — Karaoke",
-      "adCopy": "Karaoke night is a familiar McAllen Mobile Park feature where neighbors can sing, listen, and spend an easy evening together in the hall. Check the date and time for the current scheduled night.",
-      "imagePath": "event-flyer/karaoke.png"
+      "eventName": "Book now — Saturday evening",
+      "adCopy": "No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",
+      "description": "No featured entertainment is scheduled for this Saturday. The hall and evening time may be available for a community or private event—contact the event coordinator to discuss options.",
+      "imagePath": "event-flyer/bookme.png",
+      "detailPath": "contents/feature-events/2026-08-15-1900-karaoke.html"
     },
     {
       "featureId": "fe0042",
