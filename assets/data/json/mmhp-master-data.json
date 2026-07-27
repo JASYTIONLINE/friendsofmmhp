@@ -5257,7 +5257,7 @@
     {
       "id": "ac0030",
       "description": "Same scoop, warmer months: the Summer Ice Cream Social picks up when the Winter edition takes its break—third Sunday of each month March through mid-November. No fee, no RSVP; each date features a flavor of the week (vanilla, orange sherbet, root-beer floats, or Sandy’s pick). Kids and residents drop by Hall B for half an hour of cones, bowls, and conversation with neighbors.",
-      "location": "Hall B",
+      "location": "Hall A",
       "recurrenceType": "Recurring",
       "recurrenceDetails": {
         "weekdays": [
@@ -6163,14 +6163,14 @@
       "date": "2026-05-17",
       "startTime": "13:00",
       "endTime": "13:30",
-      "location": "Hall B",
+      "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
       "cardLine1": "Ice Cream Social",
       "cardLine2": "3rd Sunday monthly",
       "cardLine3": "May 17 2026",
       "eventName": "Ice Cream Social — 3rd Sunday monthly",
-      "adCopy": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
+      "adCopy": "Third Sunday each month May through October—free ice cream social in Hall A. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
       "description": "Third Sunday each month May through October—free ice cream social in Hall B. Flavor of the week, cones and bowls, 1:00–1:30 PM. Kids and residents welcome; no fee or RSVP.",
       "imagePath": "event-flyer/icecream.png",
       "imagePathFlyer": "event-flyer/icecream-w.png"
@@ -6424,7 +6424,7 @@
       "date": "2026-07-19",
       "startTime": "13:00",
       "endTime": "13:30",
-      "location": "Hall B",
+      "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
       "cardLine1": "Ice Cream Social",
@@ -6653,7 +6653,7 @@
       "date": "2026-09-20",
       "startTime": "13:00",
       "endTime": "13:30",
-      "location": "Hall B",
+      "location": "Hall A",
       "isActive": true,
       "isFeatured": true,
       "cardLine1": "Ice Cream Social",
