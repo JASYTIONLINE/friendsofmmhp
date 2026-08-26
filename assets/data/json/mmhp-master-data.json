@@ -6799,6 +6799,25 @@
       "adCopy": "Encore Karaoke with a special musical review.",
       "description": "Encore Karaoke with a special musical review.",
       "imagePath": "event-flyer/encore-karaoke.png"
+    },
+    {
+      "featureId": "fe0060",
+      "id": "fe0060",
+      "date": "2026-08-26",
+      "startTime": "16:00",
+      "endTime": "22:00",
+      "location": "Hall B",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "Band Practice",
+      "cardLine2": "Steve and the Guys · Hall B",
+      "cardLine3": "Aug 26 · 4–10 PM",
+      "eventName": "Band Practice — Steve and the Guys",
+      "adCopy": "Steve and the Guys get ready for the Winter Texan season with their first band rehearsal from 4:00 to 10:00 PM in Hall B. Spectators welcome—come listen as they warm up for the season ahead!",
+      "description": "Steve and the Guys get ready for the Winter Texan season with their first band rehearsal from 4:00 to 10:00 PM in Hall B. Spectators welcome—come listen as they warm up for the season ahead!",
+      "imagePath": "event-flyer/band-practice-sq.png",
+      "imagePathFlyer": "event-flyer/band-practice.png",
+      "detailPath": "contents/feature-events/2026-08-26-1600-band-practice.html"
     }
   ],
   "committees": [
