@@ -6818,6 +6818,25 @@
       "imagePath": "event-flyer/band-practice-sq.png",
       "imagePathFlyer": "event-flyer/band-practice.png",
       "detailPath": "contents/feature-events/2026-08-26-1600-band-practice.html"
+    },
+    {
+      "featureId": "fe0061",
+      "id": "fe0061",
+      "date": "2026-09-07",
+      "startTime": "13:00",
+      "endTime": "14:00",
+      "location": "Hall B",
+      "isActive": true,
+      "isFeatured": true,
+      "cardLine1": "Monthly Potluck",
+      "cardLine2": "Social Dinner · Hall B",
+      "cardLine3": "Sept 7 · 1:00 PM",
+      "eventName": "Monthly Potluck Social Dinner",
+      "adCopy": "Friends and family of McAllen Mobile Park—come share a meal and take time to get to know your neighbors at our monthly potluck social dinner! Bring a favorite dish to pass, pull up a chair in Hall B at 1:00 PM, and enjoy good food and better company. Sign up in Hall A so we can welcome everyone comfortably. Main dishes, sides, salads, and desserts are all welcome—don't miss this easy, friendly afternoon around the table.",
+      "description": "Friends and family of McAllen Mobile Park—come share a meal and take time to get to know your neighbors at our monthly potluck social dinner! Bring a favorite dish to pass, pull up a chair in Hall B at 1:00 PM, and enjoy good food and better company. Sign up in Hall A so we can welcome everyone comfortably. Main dishes, sides, salads, and desserts are all welcome—don't miss this easy, friendly afternoon around the table.",
+      "imagePath": "event-flyer/september-potluck-sq.png",
+      "imagePathFlyer": "event-flyer/september-potluck.png",
+      "detailPath": "contents/feature-events/2026-09-07-1300-september-potluck.html"
     }
   ],
   "committees": [
