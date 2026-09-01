@@ -7,18 +7,11 @@
   <title>Saturday Dance with DJ Kushman | McAllen Mobile Park Events</title>
   <link rel="icon" type="image/svg+xml" href="../../assets/images/stock-images/favicon.svg" />
   <link rel="stylesheet" href="../../assets/css/style.css">
-  <!--
-    Feature events only (not recurring activities). Activity landing pages will live in contents/activity-events/ later.
-    Naming (this folder: contents/feature-events/):
-      Template: yyyy-mm-dd-1900-bookme.html  → flyer image file under assets/images/event-flyer/bookme.png
-      Live:     YYYY-MM-DD-HHmm-<stem>.html  → ../../assets/images/event-flyer/<stem>.(png|jpg)
-  -->
 </head>
 
 <body id="top" class="feature-events-page"
   data-mmhp-master-json="../../assets/data/json/mmhp-master-data.json"
   data-mmhp-feature-id="fe0006">
-  <!-- When this page matches a row in master JSON features[], set data-mmhp-feature-id="fe0009" (featured event only, not an activity). -->
   <header class="feature-events-banner" aria-label="McAllen Mobile Park">
     <img src="../../assets/images/park-b-roll/park-banner.png" alt="McAllen Mobile Park">
     <div class="feature-events-banner-text">
@@ -59,7 +52,6 @@
             </button>
             <a class="feature-events-directions" href="https://maps.app.goo.gl/6st9THqUttarC7vUA" target="_blank" rel="noopener noreferrer">Get Directions</a>
           </div>
-          <!-- Edit datetime + visible text together -->
           <time datetime="2026-12-12T19:00">Saturday, December 12, 2026</time>
           <p class="feature-events-time-pill" aria-label="Event time">7:00 PM - 10:00 PM · Hall A</p>
           <p class="feature-events-invite">Join neighbors for an evening in the hall - everyone is welcome.</p>
@@ -85,7 +77,6 @@
 
   <script src="../../assets/js/mmhp-coordinator-config.js" defer></script>
   <script src="../../assets/js/feature-events-ics.js" defer></script>
-  <!-- Optional Purchase-tickets UI (CSS, dialog, script) lives in git history; search feature-events-ticket-dialog. -->
 </body>
 
 </html>
