@@ -250,7 +250,7 @@ function main() {
     byDate.get(d).push(f);
   }
 
-  let nextType = "karaoke";
+  let nextType = "dance";
   const assignments = [];
   for (const date of saturdays(START_DATE, END_DATE)) {
     if (isBlockedSaturday(date, byDate)) {
